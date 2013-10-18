@@ -3,6 +3,7 @@ package se.mah.kd330a.project.framework;
 
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.FragmentFind;
+import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.itsl.FragmentITSL;
 import se.mah.kd330a.project.schedule.FragmentScheduleTabs;
 

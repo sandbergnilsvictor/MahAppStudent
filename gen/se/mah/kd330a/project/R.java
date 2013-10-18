@@ -50,10 +50,11 @@ public final class R {
         public static final int map_view=0x7f02000a;
     }
     public static final class id {
-        public static final int action_help=0x7f09000b;
-        public static final int action_settings=0x7f09000a;
+        public static final int action_help=0x7f090014;
+        public static final int action_settings=0x7f090013;
+        public static final int calender_feed_mah=0x7f090010;
         public static final int content=0x7f090006;
-        public static final int contentSchedule=0x7f090008;
+        public static final int contentSchedule=0x7f090011;
         public static final int content_frame=0x7f090001;
         public static final int drawer_layout=0x7f090000;
         public static final int left_drawer=0x7f090002;
@@ -61,7 +62,15 @@ public final class R {
         public static final int menu_item=0x7f090003;
         public static final int menu_item_icon=0x7f090004;
         public static final int menu_item_text=0x7f090005;
-        public static final int pager=0x7f090009;
+        public static final int news_feed_mah=0x7f09000f;
+        public static final int next_class_widget=0x7f090008;
+        public static final int pager=0x7f090012;
+        public static final int text_next_class_date=0x7f09000b;
+        public static final int text_next_class_end_time=0x7f09000d;
+        public static final int text_next_class_id=0x7f090009;
+        public static final int text_next_class_location=0x7f09000e;
+        public static final int text_next_class_name=0x7f09000a;
+        public static final int text_next_class_start_time=0x7f09000c;
     }
     public static final class layout {
         public static final int activity_help=0x7f030000;
