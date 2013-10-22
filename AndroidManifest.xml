@@ -12,7 +12,7 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,13 +39,16 @@
         </activity>
         <activity
             android:name="se.mah.kd330a.project.framework.SettingsActivity"
-            android:label="@string/title_activity_settings" 
-            >
-        <!-- The meta-data element is needed for versions lower than 4.1 -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="se.mah.kd330a.project.framework.MainActivity" />
+            android:label="@string/title_activity_settings" >
+
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.mah.kd330a.project.framework.MainActivity" />
         </activity>
+        <activity
+            android:name="se.mah.kd330a.project.find.ResultActivity"
+            android:label="@string/find_result_page" />
     </application>
 
 </manifest>

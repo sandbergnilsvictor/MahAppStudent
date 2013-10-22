@@ -7,45 +7,47 @@ import android.util.Log;
 
 public class PathToRoom {
 
-	String roomNr = null;
-	List <String> path = null;
-	List <String> texts = null;
-	int coord_x = -1;
-	int coord_y = -1;
-	String mapPic = null;
+	String mRoomNr = null;
+	List <String> mPath = null;
+	List <String> mTexts = null;
+	int mCoord_x = -1;
+	int mCoord_y = -1;
+	String mMapPic = null;
+	String mRoomName;
 
 	public PathToRoom(String room) {
-		roomNr = room;
+		mRoomNr = room;
 	}
 
 	public void setPath(String pathString) {
-		path = new ArrayList<String>();
+		mPath = new ArrayList<String>();
 		String[] strPath = pathString.split("_");
 
 		for(String str: strPath)
-			path.add(str);
+			mPath.add(str);
 		}
 
 		public List<String> getPath() {
-			return path;
+			return mPath;
 		}
 
 		public void setTextList(String textString) {
-			texts = new ArrayList<String>();
+			mTexts = new ArrayList<String>();
 			String[] strTexts = textString.split("_");
 
 			for(String str: strTexts)
-				texts.add(str);
+				mTexts.add(str);
 			
-			Log.i("project", texts.toString());
+			Log.i("project", mTexts.toString());
 		}
 
 		public List<String> getTexts() {
-			return texts;
+			return mTexts;
 		}
-
-		public void setMapPic(String map) {
-
+		
+		public String getRoomMane() {
+			
+			return "";
 		}
 
 	}

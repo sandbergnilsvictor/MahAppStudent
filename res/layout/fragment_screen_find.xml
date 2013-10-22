@@ -1,24 +1,35 @@
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent" >
 
     <!-- Dummy content. -->
-    <LinearLayout android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="16dp"
-        >
-        <TextView android:id="@+id/map_heading"
-            style="?android:textAppearanceLarge"
-            android:textStyle="bold"
-            android:text="FIND ON CAMPUS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical" >
 
+        <EditText
+            android:id="@+id/edt_Find_RoomNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="64dp"
+            android:ems="10"
+            android:inputType="text" >
 
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btn_Find_Search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="47dp"
+            android:text="@string/btn_find_search" />
     </LinearLayout>
 
 </ScrollView>

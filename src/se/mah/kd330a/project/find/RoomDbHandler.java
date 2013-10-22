@@ -96,9 +96,9 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 				room = new PathToRoom(roomNr);
 				room.setPath(c.getString(c.getColumnIndex(ROW_PATH)));
 				room.setTextList(c.getString(c.getColumnIndex(ROW_TEXTS)));
-				room.setMapPic(c.getString(c.getColumnIndex(ROW_MAP)));
-				room.coord_x = c.getInt(c.getColumnIndex(ROW_X));
-				room.coord_y = c.getInt(c.getColumnIndex(ROW_Y));
+				room.mMapPic = c.getString(c.getColumnIndex(ROW_MAP));
+				room.mCoord_x = c.getInt(c.getColumnIndex(ROW_X));
+				room.mCoord_y = c.getInt(c.getColumnIndex(ROW_Y));
 				return true;
 			}
 		}
@@ -109,6 +109,10 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		return false;
 	}
 
+	public PathToRoom getRoomDetails() {
+		return room;
+	}
+	
 	public List<String> getPathImg() {
 		if (room != null)
 			return room.getPath();
@@ -125,28 +129,28 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 
 	public String getMapName() {
 		if (room != null)
-			return room.mapPic;
+			return room.mMapPic;
 		else
 			return null;
 	}
 
 	public String getRoomNr() {
 		if (room != null)
-			return room.roomNr;
+			return room.mRoomNr;
 		else
 			return null;
 	}
 
 	public int getCoordX() {
 		if (room != null)
-			return room.coord_x;
+			return room.mCoord_x;
 		else
 			return -1;
 	}
 
 	public int getCoordY() {
 		if (room != null)
-			return room.coord_y;
+			return room.mCoord_y;
 		else
 			return -1;
 	}
