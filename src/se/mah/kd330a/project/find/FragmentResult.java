@@ -26,7 +26,7 @@ public class FragmentResult extends Fragment implements ActionBar.TabListener {
 
 	ResultPagerAdapter mResultPagerAdapter;
 	ViewPager mViewPager;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,10 +56,10 @@ public class FragmentResult extends Fragment implements ActionBar.TabListener {
 				mDbHandler.getRoomDetails());
 		mViewPager = (ViewPager) getView().findViewById(R.id.vp_Find_Pager);
 		mViewPager.setAdapter(mResultPagerAdapter);
-		
+
 		final ActionBar actionBar = getActivity().getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		
+
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
@@ -68,15 +68,22 @@ public class FragmentResult extends Fragment implements ActionBar.TabListener {
 				actionBar.setSelectedNavigationItem(position);
 			}
 		});
-		
+
 		for (int i = 0; i < mDbHandler.getRoomDetails().getPath().size(); i++ ) {
 			actionBar.addTab(actionBar.newTab().setCustomView(R.layout.view_pager_custom_tab)
 					.setTabListener(this));
 			((TextView) actionBar.getTabAt(i).getCustomView().findViewById(R.id.tv_Find_Tab))
-					.setText(Integer.toString(i + 1));
+			.setText(Integer.toString(i + 1));
 		}
 	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		final ActionBar actionBar = getActivity().getActionBar();
+		actionBar.removeAllTabs();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+	}
 
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
