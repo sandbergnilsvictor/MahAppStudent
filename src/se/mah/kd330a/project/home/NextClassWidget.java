@@ -14,12 +14,12 @@ public class NextClassWidget {
 	}
 	
 	public void generateSampleCourse() {
-		this.courseName = "Mobile Development";
+		this.courseName = "Att utvecklas som hand- ledare inom odontologisk utbildning";
 		this.courseId = "KD330a";
-		this.location = "B310";
-		this.startTime = "10:00";
+		this.location = "B310, K2B212, K203A4...";
+		this.startTime = "10:15";
 		this.endTime = "12:00";
-		this.date = "Onsdag 12/10";
+		this.date = "Today";
 		
 				
 	}

@@ -2,6 +2,10 @@
 package se.mah.kd330a.project.home;
 import java.util.ArrayList;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+
 import se.mah.kd330a.project.home.data.NewsFeedMahParser;
 import se.mah.kd330a.project.home.data.NewsMah;
 import se.mah.kd330a.project.home.data.RssReader;
@@ -15,7 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+
 
 public class FragmentHome extends Fragment {
 	
@@ -24,6 +30,9 @@ public class FragmentHome extends Fragment {
 	private ArrayList<NewsMah> listOfNewsMah;
 	private ViewGroup rootView;
 	private RssReader rssReader;
+	PullToRefreshScrollView mPullRefreshScrollView;
+	ScrollView mScrollView;
+	
 	public FragmentHome () {
 	}
 
@@ -37,6 +46,8 @@ public class FragmentHome extends Fragment {
 		listOfNewsMah = newsFeed.getAllNews();
 		Log.i("onCreate", Integer.toString(listOfNewsMah.size()));
 		new DoInBackground().execute();
+		
+		
 		super.onCreate(savedInstanceState);
 	}
 
@@ -45,10 +56,43 @@ public class FragmentHome extends Fragment {
 		
 		rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_screen_home, container, false);
+		mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.pull_refresh_scrollview);
+		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				new GetDataTask().execute();
+			}
+		});
+
+		mScrollView = mPullRefreshScrollView.getRefreshableView();
 		setNextClassWidget(rootView);
 		setCalenderFeedMah(rootView);
 		return rootView;
 		
+	}
+	
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+			// Do some stuff here
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshScrollView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
 	}
 
 	private void setCalenderFeedMah(ViewGroup rootView) {
@@ -66,6 +110,7 @@ public class FragmentHome extends Fragment {
 			TextView title = new TextView(getActivity());
 			title.setLayoutParams(params);
 			title.setText(n.getTitle());
+			title.setTextSize(18);
 			TextView description = new TextView(getActivity());
 			description.setLayoutParams(params);
 			description.setText(n.getDescription());
@@ -75,6 +120,7 @@ public class FragmentHome extends Fragment {
 			TextView creator = new TextView(getActivity());
 			creator.setLayoutParams(params);
 			creator.setText(n.getCreator());
+			
 			
 			newsFeedMahWidget.addView(pubDate);
 			newsFeedMahWidget.addView(title);
@@ -87,8 +133,6 @@ public class FragmentHome extends Fragment {
 
 	private void setNextClassWidget(ViewGroup rootView) {
 		LinearLayout nextClassWidget = (LinearLayout) rootView.findViewById(R.id.next_class_widget);
-		TextView textNextClassId = (TextView) nextClassWidget.findViewById(R.id.text_next_class_id);
-		textNextClassId.setText(nextClass.getCourseId());
 		TextView textNextClassName = (TextView) nextClassWidget.findViewById(R.id.text_next_class_name);
 		textNextClassName.setText(nextClass.getCourseName());
 		TextView textNextClassDate = (TextView) nextClassWidget.findViewById(R.id.text_next_class_date);
@@ -108,9 +152,9 @@ public class FragmentHome extends Fragment {
 				Log.i("DoInbackground", "doinBackgroud called");
 				listOfNewsMah.clear();  //Clear last search
 				try {
-				listOfNewsMah.addAll(rssReader.getNews()); //Add all stations found
-				Log.i("doInBackground", Integer.toString(listOfNewsMah.size()));
-				
+					listOfNewsMah.addAll(rssReader.getNews()); //Add all stations found
+					Log.i("doInBackground", Integer.toString(listOfNewsMah.size()));
+					
 				} catch(Exception e) {
 					Log.i("tag", "msg", e);
 				}
