@@ -156,15 +156,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int black=0x7f080000;
-        public static final int blue=0x7f080009;
-        public static final int green=0x7f080007;
-        public static final int grey=0x7f080004;
-        public static final int grey_dark=0x7f080005;
-        public static final int grey_light=0x7f080003;
-        public static final int grey_middle=0x7f080002;
-        public static final int orange=0x7f080008;
+        public static final int blue=0x7f08000a;
+        public static final int green=0x7f080008;
+        public static final int grey=0x7f080005;
+        public static final int grey_dark=0x7f080006;
+        public static final int grey_light=0x7f080004;
+        public static final int grey_middle=0x7f080003;
+        public static final int orange=0x7f080009;
         public static final int red=0x7f080001;
-        public static final int yellow=0x7f080006;
+        public static final int red_mah=0x7f080002;
+        public static final int yellow=0x7f080007;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -195,78 +196,91 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_menu_find=0x7f02000a;
         public static final int ic_menu_home=0x7f02000b;
         public static final int ic_menu_itsl=0x7f02000c;
-        public static final int ic_menu_schedule=0x7f02000d;
-        public static final int image_mah_logo=0x7f02000e;
-        public static final int indicator_arrow=0x7f02000f;
-        public static final int indicator_bg_bottom=0x7f020010;
-        public static final int indicator_bg_top=0x7f020011;
-        public static final int map_view=0x7f020012;
+        public static final int ic_menu_itsl2=0x7f02000d;
+        public static final int ic_menu_schedule=0x7f02000e;
+        public static final int ic_profil_settings=0x7f02000f;
+        public static final int image_mah_logo=0x7f020010;
+        public static final int indicator_arrow=0x7f020011;
+        public static final int indicator_bg_bottom=0x7f020012;
+        public static final int indicator_bg_top=0x7f020013;
+        public static final int map_view=0x7f020014;
+        public static final int menu_selector=0x7f020015;
+        public static final int menuitem_background=0x7f020016;
+        public static final int splash_view=0x7f020017;
     }
     public static final class id {
-        public static final int action_help=0x7f05002b;
-        public static final int action_settings=0x7f05002a;
+        public static final int action_help=0x7f05002f;
+        public static final int action_settings=0x7f05002e;
         public static final int both=0x7f050003;
-        public static final int calender_feed_mah=0x7f050021;
-        public static final int content=0x7f050012;
-        public static final int contentSchedule=0x7f050022;
+        public static final int calender_feed_mah=0x7f050023;
+        public static final int content=0x7f050014;
+        public static final int contentSchedule=0x7f050024;
         public static final int content_frame=0x7f05000d;
         public static final int disabled=0x7f050000;
         public static final int drawer_layout=0x7f05000c;
-        public static final int drop_shadow=0x7f050029;
-        public static final int fl_inner=0x7f050023;
+        public static final int drop_shadow=0x7f05002d;
+        public static final int expandable_list=0x7f050013;
+        public static final int fl_inner=0x7f050025;
         public static final int flip=0x7f050008;
         public static final int gridview=0x7f050009;
-        public static final int itsl_widget_heading=0x7f05001c;
-        public static final int itslearning_widget=0x7f05001b;
+        public static final int itsl_widget_heading=0x7f05001e;
+        public static final int itslearning_widget=0x7f05001d;
+        public static final int lblListHeader=0x7f05002a;
+        public static final int lblListItem=0x7f05002b;
         public static final int left_drawer=0x7f05000e;
         public static final int manualOnly=0x7f050004;
-        public static final int map_heading=0x7f050013;
+        public static final int map_heading=0x7f050015;
         public static final int menu_item=0x7f05000f;
         public static final int menu_item_icon=0x7f050010;
         public static final int menu_item_text=0x7f050011;
-        public static final int news_feed_mah=0x7f05001f;
-        public static final int news_widget_heading=0x7f050020;
-        public static final int next_class_widget=0x7f050015;
-        public static final int pager=0x7f050028;
+        public static final int news_feed_mah=0x7f050021;
+        public static final int news_widget_heading=0x7f050022;
+        public static final int next_class_widget=0x7f050017;
+        public static final int pager=0x7f05002c;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_refresh_scrollview=0x7f050014;
-        public static final int pull_to_refresh_image=0x7f050024;
-        public static final int pull_to_refresh_progress=0x7f050025;
-        public static final int pull_to_refresh_sub_text=0x7f050027;
-        public static final int pull_to_refresh_text=0x7f050026;
+        public static final int pull_refresh_scrollview=0x7f050016;
+        public static final int pull_to_refresh_image=0x7f050026;
+        public static final int pull_to_refresh_progress=0x7f050027;
+        public static final int pull_to_refresh_sub_text=0x7f050029;
+        public static final int pull_to_refresh_text=0x7f050028;
         public static final int rotate=0x7f050007;
+        public static final int schudule_week_number=0x7f050012;
         public static final int scrollview=0x7f05000b;
-        public static final int text_itsl_content=0x7f05001e;
-        public static final int text_itsl_title=0x7f05001d;
-        public static final int text_next_class_date=0x7f050016;
-        public static final int text_next_class_end_time=0x7f050018;
-        public static final int text_next_class_location=0x7f05001a;
-        public static final int text_next_class_name=0x7f050019;
-        public static final int text_next_class_start_time=0x7f050017;
+        public static final int text_itsl_content=0x7f050020;
+        public static final int text_itsl_title=0x7f05001f;
+        public static final int text_next_class_date=0x7f050018;
+        public static final int text_next_class_end_time=0x7f05001a;
+        public static final int text_next_class_location=0x7f05001c;
+        public static final int text_next_class_name=0x7f05001b;
+        public static final int text_next_class_start_time=0x7f050019;
         public static final int webview=0x7f05000a;
     }
     public static final class layout {
         public static final int activity_help=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int drawer_list_item=0x7f030002;
-        public static final int fragment_screen_find=0x7f030003;
-        public static final int fragment_screen_home=0x7f030004;
-        public static final int fragment_screen_itsl=0x7f030005;
-        public static final int fragment_screen_schedule=0x7f030006;
-        public static final int fragment_screen_schedule_day=0x7f030007;
-        public static final int fragment_screen_schedule_tabs=0x7f030008;
-        public static final int fragment_screen_schedule_week1=0x7f030009;
-        public static final int fragment_screen_schedule_week2=0x7f03000a;
-        public static final int pull_to_refresh_header_horizontal=0x7f03000b;
-        public static final int pull_to_refresh_header_vertical=0x7f03000c;
-        public static final int view_pager_fragment=0x7f03000d;
+        public static final int activity_splash=0x7f030002;
+        public static final int drawer_list_item=0x7f030003;
+        public static final int fragment_schedule_expendable_list_view=0x7f030004;
+        public static final int fragment_screen_find=0x7f030005;
+        public static final int fragment_screen_home=0x7f030006;
+        public static final int fragment_screen_itsl=0x7f030007;
+        public static final int fragment_screen_schedule=0x7f030008;
+        public static final int fragment_screen_schedule_day=0x7f030009;
+        public static final int fragment_screen_schedule_tabs=0x7f03000a;
+        public static final int fragment_screen_schedule_week1=0x7f03000b;
+        public static final int fragment_screen_schedule_week2=0x7f03000c;
+        public static final int pull_to_refresh_header_horizontal=0x7f03000d;
+        public static final int pull_to_refresh_header_vertical=0x7f03000e;
+        public static final int schedule_list_group=0x7f03000f;
+        public static final int schedule_list_item=0x7f030010;
+        public static final int view_pager_fragment=0x7f030011;
     }
     public static final class menu {
-        public static final int help=0x7f0a0000;
-        public static final int main=0x7f0a0001;
+        public static final int help=0x7f0b0000;
+        public static final int main=0x7f0b0001;
     }
     public static final class string {
         public static final int action_help=0x7f070009;
@@ -292,6 +306,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
         public static final int title_activity_settings=0x7f07000b;
+        public static final int title_activity_splash=0x7f070014;
+    }
+    public static final class style {
+        public static final int CustomTheme=0x7f0a0000;
     }
     public static final class styleable {
         /** Attributes that can be used with a PullToRefresh.

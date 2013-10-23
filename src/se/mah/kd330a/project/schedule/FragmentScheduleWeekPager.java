@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 public class FragmentScheduleWeekPager extends Fragment {
 	
-	static final int NUM_ITEMS = 2;
+	static final int NUM_ITEMS = 10;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,11 +40,7 @@ public class FragmentScheduleWeekPager extends Fragment {
         @Override
         public Fragment getItem(int num) {
         	Log.i("getItem", Integer.toString(num));
-            if (num == 0) {
-                return new FragmentScheduleWeek1();
-            } else {
-                return new FragmentScheduleWeek2();
-            }
+        	return FragmentScheduleWeek1.newInstance(num);
         }
 
         @Override

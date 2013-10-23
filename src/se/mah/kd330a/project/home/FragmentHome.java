@@ -1,14 +1,11 @@
 
 package se.mah.kd330a.project.home;
-import java.util.ArrayList;
-
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-
-import se.mah.kd330a.project.home.data.NewsFeedMahParser;
-import se.mah.kd330a.project.home.data.NewsMah;
-import se.mah.kd330a.project.home.data.RssReader;
+import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,32 +19,23 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-
 public class FragmentHome extends Fragment {
 	
 	private NextClassWidget nextClass;
-	private NewsFeedMahParser newsFeed;
-	private ArrayList<NewsMah> listOfNewsMah;
 	private ViewGroup rootView;
-	private RssReader rssReader;
-	PullToRefreshScrollView mPullRefreshScrollView;
-	ScrollView mScrollView;
+	private PullToRefreshScrollView mPullRefreshScrollView;
+	private ScrollView mScrollView;
+	private RSSFeed newsFeed;
+	private ObjectInputStream in = null;
+	private FileInputStream fis = null;
 	
 	public FragmentHome () {
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		rssReader = new RssReader("http://www.mah.se/Nyheter/RSS/Nyheter-fran-Malmo-hogskola/");
+	public void onCreate(Bundle savedInstanceState) {	
 		nextClass = new NextClassWidget();
 		nextClass.generateSampleCourse();
-		newsFeed = new NewsFeedMahParser();
-		listOfNewsMah = new ArrayList<NewsMah>();
-		listOfNewsMah = newsFeed.getAllNews();
-		Log.i("onCreate", Integer.toString(listOfNewsMah.size()));
-		new DoInBackground().execute();
-		
-		
 		super.onCreate(savedInstanceState);
 	}
 
@@ -61,74 +49,64 @@ public class FragmentHome extends Fragment {
 
 			@Override
 			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-				new GetDataTask().execute();
+				new UpdateDataTask().execute();
 			}
 		});
 
 		mScrollView = mPullRefreshScrollView.getRefreshableView();
 		setNextClassWidget(rootView);
+		setNewsFeedMah(rootView);
 		setCalenderFeedMah(rootView);
 		return rootView;
 		
 	}
-	
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
-
-		@Override
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String[] result) {
-			// Do some stuff here
-
-			// Call onRefreshComplete when the list has been refreshed.
-			mPullRefreshScrollView.onRefreshComplete();
-
-			super.onPostExecute(result);
-		}
-	}
-
-	private void setCalenderFeedMah(ViewGroup rootView) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void setNewsFeedMah(ViewGroup rootView) {
+	   try {
+	        fis = getActivity().openFileInput("filename");
+	        in = new ObjectInputStream(fis);
+	        newsFeed = (RSSFeed) in.readObject();
+	        in.close();
+	        fis.close();
+	        Log.i("setNewsFeedMah", Integer.toString(newsFeed.getItemCount()));
+	    } catch (Exception ex) {
+	        System.out.println("Error in get method");
+	    }
+	   
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		LinearLayout newsFeedMahWidget = (LinearLayout) rootView.findViewById(R.id.news_feed_mah);
-		for (NewsMah n : listOfNewsMah) {
+		for (int i = 0; i < 5; i++) {
 			TextView pubDate = new TextView(getActivity());
 			pubDate.setLayoutParams(params);
-			pubDate.setText(n.getPubDate());
+			pubDate.setText(newsFeed.getItem(i).getDate());
 			TextView title = new TextView(getActivity());
 			title.setLayoutParams(params);
-			title.setText(n.getTitle());
+			title.setText(newsFeed.getItem(i).getTitle());
 			title.setTextSize(18);
 			TextView description = new TextView(getActivity());
 			description.setLayoutParams(params);
-			description.setText(n.getDescription());
+			description.setText(newsFeed.getItem(i).getDescription());
 			TextView link = new TextView(getActivity());
 			link.setLayoutParams(params);
-			link.setText(n.getLink());
+			link.setText(newsFeed.getItem(i).getLink());
 			TextView creator = new TextView(getActivity());
 			creator.setLayoutParams(params);
-			creator.setText(n.getCreator());
+			creator.setText(newsFeed.getItem(i).getCreator());
 			
+			//add extra space between news items - will be changed later
+			TextView space = new TextView(getActivity());
+			space.setLayoutParams(params);
+			space.setText(" ");
 			
+
 			newsFeedMahWidget.addView(pubDate);
 			newsFeedMahWidget.addView(title);
 			newsFeedMahWidget.addView(description);	
 			newsFeedMahWidget.addView(link);	
 			newsFeedMahWidget.addView(creator);	
-		}
-		
+			newsFeedMahWidget.addView(space);	
+			
+		}	
 	}
 
 	private void setNextClassWidget(ViewGroup rootView) {
@@ -146,31 +124,31 @@ public class FragmentHome extends Fragment {
 		
 	}
 	
-	 private class DoInBackground extends AsyncTask<String,Integer,Long>{
-			@Override
-			protected Long doInBackground(String... params) {
-				Log.i("DoInbackground", "doinBackgroud called");
-				listOfNewsMah.clear();  //Clear last search
-				try {
-					listOfNewsMah.addAll(rssReader.getNews()); //Add all stations found
-					Log.i("doInBackground", Integer.toString(listOfNewsMah.size()));
-					
-				} catch(Exception e) {
-					Log.i("tag", "msg", e);
-				}
-				return null;
-			}
-			@Override
-			protected void onProgressUpdate(Integer... values) {
+	private void setCalenderFeedMah(ViewGroup rootView) {
+		// TODO Auto-generated method stub	
+	}
+
+	private class UpdateDataTask extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
 				
-				super.onProgressUpdate(values);
 			}
-			
-			@Override
-			protected void onPostExecute(Long result) {
-				setNewsFeedMah(rootView);
-				super.onPostExecute(result);
-			}
-	    }
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+			// Do some stuff here
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshScrollView.onRefreshComplete();
+			super.onPostExecute(result);
+		}
+	}
 
 }
