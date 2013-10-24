@@ -29,7 +29,7 @@ public class ParseData {
 				sampleClass.setAddtionalInformation("The class will be hold as a " +
 						"seminar so please come well prepared to class");
 				sampleClass.setLocation("K2C12" + j);
-				sampleClass.setLector("Lector "+ j);
+				sampleClass.setLector("Lector "+ i + " " + j);
 				int date = (i-19) + ((i-40)*7);
 				if(j==0 || j==1){
 					sampleClass.setDate("Monday " + date + "/10/2013");

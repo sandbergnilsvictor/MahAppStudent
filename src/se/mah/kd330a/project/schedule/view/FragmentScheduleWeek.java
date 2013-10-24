@@ -37,6 +37,7 @@ public class FragmentScheduleWeek extends Fragment {
 		super.onCreate(savedInstanceState);
 		Log.i("onCreate", "called");
 		_scheduleWeek = (ScheduleWeek) getArguments().getSerializable("ScheduleWeek");
+		
 	}
 
 	@Override
@@ -56,8 +57,7 @@ public class FragmentScheduleWeek extends Fragment {
 	
 	public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 		 
-		private ArrayList<String> childs = new ArrayList<String>();
-	 
+	
 	        @Override
 	        public int getGroupCount() {
 	            return _scheduleWeek.getScheduleItems().size();
@@ -75,9 +75,10 @@ public class FragmentScheduleWeek extends Fragment {
 	 
 	        @Override
 	        public Object getChild(int i, int i1) {
+	        	ArrayList<String> childs = new ArrayList<String>();
 	        	childs.add(_scheduleWeek.getScheduleItems().get(i).getLector());
 	        	childs.add(_scheduleWeek.getScheduleItems().get(i).getAddtionalInformation());
-	            return childs.get(i1);
+	            return childs;
 	        }
 	 
 	        @Override
@@ -126,7 +127,7 @@ public class FragmentScheduleWeek extends Fragment {
 	        @Override
 	        public View getChildView(int groupPosition, final int childPosition,
 	                boolean isLastChild, View convertView, ViewGroup parent) {
-	        	 final String childText = (String) getChild(groupPosition, childPosition);
+	        	 ArrayList<String> childTexts = (ArrayList<String>) getChild(groupPosition, childPosition);
 	        	 
 	             if (convertView == null) {
 	                 LayoutInflater infalInflater = (LayoutInflater) getActivity().
@@ -137,7 +138,11 @@ public class FragmentScheduleWeek extends Fragment {
 	             TextView lector = (TextView) convertView
 	                     .findViewById(R.id.list_course_child_lector);
 	      
-	             lector.setText(childText);
+	             lector.setText(childTexts.get(0));
+	             
+	             TextView courseDescription = (TextView) convertView
+	                     .findViewById(R.id.list_course_child_description);
+	             courseDescription.setText(childTexts.get(1));
 	             return convertView;
 	        }
 	 
