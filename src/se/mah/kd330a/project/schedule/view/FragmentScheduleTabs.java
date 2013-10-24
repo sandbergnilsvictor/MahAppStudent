@@ -1,5 +1,5 @@
 
-package se.mah.kd330a.project.schedule;
+package se.mah.kd330a.project.schedule.view;
 
 import se.mah.kd330a.project.R;
 import android.os.Bundle;

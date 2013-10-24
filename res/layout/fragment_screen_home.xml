@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-<ImageView
+		<ImageView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:adjustViewBounds="true"
@@ -15,14 +15,20 @@
 		        android:layout_height="4dp"
 		        android:background="@drawable/drop_shadow"
 		        >
-		    </View>
-<com.handmark.pulltorefresh.library.PullToRefreshScrollView
+		</View>
+		<!-- 
+		<com.handmark.pulltorefresh.library.PullToRefreshScrollView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pull_refresh_scrollview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         ptr:ptrAnimationStyle="flip"
-        ptr:ptrMode="both" >
+        ptr:ptrMode="both" > -->
+        
+        <ScrollView 
+            android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        
 	
 	<LinearLayout
 	    android:id="@+id/content"
@@ -30,9 +36,7 @@
 	    android:layout_height="wrap_content" 
 	    android:orientation="vertical" 
 	    android:background="@color/grey_middle"
-	    >
-	    
-	    
+	    > 
     
 	    <LinearLayout 
 	        android:id="@+id/next_class_widget"
@@ -312,8 +316,8 @@
 	    </LinearLayout>
     
     </LinearLayout>
-
+	</ScrollView>
    
-</com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+<!--  </com.handmark.pulltorefresh.library.PullToRefreshScrollView>-->
 
    </LinearLayout>

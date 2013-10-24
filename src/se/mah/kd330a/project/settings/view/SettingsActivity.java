@@ -1,4 +1,4 @@
-package se.mah.kd330a.project.framework;
+package se.mah.kd330a.project.settings.view;
 
 import se.mah.kd330a.project.R;
 

@@ -44,7 +44,7 @@ public class FragmentHome extends Fragment {
 		
 		rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_screen_home, container, false);
-		mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.pull_refresh_scrollview);
+		/*mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.pull_refresh_scrollview);
 		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
 			@Override
@@ -54,6 +54,7 @@ public class FragmentHome extends Fragment {
 		});
 
 		mScrollView = mPullRefreshScrollView.getRefreshableView();
+		*/
 		setNextClassWidget(rootView);
 		setNewsFeedMah(rootView);
 		setCalenderFeedMah(rootView);

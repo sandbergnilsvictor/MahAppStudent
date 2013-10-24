@@ -1,6 +1,12 @@
-package se.mah.kd330a.project.schedule;
+package se.mah.kd330a.project.schedule.view;
+
+import java.util.ArrayList;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.home.NextClassWidget;
+import se.mah.kd330a.project.schedule.data.ParseData;
+import se.mah.kd330a.project.schedule.model.ScheduleItem;
+import se.mah.kd330a.project.schedule.model.ScheduleWeek;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,8 +19,19 @@ import android.view.ViewGroup;
 
 public class FragmentScheduleWeekPager extends Fragment {
 	
-	static final int NUM_ITEMS = 10;
-
+	
+	private static ArrayList<ScheduleWeek> myScheduleInWeeks;
+	private ParseData parseData;
+	private static int num_items = 0;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {	
+		parseData = new ParseData();
+		myScheduleInWeeks = parseData.getParsedDataFromKronoxByWeek();
+		num_items = myScheduleInWeeks.size();
+		Log.i("onCreate in FragmentScheduleWeekPager", Integer.toString(num_items));
+		super.onCreate(savedInstanceState);
+	}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("onCreateView", "loaded");
@@ -40,12 +57,12 @@ public class FragmentScheduleWeekPager extends Fragment {
         @Override
         public Fragment getItem(int num) {
         	Log.i("getItem", Integer.toString(num));
-        	return FragmentScheduleWeek1.newInstance(num);
+        	return FragmentScheduleWeek.newInstance(myScheduleInWeeks.get(num), num);
         }
 
         @Override
         public int getCount() {
-            return NUM_ITEMS;
+            return num_items;
         }
     }
 }

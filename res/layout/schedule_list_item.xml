@@ -6,12 +6,24 @@
     android:layout_margin="12dp"
     android:background="@color/grey_light" >
  
-    <TextView
-        android:id="@+id/lblListItem"
+   <TextView
+        android:id="@+id/list_course_child_lector"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+       
         android:textSize="14sp"
-        android:layout_margin="12dp"
-        android:textColor="@color/grey_dark"/>
+        android:textColor="@color/grey_dark" />
+   
+   <TextView
+        android:id="@+id/list_course_child_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+  
+        android:textSize="14sp"
+        android:textColor="@color/grey_dark" />
  
 </LinearLayout>
