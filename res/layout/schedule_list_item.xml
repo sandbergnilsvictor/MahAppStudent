@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-       
+       	android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="14sp"
         android:textColor="@color/grey_dark" />
    
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-  
+  		android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="14sp"
         android:textColor="@color/grey_dark" />
  

@@ -57,6 +57,7 @@ public class FragmentScheduleWeek extends Fragment {
 	
 	public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 		 
+			String lastDate = null;
 	
 	        @Override
 	        public int getGroupCount() {
@@ -98,27 +99,44 @@ public class FragmentScheduleWeek extends Fragment {
 	 
 	        @Override
 	        public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+	        	LayoutInflater infalInflater = (LayoutInflater) getActivity()
+                        .getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
 	        	ScheduleItem currentSI = (ScheduleItem) getGroup(groupPosition);
-	            if (convertView == null) {
-	            	
-	                LayoutInflater infalInflater = (LayoutInflater) getActivity()
-	                        .getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+	        	String currentDate = currentSI.getDate();
+	        	if (lastDate == null || !currentDate.equals(lastDate) || convertView == null) {
+	        		convertView = infalInflater.inflate(R.layout.schedule_list_seperator, null);
+	        		TextView sepertorText = (TextView) convertView.findViewById(R.id.list_item_section_text);
+	        		sepertorText.setText(currentDate);
+	        		TextView courseName = (TextView) convertView
+		                    .findViewById(R.id.list_course_name);
+		            courseName.setText(currentSI.getCourseName());
+		            TextView startTime = (TextView) convertView
+		                    .findViewById(R.id.list_course_start_time);
+		            startTime.setText(currentSI.getStartTime());
+		            TextView endTime = (TextView) convertView
+		                    .findViewById(R.id.list_course_end_time);
+		            endTime.setText(currentSI.getEndTime());
+		            TextView location = (TextView) convertView
+		                    .findViewById(R.id.list_course_location);
+		            location.setText(currentSI.getLocation());
+		            lastDate = currentDate;
+	        		
+	        	} else{
+
 	                convertView = infalInflater.inflate(R.layout.schedule_list_group, null);
+	                TextView courseName = (TextView) convertView
+		                    .findViewById(R.id.list_course_name);
+		            courseName.setText(currentSI.getCourseName());
+		            TextView startTime = (TextView) convertView
+		                    .findViewById(R.id.list_course_start_time);
+		            startTime.setText(currentSI.getStartTime());
+		            TextView endTime = (TextView) convertView
+		                    .findViewById(R.id.list_course_end_time);
+		            endTime.setText(currentSI.getEndTime());
+		            TextView location = (TextView) convertView
+		                    .findViewById(R.id.list_course_location);
+		            location.setText(currentSI.getLocation());
 	            }
-	     
-	            TextView courseName = (TextView) convertView
-	                    .findViewById(R.id.list_course_name);
-	            courseName.setText(currentSI.getCourseName());
-	            TextView startTime = (TextView) convertView
-	                    .findViewById(R.id.list_course_start_time);
-	            startTime.setText(currentSI.getStartTime());
-	            TextView endTime = (TextView) convertView
-	                    .findViewById(R.id.list_course_end_time);
-	            endTime.setText(currentSI.getEndTime());
-	            TextView location = (TextView) convertView
-	                    .findViewById(R.id.list_course_location);
-	            location.setText(currentSI.getLocation());
-	            
 	     
 	            return convertView;
 	        	

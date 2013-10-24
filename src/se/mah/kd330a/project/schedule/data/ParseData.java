@@ -30,12 +30,12 @@ public class ParseData {
 						"seminar so please come well prepared to class");
 				sampleClass.setLocation("K2C12" + j);
 				sampleClass.setLector("Lector "+ i + " " + j);
-				int date = (i-19) + ((i-40)*7);
+				int date = (i-22) + ((i-43)*7);
 				if(j==0 || j==1){
 					sampleClass.setDate("Monday " + date + "/10/2013");
 				}
 				else {
-					sampleClass.setDate("Wednesday " + date + 2 + "/10/2013");
+					sampleClass.setDate("Wednesday " + (date + 2) + "/10/2013");
 				}
 				sampleWeekList.add(sampleClass);
 				Log.i("getParsedDataFromKronoxByWeek()", sampleClass.getCourseName());

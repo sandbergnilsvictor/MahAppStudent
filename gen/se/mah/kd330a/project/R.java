@@ -210,8 +210,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int splash_view=0x7f020018;
     }
     public static final class id {
-        public static final int action_help=0x7f050040;
-        public static final int action_settings=0x7f05003f;
+        public static final int action_help=0x7f050041;
+        public static final int action_settings=0x7f050040;
         public static final int both=0x7f050003;
         public static final int calender_feed_mah=0x7f05002f;
         public static final int content=0x7f050017;
@@ -220,7 +220,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int content_help=0x7f050014;
         public static final int disabled=0x7f050000;
         public static final int drawer_layout=0x7f05000c;
-        public static final int drop_shadow=0x7f05003e;
+        public static final int drop_shadow=0x7f05003f;
         public static final int expandable_list=0x7f050013;
         public static final int fl_inner=0x7f050031;
         public static final int flip=0x7f050008;
@@ -247,6 +247,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_course_location=0x7f05003a;
         public static final int list_course_name=0x7f050037;
         public static final int list_course_start_time=0x7f050038;
+        public static final int list_item_section_text=0x7f05003d;
         public static final int manualOnly=0x7f050004;
         public static final int map_heading=0x7f050018;
         public static final int menu_item=0x7f05000f;
@@ -255,7 +256,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int news_feed_mah=0x7f05002d;
         public static final int news_widget_heading=0x7f05002e;
         public static final int next_class_widget=0x7f050023;
-        public static final int pager=0x7f05003d;
+        public static final int pager=0x7f05003e;
         public static final int pullDownFromTop=0x7f050005;
         public static final int pullFromEnd=0x7f050002;
         public static final int pullFromStart=0x7f050001;
@@ -296,7 +297,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_header_vertical=0x7f030010;
         public static final int schedule_list_group=0x7f030011;
         public static final int schedule_list_item=0x7f030012;
-        public static final int view_pager_fragment=0x7f030013;
+        public static final int schedule_list_seperator=0x7f030013;
+        public static final int view_pager_fragment=0x7f030014;
     }
     public static final class menu {
         public static final int help=0x7f0b0000;

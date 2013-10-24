@@ -10,7 +10,7 @@ import se.mah.kd330a.project.help.FragmentHelp;
 import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
-import se.mah.kd330a.project.schedule.view.FragmentScheduleTabs;
+import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
 import se.mah.kd330a.project.settings.view.SettingsActivity;
 
 import android.support.v4.app.Fragment;
@@ -155,7 +155,7 @@ public class MainActivity extends FragmentActivity{
 			fragment = new FragmentHome();
 			break;
 		case SCHEDULE:
-			fragment = new FragmentScheduleTabs();
+			fragment = new FragmentScheduleWeekPager();
 			break;
 		case ITSL:
 			fragment = new FragmentITSL();
