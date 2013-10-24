@@ -2,9 +2,9 @@
 package se.mah.kd330a.project.home;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+//import com.handmark.pulltorefresh.library.PullToRefreshBase;
+//import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+//import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.R;
 import android.os.AsyncTask;
@@ -23,7 +23,7 @@ public class FragmentHome extends Fragment {
 	
 	private NextClassWidget nextClass;
 	private ViewGroup rootView;
-	private PullToRefreshScrollView mPullRefreshScrollView;
+	//private PullToRefreshScrollView mPullRefreshScrollView;
 	private ScrollView mScrollView;
 	private RSSFeed newsFeed;
 	private ObjectInputStream in = null;
@@ -147,7 +147,7 @@ public class FragmentHome extends Fragment {
 			// Do some stuff here
 
 			// Call onRefreshComplete when the list has been refreshed.
-			mPullRefreshScrollView.onRefreshComplete();
+			//mPullRefreshScrollView.onRefreshComplete();
 			super.onPostExecute(result);
 		}
 	}
