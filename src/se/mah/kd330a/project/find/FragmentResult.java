@@ -1,25 +1,19 @@
 package se.mah.kd330a.project.find;
 
-import java.io.InputStream;
-
 import se.mah.kd330a.project.R;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
-public class FragmentResult extends Fragment implements ActionBar.TabListener {
+public class FragmentResult extends Fragment {
 
 	public static final String FIND_EXTRA_ROOMNR = "roomNr";
 	private RoomDbHandler mDbHandler;
@@ -27,6 +21,24 @@ public class FragmentResult extends Fragment implements ActionBar.TabListener {
 	ResultPagerAdapter mResultPagerAdapter;
 	ViewPager mViewPager;
 
+	private RadioGroup radioG;
+	
+	private OnClickListener rb_OnClick = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// get the selected radio button from the group
+			int selectedOption = radioG.getCheckedRadioButtonId();
+
+			// find the radiobutton by the previously returned id
+			RadioButton radioPicButton = (RadioButton) getView().findViewById(selectedOption);
+			
+			mViewPager.setCurrentItem(Integer.parseInt(radioPicButton.getTag().toString()));
+			Toast.makeText(getActivity(), radioPicButton.getTag().toString(), Toast.LENGTH_SHORT).show();
+			
+		}
+	};
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,123 +69,29 @@ public class FragmentResult extends Fragment implements ActionBar.TabListener {
 		mViewPager = (ViewPager) getView().findViewById(R.id.vp_Find_Pager);
 		mViewPager.setAdapter(mResultPagerAdapter);
 
-		final ActionBar actionBar = getActivity().getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
 		mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 			@Override
 			public void onPageSelected(int position) {
-				// When swiping between different app sections, select the corresponding tab. We can 
-				// also use ActionBar.Tab#select() to do this if we have a reference to the Tab.
-				actionBar.setSelectedNavigationItem(position);
+				
+				int rbId = getResources().getIdentifier("rb_Find_Radio" + position,  "id", getActivity().getPackageName());
+				RadioButton radioB = (RadioButton) getView().findViewById(rbId);
+				radioB.setChecked(true);
+				Toast.makeText(getActivity(), "rb_Find_Radio" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
 
-		for (int i = 0; i < mDbHandler.getRoomDetails().getPath().size(); i++ ) {
-			actionBar.addTab(actionBar.newTab().setCustomView(R.layout.view_pager_custom_tab)
-					.setTabListener(this));
-			((TextView) actionBar.getTabAt(i).getCustomView().findViewById(R.id.tv_Find_Tab))
-			.setText(Integer.toString(i + 1));
-		}
-	}
-
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		final ActionBar actionBar = getActivity().getActionBar();
-		actionBar.removeAllTabs();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		mViewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static class ResultPagerAdapter extends FragmentStatePagerAdapter {
-
-		private PathToRoom mRoomDetails;
-
-		public ResultPagerAdapter(FragmentManager fm, PathToRoom room) {
-			super(fm);
-			mRoomDetails = room;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			Fragment fragment = new NavStepFragment();
-			Bundle args = new Bundle();
-			args.putString(NavStepFragment.ARG_PICNAME, mRoomDetails.getPath().get(position));
-			args.putString(NavStepFragment.ARG_TEXTUP, mRoomDetails.getRoomMane());
-			args.putString(NavStepFragment.ARG_TEXTDOWN, mRoomDetails.getTexts().get(position));
-			fragment.setArguments(args);
-			return fragment;
-		}
-
-		@Override
-		public int getCount() {
-			if (mRoomDetails != null)
-				return mRoomDetails.getPath().size();
-			else
-				return 0;
-		}
-
-	}
-
-	public static class NavStepFragment extends Fragment {
-
-		public static final String ARG_PICNAME = "pic";
-		public static final String ARG_TEXTUP = "uptext";
-		public static final String ARG_TEXTDOWN = "downtext";
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_screen_find_step, container, false);
-			Bundle args = getArguments();
-
-			//((TextView) rootView.findViewById(R.id.tv_Find_TextUp)).setText(args.getString(ARG_PICNAME));
-
-			int strDown;
-
-			((TextView) rootView.findViewById(R.id.tv_Find_TextUp)).setText(args.getString(ARG_TEXTUP));
-
-			try {
-				strDown = getResources().getIdentifier(args.getString(ARG_TEXTUP), "string", getActivity().getPackageName());
-				((TextView) rootView.findViewById(R.id.tv_Find_TextDown)).setText(getString(strDown));
-			}
-			catch (Exception e) {
-				strDown = -1;
-				e.printStackTrace();
-			}
-
-			((ImageView) rootView.findViewById(R.id.img_Find_PathPic)).setImageDrawable(loadImageFromAssets(args.getString(ARG_PICNAME)));
-
-			return rootView;
-		}
-
-		private Drawable loadImageFromAssets(String pic) {
-			Drawable buffer = null;
-			try {
-				InputStream inPic = getActivity().getBaseContext().getAssets().open("find_nav_pics/" + pic + ".jpg");
-				buffer = Drawable.createFromStream(inPic, null);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return buffer;
-		}
+		radioG = (RadioGroup) getView().findViewById(R.id.rg_Find_Pager_Indicator);
+		
+		RadioButton radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio0);
+		radioB.setOnClickListener(rb_OnClick);
+		
+		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio1);
+		radioB.setOnClickListener(rb_OnClick);
+		
+		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio2);
+		radioB.setOnClickListener(rb_OnClick);
+		
+		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio3);
+		radioB.setOnClickListener(rb_OnClick);
 	}
 }

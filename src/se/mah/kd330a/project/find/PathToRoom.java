@@ -45,7 +45,7 @@ public class PathToRoom {
 			return mTexts;
 		}
 		
-		public String getRoomMane() {
+		public String getRoomName() {
 			
 			return "";
 		}

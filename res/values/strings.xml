@@ -41,5 +41,14 @@
     <string name="hello_world">Hello settings</string>
     <string name="btn_find_search">Search</string>
     <string name="find_result_page">Result foe search</string>
-
+    
+    <string name="find_navigationTitle">Kranen</string>
+    <string name="find_navigationContent">Kranen (K2) is this building.</string>
+    <string name="find_startTitle">Need help with finding room</string>
+    <string name="find_spinerHint_building">Select the name of the building</string>
+    <string name="find_editTextHint_room">Insert the room name</string>
+    <string name="find_button_navigation">Navigation</string>
+    <string name="find_button_google_map">Get directions</string>
+    <string name="find_button_indoor_map">See indoor floor maps</string>
+    
 </resources>
