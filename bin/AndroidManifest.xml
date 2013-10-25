@@ -20,6 +20,9 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
@@ -27,25 +30,55 @@
     <application
         android:icon="@drawable/image_mah_logo"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light" >
+        android:theme="@style/CustomTheme" >
         <activity
             android:name="se.mah.kd330a.project.framework.MainActivity"
             android:label="@string/app_name" >
+            
+        </activity>
+        <activity
+            android:name="se.mah.kd330a.project.settings.view.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.mah.kd330a.project.framework.MainActivity" />
+        </activity>
+        <activity
+            android:name="se.mah.kd330a.project.framework.SplashActivity"
+            android:label="@string/app_name"           
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="se.mah.kd330a.project.framework.SettingsActivity"
-            android:label="@string/title_activity_settings" 
-            >
-        <!-- The meta-data element is needed for versions lower than 4.1 -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="se.mah.kd330a.project.framework.MainActivity" />
+        
+         <!-- The default activity of the app; displays search results. -->
+        <activity android:name="se.mah.kd330a.project.settings.view.SearchableDictionary"
+                  android:launchMode="singleTop">
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component-->
+            </intent-filter>
+
+            <!-- Points to searchable meta data. -->
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable" />
+
         </activity>
+
+        <!-- Provides search suggestions for words and their definitions. -->
+        <provider android:name="se.mah.kd330a.project.settings.data.DictionaryProvider"
+                  android:authorities="se.mah.kd330a.project.settings.data.DictionaryProvider" />
+
+        <!-- Points to searchable activity so the whole app can invoke search. -->
+        <meta-data android:name="android.app.default_searchable"
+                   android:value=".SearchableDictionary" />
     </application>
 
 </manifest>

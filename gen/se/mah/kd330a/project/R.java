@@ -9,22 +9,24 @@ package se.mah.kd330a.project;
 
 public final class R {
     public static final class array {
-        public static final int menu_icons=0x7f070001;
-        public static final int menu_texts=0x7f070000;
+        public static final int mah_courses=0x7f080000;
+        public static final int menu_icons=0x7f080002;
+        public static final int menu_texts=0x7f080001;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int black=0x7f040000;
-        public static final int blue=0x7f040009;
-        public static final int green=0x7f040007;
-        public static final int grey=0x7f040004;
-        public static final int grey_dark=0x7f040005;
-        public static final int grey_light=0x7f040003;
-        public static final int grey_middle=0x7f040002;
-        public static final int orange=0x7f040008;
-        public static final int red=0x7f040001;
-        public static final int yellow=0x7f040006;
+        public static final int black=0x7f060000;
+        public static final int blue=0x7f06000a;
+        public static final int green=0x7f060008;
+        public static final int grey=0x7f060005;
+        public static final int grey_dark=0x7f060006;
+        public static final int grey_light=0x7f060004;
+        public static final int grey_middle=0x7f060003;
+        public static final int orange=0x7f060009;
+        public static final int red=0x7f060001;
+        public static final int red_mah=0x7f060002;
+        public static final int yellow=0x7f060007;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -33,62 +35,167 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int action_search=0x7f020000;
         public static final int drawer_shadow=0x7f020001;
-        public static final int ic_action_help=0x7f020002;
-        public static final int ic_drawer=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int ic_menu_find=0x7f020005;
-        public static final int ic_menu_home=0x7f020006;
-        public static final int ic_menu_itsl=0x7f020007;
-        public static final int ic_menu_schedule=0x7f020008;
-        public static final int image_mah_logo=0x7f020009;
-        public static final int map_view=0x7f02000a;
+        public static final int drop_shadow=0x7f020002;
+        public static final int home_block=0x7f020003;
+        public static final int ic_action_help=0x7f020004;
+        public static final int ic_drawer=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int ic_location_place=0x7f020007;
+        public static final int ic_menu_faq=0x7f020008;
+        public static final int ic_menu_find=0x7f020009;
+        public static final int ic_menu_home=0x7f02000a;
+        public static final int ic_menu_itsl=0x7f02000b;
+        public static final int ic_menu_itsl2=0x7f02000c;
+        public static final int ic_menu_schedule=0x7f02000d;
+        public static final int ic_profil_settings=0x7f02000e;
+        public static final int image_mah_logo=0x7f02000f;
+        public static final int map_view=0x7f020010;
+        public static final int menu_selector=0x7f020011;
+        public static final int menuitem_background=0x7f020012;
+        public static final int splash_view=0x7f020013;
     }
     public static final class id {
-        public static final int action_help=0x7f09000b;
-        public static final int action_settings=0x7f09000a;
-        public static final int content=0x7f090006;
-        public static final int contentSchedule=0x7f090008;
-        public static final int content_frame=0x7f090001;
-        public static final int drawer_layout=0x7f090000;
-        public static final int left_drawer=0x7f090002;
-        public static final int map_heading=0x7f090007;
-        public static final int menu_item=0x7f090003;
-        public static final int menu_item_icon=0x7f090004;
-        public static final int menu_item_text=0x7f090005;
-        public static final int pager=0x7f090009;
+        public static final int action_help=0x7f0d0038;
+        public static final int action_settings=0x7f0d0037;
+        public static final int button1=0x7f0d0001;
+        public static final int calender_feed_mah=0x7f0d0026;
+        public static final int content=0x7f0d000e;
+        public static final int contentSchedule=0x7f0d0027;
+        public static final int content_frame=0x7f0d0004;
+        public static final int content_help=0x7f0d000b;
+        public static final int course_text=0x7f0d0002;
+        public static final int definition=0x7f0d0029;
+        public static final int definition_settings=0x7f0d0035;
+        public static final int drawer_layout=0x7f0d0003;
+        public static final int drop_shadow=0x7f0d0036;
+        public static final int expandable_list=0x7f0d000a;
+        public static final int help_general_info=0x7f0d000c;
+        public static final int help_general_info_content=0x7f0d0010;
+        public static final int help_general_info_title=0x7f0d000d;
+        public static final int help_home_info=0x7f0d0011;
+        public static final int help_home_info_content=0x7f0d0013;
+        public static final int help_home_info_title=0x7f0d0012;
+        public static final int help_itsl_info=0x7f0d0017;
+        public static final int help_itsl_info_content=0x7f0d0019;
+        public static final int help_itsl_info_title=0x7f0d0018;
+        public static final int help_schedule_info=0x7f0d0014;
+        public static final int help_schedule_info_content=0x7f0d0016;
+        public static final int help_schedule_info_title=0x7f0d0015;
+        public static final int itsl_widget_heading=0x7f0d0021;
+        public static final int itslearning_widget=0x7f0d0020;
+        public static final int left_drawer=0x7f0d0005;
+        public static final int list=0x7f0d0032;
+        public static final int list_course_child_description=0x7f0d002f;
+        public static final int list_course_child_lector=0x7f0d002e;
+        public static final int list_course_end_time=0x7f0d002c;
+        public static final int list_course_location=0x7f0d002d;
+        public static final int list_course_name=0x7f0d002a;
+        public static final int list_course_start_time=0x7f0d002b;
+        public static final int list_item_section_text=0x7f0d0030;
+        public static final int map_heading=0x7f0d000f;
+        public static final int menu_item=0x7f0d0006;
+        public static final int menu_item_icon=0x7f0d0007;
+        public static final int menu_item_text=0x7f0d0008;
+        public static final int news_feed_mah=0x7f0d0024;
+        public static final int news_widget_heading=0x7f0d0025;
+        public static final int next_class_widget=0x7f0d001a;
+        public static final int pager=0x7f0d0033;
+        public static final int schudule_week_number=0x7f0d0009;
+        public static final int search_settings=0x7f0d0039;
+        public static final int text=0x7f0d0031;
+        public static final int textView1=0x7f0d0000;
+        public static final int text_itsl_content=0x7f0d0023;
+        public static final int text_itsl_title=0x7f0d0022;
+        public static final int text_next_class_date=0x7f0d001b;
+        public static final int text_next_class_end_time=0x7f0d001d;
+        public static final int text_next_class_location=0x7f0d001f;
+        public static final int text_next_class_name=0x7f0d001e;
+        public static final int text_next_class_start_time=0x7f0d001c;
+        public static final int word=0x7f0d0028;
+        public static final int word_settings=0x7f0d0034;
     }
     public static final class layout {
         public static final int activity_help=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int drawer_list_item=0x7f030002;
-        public static final int fragment_screen_find=0x7f030003;
-        public static final int fragment_screen_home=0x7f030004;
-        public static final int fragment_screen_itsl=0x7f030005;
-        public static final int fragment_screen_schedule=0x7f030006;
-        public static final int fragment_screen_schedule_day=0x7f030007;
-        public static final int fragment_screen_schedule_tabs=0x7f030008;
-        public static final int fragment_screen_schedule_week1=0x7f030009;
-        public static final int fragment_screen_schedule_week2=0x7f03000a;
-        public static final int view_pager_fragment=0x7f03000b;
+        public static final int activity_splash=0x7f030002;
+        public static final int drawer_list_item=0x7f030003;
+        public static final int fragment_schedule_expendable_list_view=0x7f030004;
+        public static final int fragment_screen_faq=0x7f030005;
+        public static final int fragment_screen_find=0x7f030006;
+        public static final int fragment_screen_help=0x7f030007;
+        public static final int fragment_screen_home=0x7f030008;
+        public static final int fragment_screen_itsl=0x7f030009;
+        public static final int fragment_screen_schedule=0x7f03000a;
+        public static final int fragment_screen_schedule_day=0x7f03000b;
+        public static final int fragment_screen_schedule_tabs=0x7f03000c;
+        public static final int fragment_screen_schedule_week1=0x7f03000d;
+        public static final int fragment_screen_schedule_week2=0x7f03000e;
+        public static final int result=0x7f03000f;
+        public static final int schedule_list_group=0x7f030010;
+        public static final int schedule_list_item=0x7f030011;
+        public static final int schedule_list_seperator=0x7f030012;
+        public static final int search_classes=0x7f030013;
+        public static final int view_pager_fragment=0x7f030014;
+        public static final int word=0x7f030015;
     }
     public static final class menu {
-        public static final int help=0x7f080000;
-        public static final int main=0x7f080001;
+        public static final int help=0x7f0c0000;
+        public static final int main=0x7f0c0001;
+        public static final int options_menu=0x7f0c0002;
+    }
+    public static final class plurals {
+        /**  Shown above search results when we receive a search request. 
+         */
+        public static final int search_results=0x7f0a0000;
+    }
+    public static final class raw {
+        public static final int definitions=0x7f050000;
     }
     public static final class string {
-        public static final int action_help=0x7f060003;
-        public static final int action_settings=0x7f060006;
-        public static final int app_name=0x7f060000;
-        public static final int drawer_close=0x7f060002;
-        public static final int drawer_open=0x7f060001;
-        public static final int hello_world=0x7f060007;
-        public static final int lorem_ipsum=0x7f060004;
-        public static final int title_activity_settings=0x7f060005;
+        public static final int action_help=0x7f090003;
+        public static final int action_settings=0x7f090006;
+        public static final int app_name=0x7f090000;
+        public static final int drawer_close=0x7f090002;
+        public static final int drawer_open=0x7f090001;
+        public static final int fultext=0x7f09000b;
+        public static final int fultitle=0x7f09000c;
+        public static final int hello_world=0x7f090007;
+        public static final int home_block_description=0x7f09000d;
+        public static final int itsl_widget_heading=0x7f090009;
+        public static final int lorem_ipsum=0x7f090004;
+        /**  The menu entry that invokes search. 
+         */
+        public static final int menu_search=0x7f090011;
+        public static final int news_widget_heading=0x7f09000a;
+        public static final int next_class_widget_heading=0x7f090008;
+        /**  Search failure message. 
+         */
+        public static final int no_results=0x7f090014;
+        /**  The hint text that appears in the search box. 
+         */
+        public static final int search_hint=0x7f090010;
+        /**  General instructions in the main activity. 
+         */
+        public static final int search_instructions=0x7f090013;
+        /**  The label for use as a searchable item 
+         */
+        public static final int search_label=0x7f09000f;
+        /**  The description that will show up in the search settings for this source.  
+         */
+        public static final int settings_description=0x7f090012;
+        public static final int title_activity_settings=0x7f090005;
+        public static final int title_activity_splash=0x7f09000e;
+    }
+    public static final class style {
+        public static final int CustomTheme=0x7f0b0000;
+    }
+    public static final class xml {
+        public static final int searchable=0x7f040000;
     }
 }
