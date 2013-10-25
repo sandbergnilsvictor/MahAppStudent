@@ -34,7 +34,7 @@ public class FragmentResult extends Fragment {
 			RadioButton radioPicButton = (RadioButton) getView().findViewById(selectedOption);
 			
 			mViewPager.setCurrentItem(Integer.parseInt(radioPicButton.getTag().toString()));
-			Toast.makeText(getActivity(), radioPicButton.getTag().toString(), Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getActivity(), radioPicButton.getTag().toString(), Toast.LENGTH_SHORT).show();
 			
 		}
 	};
@@ -76,7 +76,7 @@ public class FragmentResult extends Fragment {
 				int rbId = getResources().getIdentifier("rb_Find_Radio" + position,  "id", getActivity().getPackageName());
 				RadioButton radioB = (RadioButton) getView().findViewById(rbId);
 				radioB.setChecked(true);
-				Toast.makeText(getActivity(), "rb_Find_Radio" + position, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getActivity(), "rb_Find_Radio" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -94,4 +94,13 @@ public class FragmentResult extends Fragment {
 		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio3);
 		radioB.setOnClickListener(rb_OnClick);
 	}
+
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+	}
+
+
 }
