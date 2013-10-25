@@ -26,7 +26,6 @@ public final class R {
         public static final int orange=0x7f060009;
         public static final int red=0x7f060001;
         public static final int red_mah=0x7f060002;
-        public static final int white=0x7f06000b;
         public static final int yellow=0x7f060007;
     }
     public static final class dimen {
@@ -62,29 +61,20 @@ public final class R {
         public static final int splash_view=0x7f020013;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0d0032;
-        public static final int Switch01=0x7f0d0034;
-        public static final int Switch02=0x7f0d0035;
-        public static final int Switch03=0x7f0d0036;
-        public static final int action_help=0x7f0d0049;
-        public static final int action_settings=0x7f0d0048;
-        public static final int button1=0x7f0d0000;
-        public static final int button2=0x7f0d0037;
+        public static final int action_help=0x7f0d0038;
+        public static final int action_settings=0x7f0d0037;
+        public static final int button1=0x7f0d0001;
         public static final int calender_feed_mah=0x7f0d0026;
-        public static final int clrCode=0x7f0d002c;
-        public static final int clrLine=0x7f0d002f;
         public static final int content=0x7f0d000e;
-        public static final int contentSchedule=0x7f0d002a;
+        public static final int contentSchedule=0x7f0d0027;
         public static final int content_frame=0x7f0d0004;
         public static final int content_help=0x7f0d000b;
         public static final int course_text=0x7f0d0002;
-        public static final int definition=0x7f0d003a;
-        public static final int definition_settings=0x7f0d0046;
-        public static final int divider=0x7f0d002b;
+        public static final int definition=0x7f0d0029;
+        public static final int definition_settings=0x7f0d0035;
         public static final int drawer_layout=0x7f0d0003;
-        public static final int drop_shadow=0x7f0d0047;
+        public static final int drop_shadow=0x7f0d0036;
         public static final int expandable_list=0x7f0d000a;
-        public static final int headerLayout=0x7f0d0033;
         public static final int help_general_info=0x7f0d000c;
         public static final int help_general_info_content=0x7f0d0010;
         public static final int help_general_info_title=0x7f0d000d;
@@ -99,21 +89,15 @@ public final class R {
         public static final int help_schedule_info_title=0x7f0d0015;
         public static final int itsl_widget_heading=0x7f0d0021;
         public static final int itslearning_widget=0x7f0d0020;
-        public static final int lblListCode=0x7f0d002e;
-        public static final int lblListHeader=0x7f0d002d;
-        public static final int lblListHeaderDate=0x7f0d0030;
-        public static final int lblListHeaderText=0x7f0d0031;
-        public static final int lblListItem=0x7f0d0038;
         public static final int left_drawer=0x7f0d0005;
-        public static final int list=0x7f0d0043;
-        public static final int list_course_child_description=0x7f0d0040;
-        public static final int list_course_child_lector=0x7f0d003f;
-        public static final int list_course_end_time=0x7f0d003d;
-        public static final int list_course_location=0x7f0d003e;
-        public static final int list_course_name=0x7f0d003b;
-        public static final int list_course_start_time=0x7f0d003c;
-        public static final int list_item_section_text=0x7f0d0041;
-        public static final int lvExp=0x7f0d0029;
+        public static final int list=0x7f0d0032;
+        public static final int list_course_child_description=0x7f0d002f;
+        public static final int list_course_child_lector=0x7f0d002e;
+        public static final int list_course_end_time=0x7f0d002c;
+        public static final int list_course_location=0x7f0d002d;
+        public static final int list_course_name=0x7f0d002a;
+        public static final int list_course_start_time=0x7f0d002b;
+        public static final int list_item_section_text=0x7f0d0030;
         public static final int map_heading=0x7f0d000f;
         public static final int menu_item=0x7f0d0006;
         public static final int menu_item_icon=0x7f0d0007;
@@ -121,12 +105,11 @@ public final class R {
         public static final int news_feed_mah=0x7f0d0024;
         public static final int news_widget_heading=0x7f0d0025;
         public static final int next_class_widget=0x7f0d001a;
-        public static final int pager=0x7f0d0044;
-        public static final int progress=0x7f0d0027;
+        public static final int pager=0x7f0d0033;
         public static final int schudule_week_number=0x7f0d0009;
-        public static final int search_settings=0x7f0d004a;
-        public static final int text=0x7f0d0042;
-        public static final int textView1=0x7f0d0001;
+        public static final int search_settings=0x7f0d0039;
+        public static final int text=0x7f0d0031;
+        public static final int textView1=0x7f0d0000;
         public static final int text_itsl_content=0x7f0d0023;
         public static final int text_itsl_title=0x7f0d0022;
         public static final int text_next_class_date=0x7f0d001b;
@@ -134,9 +117,8 @@ public final class R {
         public static final int text_next_class_location=0x7f0d001f;
         public static final int text_next_class_name=0x7f0d001e;
         public static final int text_next_class_start_time=0x7f0d001c;
-        public static final int txProgess=0x7f0d0028;
-        public static final int word=0x7f0d0039;
-        public static final int word_settings=0x7f0d0045;
+        public static final int word=0x7f0d0028;
+        public static final int word_settings=0x7f0d0034;
     }
     public static final class layout {
         public static final int activity_help=0x7f030000;
@@ -154,16 +136,13 @@ public final class R {
         public static final int fragment_screen_schedule_tabs=0x7f03000c;
         public static final int fragment_screen_schedule_week1=0x7f03000d;
         public static final int fragment_screen_schedule_week2=0x7f03000e;
-        public static final int itsl_list_group=0x7f03000f;
-        public static final int itsl_list_header=0x7f030010;
-        public static final int itsl_list_item=0x7f030011;
-        public static final int result=0x7f030012;
-        public static final int schedule_list_group=0x7f030013;
-        public static final int schedule_list_item=0x7f030014;
-        public static final int schedule_list_seperator=0x7f030015;
-        public static final int search_classes=0x7f030016;
-        public static final int view_pager_fragment=0x7f030017;
-        public static final int word=0x7f030018;
+        public static final int result=0x7f03000f;
+        public static final int schedule_list_group=0x7f030010;
+        public static final int schedule_list_item=0x7f030011;
+        public static final int schedule_list_seperator=0x7f030012;
+        public static final int search_classes=0x7f030013;
+        public static final int view_pager_fragment=0x7f030014;
+        public static final int word=0x7f030015;
     }
     public static final class menu {
         public static final int help=0x7f0c0000;
