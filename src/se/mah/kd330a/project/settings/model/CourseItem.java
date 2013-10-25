@@ -43,7 +43,5 @@ public class CourseItem implements Serializable{
 		this.itslId = itslId;
 	}
 	
-	
-	
 
 }

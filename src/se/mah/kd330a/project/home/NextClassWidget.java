@@ -1,6 +1,16 @@
 package se.mah.kd330a.project.home;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+import se.mah.kd330a.project.schedule.data.KronoxCalendar;
+
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.component.VEvent;
+
 public class NextClassWidget {
+	ArrayList<ScheduleItem> items;
 	
 	private String courseName;
 	private String courseId;
@@ -22,6 +32,36 @@ public class NextClassWidget {
 		this.date = "Today";
 		
 				
+	}
+	
+	public void getTodaysClasses() {
+		listToday();
+		setData();
+		
+	}
+	
+
+
+	private void listToday() {
+		items = new ArrayList<ScheduleItem>();
+		Collection<?> kronox_events = KronoxCalendar.todaysEvents();
+		//adapter.setNotifyOnChange(false);
+		items.clear();
+		for(Iterator<?> i = kronox_events.iterator(); i.hasNext();) {
+			Component c = (Component)i.next();
+			if(c instanceof VEvent) {
+				items.add(new ScheduleItem((VEvent)c));
+			}
+		}
+		//adapter.notifyDataSetChanged();
+	}
+	
+	private void setData() {
+		setCourseName(items.get(0).getCourseName());
+		setLocation(items.get(0).getRoomCode());
+		setStartTime(items.get(0).getStartTime());
+		setEndTime(items.get(0).getEndTime());
+		setDate("Today");
 	}
 
 	public String getCourseName() {

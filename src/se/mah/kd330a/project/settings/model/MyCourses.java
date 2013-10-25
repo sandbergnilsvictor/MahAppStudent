@@ -15,6 +15,7 @@ public class MyCourses implements Serializable{
 	public MyCourses() {
 		
 	}
+	
 	/*
 	 * If returns false courseItem is null
 	 */
