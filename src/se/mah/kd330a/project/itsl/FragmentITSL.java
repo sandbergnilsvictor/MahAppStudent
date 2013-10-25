@@ -4,9 +4,9 @@ import se.mah.kd330a.project.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import android.app.ProgressDialog;
@@ -42,10 +42,15 @@ import android.widget.Toast;
  *  o load saved articles and initialize list on app start 
  * 	o removed unused code
  * 
- *  
+ * TODO:
+ * 
+ *  o fix a better looking progressbar, until then use old progressdialog
+ *  o seem to be a glitch when expanding, sometimes the child 
+ *    gets a black background
+ *    
  */
 public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 
-	OnScrollListener, OnChildClickListener
+	OnScrollListener, OnChildClickListener, OnClickListener
 {
 	static final String TAG = "ITSL_fragment";
 
@@ -56,45 +61,44 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	ProgressBar progBar;
 	TextView txProgress;
 	View headerView;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-/*		
-		progBar = (ProgressBar) findViewById(R.id.progress);
-		txProgress = (TextView) findViewById(R.id.txProgess);
-		progBar.setVisibility(ProgressBar.GONE);
-		txProgress.setVisibility(TextView.GONE);
-*/
-
-		try
-		{
-			feedManager = new FeedManager(this, getActivity());
-		} 
-		catch (Exception e)
-		{
-			Log.e(TAG, e.toString());
-		}
+		feedManager = new FeedManager(this, getActivity());
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
-		
-		// create settings view and hide it
-		headerView = getActivity().getLayoutInflater().inflate(R.layout.itsl_list_header, null);
+
+		/*
+		 *  create settings view and hide it
+		 */
+		headerView = inflater.inflate(R.layout.itsl_list_header, null);
+		headerView.findViewById(R.id.button1).setOnClickListener(this);
+		headerView.findViewById(R.id.button2).setOnClickListener(this);
 		hideSettingsView();
 
-		// set up the listview
-		listAdapter = new ExpandableListAdapter(this.getActivity(), feedManager.getArticles());
-		expListView = (ExpandableListView) getActivity().findViewById(R.id.lvExp);
+		/*
+		 *  set up the listview
+		 */
+		listAdapter = new ExpandableListAdapter(getActivity(), feedManager.getArticles());
+		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
 		expListView.addHeaderView(headerView);
 		expListView.setAdapter(listAdapter);
 		expListView.setOnScrollListener(this);
 		expListView.setOnChildClickListener(this);
+
+		/*
+		 *  set up progressbar
+		 */
+		progBar = (ProgressBar) rootView.findViewById(R.id.progress);
+		txProgress = (TextView) rootView.findViewById(R.id.txProgess);
+		progBar.setVisibility(ProgressBar.GONE);
+		txProgress.setVisibility(TextView.GONE);
 
 		/*
 		 *  in case there was nothing in the cache, or it didn't exist
@@ -108,18 +112,23 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	
 	public void onFeedManagerProgress(int progress, int max)
 	{
-		// set up progress dialog if there isn't one
+		/*
+		 *  set up progress dialog if there isn't one.
+		 */
 		if (dialog == null)
 		{
-			dialog = new ProgressDialog(this.getActivity());
+			dialog = new ProgressDialog(getActivity());
 			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			dialog.setMessage("Downloading...");
 			dialog.show();
 		}
+		
 		dialog.setProgress(progress);
 		dialog.setMax(max);
-
+		
 		/*
+		progBar.setVisibility(ProgressBar.VISIBLE);
+		txProgress.setVisibility(TextView.VISIBLE);
 		progBar.setProgress(progress);
 		progBar.setMax(max);
 		*/
@@ -170,19 +179,6 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		feedManager.processFeeds();
 	}
 
-	public void refreshButtonClicked(View v)
-	{
-		refresh();
-		hideSettingsView();
-	}
-
-	public void clearAllData(View v)
-	{
-		feedManager.reset();
-		feedManager.deleteCache();
-		listAdapter.notifyDataSetInvalidated();
-	}
-
 	private void hideSettingsView()
 	{
 		headerView.findViewById(R.id.headerLayout).setVisibility(View.GONE);
@@ -202,6 +198,9 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	public void onScrollStateChanged(AbsListView view, int scrollState)
 	{
 		if (expListView.getFirstVisiblePosition() == 0 && scrollState == OnScrollListener.SCROLL_STATE_IDLE)
+			/*
+			 * you could refresh content here directly instead of showing the header
+			 */
 			showSettingsView();
 		else
 			hideSettingsView();
@@ -211,5 +210,22 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
 	{
 		return parent.collapseGroup(groupPosition);
+	}
+
+	@Override
+	public void onClick(View v)
+	{
+		switch (v.getId())
+		{
+			case R.id.button1:
+				refresh();
+				hideSettingsView();
+				break;
+			case R.id.button2:
+				feedManager.reset();
+				feedManager.deleteCache();
+				listAdapter.notifyDataSetInvalidated();
+				break;
+		}
 	}
 }

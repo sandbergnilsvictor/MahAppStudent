@@ -14,7 +14,7 @@ import android.util.Log;
  */
 public class FeedDownloadTask extends AsyncTask<String, Void, RSSFeed>
 {
-	private final String TAG = "RSSTEST";
+	private final String TAG = "FeedDownloadTask";
 	private FeedCompleteListener callbackHandler;
 	private Exception exception;
 
