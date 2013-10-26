@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import android.util.Log;
+
 import se.mah.kd330a.project.schedule.data.KronoxCalendar;
 
 import net.fortuna.ical4j.model.Component;
@@ -57,11 +59,18 @@ public class NextClassWidget {
 	}
 	
 	private void setData() {
-		setCourseName(items.get(0).getCourseName());
-		setLocation(items.get(0).getRoomCode());
-		setStartTime(items.get(0).getStartTime());
-		setEndTime(items.get(0).getEndTime());
-		setDate("Today");
+		if (!items.isEmpty())
+		{
+			setCourseName(items.get(0).getCourseName());
+			setLocation(items.get(0).getRoomCode());
+			setStartTime(items.get(0).getStartTime());
+			setEndTime(items.get(0).getEndTime());
+			setDate("Today");
+		}
+		else
+		{
+			Log.e(getClass().toString(), "item list is empty");
+		}
 	}
 
 	public String getCourseName() {
