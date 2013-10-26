@@ -63,7 +63,7 @@ public final class R {
     public static final class id {
         public static final int action_help=0x7f0d0038;
         public static final int action_settings=0x7f0d0037;
-        public static final int button1=0x7f0d0001;
+        public static final int button1=0x7f0d0000;
         public static final int calender_feed_mah=0x7f0d0026;
         public static final int content=0x7f0d000e;
         public static final int contentSchedule=0x7f0d0027;
@@ -109,7 +109,7 @@ public final class R {
         public static final int schudule_week_number=0x7f0d0009;
         public static final int search_settings=0x7f0d0039;
         public static final int text=0x7f0d0031;
-        public static final int textView1=0x7f0d0000;
+        public static final int textView1=0x7f0d0001;
         public static final int text_itsl_content=0x7f0d0023;
         public static final int text_itsl_title=0x7f0d0022;
         public static final int text_next_class_date=0x7f0d001b;
