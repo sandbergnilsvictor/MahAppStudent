@@ -50,5 +50,6 @@
     <string name="find_button_navigation">Navigation</string>
     <string name="find_button_google_map">Get directions</string>
     <string name="find_button_indoor_map">See indoor floor maps</string>
+    <string name="find_button_tour">Or Take the Tour!</string>
     
 </resources>

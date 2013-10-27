@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 public class FragmentResult extends Fragment {
 
@@ -42,6 +42,7 @@ public class FragmentResult extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 	}
 
 	@Override
@@ -100,6 +101,14 @@ public class FragmentResult extends Fragment {
 	public void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
+		outState.putString("FIND_EXTRA_ROOMNR", mDbHandler.getRoomNr());
+		
+	}
+
+	@Override
+	public void onViewStateRestored(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewStateRestored(savedInstanceState);
 	}
 
 
