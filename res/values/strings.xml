@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
 
     <string name="app_name">Malmö Högskola</string>
@@ -11,16 +10,14 @@
         <item>Find on campus</item>
         <item>Me and MU</item>
         <item>About this app</item>
-        
     </string-array>
     <string-array name="menu_icons">
         <item>@drawable/ic_menu_home</item>
         <item>@drawable/ic_menu_schedule</item>
         <item>@drawable/ic_menu_itsl2</item>
         <item>@drawable/ic_menu_find</item>
-        <item>@drawable/ic_menu_faq</item> 
+        <item>@drawable/ic_menu_faq</item>
         <item>@drawable/ic_action_help</item>
-        
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -37,9 +34,8 @@
     <string name="fultitle">Från: Project Management</string>
     <string name="home_block_description">Image of Malmö Högskola</string>
     <string name="title_activity_splash">SplashActivity</string>
-    
-    
-     <!-- The label for use as a searchable item -->
+
+    <!-- The label for use as a searchable item -->
     <string name="search_label">Dictionary</string>
 
     <!-- The hint text that appears in the search box. -->
@@ -48,7 +44,7 @@
     <!-- The menu entry that invokes search. -->
     <string name="menu_search">Search</string>
 
-    <!-- The description that will show up in the search settings for this source.  -->
+    <!-- The description that will show up in the search settings for this source. -->
     <string name="settings_description">Definitions of words</string>
 
     <!-- General instructions in the main activity. -->
@@ -56,12 +52,12 @@
 
     <!-- Shown above search results when we receive a search request. -->
     <plurals name="search_results">
-      <item quantity="one">%1$d result for \"%2$s\": </item>
-      <item quantity="other">%1$d results for \"%2$s\": </item>
+        <item quantity="one">%1$d result for \"%2$s\": </item>
+        <item quantity="other">%1$d results for \"%2$s\": </item>
     </plurals>
 
     <!-- Search failure message. -->
     <string name="no_results">No results found for \"%s\"</string>
-    
+    <string name="title_activity_ad_ladok_test">AdLadokTest</string>
 
 </resources>
