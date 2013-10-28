@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class FragmentFind extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_find, container, false);
 		return rootView;
@@ -36,6 +39,7 @@ public class FragmentFind extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
+		
 		Spinner spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
 				.createFromResource(getActivity(), R.array.find_building_array,
@@ -51,13 +55,14 @@ public class FragmentFind extends Fragment {
 			 */
 			public void onItemSelected(AdapterView<?> parent,
 					View view, int pos, long id) {
+				
 				parent.getItemAtPosition(pos);
 				Resources res = getResources();
 				String[] findCode = res
 						.getStringArray(R.array.find_building_code_array);
 
 				selposFind = findCode[pos];
-
+				
 			}
 
 			public void onNothingSelected(AdapterView<?> parent) {
@@ -74,6 +79,7 @@ public class FragmentFind extends Fragment {
 			}
 		});
 	}
+	
 	public void find_button_navigation(View v) {
 
 		// ---get the EditText view---
@@ -90,17 +96,25 @@ public class FragmentFind extends Fragment {
 
 			if (dbHandler.isRoomExists(roomNr)) {
 
-				Fragment fragment = new FragmentResult();
-				Bundle args = new Bundle();
-				args.putString(FragmentResult.FIND_EXTRA_ROOMNR, roomNr);
-				fragment.setArguments(args);
-
-				FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
-				fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
+				startNavigation(roomNr);
+				
 			}
 		}
+	}
+	
+	private void startNavigation(String roomNr) {
+		
+		Fragment fragment = new FragmentResult();
+		Bundle args = new Bundle();
+		args.putString(FragmentResult.FIND_EXTRA_ROOMNR, roomNr);
+		fragment.setArguments(args);
 
+		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+		
+		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+		fragmentTrans.replace(R.id.content_frame, fragment);
+		fragmentTrans.addToBackStack(null);
+		fragmentTrans.commit();
 	}
 
 }

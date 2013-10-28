@@ -1,7 +1,5 @@
 package se.mah.kd330a.project.find;
 
-import java.io.InputStream;
-
 import se.mah.kd330a.project.R;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,24 +24,29 @@ public class NavStepFragment extends Fragment {
 		int strDown;
 
 		try {
-			strDown = getResources().getIdentifier(args.getString(ARG_TEXTCONTENT), "string", getActivity().getPackageName());
-			((TextView) rootView.findViewById(R.id.text_find_navigationContent)).setText(getString(strDown));
+			strDown = getResources().getIdentifier(args.getString(ARG_TEXTCONTENT), 
+					"string", getActivity().getPackageName());
+			((TextView) rootView.findViewById(R.id.text_find_navigationContent))
+					.setText(getString(strDown));
 		}
 		catch (Exception e) {
 			strDown = -1;
 			e.printStackTrace();
 		}
 
-		((ImageView) rootView.findViewById(R.id.img_find_navigation)).setImageDrawable(loadImageFromAssets(args.getString(ARG_PICNAME)));
-
+		((ImageView) rootView.findViewById(R.id.img_find_navigation))
+				.setImageDrawable(loadImageFromAssets(args.getString(ARG_PICNAME)));
+		
 		return rootView;
 	}
+	
 
 	private Drawable loadImageFromAssets(String pic) {
 		Drawable buffer = null;
 		try {
-			InputStream inPic = getActivity().getBaseContext().getAssets().open("find_nav_pics/" + pic + ".jpg");
-			buffer = Drawable.createFromStream(inPic, null);
+			buffer = getResources().getDrawable(getResources()
+					.getIdentifier(pic, "drawable", getActivity().getPackageName()));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

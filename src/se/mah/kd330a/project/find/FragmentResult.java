@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 public class FragmentResult extends Fragment {
 
 	public static final String FIND_EXTRA_ROOMNR = "roomNr";
+	public static final String FIND_SAVE_CURRENT = "currPic";
+	
 	private RoomDbHandler mDbHandler;
 
 	ResultPagerAdapter mResultPagerAdapter;
@@ -47,25 +49,27 @@ public class FragmentResult extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_find_result, container, false);
 		Bundle args = getArguments();
 		String roomNr = args.getString(FIND_EXTRA_ROOMNR);
 
 		if (roomNr != null) {
-
+			
 			mDbHandler = new RoomDbHandler(getActivity());
 			if (mDbHandler.isRoomExists(roomNr))
-				Log.i("MAH app Find", mDbHandler.getRoomNr());
+				Log.i("project", mDbHandler.getRoomNr());
 		}
-
+		
 		return rootView;
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		mResultPagerAdapter = new ResultPagerAdapter(getActivity().getSupportFragmentManager(), 
+		
+		mResultPagerAdapter = new ResultPagerAdapter(getChildFragmentManager(), 
 				mDbHandler.getRoomDetails());
 		mViewPager = (ViewPager) getView().findViewById(R.id.vp_Find_Pager);
 		mViewPager.setAdapter(mResultPagerAdapter);
@@ -94,22 +98,9 @@ public class FragmentResult extends Fragment {
 		
 		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio3);
 		radioB.setOnClickListener(rb_OnClick);
-	}
-
-	
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		// TODO Auto-generated method stub
-		super.onSaveInstanceState(outState);
-		outState.putString("FIND_EXTRA_ROOMNR", mDbHandler.getRoomNr());
 		
+		radioB = (RadioButton) getView().findViewById(radioG.getCheckedRadioButtonId());
+		mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));
 	}
-
-	@Override
-	public void onViewStateRestored(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onViewStateRestored(savedInstanceState);
-	}
-
 
 }
