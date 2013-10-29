@@ -1,7 +1,8 @@
-package se.mah.kd330a.project.find;
+package se.mah.kd330a.project.find.data;
 
 import java.util.List;
 import java.util.Locale;
+
 
 import android.content.ContentValues;
 import android.content.Context;

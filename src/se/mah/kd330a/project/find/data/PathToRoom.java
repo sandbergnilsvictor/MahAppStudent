@@ -1,4 +1,4 @@
-package se.mah.kd330a.project.find;
+package se.mah.kd330a.project.find.data;
 
 import java.util.ArrayList;
 import java.util.List;

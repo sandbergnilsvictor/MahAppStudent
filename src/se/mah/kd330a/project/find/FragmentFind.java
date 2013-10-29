@@ -2,6 +2,10 @@
 package se.mah.kd330a.project.find;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.RoomDbHandler;
+import se.mah.kd330a.project.find.view.FragmentBuilding;
+import se.mah.kd330a.project.find.view.FragmentResult;
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +15,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 
 public class FragmentFind extends Fragment {
@@ -88,8 +93,9 @@ public class FragmentFind extends Fragment {
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
 
-		if (roomNr.length() <= 2) {
-			Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();
+		if (txt_room_code.length() == 0) {
+			showBuilding(selposFind);
+			//Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();
 		}
 		if (roomNr.length() > 2) {
 			dbHandler = new RoomDbHandler(getActivity());
@@ -100,6 +106,25 @@ public class FragmentFind extends Fragment {
 				
 			}
 		}
+		//Hiding the keyboard
+		
+		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+	}
+	
+	private void showBuilding(String buildingCode) {
+		
+		Fragment fragment = new FragmentBuilding();
+		Bundle args = new Bundle();
+		args.putString(FragmentBuilding.ARG_BUILDING, "k2");
+		fragment.setArguments(args);
+
+		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+		
+		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+		fragmentTrans.replace(R.id.content_frame, fragment);
+		fragmentTrans.addToBackStack(null);
+		fragmentTrans.commit();
 	}
 	
 	private void startNavigation(String roomNr) {

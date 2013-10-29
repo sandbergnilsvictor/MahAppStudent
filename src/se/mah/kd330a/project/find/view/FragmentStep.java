@@ -1,4 +1,4 @@
-package se.mah.kd330a.project.find;
+package se.mah.kd330a.project.find.view;
 
 import se.mah.kd330a.project.R;
 import android.graphics.drawable.Drawable;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class NavStepFragment extends Fragment {
+public class FragmentStep extends Fragment {
 	public static final String ARG_PICNAME = "pic";
 	public static final String ARG_TEXTTITLE = "title";
 	public static final String ARG_TEXTCONTENT = "content";

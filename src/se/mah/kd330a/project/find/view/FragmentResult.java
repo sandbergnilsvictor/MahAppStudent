@@ -1,6 +1,8 @@
-package se.mah.kd330a.project.find;
+package se.mah.kd330a.project.find.view;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.ResultPagerAdapter;
+import se.mah.kd330a.project.find.data.RoomDbHandler;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
