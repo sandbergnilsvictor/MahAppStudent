@@ -3,6 +3,7 @@
 
     <color name="black">#151515</color>
     <color name="red">#C1002B</color>
+    <color name="red_mah">#AE0817</color>
     <color name="grey_middle">#DEDEDE</color>
     <color name="grey_light">#EEEEEE</color>
     <color name="grey">#BFBFBF</color>
@@ -11,5 +12,6 @@
     <color name="green">#8CCA47</color>
     <color name="orange">#FF6C34</color>
     <color name="blue">#009FE8</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

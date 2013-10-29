@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/grey_light"
+    >
+    
+    <include
+        android:layout_marginTop="12dp"
+        android:id="@+id/list_item_section_text"
+        layout="@android:layout/preference_category" />
+    
+    <TextView
+        android:id="@+id/list_course_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+       	android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="14sp"
+        android:textColor="@color/grey_dark" />
+    <TextView
+        android:id="@+id/list_course_start_time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="14sp"
+        android:textColor="@color/grey_dark" />
+    <TextView
+        android:id="@+id/list_course_end_time"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="14sp"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textColor="@color/grey_dark" />
+    
+    <TextView
+        android:id="@+id/list_course_location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+       	android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="14sp"
+        android:textColor="@color/grey_dark" />
+ 
+</LinearLayout>

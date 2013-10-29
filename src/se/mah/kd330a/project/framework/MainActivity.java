@@ -1,10 +1,17 @@
 
 package se.mah.kd330a.project.framework;
 
+
+
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
+import se.mah.kd330a.project.help.FragmentHelp;
+import se.mah.kd330a.project.home.FragmentHome;
+import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
-import se.mah.kd330a.project.schedule.FragmentScheduleTabs;
+import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
+import se.mah.kd330a.project.settings.view.SettingsActivity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -22,7 +29,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity{
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -31,11 +38,15 @@ public class MainActivity extends FragmentActivity {
     private CharSequence mTitle;
     private String[] mMenuTitles;
     private TypedArray mMenuIcons;
+    public RSSFeed newsFeed;
     
     private final int HOME = 0;
 	private final int SCHEDULE = 1;
 	private final int ITSL = 2;
 	private final int FIND = 3;
+	private final int FAQ = 4;
+	private final int HELP = 5;
+	
 	
 	
 
@@ -45,6 +56,7 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
             
         
+     	
         mTitle = mDrawerTitle = getTitle();
         mMenuTitles = getResources().getStringArray(R.array.menu_texts);
         mMenuIcons = getResources().obtainTypedArray(R.array.menu_icons);
@@ -53,6 +65,8 @@ public class MainActivity extends FragmentActivity {
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        
+        mDrawerList.setSelector(R.drawable.menu_selector);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new MenuAdapter(this,
                 R.layout.drawer_list_item, mMenuTitles, mMenuIcons));
@@ -86,6 +100,10 @@ public class MainActivity extends FragmentActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+    }
+    
+    public RSSFeed getRssNewsFeed() {
+    	return newsFeed;
     }
 
     @Override
@@ -136,13 +154,19 @@ public class MainActivity extends FragmentActivity {
 			fragment = new FragmentHome();
 			break;
 		case SCHEDULE:
-			fragment = new FragmentScheduleTabs();
+			fragment = new FragmentScheduleWeekPager();
 			break;
 		case ITSL:
 			fragment = new FragmentITSL();
 			break;
 		case FIND:
 			fragment = new FragmentFind();
+			break;
+		case FAQ:
+			fragment = new FragmentFaq();
+			break;
+		case HELP:
+			fragment = new FragmentHelp();
 			break;
 		default:	
 			fragment = new FragmentHome();
