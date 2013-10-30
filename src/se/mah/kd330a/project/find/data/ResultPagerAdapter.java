@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 public class ResultPagerAdapter extends FragmentPagerAdapter {
 
@@ -20,8 +21,12 @@ public class ResultPagerAdapter extends FragmentPagerAdapter {
 		Fragment fragment = new FragmentStep();
 		Bundle args = new Bundle();
 		args.putString(FragmentStep.ARG_PICNAME, mRoomDetails.getPath().get(position));
+		args.putString(FragmentStep.ARG_ARROW, mRoomDetails.getArrows().get(position));
 		args.putString(FragmentStep.ARG_TEXTTITLE, mRoomDetails.getRoomName());
 		args.putString(FragmentStep.ARG_TEXTCONTENT, mRoomDetails.getTexts().get(position));
+		
+		Log.i("project", " position " + position + " " + mRoomDetails.getRoomName());
+		
 		fragment.setArguments(args);
 		return fragment;
 	}

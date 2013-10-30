@@ -4,6 +4,7 @@ import se.mah.kd330a.project.R;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ public class FragmentStep extends Fragment {
 	public static final String ARG_PICNAME = "pic";
 	public static final String ARG_TEXTTITLE = "title";
 	public static final String ARG_TEXTCONTENT = "content";
+	public static final String ARG_ARROW = "arrow";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +30,16 @@ public class FragmentStep extends Fragment {
 					"string", getActivity().getPackageName());
 			((TextView) rootView.findViewById(R.id.text_find_navigationContent))
 					.setText(getString(strDown));
+			
+			String txt = getString(R.string.find_navigationTitle) + " " + args.getString(ARG_TEXTTITLE);
+			((TextView) rootView.findViewById(R.id.text_find_navigationTitle))
+					.setText(txt);
+			
+			Log.i("project", "content" + args.getString(ARG_TEXTCONTENT));
+			Log.i("project", "title" + args.getString(ARG_TEXTTITLE));
+			
+			
+			
 		}
 		catch (Exception e) {
 			strDown = -1;
@@ -35,13 +47,16 @@ public class FragmentStep extends Fragment {
 		}
 
 		((ImageView) rootView.findViewById(R.id.img_find_navigation))
-				.setImageDrawable(loadImageFromAssets(args.getString(ARG_PICNAME)));
+				.setImageDrawable(loadImage(args.getString(ARG_PICNAME)));
+		
+		((ImageView) rootView.findViewById(R.id.img_find_arrows))
+				.setImageDrawable(loadImage(args.getString(ARG_ARROW)));
 		
 		return rootView;
 	}
 	
 
-	private Drawable loadImageFromAssets(String pic) {
+	private Drawable loadImage(String pic) {
 		Drawable buffer = null;
 		try {
 			buffer = getResources().getDrawable(getResources()

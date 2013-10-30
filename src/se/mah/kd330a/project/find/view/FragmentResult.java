@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 //import android.widget.Toast;
+import android.widget.TextView;
 
 public class FragmentResult extends Fragment {
 
@@ -32,6 +36,13 @@ public class FragmentResult extends Fragment {
 		@Override
 		public void onClick(View v) {
 			mViewPager.setCurrentItem(Integer.parseInt(v.getTag().toString()));
+			
+			//Text for Step should be changed here 
+			TextView tvSteps = (TextView) getView().findViewById(R.id.text_find_indicator_steps);
+			String txt = (String) getString(R.string.text_find_indicator_steps) + " ";
+			int step = Integer.parseInt(v.getTag().toString()) + 1; 
+			txt += step + "/" + radioG.getChildCount();
+			tvSteps.setText(txt);
 			//Toast.makeText(getActivity(), radioPicButton.getTag().toString(), Toast.LENGTH_SHORT).show();			
 		}
 	};
@@ -75,6 +86,14 @@ public class FragmentResult extends Fragment {
 
 				RadioButton radioB = (RadioButton) radioG.findViewWithTag(position);
 				radioB.setChecked(true);
+				
+				//Text for Step should be changed here 
+				TextView tvSteps = (TextView) getView().findViewById(R.id.text_find_indicator_steps);
+				String txt = (String) getString(R.string.text_find_indicator_steps) + " ";
+				int step = Integer.parseInt(radioB.getTag().toString()) + 1; 
+				txt += step + "/" + radioG.getChildCount();
+				tvSteps.setText(txt);
+				
 				//Toast.makeText(getActivity(), "rb_Find_Radio" + position, Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -91,35 +110,27 @@ public class FragmentResult extends Fragment {
 				radioB.setButtonDrawable(R.drawable.find_page_indicator);
 				radioB.setFocusable(false);
 				radioB.setChecked(false);   
+				
+				/*int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+				MarginLayoutParams layoutParams = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				layoutParams.setMargins(px, 0, px, 0);	
+				radioB.setLayoutParams(layoutParams);*/
+				
 				radioB.setOnClickListener(rb_OnClick);
 				radioG.addView(radioB);
 
 			}
 
 			((RadioButton)radioG.findViewWithTag(0)).setChecked(true);
+			String txt = (String) getResources().getText(R.string.text_find_indicator_steps) 
+					+ " 1/" + radioG.getChildCount();
+			((TextView) getView().findViewById(R.id.text_find_indicator_steps)).setText(txt);
 		}
 		else {
 			radioB = (RadioButton) getView().findViewById(radioG.getCheckedRadioButtonId());
 			mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));
 		}
 
-			/*
-
-		RadioButton radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio0);
-		radioB.setOnClickListener(rb_OnClick);
-
-		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio1);
-		radioB.setOnClickListener(rb_OnClick);
-
-		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio2);
-		radioB.setOnClickListener(rb_OnClick);
-
-		radioB = (RadioButton) getView().findViewById(R.id.rb_Find_Radio3);
-		radioB.setOnClickListener(rb_OnClick);
-
-
-		radioB = (RadioButton) getView().findViewById(radioG.getCheckedRadioButtonId());
-		mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));*/
 	}
 
 }

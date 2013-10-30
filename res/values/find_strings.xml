@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-            <string-array name="find_building_array">
+
+    <string-array name="find_building_array">
         <item>Orkanen (Or)</item>
         <item>Gäddan (G8)</item>
         <item>Kranen (K2)</item>
@@ -8,7 +9,7 @@
         <item>Klerken (Kl)</item>
         <item>University Hospital (Hs)</item>
     </string-array>
-            <string-array name="find_building_code_array">
+    <string-array name="find_building_code_array">
         <item>Or</item>
         <item>G8</item>
         <item>K2</item>
@@ -16,11 +17,10 @@
         <item>Kl</item>
         <item>Hs</item>
     </string-array>
-	
-	<string name="btn_find_search">Search</string>
+
+    <string name="btn_find_search">Search</string>
     <string name="find_result_page">Result for search</string>
-    
-    <string name="find_navigationTitle">Kranen</string>
+    <string name="find_navigationTitle">Direction to room </string>
     <string name="find_navigationContent">Kranen (K2) is this building.</string>
     <string name="find_startTitle">Need help with finding room</string>
     <string name="find_spinerHint_building">Select the name of the building</string>
@@ -29,4 +29,6 @@
     <string name="find_button_google_map">Get directions</string>
     <string name="find_button_indoor_map">See indoor floor maps</string>
     <string name="find_button_tour">Or Take the Tour!</string>
+    <string name="text_find_indicator_steps">Step</string>
+
 </resources>
