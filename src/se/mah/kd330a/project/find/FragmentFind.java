@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-//import android.util.Log;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +26,8 @@ import android.widget.Spinner;
 
 public class FragmentFind extends Fragment {
 
+	private static final String FIND_SPINNER_STATE = "spinChoice";
+	
 	String selposFind = null;
 
 	@Override
@@ -142,4 +144,25 @@ public class FragmentFind extends Fragment {
 		fragmentTrans.commit();
 	}
 
+	/*
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		Spinner spin = (Spinner) getView().findViewById(R.id.spinner_find_building);
+		Log.i("project", "onActivityCreated " + spin.getSelectedItemPosition());
+		outState.putInt(FIND_SPINNER_STATE, spin.getSelectedItemPosition());
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		Log.i("project", "onActivityCreated");
+		super.onActivityCreated(savedInstanceState);
+		if (savedInstanceState != null) {
+			Spinner spin = (Spinner) getView().findViewById(R.id.spinner_find_building);
+			Log.i("project", "onActivityCreated " + savedInstanceState.getInt(FIND_SPINNER_STATE));
+			spin.setSelection(savedInstanceState.getInt(FIND_SPINNER_STATE));
+		}
+	}
+*/
+	
 }
