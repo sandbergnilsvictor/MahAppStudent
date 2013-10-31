@@ -1,6 +1,7 @@
 package se.mah.kd330a.project.settings.view;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.adladok.test.AdLadokTest;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,11 +21,8 @@ public class SettingsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
-		sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 		
-		String course = sharedPref.getString(PREFS_NAME, "No Classes");
-		TextView courseText = (TextView) findViewById(R.id.course_text);
-		courseText.setText(course);
+	
 	}
 
 	@Override
@@ -35,7 +33,7 @@ public class SettingsActivity extends Activity {
 	}
 	
 	public void toSearchable(View view) {
-		Intent intent = new Intent(this, SearchableDictionary.class);
+		Intent intent = new Intent(this, AdLadokTest.class);
 		startActivity(intent);
 		
 	}
