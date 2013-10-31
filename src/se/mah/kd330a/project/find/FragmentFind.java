@@ -144,7 +144,15 @@ public class FragmentFind extends Fragment {
 		fragmentTrans.commit();
 	}
 
-	/*
+	
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -163,6 +171,6 @@ public class FragmentFind extends Fragment {
 			spin.setSelection(savedInstanceState.getInt(FIND_SPINNER_STATE));
 		}
 	}
-*/
+
 	
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="k2">Kranen (K2) is this building.</string>
     <string name="k2e1">Go up the stairs to the third floor (Floor C)</string>
     <string name="k2e2">Use the first entrance on the left side of the buildning</string>
     <string name="k2e3">Use the second entrance on the left side of the buildning</string>
