@@ -49,6 +49,7 @@ public class Me {
 	
 	public static void saveMe(Context c){
 		//Save to local storage
+		Log.i("test","hepp");
 	}
 	
 	public static void updateMe(){
