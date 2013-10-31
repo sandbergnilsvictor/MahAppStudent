@@ -8,6 +8,8 @@ import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,16 +49,18 @@ public class AdLadokTest extends Activity implements Observer{
 	@Override
 	public void update(Observable observable, Object data) {
 		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
-		String courses = null;
+		tv.setMovementMethod(new ScrollingMovementMethod());
+		String courses = "";
+		Log.i("UserInfo","Length: "+Me.getCourses().size());
 		for (Course c : Me.getCourses()) {
-				courses = "course: \n"+
+				courses = courses+"course: \n"+
 						"NameSV: "+c.getDisplaynameSv()+ "\n"+
 						"NameEN: "+c.getDisplaynameEn()+"\n"+
 						"CourseID: " + c.getCourseID()+"\n"+
 						"Program: "+c.getProgram()+"\n"+
 						"Term: " + c.getTerm()+"\n"+
-						"regCode: "+c.getRegCode()+
-						"regCode: "+c.getKronoxCalendarCode();
+						"regCode: "+c.getRegCode()+"\n"+
+						"KronoxCodeString: "+c.getKronoxCalendarCode()+"\n";
 		}
 		
 	     tv.setText("Me\n"+

@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".TestActivity" >
 
     <TextView
@@ -16,6 +17,7 @@
         android:layout_below="@+id/reloadButton"
         android:layout_centerHorizontal="true"
         android:maxLines="20"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical"
         android:text="Empty" />
 

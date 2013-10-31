@@ -24,7 +24,7 @@ public class XMLParser {
 		        is.setCharacterStream(new StringReader(xml));
 		        doc = db.parse(is); 
 			} catch (Exception e) {
-				//Log.e("Error: ", e.getMessage());
+				//Log.e("Error: ", e.getMessage());//
 				return null;
 			}
 	        return doc;

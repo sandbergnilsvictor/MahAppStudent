@@ -1,12 +1,13 @@
 package se.mah.kd330a.project.adladok.model;
 
+import android.util.Log;
 import se.mah.kd330a.project.R;
 
 public class Course {
 	 private String displaynamesv;
 	 private String displaynameen;
 	 private String courseID;
-	 private String regCode;
+	 private String regCode="";
 	 private String program ="";
 	 private String term;
 	 private int color = R.color.white;
@@ -69,11 +70,14 @@ public class Course {
 		//There could be duplicates if you have many courses on one program
 		public String getKronoxCalendarCode(){
 			String s;
-					if(this.program.equals("")){ //course
+					if(!this.regCode.equals("")){ //course
 						s="k."+this.courseID+"-"+this.term+"-"+this.regCode;
 					}else{
-						s="p."+this.program+this.term.substring(2, 3);
-						if(term.substring(4, 4).equals("2")){
+						s="p."+this.program+this.term.substring(2, 4);
+						this.term.substring(2, 4);
+						Log.i("UserInfo","year"+this.term.substring(2, 4));
+						Log.i("UserInfo","term"+term.substring(4, 5));
+						if(term.substring(4, 5).equals("2")){
 							s= s+"h";
 						}
 						else{
@@ -84,13 +88,6 @@ public class Course {
 			
 		}
 		
-		private String getFromDate(){
-			return "";
-		}
-		
-		private String getToDate(){
-			return "";
-		}
 
 	}
 
