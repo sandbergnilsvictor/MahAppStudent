@@ -1,9 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_middle"
+    android:background="@color/grey_light"
     android:orientation="vertical"
-    android:padding="8dp" >
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="16dp" >
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp">
 
     <TextView
         android:id="@+id/text_find_startTitle"
@@ -12,74 +21,63 @@
         android:gravity="center"
         android:text="@string/find_startTitle"
         android:textColor="@color/grey_dark"
-        android:textSize="18sp"
-        android:background="@color/grey_light"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp" />
+        android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="@color/grey"
-        android:layout_marginBottom="7dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        android:layout_marginTop="6dp" />
+    
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="@color/grey_light"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp" >
+        android:layout_marginBottom="8dp" >
 
         <Spinner
             android:id="@+id/spinner_find_building"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
             android:prompt="@string/find_spinerHint_building" />
 
         <EditText
             android:id="@+id/editText_find_room"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="14sp"
             android:hint="@string/find_editTextHint_room" />
+        <View android:layout_width="match_parent" android:layout_height="2dp" android:layout_marginTop="6dp" android:background="@color/grey" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="7dp"
-        android:background="@color/grey" />
+    
 
     <Button
         android:id="@+id/button_find_navigation"
-        style="?android:attr/buttonStyle"
+        style="@style/mah_button_red"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
         android:text="@string/find_button_navigation" />
     <Button
         android:id="@+id/button_find_tour"
-        style="?android:attr/buttonStyle"
+        style="@style/mah_button_grey"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:textSize="18sp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
         android:text="@string/find_button_tour" />
 
 </LinearLayout>
