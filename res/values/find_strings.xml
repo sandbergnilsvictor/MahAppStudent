@@ -32,5 +32,7 @@
     <string name="find_button_indoor_map">See indoor floor maps</string>
     <string name="find_button_tour">Or Take the Tour!</string>
     <string name="text_find_indicator_steps">Step</string>
+    <string name="find_menu_google">Google</string>
+    <string name="find_menu_floormap">Floor map</string>
 
 </resources>
