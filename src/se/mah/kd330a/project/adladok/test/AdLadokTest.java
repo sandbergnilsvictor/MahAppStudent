@@ -8,7 +8,6 @@ import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -50,13 +49,15 @@ public class AdLadokTest extends Activity implements Observer{
 		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
 		String courses = null;
 		for (Course c : Me.getCourses()) {
-			if (courses == null){
-				courses = "course: \n"+c.getDisplayname()+ "," + c.getCourseID()+"\n";
-			}else{
-				courses = courses + "course: \n"+c.getDisplayname()+ "," + c.getCourseID()+"\n";
-			}
-			
+				courses = "course: \n"+
+						"NameSV: "+c.getDisplaynameSv()+ "\n"+
+						"NameEN: "+c.getDisplaynameEn()+"\n"+
+						"CourseID: " + c.getCourseID()+"\n"+
+						"Program: "+c.getProgram()+"\n"+
+						"Term: " + c.getTerm()+"\n"+
+						"regCode: "+c.getRegCode();
 		}
+		
 	     tv.setText("Me\n"+
 	    		 	"FirstName: "+ Me.getFirstName()+"\n"+
 	    		    "GivenName: "+ Me.getLastName()+"\n"+

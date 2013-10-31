@@ -26,6 +26,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 	{
 		this._context = context;
 		this._listDataHeader = listDataHeader;
+		
 
 		// Trying to get the colors from our xml file
 		theCourses.add(new Course("1", context.getResources().getColor(R.color.blue)));

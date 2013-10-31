@@ -1,11 +1,9 @@
 package se.mah.kd330a.project.adladok.xmlparser;
 
-import java.util.ArrayList;
-import java.util.Calendar;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 
@@ -71,7 +69,11 @@ public class Parser {
 			NodeList courseNode = e.getElementsByTagName("course");
 			for (int j =0;j < courseNode.getLength();j++){
 				Element e2 = (Element) courseNode.item(j);
-				Course course = new Course(parser.getValue(e2, "displayname"), parser.getValue(e2, "courseid"));
+				Course course = new Course(parser.getValue(e2, "displaynamesv"), parser.getValue(e2, "courseid"));
+				course.setDisplaynameen(parser.getValue(e2,"displaynameen"));
+				course.setRegCode(parser.getValue(e2,"regcode"));
+				course.setProgram(parser.getValue(e2,"program"));
+				course.setTerm(parser.getValue(e2,"term"));
 				Me.addCourse(course);
 			}
 		}
