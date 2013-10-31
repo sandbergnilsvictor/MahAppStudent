@@ -11,9 +11,9 @@
     <item
         android:id="@+id/find_menu_floormap"
         android:icon="@drawable/icarrowhere"
-        android:orderInCategory="10"
+        android:orderInCategory="9"
         android:showAsAction="ifRoom"
-        android:title="@string/find_menu_google">
+        android:title="@string/find_menu_floormap">
     </item>
 
 </menu>
