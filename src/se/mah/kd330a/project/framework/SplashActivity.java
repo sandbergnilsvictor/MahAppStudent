@@ -166,7 +166,7 @@ public class SplashActivity extends Activity {
 			startActivity(intent);
 			Log.i("onPostExecute", Integer.toString(feed.getItemCount()));
 			
-			finish();
+			//finish();
 		    }
 		}
     
