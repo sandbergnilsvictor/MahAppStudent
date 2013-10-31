@@ -85,8 +85,16 @@ public class SplashActivity extends Activity {
 		} 
 		//setupListView();
 		//listToday();
-		new FetchCourseName().execute(courses_array);
-		new GetDataTask().execute();
+		try {
+			new FetchCourseName().execute(courses_array);
+		} catch (Exception e) {
+			Log.i("FetchCourseName()", "Not working");
+		}
+		try {
+			new GetDataTask().execute();
+		} catch (Exception e) { 
+			Log.i("GetDataTask().execute();", "Not working");
+		}
     }
     
     private class DownloadSchedule extends AsyncTask<KronoxCourse,Void,Void> {
@@ -166,7 +174,7 @@ public class SplashActivity extends Activity {
 			startActivity(intent);
 			Log.i("onPostExecute", Integer.toString(feed.getItemCount()));
 			
-			finish();
+			//finish();
 		    }
 		}
     
