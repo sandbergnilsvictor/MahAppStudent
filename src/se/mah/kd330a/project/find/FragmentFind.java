@@ -81,7 +81,7 @@ public class FragmentFind extends Fragment {
 
 		if (spin_selected > -1) 
 			spinnerFind.setSelection(spin_selected, true);
-
+		
 		Button btn_Search = (Button) getView().findViewById(R.id.button_find_navigation);
 		btn_Search.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -99,7 +99,7 @@ public class FragmentFind extends Fragment {
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
 
-		if (txt_room_code.length() == 0) {
+		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
 			showBuilding(selposFind);
 			//Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();
 		}
@@ -122,7 +122,7 @@ public class FragmentFind extends Fragment {
 
 		Fragment fragment = new FragmentBuilding();
 		Bundle args = new Bundle();
-		args.putString(FragmentBuilding.ARG_BUILDING, "k2");
+		args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
 		fragment.setArguments(args);
 
 		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
