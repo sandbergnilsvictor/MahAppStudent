@@ -1,15 +1,25 @@
 package se.mah.kd330a.project.adladok.model;
 
+import se.mah.kd330a.project.R;
+
 public class Course {
 	 private String displaynamesv;
 	 private String displaynameen;
 	 private String courseID;
 	 private String regCode;
-	 private String program;
+	 private String program ="";
 	 private String term;
+	 private int color = R.color.white;
 	 
 	 
-	 public Course(String displayName, String courseID) {
+	 public int getColor() {
+		return color;
+	}
+	 
+	public void setColor(int color) {
+		this.color = color;
+	}
+	public Course(String displayName, String courseID) {
 		this.displaynamesv = displayName;
 		this.courseID = courseID;
 	}
@@ -54,6 +64,32 @@ public class Course {
 		}
 		public String getTerm() {
 			return this.term;
+		}
+	
+		//There could be duplicates if you have many courses on one program
+		public String getKronoxCalendarCode(){
+			String s;
+					if(this.program.equals("")){ //course
+						s="k."+this.courseID+"-"+this.term+"-"+this.regCode;
+					}else{
+						s="p."+this.program+this.term.substring(2, 3);
+						if(term.substring(4, 4).equals("2")){
+							s= s+"h";
+						}
+						else{
+							s=s+"v";
+						}
+					}
+					return s;
+			
+		}
+		
+		private String getFromDate(){
+			return "";
+		}
+		
+		private String getToDate(){
+			return "";
 		}
 
 	}

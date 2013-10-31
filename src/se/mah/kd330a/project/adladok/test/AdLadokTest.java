@@ -55,7 +55,8 @@ public class AdLadokTest extends Activity implements Observer{
 						"CourseID: " + c.getCourseID()+"\n"+
 						"Program: "+c.getProgram()+"\n"+
 						"Term: " + c.getTerm()+"\n"+
-						"regCode: "+c.getRegCode();
+						"regCode: "+c.getRegCode()+
+						"regCode: "+c.getKronoxCalendarCode();
 		}
 		
 	     tv.setText("Me\n"+
