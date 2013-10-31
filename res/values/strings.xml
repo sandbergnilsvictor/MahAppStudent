@@ -34,6 +34,9 @@
     <string name="fultitle">Från: Project Management</string>
     <string name="home_block_description">Image of Malmö Högskola</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="my_courses_heading">My Courses</string>
+    
+    
 
     <!-- The label for use as a searchable item -->
     <string name="search_label">Dictionary</string>
@@ -59,5 +62,40 @@
     <!-- Search failure message. -->
     <string name="no_results">No results found for \"%s\"</string>
     <string name="title_activity_ad_ladok_test">AdLadokTest</string>
+    
+    
+     
+    
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="datenumber">14 Oct</string>
+    <string name="year">2013</string>
+    <string name="date2">15 Oct, 2013</string>
+    <string name="starttime">08:00</string>
+    <string name="endtime">10:00</string>
+    <string name="coursename">Mobile Application Development, 15hp</string>
+    <string name="roomcode">C110</string>
+    <string name="starttime2">10:00</string>
+    <string name="endtime2">12:00</string>
+    <string name="coursename2">Visual Communication, 15hp</string>
+    <string name="roomcode2">U419</string>
+    <string name="starttime3">13:00</string>
+    <string name="endtime3">15:00</string>
+    <string name="coursename3">Programming 4, 15hp</string>
+    <string name="roomcode3">C310</string>
+    <string name="week">Week:</string>
+    <string name="weeknumber">42</string>
+    <string name="weekdaytitle">Day:</string>
+    <string name="dayname">Monday</string>
+    <string name="course">Course:</string>
+    <string name="signtitle">Teachers:</string>
+    <string name="sign">K3LARA</string>
+    <string name="momenttitle">Moment:</string>
+    <string name="moment">Fredrik Ramsten, Senior Designer at Mobile Communcation will talk about his ence working within the mobile industry and he will also give feedback.</string>
+    <string name="roomtitle">Room:</string>
+    <string name="dash">-</string>
+    <string name="title_activity_second_main">Malmö Högskola</string>
+    <string name="now">Now</string>
+    <string name="coma">,</string>
 
 </resources>

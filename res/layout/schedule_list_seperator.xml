@@ -2,14 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/grey_light"
-    >
+    android:orientation="vertical" >
     
     <include
-        android:layout_marginTop="12dp"
         android:id="@+id/list_item_section_text"
+        android:layout_marginTop="12dp"
         layout="@android:layout/preference_category" />
+    
+    <FrameLayout
+        android:id="@+id/Father_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" >
+
+        <FrameLayout
+            android:id="@+id/calendarColorFrame1"
+            android:layout_width="10dip"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="470dip"
+            android:background="@color/yellow" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/calendarColorFrame2"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="104dip"
+            android:layout_marginTop="16dip"
+            android:layout_marginBottom="16dip"
+            android:background="@color/yellow" >
+        </FrameLayout>
+	<!--
+        <TextView
+            android:id="@+id/textNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="15dip"
+            android:text="@string/now"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+        
+        <TextView
+            android:id="@+id/textUpcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="15dip"
+            android:text="@string/upcoming"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/green"
+            android:textSize="14sp" />
+	-->
+        <TextView
+            android:id="@+id/list_course_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dip"
+            android:layout_marginTop="32dip"
+            android:text="@string/starttime"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/list_course_end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="26dip"
+            android:layout_marginTop="64dip"
+            android:text="@string/endtime"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/list_course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="40dip"
+            android:layout_marginRight="16dip"
+            android:text="@string/coursename"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/list_course_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dip"
+            android:layout_marginTop="88dip"
+            android:layout_marginBottom="16dip"
+            android:text="@string/roomcode"
+            android:textColor="@color/grey_dark"
+            android:textSize="16sp" />
+    </FrameLayout>
+    
+ <!--  
+    <TextView
+        android:id="@+id/lblListHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="14sp"
+        android:textColor="@color/grey_dark" />
     
     <TextView
         android:id="@+id/list_course_name"
@@ -48,5 +144,5 @@
        	android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="14sp"
         android:textColor="@color/grey_dark" />
- 
+ -->
 </LinearLayout>
