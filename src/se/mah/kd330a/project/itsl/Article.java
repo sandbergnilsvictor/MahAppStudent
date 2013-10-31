@@ -32,20 +32,20 @@ public class Article implements Comparable<Article>, Serializable
 	public Article(RSSItem item)
 	{
 		super();
-		
+
 		rssItem = item;
 		textVisible = true;
-		
+
 		articleCourseCode = "";
 		articlePubDate = rssItem.getPubDate();
 		articleDate = articlePubDate.toString();
 		articleHeader = rssItem.getTitle();
-		
+
 		/*
 		 * "It's learning" puts the content in the <description> and leaves
 		 * <content> empty...
 		 */
-		
+
 		if (rssItem.getContent() != null)
 		{
 			articleText = android.text.Html.fromHtml(rssItem.getContent()).toString();
@@ -73,7 +73,7 @@ public class Article implements Comparable<Article>, Serializable
 
 	public String getArticleText()
 	{
-		return articleText; 
+		return articleText;
 	}
 
 	public String getArticleSummary()
@@ -134,12 +134,11 @@ public class Article implements Comparable<Article>, Serializable
 	private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException
 	{
 		textVisible = in.readBoolean();
-		articleCourseCode = (String)in.readObject();
-		articleHeader = (String)in.readObject();
-		articleDate = (String)in.readObject();
-		articlePubDate = (Date)in.readObject();
-		articleText = (String)in.readObject();
+		articleCourseCode = (String) in.readObject();
+		articleHeader = (String) in.readObject();
+		articleDate = (String) in.readObject();
+		articlePubDate = (Date) in.readObject();
+		articleText = (String) in.readObject();
 	}
-
 
 }

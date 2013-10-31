@@ -37,9 +37,15 @@ public class NextClassWidget {
 	}
 	
 	public void getTodaysClasses() {
-		listToday();
-		setData();
-		
+		try
+		{
+			listToday();
+			setData();
+		}
+		catch (Exception e)
+		{
+			Log.e("NextClassWidget", e.toString());
+		}
 	}
 	
 

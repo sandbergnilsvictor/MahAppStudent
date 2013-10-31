@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import org.mcsoxford.rss.RSSFeed;
 import org.mcsoxford.rss.RSSItem;
@@ -15,19 +17,15 @@ import android.util.Log;
 /**
  * @author marcusmansson
  * 
- * FeedManager is responsible for managing several feeds, fetching 
- * them sequentially and creating article objects of the items   
- * found.
+ * FeedManager is responsible for managing several feeds, fetching them
+ * sequentially and creating article objects of the items found.
  * 
- * FeedManager will return all articles to the registered 
+ * FeedManager will return all articles to the registered
  * FeedCompleteListener when done.
  * 
  * Usage:
- *  
- * FeedManager fm = new FeedManager(this);
- *  
+ * FeedManager fm = new FeedManager(this, this);
  * fm.addFeedURL(url); // for all urls you want to process, then
- *  
  * fm.processFeeds();
  * 
  */
@@ -38,22 +36,25 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	private FeedDownloadTask downloadTask;
 	private FeedManagerDoneListener callbackHandler;
 	private ArrayList<Article> articleList;
-	private ArrayList<String> feedList;
-	private int feedQueueCounter;
 	private Context appContext;
-	
+	private int feedQueueCounter;
+	private ArrayList<String> feedList;
+		
 	/*
 	 * the listener must implement these methods
 	 */
 	public interface FeedManagerDoneListener
 	{
-		public void onFeedManagerDone(ArrayList<Article> articles);
-		public void onFeedManagerProgress(int progress, int max);
+		public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles);
+		public void onFeedManagerProgress(FeedManager fm, int progress, int max);
 	}
 
-	public FeedManager(FeedManagerDoneListener callbackHandler, Context appContext)
+	public FeedManager(FeedManagerDoneListener callbackHandler, Context context)
 	{
-		this.appContext = appContext;
+		appContext = context;
+		articleList = new ArrayList<Article>();
+		feedList = new ArrayList<String>();
+		feedQueueCounter = 0;
 		
 		try
 		{
@@ -61,70 +62,45 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		}
 		catch (ClassCastException e)
 		{
-			throw new ClassCastException(callbackHandler.toString() 
+			throw new ClassCastException(callbackHandler.toString()
 					+ " must implement FeedManagerDoneListener");
 		}
-
-		articleList = new ArrayList<Article>();
-		feedList = new ArrayList<String>();
-		feedQueueCounter = 0;
-		
-		/*
-		 *  check for cached content
-		 */
-		if (appContext.getFileStreamPath(CACHE_FILENAME).exists())
-			loadCache();			
 	}
 
 	public void addFeedURL(String url) // throws MalformedURLException
 	{
-		/*
-		 *  even though we use simple strings, we should throw  
-		 *  exception if the string is not a valid url for sake 
-		 *  of finding errors
-		try
-		{
-			URL test = new URL(url);
-		}
-		catch (MalformedURLException e)
-		{
-			throw e;
-		}
-		 */
-
-		this.feedList.add(url);
+		Log.i(TAG, url);
+		feedList.add(url);
 	}
 
 	public int queueSize()
 	{
 		return feedList.size();
 	}
-	
+
 	public void removeFeedURL(String url)
 	{
 		feedList.remove(url);
 	}
-	
+
 	/**
-	 * prepare for re-processing of feeds list;
-	 * clears article list and resets feed queue
-	 * 
+	 * prepare for re-processing of feeds list; clears article list and resets
+	 * feed queue
 	 */
-	public void reset() {
+	public void reset()
+	{
 		feedQueueCounter = 0;
 		articleList.clear();
 	}
-	
-	
+
 	public ArrayList<Article> getArticles()
 	{
 		return articleList;
 	}
-	
+
 	@Override
 	public void onFeedComplete(RSSFeed feed)
 	{
-		
 		if (downloadTask.hasException())
 		{
 			Log.e(TAG, downloadTask.getException().toString());
@@ -132,15 +108,17 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		else
 		{
 			Article article;
+			String feedDescription = feed.getTitle();
+			
 			for (RSSItem rssItem : feed.getItems())
 			{
 				article = new Article(rssItem);
 				articleList.add(article);
-				article.setArticleCourseCode(Integer.toString(feedQueueCounter));
+				article.setArticleCourseCode(feedDescription);
 			}
 		}
-		
-		if (feedQueueCounter < this.feedList.size())
+
+		if (feedQueueCounter < feedList.size())
 		{
 			/*
 			 *  process next feed in queue
@@ -155,47 +133,54 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 * again if we just want to refresh articleList.
 			 */
 			feedQueueCounter = 0;
-			
+
 			/*
 			 * sorts the list by date in descending order
 			 */
 			Collections.sort(articleList);
-			
-			/*
-			 * save data
-			 */
-			saveCache();
 
-	        /*
+			try
+			{
+				saveCache();
+			}
+			catch (Exception e)
+			{
+				Log.e(TAG, e.toString());
+			}
+
+			/*
 			 *  return the complete list of articles to the listener
 			 *  when all items in the feed queue are processed
 			 */
-			callbackHandler.onFeedManagerDone(getArticles());
+			callbackHandler.onFeedManagerDone(this, getArticles());
 		}
 	}
 
 	/**
-	 * downloads articles from one feed at a time, you must add feeds 
-	 * using addFeedURL(String url) before calling this method
+	 * downloads articles from one feed at a time, you must add feeds using
+	 * addFeedURL(String url) before calling this method
 	 */
 	public void processFeeds()
 	{
-		if (this.feedList.isEmpty())
+		if (feedList.isEmpty())
 		{
-			Log.e(TAG, "Feed list is empty, nothing to do!");
-			return;
+			Log.e(TAG, "Feed list is empty, adding some feeds:");
+			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
+			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
+			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18190&PersonId=94952&CustomerId=719&Guid=96721ee137e0c918227093aa54f16f80&Culture=en-GB");
+			addFeedURL("https://mah.itslearning.com/Dashboard/NotificationRss.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
 		}
 
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(feedQueueCounter + 1, feedList.size());
-						
+		callbackHandler.onFeedManagerProgress(this, feedQueueCounter + 1, feedList.size());
+
 		/* 
 		 * there can only be one task at any time and it can only be used once
 		 */
 		downloadTask = new FeedDownloadTask(this);
-		
+
 		/* 
 		 * we want to process the next url in queue but not pop it from the queue,
 		 * in case we want to get all feeds again later (i.e. to refresh), that's
@@ -203,59 +188,59 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		 */
 		downloadTask.execute(feedList.get(feedQueueCounter++));
 	}
-	
-	private void saveCache()
+
+	private void saveCache() throws Exception
 	{
 		/*
 		 * don't overwrite saved data with nothing 
 		 */
-		if (articleList.isEmpty())
-			return;
-		
-		FileOutputStream fos;
-		ObjectOutputStream oos;
-
-		try
+		if (!articleList.isEmpty())
 		{
-			fos = appContext.openFileOutput(CACHE_FILENAME, Context.MODE_PRIVATE);
-			oos = new ObjectOutputStream(fos);
+			FileOutputStream fos = appContext.openFileOutput(CACHE_FILENAME, Context.MODE_PRIVATE);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(articleList);
 			fos.close();
 		}
-		catch (Exception e)
+		else
 		{
-			Log.e(TAG, e.toString());
+			Log.e(TAG, "Nothing to save, are we online?");
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadCache()
+	public void loadCache()
 	{
-		FileInputStream fis;
-		ObjectInputStream ois;
-		
-		try
+		/*
+		 *  check for cache file
+		 */
+		if (appContext.getFileStreamPath(CACHE_FILENAME).exists())
 		{
-			fis = appContext.openFileInput(CACHE_FILENAME);
-			ois = new ObjectInputStream(fis);
-			articleList.clear();
-			articleList.addAll((List<Article>) ois.readObject());
-			fis.close();
-		}
-		catch (Exception e)
-		{
-			Log.e(TAG, e.toString());
-			
 			/*
-			 *  something is probably wrong with the cache file so let's delete it
+			 * load data
 			 */
-			appContext.getFileStreamPath(CACHE_FILENAME).delete();
+			try
+			{
+				FileInputStream fis = appContext.openFileInput(CACHE_FILENAME);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				articleList.clear();
+				articleList.addAll((List<Article>) ois.readObject());
+				fis.close();
+			}
+			catch (Exception e)
+			{
+				Log.e(TAG, e.toString());
+
+				/*
+				 *  something is probably wrong with the cache file so let's delete it
+				 */
+				deleteCache();
+			}
 		}
-	}
-	
-	public void deleteCache()
-	{
-		appContext.getFileStreamPath(CACHE_FILENAME).delete();
 	}
 
+	public void deleteCache()
+	{
+		Log.i(TAG, "Deleting file: " + appContext.getFileStreamPath(CACHE_FILENAME).toString());
+		appContext.getFileStreamPath(CACHE_FILENAME).delete();
+	}
 }

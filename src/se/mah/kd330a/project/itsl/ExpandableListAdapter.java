@@ -2,8 +2,10 @@ package se.mah.kd330a.project.itsl;
 
 import se.mah.kd330a.project.R;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +20,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 {
 	private Context _context;
 	private List<Article> _listDataHeader; // header titles
-
-	//Temporary for testing - create arraylist of courses
+	private Date lastUpdate;
+	
+	// Temporary for testing - create arraylist of courses
 	ArrayList<Course> theCourses = new ArrayList<Course>();
 
 	public ExpandableListAdapter(Context context, List<Article> listDataHeader)
 	{
 		this._context = context;
 		this._listDataHeader = listDataHeader;
+		this.lastUpdate = Util.getLatestUpdate(_context);
 		
-
 		// Trying to get the colors from our xml file
 		theCourses.add(new Course("1", context.getResources().getColor(R.color.blue)));
 		theCourses.add(new Course("2", context.getResources().getColor(R.color.yellow)));
@@ -74,8 +77,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			txtListChild.setText(this._listDataHeader.get(groupPosition).getArticleText());
 			ImageView imgClrCode = (ImageView) convertView.findViewById(R.id.clrCode);
 
-			/* 
-			 *  Choose the right color
+			/*
+			 * Choose the right color
 			 */
 			for (Course c : theCourses)
 			{
@@ -123,25 +126,50 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			TextView lblListHeaderDate = (TextView) convertView.findViewById(R.id.lblListHeaderDate);
 			TextView lblListHeaderText = (TextView) convertView.findViewById(R.id.lblListHeaderText);
 			TextView lblListCode = (TextView) convertView.findViewById(R.id.lblListCode);
-			TextView txtClrLine = (TextView) convertView.findViewById(R.id.clrLine);
 			ImageView imgClrCode = (ImageView) convertView.findViewById(R.id.clrCode);
+			ImageView imgPointer = (ImageView) convertView.findViewById(R.id.icPointer);
+			TextView txtClrLine = (TextView) convertView.findViewById(R.id.clrLine);
 
 			lblListHeader.setText(headerTitle.getArticleHeader());
 			lblListHeaderDate.setText(headerTitle.getArticleDate().toString());
-			lblListCode.setText(headerTitle.getArticleCourseCode());
-
+			
+			/*
+			 * find out if this article is new since last time we started the app
+			 */
+			if (lastUpdate.getTime() < headerTitle.getArticlePubDate().getTime())
+				lblListCode.setText("NEW");
+			else
+				lblListCode.setText("");
+				
+			/*
+			 * If the summary text is visible = not expanded
+			 */
 			if (headerTitle.isTextVisible())
 			{
+
 				lblListHeaderText.setVisibility(View.VISIBLE);
 				lblListHeaderText.setText(headerTitle.getArticleSummary());
+				imgPointer.setVisibility(View.VISIBLE);
 			}
 			else
 			{
 				lblListHeaderText.setVisibility(View.GONE);
+				imgPointer.setVisibility(View.GONE);
+
 			}
 
-			/* 
-			 *  Choose the right color
+			if (headerTitle.getArticleSummary().equals(headerTitle.getArticleText()))
+			{
+				convertView.setClickable(true);
+				imgPointer.setVisibility(View.GONE);
+			}
+			else
+			{
+				convertView.setClickable(false);
+			}
+
+			/*
+			 * Choose the right color
 			 */
 
 			for (Course c : theCourses)
@@ -153,8 +181,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 				}
 			}
 
-		}
+			/*
+			 * filter example
+			 */
+			if (headerTitle.getArticleCourseCode().equals("320B"))
+			{
+				// convertView.setVisibility(View.GONE);
 
+			}
+		}
 		return convertView;
 
 	}
@@ -193,6 +228,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			Article headerTitle = (Article) getGroup(groupPosition);
 			headerTitle.setTextVisible(false);
 		}
+
 	}
 
 	@Override

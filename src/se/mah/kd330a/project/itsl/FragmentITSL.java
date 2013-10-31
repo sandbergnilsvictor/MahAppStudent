@@ -1,21 +1,29 @@
 package se.mah.kd330a.project.itsl;
 
 import se.mah.kd330a.project.R;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import android.app.ActionBar;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import java.util.ArrayList;
-import android.app.ProgressDialog;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 
 /*
@@ -24,6 +32,10 @@ import android.widget.Toast;
  * 
  * HISTORY:
  * 
+ * 0.8.1
+ *  o added recent changes (notification, background updates, some rewrites, resources)
+ *    from now on we will work in this project and not in our own
+ *
  * 0.8.0
  *  o transfered files and resources to the framwork project, adapted code for
  *    fragment
@@ -43,16 +55,16 @@ import android.widget.Toast;
  * 	o removed unused code
  * 
  * TODO:
- * 
  *  o fix a better looking progressbar, until then use old progressdialog
- *  o seem to be a glitch when expanding, sometimes the child 
- *    gets a black background
+ *  o seem to be a glitch when expanding, sometimes the child gets a black background 
+ *    
  *    
  */
 public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 
 	OnScrollListener, OnChildClickListener, OnClickListener
 {
 	static final String TAG = "ITSL_fragment";
+	static final long UPDATE_INTERVAL = 1800000; // 30 minutes
 
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
@@ -61,12 +73,52 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	ProgressBar progBar;
 	TextView txProgress;
 	View headerView;
+	PendingIntent backgroundUpdateIntent;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		feedManager = new FeedManager(this, getActivity());
+		
+		/*
+		 * set up the repeating task of updating data in the background 
+		 * (but stop it while the app is running)
+		 */
+		Context appContext = getActivity().getApplicationContext(); 
+		backgroundUpdateIntent = PendingIntent.getService(
+				appContext, 0, 
+				new Intent(appContext, TimeAlarm.class), 0);
+		
+		feedManager = new FeedManager(this, appContext);
+	}
+
+	public void onPause()
+	{
+		super.onPause();
+		
+		Log.i(TAG, "Paused: Setting up background updates");
+
+		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+		alarm.setRepeating(AlarmManager.RTC_WAKEUP, 
+				System.currentTimeMillis() + UPDATE_INTERVAL, 
+				UPDATE_INTERVAL, backgroundUpdateIntent);
+		
+		/*
+		 * Remember when we last had this view opened 
+		 */
+		Util.setLatestUpdate(getActivity().getApplicationContext(), 
+				new Date(System.currentTimeMillis()));
+	}
+	
+	public void onResume()
+	{
+		super.onResume();
+		
+		Log.i(TAG, "Resumed: Stopping background updates");
+
+		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+		alarm.cancel(backgroundUpdateIntent);
 	}
 
 	@Override
@@ -74,6 +126,26 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	{
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
 
+		/*
+		 * custom ActionBar
+		 */
+		/*
+		ColorDrawable colorDrawable = new ColorDrawable();
+		colorDrawable.setColor(0xffeeeeee);
+		ActionBar actionBar = getActivity().getActionBar();
+		actionBar.setBackgroundDrawable(colorDrawable);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.itsl_abs_layout);
+		*/
+		
+		/*
+		 *  set up progressbar
+		 */
+		progBar = (ProgressBar) rootView.findViewById(R.id.progress);
+		txProgress = (TextView) rootView.findViewById(R.id.txProgess);
+		progBar.setVisibility(ProgressBar.GONE);
+		txProgress.setVisibility(TextView.GONE);
+		
 		/*
 		 *  create settings view and hide it
 		 */
@@ -92,25 +164,62 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		expListView.setOnScrollListener(this);
 		expListView.setOnChildClickListener(this);
 
-		/*
-		 *  set up progressbar
-		 */
-		progBar = (ProgressBar) rootView.findViewById(R.id.progress);
-		txProgress = (TextView) rootView.findViewById(R.id.txProgess);
-		progBar.setVisibility(ProgressBar.GONE);
-		txProgress.setVisibility(TextView.GONE);
+		feedManager.loadCache();
 
+		for (String url : Util.getBrowserBookmarks(getActivity().getApplicationContext()))
+		{
+			Log.i(TAG, "Got URL from bookmarks: " + url);
+			feedManager.addFeedURL(url);
+		}
+		
 		/*
-		 *  in case there was nothing in the cache, or it didn't exist
+		 *  in case there is nothing in the cache, or it doesn't exist
 		 *  we have to refresh
 		 */
 		if (feedManager.getArticles().isEmpty())
 			refresh();
 		
+		
+		for (String title : getFeedObjects().keySet())
+		{
+			Log.i(TAG, "Filter list has key: " + title);
+		}
+
 		return rootView;
 	}
-	
-	public void onFeedManagerProgress(int progress, int max)
+
+	public class FeedObject {
+		public ArrayList<Article> articles;
+		public FeedObject()
+		{
+			articles = new ArrayList<Article>();
+		}
+	}
+
+	public HashMap<String, FeedObject> getFeedObjects() {
+		HashMap<String, FeedObject> foList = new HashMap<String, FeedObject>();
+		
+		for (Article a : feedManager.getArticles())
+		{
+			FeedObject fo;
+			
+			if (foList.containsKey(a.getArticleCourseCode()))
+			{
+				fo = foList.get(a.getArticleCourseCode());
+			}
+			else
+			{
+				fo = new FeedObject();
+				foList.put(a.getArticleCourseCode(), fo);
+			}
+			
+			fo.articles.add(a);
+		}
+		
+		return foList;
+	}
+
+	public void onFeedManagerProgress(FeedManager fm, int progress, int max)
 	{
 		/*
 		 *  set up progress dialog if there isn't one.
@@ -122,10 +231,10 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 			dialog.setMessage("Downloading...");
 			dialog.show();
 		}
-		
+
 		dialog.setProgress(progress);
 		dialog.setMax(max);
-		
+
 		/*
 		progBar.setVisibility(ProgressBar.VISIBLE);
 		txProgress.setVisibility(TextView.VISIBLE);
@@ -135,7 +244,7 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	}
 
 	@Override
-	public void onFeedManagerDone(ArrayList<Article> articles)
+	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
 		/*
 		 * display the data in our listview
@@ -161,19 +270,6 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		int count = listAdapter.getGroupCount();
 		for (int i = 0; i < count; i++)
 			expListView.collapseGroup(i);
-
-		/*
-		 * as soon as we add feeds to feedManager, queueSize is no longer 0,  
-		 * therefore this will only be done once
-		 */
-		if (feedManager.queueSize() == 0)
-		{
-			feedManager.addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
-			feedManager.addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
-			feedManager.addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18190&PersonId=94952&CustomerId=719&Guid=96721ee137e0c918227093aa54f16f80&Culture=en-GB");
-			feedManager.addFeedURL("http://www.mah.se/Nyheter/RSS/Anslagstavla-fran-Malmo-hogskola/");
-			feedManager.addFeedURL("https://mah.itslearning.com/Dashboard/NotificationRss.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
-		}
 
 		feedManager.reset();
 		feedManager.processFeeds();
@@ -215,17 +311,16 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	@Override
 	public void onClick(View v)
 	{
-		switch (v.getId())
-		{
-			case R.id.button1:
-				refresh();
-				hideSettingsView();
-				break;
-			case R.id.button2:
-				feedManager.reset();
-				feedManager.deleteCache();
-				listAdapter.notifyDataSetInvalidated();
-				break;
+		switch (v.getId()) {
+		case R.id.button1:
+			refresh();
+			hideSettingsView();
+			break;
+		case R.id.button2:
+			feedManager.reset();
+			feedManager.deleteCache();
+			listAdapter.notifyDataSetInvalidated();
+			break;
 		}
 	}
 }

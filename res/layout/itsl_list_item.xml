@@ -4,7 +4,7 @@
     android:layout_height="55dip"
     android:animateLayoutChanges="true"
     android:orientation="horizontal" >
-    
+
     <ImageView
         android:id="@+id/clrCode"
         android:layout_width="16dp"
@@ -20,13 +20,22 @@
             android:id="@+id/lblListItem"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_toRightOf="@id/clrCode"
-            android:textColor="@color/black"
             android:lineSpacingExtra="5sp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_marginBottom="16dp" />
+            android:textColor="@color/grey_dark" />
+
+        <ImageView
+            android:id="@+id/icPointer"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:rotationX="180"
+            android:background="@drawable/ic_pointer_down" />
     </LinearLayout>
 
 </LinearLayout>

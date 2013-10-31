@@ -34,9 +34,9 @@ public class FragmentHome extends Fragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {	
+		super.onCreate(savedInstanceState);
 		nextClass = new NextClassWidget();
 		nextClass.getTodaysClasses();
-		super.onCreate(savedInstanceState);
 	}
 
 	@Override
