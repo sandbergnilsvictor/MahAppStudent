@@ -27,8 +27,9 @@ import android.widget.Spinner;
 public class FragmentFind extends Fragment {
 
 	private static final String FIND_SPINNER_STATE = "spinChoice";
-	
+
 	String selposFind = null;
+	int spin_selected = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class FragmentFind extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
+
 		ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_find, container, false);
 		return rootView;
@@ -47,29 +48,30 @@ public class FragmentFind extends Fragment {
 	public void onStart() {
 		super.onStart();
 		
+		Log.i("project", "onStart");
+		
 		Spinner spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
 				.createFromResource(getActivity(), R.array.find_building_array,
 						android.R.layout.simple_spinner_item);
-		spinFindadapter
-		.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinFindadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerFind.setAdapter(spinFindadapter);
 
-		spinnerFind
-		.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		spinnerFind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			/**
 			 * Called when a new item is selected (in the Spinner)
 			 */
 			public void onItemSelected(AdapterView<?> parent,
 					View view, int pos, long id) {
-				
+
 				parent.getItemAtPosition(pos);
 				Resources res = getResources();
 				String[] findCode = res
 						.getStringArray(R.array.find_building_code_array);
 
 				selposFind = findCode[pos];
-				
+				spin_selected = pos;
+
 			}
 
 			public void onNothingSelected(AdapterView<?> parent) {
@@ -77,6 +79,8 @@ public class FragmentFind extends Fragment {
 			}
 		});
 
+		if (spin_selected > -1) 
+			spinnerFind.setSelection(spin_selected, true);
 
 		Button btn_Search = (Button) getView().findViewById(R.id.button_find_navigation);
 		btn_Search.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +90,7 @@ public class FragmentFind extends Fragment {
 			}
 		});
 	}
-	
+
 	public void find_button_navigation(View v) {
 
 		// ---get the EditText view---
@@ -105,72 +109,69 @@ public class FragmentFind extends Fragment {
 			if (dbHandler.isRoomExists(roomNr)) {
 
 				startNavigation(roomNr);
-				
+
 			}
 		}
 		//Hiding the keyboard
-		
+
 		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 	}
-	
+
 	private void showBuilding(String buildingCode) {
-		
+
 		Fragment fragment = new FragmentBuilding();
 		Bundle args = new Bundle();
 		args.putString(FragmentBuilding.ARG_BUILDING, "k2");
 		fragment.setArguments(args);
 
 		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
-		
+
 		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
 		fragmentTrans.replace(R.id.content_frame, fragment);
 		fragmentTrans.addToBackStack(null);
 		fragmentTrans.commit();
 	}
-	
+
 	private void startNavigation(String roomNr) {
-		
+
 		Fragment fragment = new FragmentResult();
 		Bundle args = new Bundle();
 		args.putString(FragmentResult.FIND_EXTRA_ROOMNR, roomNr);
 		fragment.setArguments(args);
 
 		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
-		
+
 		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
 		fragmentTrans.replace(R.id.content_frame, fragment);
 		fragmentTrans.addToBackStack(null);
 		fragmentTrans.commit();
 	}
 
-	
-	
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
-	
+
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		Spinner spin = (Spinner) getView().findViewById(R.id.spinner_find_building);
-		Log.i("project", "onActivityCreated " + spin.getSelectedItemPosition());
-		outState.putInt(FIND_SPINNER_STATE, spin.getSelectedItemPosition());
+		outState.putInt(FIND_SPINNER_STATE, spin_selected);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		Log.i("project", "onActivityCreated");
+		//Log.i("project", "onActivityCreated");
 		super.onActivityCreated(savedInstanceState);
+		
 		if (savedInstanceState != null) {
-			Spinner spin = (Spinner) getView().findViewById(R.id.spinner_find_building);
-			Log.i("project", "onActivityCreated " + savedInstanceState.getInt(FIND_SPINNER_STATE));
-			spin.setSelection(savedInstanceState.getInt(FIND_SPINNER_STATE));
+			//Log.i("project", "onActivityCreated save1 " + savedInstanceState.getInt(FIND_SPINNER_STATE));
+			spin_selected = savedInstanceState.getInt(FIND_SPINNER_STATE);
 		}
+
 	}
 
-	
+
 }

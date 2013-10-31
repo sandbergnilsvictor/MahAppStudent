@@ -110,11 +110,6 @@ public class FragmentResult extends Fragment {
 				radioB.setFocusable(false);
 				radioB.setChecked(false);   
 				
-				/*int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
-				MarginLayoutParams layoutParams = new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-				layoutParams.setMargins(px, 0, px, 0);	
-				radioB.setLayoutParams(layoutParams);*/
-				
 				radioB.setOnClickListener(rb_OnClick);
 				radioG.addView(radioB);
 
