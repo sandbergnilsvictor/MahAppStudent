@@ -23,7 +23,7 @@ public class AdLadokTest extends Activity implements Observer{
 	}
 	
 	public void update(View v){
-		//clear all
+		//clear all all
 		Me.setDispayName("");
 		Me.setEmail("");
 		Me.setFirstName("");
