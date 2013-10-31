@@ -24,7 +24,7 @@
     <string name="find_result_page">Result for search</string>
     <string name="find_navigationTitle">Direction to room </string>
     <string name="find_navigationContent">Kranen (K2) is this building.</string>
-    <string name="find_startTitle">Need help with finding room</string>
+    <string name="find_startTitle">Need help finding room?</string>
     <string name="find_spinerHint_building">Select a building</string>
     <string name="find_editTextHint_room">Insert the room name</string>
     <string name="find_button_navigation">Find it!</string>
@@ -32,5 +32,7 @@
     <string name="find_button_indoor_map">See indoor floor maps</string>
     <string name="find_button_tour">Or Take the Tour!</string>
     <string name="text_find_indicator_steps">Step</string>
+    <string name="find_button_g_map">Find Building with Google Map</string>
+    <string name="find_button_floor">See the Floor Map</string>
 
 </resources>

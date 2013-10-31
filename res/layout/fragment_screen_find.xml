@@ -6,62 +6,64 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="16dp" >
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_marginBottom="8dp">
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/text_find_startTitle"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="@string/find_startTitle"
-        android:textColor="@color/grey_dark"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/text_find_startTitle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="@string/find_startTitle"
+            android:textColor="@color/grey_dark"
+            android:textSize="18sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/grey"
-        android:layout_marginTop="6dp" />
-    
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/grey" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_marginBottom="8dp" >
+        android:orientation="vertical" >
 
         <Spinner
             android:id="@+id/spinner_find_building"
             android:layout_width="match_parent"
             android:layout_height="32dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:prompt="@string/find_spinerHint_building" />
+            android:prompt="@string/find_spinerHint_building"
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/editText_find_room"
             android:layout_width="match_parent"
             android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="14sp"
-            android:hint="@string/find_editTextHint_room" />
-        <View android:layout_width="match_parent" android:layout_height="2dp" android:layout_marginTop="6dp" android:background="@color/grey" />
-    </LinearLayout>
+            android:hint="@string/find_editTextHint_room"
+            android:textSize="14sp" />
 
-    
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/grey" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_find_navigation"
@@ -70,14 +72,15 @@
         android:layout_marginLeft="48dp"
         android:layout_marginRight="48dp"
         android:text="@string/find_button_navigation" />
+
     <Button
         android:id="@+id/button_find_tour"
         style="@style/mah_button_grey"
         android:layout_width="fill_parent"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="48dp"
         android:layout_marginRight="48dp"
+        android:layout_marginTop="8dp"
         android:text="@string/find_button_tour" />
 
 </LinearLayout>

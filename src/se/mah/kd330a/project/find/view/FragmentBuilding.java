@@ -16,7 +16,7 @@ public class FragmentBuilding extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		ViewGroup rootView = (ViewGroup) inflater
-				.inflate(R.layout.fragment_screen_find_step, container, false);
+				.inflate(R.layout.fragment_screen_find_building, container, false);
 		return rootView;
 	}
 
