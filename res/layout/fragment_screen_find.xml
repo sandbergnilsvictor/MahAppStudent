@@ -61,10 +61,8 @@
 
     <Button
         android:id="@+id/button_find_navigation"
-        style="?android:attr/buttonStyle"
+        style="@style/mah_button_red"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:textSize="18sp"
         android:layout_marginLeft="36dp"
         android:layout_marginRight="36dp"
         android:layout_marginTop="4dp"
@@ -72,10 +70,8 @@
         android:text="@string/find_button_navigation" />
     <Button
         android:id="@+id/button_find_tour"
-        style="?android:attr/buttonStyle"
+        style="@style/mah_button_grey"
         android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:textSize="18sp"
         android:layout_marginLeft="36dp"
         android:layout_marginRight="36dp"
         android:layout_marginTop="4dp"
