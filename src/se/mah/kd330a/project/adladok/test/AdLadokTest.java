@@ -6,8 +6,10 @@ import java.util.Observer;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
+import se.mah.kd330a.project.settings.view.SettingsActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -71,6 +73,9 @@ public class AdLadokTest extends Activity implements Observer{
 	    		    "UserID: "+ Me.getUserID()+"\n"+
 	    		    "***Courses for Me***\n"+
 	    		    courses);
+	    Intent intent = new Intent(this, SettingsActivity.class);
+	    startActivity(intent);
+	    finish();
 	}
 	
 
