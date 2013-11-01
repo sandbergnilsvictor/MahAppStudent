@@ -52,9 +52,11 @@ public class SplashActivity extends Activity implements Observer {
 
 		SharedPreferences sharedPref = getSharedPreferences("userFile",
 				Context.MODE_PRIVATE);
-		String userId = sharedPref.getString("user_id", "No user");
-		String userPassword = sharedPref.getString("user_password",
-				"No password");
+		// String userId = sharedPref.getString("user_id", "No user");
+		// String userPassword = sharedPref.getString("user_password",
+		// "No password");
+		String userId = "m11p1128";
+		String userPassword = "Armani4055";
 		Toast.makeText(this, "Hej " + userId, Toast.LENGTH_LONG).show();
 		if (!userId.equals("No user")) {
 			Me.setUserID(userId);
@@ -71,8 +73,9 @@ public class SplashActivity extends Activity implements Observer {
 		Log.i("LadokCourses", Integer.toString((Me.getCourses().size())));
 		List<Course> ladokCourses = Me.getCourses();
 		for (Course c : ladokCourses) {
-			String courseId = c.getCourseID();
-			Log.i("LadokCourseId", courseId);
+			String courseId = c.getKronoxCalendarCode();
+			courseId = courseId.substring(2);
+			Log.i("LadokCourseIdNew", courseId);
 			courses.add(new KronoxCourse(courseId));
 		}
 		KronoxCourse[] courses_array = new KronoxCourse[courses.size()];
@@ -91,8 +94,6 @@ public class SplashActivity extends Activity implements Observer {
 			Log.i("Get schedule", "No classes");
 		}
 		new GetDataTask().execute();
-
-		
 
 	}
 
@@ -132,6 +133,7 @@ public class SplashActivity extends Activity implements Observer {
 
 		@Override
 		protected void onPostExecute(KronoxCourse course) {
+
 			if (course != null) {
 				Log.i("Schedule", String.format("course:%s,%s",
 						course.getFullCode(), course.getName()));
@@ -167,9 +169,10 @@ public class SplashActivity extends Activity implements Observer {
 				System.out.println("Error in save method");
 
 			} finally {
-				Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+				Intent intent = new Intent(SplashActivity.this,
+						MainActivity.class);
 				startActivity(intent);
-				
+
 			}
 		}
 	}

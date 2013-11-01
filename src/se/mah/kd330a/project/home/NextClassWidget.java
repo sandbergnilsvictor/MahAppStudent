@@ -38,13 +38,14 @@ public class NextClassWidget {
 	}
 	
 	public boolean getTodaysClasses() {
-		if (Me.getUserID() != null) {
+		if(!Me.getFirstName().isEmpty()){
 			listToday();
 			setData();
 			return true;
 		} else {
 			return false;
 		}
+		
 		
 	}
 	

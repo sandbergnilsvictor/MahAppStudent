@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_margin="12dp"
-    android:background="@color/grey_light" >
- 
-        <FrameLayout
-            android:id="@+id/Father_frame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" >
+    android:background="@color/grey_light"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/Father_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" >
 
         <FrameLayout
             android:id="@+id/calendarColorFrame1"
@@ -24,49 +24,28 @@
             android:id="@+id/calendarColorFrame2"
             android:layout_width="1dip"
             android:layout_height="match_parent"
+            android:layout_marginBottom="80dip"
             android:layout_marginLeft="104dip"
             android:layout_marginTop="16dip"
-            android:layout_marginBottom="80dip"
             android:background="@color/yellow" >
         </FrameLayout>
-        <TextView
-            android:id="@+id/textMomentTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dip"
-            android:layout_marginTop="16dip"
-            android:text="@string/momenttitle"
-            android:textSize="12sp"
-            android:textStyle="bold"
-             />
-
-        <TextView
-            android:id="@+id/list_course_child_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dip"
-            android:layout_marginTop="32dip"
-            android:layout_marginRight="16dip"
-            android:text="@string/moment"
-            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/textTeacherName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="120dip"
-            android:layout_marginTop="110dip"
+            android:layout_marginTop="20dip"
             android:text="@string/signtitle"
             android:textSize="12sp"
-            android:textStyle="bold"
-             />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/list_course_child_lector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="180dip"
-            android:layout_marginTop="110dip"
+            android:layout_marginTop="20dip"
             android:text="@string/sign"
             android:textSize="12sp" />
 
@@ -75,12 +54,11 @@
             style="@style/mah_button_red"
             android:layout_width="fill_parent"
             android:layout_height="48dip"
-            android:text="Find Room"
+            android:layout_marginBottom="16dip"
             android:layout_marginLeft="120dip"
             android:layout_marginRight="16dip"
             android:layout_marginTop="148dip"
-            android:layout_marginBottom="16dip" />
-        
+            android:text="Find Room" />
     </FrameLayout>
- 
+
 </LinearLayout>

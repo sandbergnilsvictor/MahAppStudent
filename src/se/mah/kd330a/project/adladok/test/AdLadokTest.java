@@ -84,7 +84,7 @@ public class AdLadokTest extends Activity implements Observer{
 	    		    "UserID: "+ Me.getUserID()+"\n"+
 	    		    "***Courses for Me***\n"+
 	    		    courses);
-	    
+	    Log.i("Ladok", "c.getKronoxCalendarCode()");
 	    Intent intent = new Intent(this, SettingsActivity.class);
 	    startActivity(intent);
 	    finish();

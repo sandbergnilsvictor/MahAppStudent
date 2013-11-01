@@ -73,7 +73,7 @@ public class SettingsActivity extends Activity {
 	public void toLadokInlogg(View view) {
 		Intent intent = new Intent(this, AdLadokTest.class);
 		startActivity(intent);
-		finish();
+		//finish();
 
 	}
 
