@@ -17,10 +17,6 @@ import android.util.Log;
 /**
  * @author marcusmansson
  * 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 62c17bcd72d0bb03dd1e359309b2c57e4627db81
  * FeedManager is responsible for managing several feeds, fetching them
  * sequentially and creating article objects of the items found.
  * 
@@ -30,24 +26,6 @@ import android.util.Log;
  * Usage:
  * FeedManager fm = new FeedManager(this, this);
  * fm.addFeedURL(url); // for all urls you want to process, then
-<<<<<<< HEAD
-=======
- * FeedManager is responsible for managing several feeds, fetching 
- * them sequentially and creating article objects of the items   
- * found.
- * 
- * FeedManager will return all articles to the registered 
- * FeedCompleteListener when done.
- * 
- * Usage:
- *  
- * FeedManager fm = new FeedManager(this);
- *  
- * fm.addFeedURL(url); // for all urls you want to process, then
- *  
->>>>>>> origin/Find
-=======
->>>>>>> 62c17bcd72d0bb03dd1e359309b2c57e4627db81
  * fm.processFeeds();
  * 
  */
