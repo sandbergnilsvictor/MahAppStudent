@@ -106,7 +106,7 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		 * Remember when we last had this view opened 
 		 */
 		Date date = new Date(System.currentTimeMillis());
-		date.setMonth(9);
+		date.setMonth(9); // zero based index!!!!!!!!!!!!!!!!!!!!!!11111 e.g. 0-11
 		date.setDate(20);
 
 		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
