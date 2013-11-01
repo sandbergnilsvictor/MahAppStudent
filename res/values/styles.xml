@@ -3,7 +3,7 @@
     <style name="CustomTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:activatedBackgroundIndicator">@drawable/menuitem_background</item>
     </style>
-    
+
 
     <style name="mah_button_red">
         <item name="android:background">@drawable/mah_button_red</item>
@@ -18,5 +18,5 @@
         <item name="android:textSize">18sp</item>
         <item name="android:layout_height">48dp</item>
         </style>
-    
+
 </resources>

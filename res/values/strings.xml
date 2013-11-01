@@ -36,7 +36,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="my_courses_heading">My Courses</string>
     <string name="my_profile_heading">My Profile</string>
-    
+
     <!-- The label for use as a searchable item -->
     <string name="search_label">Dictionary</string>
 
