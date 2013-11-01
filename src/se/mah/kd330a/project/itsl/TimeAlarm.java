@@ -4,12 +4,12 @@ import se.mah.kd330a.project.R;
 import java.util.ArrayList;
 import java.util.Date;
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 public class TimeAlarm extends IntentService implements FeedManager.FeedManagerDoneListener
@@ -25,13 +25,11 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 	@Override
 	protected void onHandleIntent(Intent intent)
 	{
-		Log.i(TAG, "Called...");
-		
 		if (getApplicationContext() != null)
 		{
-			latestUpdate = Util.getLatestUpdate(getApplicationContext());
 			FeedManager feedManager = new FeedManager(this, getApplicationContext());
 			feedManager.processFeeds();
+			Log.e(TAG, "processing feeds");
 		}
 		else
 		{
@@ -48,40 +46,55 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
+		latestUpdate = Util.getLatestUpdate(getApplicationContext());
+		Log.e(TAG, "feedmanager done, latest update " + latestUpdate);
+
 		if (articles.isEmpty())
 		{
 			Log.e(TAG, fm.getClass().toString() + " returned 0 articles, are we online?");
 		}
 		else
 		{
+			Log.e(TAG, "feedmanager has articles: " + articles.size());
 			ArrayList<Article> newArticles = new ArrayList<Article>();
 			for (Article a : articles)
+			{
 				if (a.getArticlePubDate().compareTo(latestUpdate) > 0)
+				{
+					Log.i(TAG, "new article: " + a.getArticleHeader());
 					newArticles.add(a);
-	
-			createNotification(newArticles);
+				}
+			}
+			Log.e(TAG, "we have new articles: " + newArticles.size());
+			
+			//if (newArticles.size() > 0)
+				createNotification(newArticles);
 		}
 	}
 
 	private void createNotification(ArrayList<Article> articles)
 	{
 		//invoking the default notification service
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+		Notification.Builder mBuilder = new Notification.Builder(this);
 		mBuilder.setContentTitle("New Message");
 		mBuilder.setTicker("New Itslearning post");
 		mBuilder.setSmallIcon(R.drawable.ic_launcher);
 		mBuilder.setAutoCancel(true);
 
 		// Add Big View Specific Configuration 
-		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+		Notification.InboxStyle inboxStyle = new Notification.InboxStyle();
 
 		// Sets a title for the Inbox style big view
 		inboxStyle.setBigContentTitle("News from Itslearning");
+		
+		Log.e(TAG, "we have new articles 2: " + articles.size());
 
 		// Moves events into the big view
 		for (Article a : articles)
 			inboxStyle.addLine(a.getArticleHeader());
 
+		inboxStyle.addLine("TEST!!!");
+		inboxStyle.addLine("TEST IGEN!!!");
 		mBuilder.setStyle(inboxStyle);
 
 		// Creates an explicit intent in the app

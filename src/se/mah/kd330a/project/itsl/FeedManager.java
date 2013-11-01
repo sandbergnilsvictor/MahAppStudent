@@ -157,6 +157,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 *  return the complete list of articles to the listener
 			 *  when all items in the feed queue are processed
 			 */
+			Log.e(TAG, "feedmanager done: " + this.articleList.size());
+
 			callbackHandler.onFeedManagerDone(this, getArticles());
 		}
 	}
