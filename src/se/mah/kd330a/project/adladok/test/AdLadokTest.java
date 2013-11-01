@@ -1,15 +1,19 @@
 package se.mah.kd330a.project.adladok.test;
 
+import java.io.FileOutputStream;
 import java.util.Observable;
 import java.util.Observer;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.R.string;
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.settings.view.SettingsActivity;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +21,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class AdLadokTest extends Activity implements Observer{
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +47,15 @@ public class AdLadokTest extends Activity implements Observer{
 		EditText password_et =(EditText)findViewById(R.id.passWordET);
 		Me.setUserID(userID_et.getText().toString());
 		Me.setPassword(password_et.getText().toString());
+		SharedPreferences sharedPref = this.getSharedPreferences("userFile", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putString("user_id", userID_et.getText().toString());
+		editor.putString("user_password", password_et.getText().toString());
+		editor.commit();
 		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
 		tv.setText("");
 		//Then call to update
-	     Me.updateMe();	     
+	    Me.updateMe();	     
 	     
 	}
 
@@ -73,6 +84,7 @@ public class AdLadokTest extends Activity implements Observer{
 	    		    "UserID: "+ Me.getUserID()+"\n"+
 	    		    "***Courses for Me***\n"+
 	    		    courses);
+	    
 	    Intent intent = new Intent(this, SettingsActivity.class);
 	    startActivity(intent);
 	    finish();

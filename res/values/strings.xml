@@ -38,6 +38,10 @@
     <string name="my_profile_heading">My Profile</string>
     
     
+    <!-- File names for local storage -->
+    <string name="user_file_key">my_ladok_profile</string>
+    
+    
 
     <!-- The label for use as a searchable item -->
     <string name="search_label">Dictionary</string>

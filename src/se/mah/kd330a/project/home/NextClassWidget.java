@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import android.util.Log;
 
+import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.schedule.data.KronoxCalendar;
 
 import net.fortuna.ical4j.model.Component;
@@ -36,9 +37,14 @@ public class NextClassWidget {
 				
 	}
 	
-	public void getTodaysClasses() {
-		listToday();
-		setData();
+	public boolean getTodaysClasses() {
+		if (Me.getUserID() != null) {
+			listToday();
+			setData();
+			return true;
+		} else {
+			return false;
+		}
 		
 	}
 	

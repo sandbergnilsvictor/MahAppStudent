@@ -18,16 +18,17 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FragmentHome extends Fragment {
 	
 	private NextClassWidget nextClass;
 	private ViewGroup rootView;
-	//private PullToRefreshScrollView mPullRefreshScrollView;
 	private ScrollView mScrollView;
 	private RSSFeed newsFeed;
 	private ObjectInputStream in = null;
 	private FileInputStream fis = null;
+	private boolean profileRegistered = false;
 	
 	public FragmentHome () {
 	}
@@ -35,7 +36,7 @@ public class FragmentHome extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {	
 		nextClass = new NextClassWidget();
-		nextClass.getTodaysClasses();
+		profileRegistered = nextClass.getTodaysClasses();
 		super.onCreate(savedInstanceState);
 	}
 
@@ -44,17 +45,6 @@ public class FragmentHome extends Fragment {
 		
 		rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_screen_home, container, false);
-		/*mPullRefreshScrollView = (PullToRefreshScrollView) rootView.findViewById(R.id.pull_refresh_scrollview);
-		mPullRefreshScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
-
-			@Override
-			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-				new UpdateDataTask().execute();
-			}
-		});
-
-		mScrollView = mPullRefreshScrollView.getRefreshableView();
-		*/
 		setNextClassWidget(rootView);
 		setNewsFeedMah(rootView);
 		setCalenderFeedMah(rootView);
@@ -111,6 +101,7 @@ public class FragmentHome extends Fragment {
 	}
 
 	private void setNextClassWidget(ViewGroup rootView) {
+		if (profileRegistered) {
 		LinearLayout nextClassWidget = (LinearLayout) rootView.findViewById(R.id.next_class_widget);
 		TextView textNextClassName = (TextView) nextClassWidget.findViewById(R.id.text_next_class_name);
 		textNextClassName.setText(nextClass.getCourseName());
@@ -122,6 +113,9 @@ public class FragmentHome extends Fragment {
 		textNextClassEndTime.setText(nextClass.getEndTime());
 		TextView textNextClassLocation = (TextView) nextClassWidget.findViewById(R.id.text_next_class_location);
 		textNextClassLocation.setText(nextClass.getLocation());
+		} else {
+			Toast.makeText(getActivity(), "No profile! Please login!", Toast.LENGTH_LONG).show();
+		}
 		
 	}
 	
