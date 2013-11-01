@@ -19,12 +19,7 @@ public class Util
 	{
 		SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 		Date date = new Date(settings.getLong("latestUpdate", 0));
-
-		/**
-		 * TODO: remove the next line
-		 */
-		date.setDate(20);
-
+		
 		Log.i(TAG, "Latest update was: " + date.toString());
 		return date;
 	}
@@ -80,8 +75,10 @@ public class Util
 					}
 				} while (mCur.moveToNext());
 				
-				mCur.close();
 			}
+			
+			if (mCur != null)
+				mCur.close();
 		}
 		catch (Exception e)
 		{

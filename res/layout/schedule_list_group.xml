@@ -11,7 +11,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        
         android:textSize="14sp"
         android:textColor="@color/grey_dark" />
     
@@ -90,5 +89,5 @@
             android:textSize="16sp" />
     </FrameLayout>
 
- 
+
 </RelativeLayout>

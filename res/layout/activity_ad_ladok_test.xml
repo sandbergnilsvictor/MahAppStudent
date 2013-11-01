@@ -18,7 +18,6 @@
         android:layout_centerHorizontal="true"
         android:maxLines="20"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-
         android:scrollbars="vertical"
         android:text="Empty" />
 

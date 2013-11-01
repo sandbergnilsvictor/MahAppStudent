@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+
 public class TimeAlarm extends IntentService implements FeedManager.FeedManagerDoneListener
 {
 	private static final String TAG = "TimeAlarm";
@@ -25,13 +26,11 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 	@Override
 	protected void onHandleIntent(Intent intent)
 	{
-		Log.i(TAG, "Called...");
-		
 		if (getApplicationContext() != null)
 		{
-			latestUpdate = Util.getLatestUpdate(getApplicationContext());
 			FeedManager feedManager = new FeedManager(this, getApplicationContext());
 			feedManager.processFeeds();
+			Log.e(TAG, "processing feeds");
 		}
 		else
 		{
@@ -48,6 +47,8 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
+		latestUpdate = Util.getLatestUpdate(getApplicationContext());
+
 		if (articles.isEmpty())
 		{
 			Log.e(TAG, fm.getClass().toString() + " returned 0 articles, are we online?");
@@ -61,9 +62,13 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 				{
 					Log.i(TAG, "adding article to newarticle-list: " + a.getArticleHeader());
 					newArticles.add(a);
+<<<<<<< HEAD
 				}
 			}
 	
+=======
+			
+>>>>>>> origin/master
 			if (newArticles.size() > 0)
 				createNotification(newArticles);
 		}
@@ -71,41 +76,32 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	private void createNotification(ArrayList<Article> articles)
 	{
-		//invoking the default notification service
-		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-		mBuilder.setContentTitle("New Message");
-		mBuilder.setTicker("New Itslearning post");
-		mBuilder.setSmallIcon(R.drawable.ic_launcher);
-		mBuilder.setAutoCancel(true);
-
-		// Add Big View Specific Configuration 
-		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
-
-		// Sets a title for the Inbox style big view
-		inboxStyle.setBigContentTitle("News from Itslearning");
-
-		// Moves events into the big view
-		for (Article a : articles)
-			inboxStyle.addLine(a.getArticleHeader());
-
-		mBuilder.setStyle(inboxStyle);
-
-		// Creates an explicit intent in the app
 		Intent resultIntent = new Intent(this, se.mah.kd330a.project.framework.MainActivity.class);
 
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 		stackBuilder.addParentStack(se.mah.kd330a.project.framework.MainActivity.class);
-
-		// ads the intent that starts the activity to the top of the stack
 		stackBuilder.addNextIntent(resultIntent);
-		PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+		
+		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+		
+		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+		mBuilder.setSmallIcon(R.drawable.ic_menu_itsl);
+		mBuilder.setContentTitle("ITs title");
+		mBuilder.setTicker("ITs ticker");
+		mBuilder.setAutoCancel(true);
+		mBuilder.setContentInfo("Content info");
+		mBuilder.setWhen(System.currentTimeMillis());
+		mBuilder.setContentIntent(stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
+		mBuilder.setStyle(inboxStyle);
 
-		mBuilder.setContentIntent(resultPendingIntent);
+		inboxStyle.setBigContentTitle("News from Itslearning");
+		inboxStyle.setSummaryText("ITs summary");
+
+		for (Article a : articles)
+			inboxStyle.addLine(a.getArticleHeader());
+
 
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-		// mId allows you to update the notification later on.
 		mNotificationManager.notify(0, mBuilder.build());
-
 	}
 }

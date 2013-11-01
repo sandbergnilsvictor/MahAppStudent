@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_middle"
+        android:background="@color/grey_light"
         android:gravity="center_horizontal"
         android:orientation="vertical" >
 
@@ -19,8 +19,8 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/grey_dark" >
+            android:layout_height="2dp"
+            android:background="@color/grey" >
         </View>
 
         <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:background="@color/grey_light"
+            android:background="@color/white"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -82,11 +82,11 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:background="@color/grey_dark" />
+            android:background="@color/grey" />
     </LinearLayout>
 
 </ScrollView>

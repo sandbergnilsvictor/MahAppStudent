@@ -55,16 +55,13 @@ import android.widget.Toast;
  * 	o removed unused code
  * 
  * TODO:
- *  o fix a better looking progressbar, until then use old progressdialog
- *  o seem to be a glitch when expanding, sometimes the child gets a black background 
- *    
  *    
  */
 public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 
 	OnScrollListener, OnChildClickListener, OnClickListener
 {
 	static final String TAG = "ITSL_fragment";
-	static final long UPDATE_INTERVAL = 120000; //every other minute
+	static final long UPDATE_INTERVAL = 30000; //every other minute
 	// 1800000 = 30 minutes
 
 	ExpandableListAdapter listAdapter;
@@ -108,8 +105,11 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		/*
 		 * Remember when we last had this view opened 
 		 */
-		Util.setLatestUpdate(getActivity().getApplicationContext(), 
-				new Date(System.currentTimeMillis()));
+		Date date = new Date(System.currentTimeMillis());
+		date.setMonth(9); // zero based index!!!!!!!!!!!!!!!!!!!!!!11111 e.g. 0-11
+		date.setDate(20);
+
+		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
 	}
 	
 	public void onResume()

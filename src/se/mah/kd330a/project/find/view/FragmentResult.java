@@ -6,6 +6,7 @@ import se.mah.kd330a.project.find.data.RoomDbHandler;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -108,7 +109,9 @@ public class FragmentResult extends Fragment {
 				radioB.setTag(i);
 				radioB.setButtonDrawable(R.drawable.find_page_indicator);
 				radioB.setFocusable(false);
-				radioB.setChecked(false);   
+				radioB.setChecked(false); 
+				
+				radioB.setPadding(convertDpToPixel(10), 0, convertDpToPixel(10), 0);
 				
 				radioB.setOnClickListener(rb_OnClick);
 				radioG.addView(radioB);
@@ -134,6 +137,11 @@ public class FragmentResult extends Fragment {
 		inflater.inflate(R.menu.find, menu);
 	}
 
-	
+	public int convertDpToPixel(float dp){
+	    //Resources resources = getResources();
+	    DisplayMetrics metrics = getResources().getDisplayMetrics();
+	    float px = dp * (metrics.densityDpi / 160f);
+	    return (int) px;
+	}
 	
 }
