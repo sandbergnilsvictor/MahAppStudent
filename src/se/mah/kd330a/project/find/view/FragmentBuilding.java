@@ -6,15 +6,19 @@ import se.mah.kd330a.project.R;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class FragmentBuilding extends Fragment {
 	public static final String ARG_BUILDING = "building";
+	private String buildingCode;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,7 +33,7 @@ public class FragmentBuilding extends Fragment {
 		super.onStart();
 		Bundle args = getArguments();
 		
-		String buildingCode = args.getString(ARG_BUILDING);
+		buildingCode = args.getString(ARG_BUILDING);
 		String[] buildings = getResources().getStringArray(R.array.find_building_code_array);
 		int pos = Arrays.asList(buildings).indexOf(buildingCode);
 		
@@ -40,6 +44,25 @@ public class FragmentBuilding extends Fragment {
 	
 		ImageView imgBuilding = (ImageView) getView().findViewById(R.id.img_find_navigation);
 		imgBuilding.setImageDrawable(loadImage(buildingCode));
+		
+		LinearLayout llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_floormap);
+		llFloor.setClickable(true);
+		llFloor.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Fragment fragment = new FragmentFloorMap();
+				Bundle args = new Bundle();
+				args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
+				fragment.setArguments(args);
+
+				FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+				FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+				fragmentTrans.replace(R.id.content_frame, fragment);
+				fragmentTrans.addToBackStack(null);
+				fragmentTrans.commit();
+			}
+		});
 	}
 	
 	private Drawable loadImage(String pic) {

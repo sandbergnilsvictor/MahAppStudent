@@ -40,9 +40,6 @@ public class FragmentHome extends Fragment
 		super.onCreate(savedInstanceState);
 		nextClass = new NextClassWidget();
 		nextClass.getTodaysClasses();
-		nextClass = new NextClassWidget();
-		nextClass.getTodaysClasses();
-		super.onCreate(savedInstanceState);
 	}
 
 	@Override

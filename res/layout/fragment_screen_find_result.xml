@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/grey_light"
+        android:background="@color/white"
         android:orientation="vertical" >
 
         <TextView
@@ -42,10 +42,10 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_below="@+id/find_navigation_layout"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/grey_dark" />
+        android:background="@color/grey" />
 
 </RelativeLayout>

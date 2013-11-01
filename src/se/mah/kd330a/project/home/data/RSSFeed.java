@@ -33,4 +33,3 @@ public class RSSFeed implements Serializable {
 	}
 
 }
-

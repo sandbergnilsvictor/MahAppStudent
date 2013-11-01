@@ -55,9 +55,6 @@ import android.widget.Toast;
  * 	o removed unused code
  * 
  * TODO:
- *  o fix a better looking progressbar, until then use old progressdialog
- *  o seem to be a glitch when expanding, sometimes the child gets a black background 
- *    
  *    
  */
 public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 

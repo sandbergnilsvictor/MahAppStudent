@@ -144,5 +144,13 @@
        	android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="14sp"
         android:textColor="@color/grey_dark" />
+<<<<<<< HEAD
+<<<<<<< HEAD
  -->
+=======
+ 
+>>>>>>> origin/Find
+=======
+ -->
+>>>>>>> 62c17bcd72d0bb03dd1e359309b2c57e4627db81
 </LinearLayout>
