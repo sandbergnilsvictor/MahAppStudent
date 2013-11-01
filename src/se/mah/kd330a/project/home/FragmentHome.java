@@ -24,7 +24,6 @@ public class FragmentHome extends Fragment {
 	
 	private NextClassWidget nextClass;
 	private ViewGroup rootView;
-	private ScrollView mScrollView;
 	private RSSFeed newsFeed;
 	private ObjectInputStream in = null;
 	private FileInputStream fis = null;
