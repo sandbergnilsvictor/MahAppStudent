@@ -4,7 +4,6 @@
     android:layout_height="55dip"
     android:animateLayoutChanges="true"
     android:orientation="horizontal" >
-
     <ImageView
         android:id="@+id/clrCode"
         android:layout_width="16dp"

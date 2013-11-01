@@ -77,7 +77,4 @@ public class AdLadokTest extends Activity implements Observer{
 	    startActivity(intent);
 	    finish();
 	}
-	
-
-
 }

@@ -228,7 +228,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			Article headerTitle = (Article) getGroup(groupPosition);
 			headerTitle.setTextVisible(false);
 		}
-
 	}
 
 	@Override

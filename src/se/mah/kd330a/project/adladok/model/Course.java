@@ -1,5 +1,4 @@
 package se.mah.kd330a.project.adladok.model;
-
 import android.util.Log;
 import se.mah.kd330a.project.R;
 

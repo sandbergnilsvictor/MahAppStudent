@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="k2">Kranen (K2) is this building.</string>
+    <string name="k2e1">Go up the stairs to the third floor (Floor C)</string>
+    <string name="k2e2">Use the first entrance on the left side of the buildning</string>
+    <string name="k2e3">Use the second entrance on the left side of the buildning</string>
+    <string name="k2e4">Use the second entrance on the right side of the buildning, just under the bridge.</string>
+    <string name="k2e1centerleft">Go to the left where the rooms starts with "1"</string>
+    <string name="k2e1centerright">Go the the right where the rooms start with "3"</string>
+    <string name="k2e2benter">Go up the stairs to the second floor (Floor B)</string>
+    <string name="k2e3benter">Go up the stairs to the the second floor (Floor B)</string>
+    <string name="k2e4benter">Go up the stairs to the the second floor (Floor B)</string>
+    <string name="k2e2aenter">Go straight through the door</string>
+    <string name="k2e4aenter">Go straight through the door</string>
+    <string name="k2e3aenter">Go straight through the door</string>
+    <string name="k2e1cdirectleftleft">Go straight and then to the left</string>
+    <string name="k2e1cdirectleftright">Go straight and then to the right</string>
+    <string name="k2e1cdirectrightright">Go straight and then to the right</string>
+    <string name="k2e1cdirectrightleft">Go straight and then to the left</string>
+    <string name="k2e2bleft">Then go to the left</string>
+    <string name="k2e2bright">Then go to the right</string>
+    <string name="k2e3bleft">Then go to the left</string>
+    <string name="k2e3bright">Then go to the right</string>
+    <string name="k2e4bright">Then go to the right</string>
+    <string name="k2e4bleft">Then go to the left</string>
+    <string name="k2e2astraight">Then go straight</string>
+    <string name="k2e2aleft">Go to the left</string>
+    <string name="k2e3aright">The go to the right</string>
+    <string name="k2e3aleft">Then go to the left</string>
+    <string name="k2e4astraight">Then go straight</string>
+    <string name="k2e1dright">Go the right side of the cafe</string>
+    <string name="k2e1dstairs2bridge">Go straight and go up the second stairs then over the bridge</string>
+    <string name="k2e1dstairs2up">Go straight and go up the second stairs then to the right</string>
+    <string name="k2e1dstairs1up">Go straight and go up the first stairs</string>
+    <string name="k2e1dstairs1bridge">Go straight and go up the first stairs and go over the bridge</string>
+
+</resources>
