@@ -137,7 +137,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			 * find out if this article is new since last time we started the app
 			 */
 			if (lastUpdate.getTime() < headerTitle.getArticlePubDate().getTime())
-				lblListCode.setText("NEW");
+				lblListCode.setText("New");
 			else
 				lblListCode.setText("");
 				
