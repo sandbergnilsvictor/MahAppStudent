@@ -64,7 +64,8 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	OnScrollListener, OnChildClickListener, OnClickListener
 {
 	static final String TAG = "ITSL_fragment";
-	static final long UPDATE_INTERVAL = 1800000; // 30 minutes
+	static final long UPDATE_INTERVAL = 1000 * 120; //every other minute
+	// 1800000 = 30 minutes
 
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
