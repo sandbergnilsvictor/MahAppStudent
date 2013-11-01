@@ -30,7 +30,7 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 			Log.i(TAG, "Updating content...");
 			
 			latestUpdate = Util.getLatestUpdate(getApplicationContext());
-			FeedManager feedManager = new FeedManager(this, this);
+			FeedManager feedManager = new FeedManager(this, getApplicationContext());
 			feedManager.processFeeds();
 		}
 		else
@@ -48,7 +48,11 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
-		if (!articles.isEmpty())
+		if (articles.isEmpty())
+		{
+			Log.e(TAG, fm.getClass().toString() + " returned 0 articles, are we online?");
+		}
+		else
 		{
 			ArrayList<Article> newArticles = new ArrayList<Article>();
 			for (Article a : articles)
@@ -56,10 +60,6 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 					newArticles.add(a);
 	
 			createNotification(newArticles);
-		}
-		else
-		{
-			Log.e(TAG, fm.getClass().toString() + " returned 0 articles, are we online?");
 		}
 	}
 

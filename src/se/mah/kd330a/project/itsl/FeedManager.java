@@ -123,6 +123,11 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	@Override
 	public void onFeedComplete(RSSFeed feed)
 	{
+		/*
+		 * notify the UI of update
+		 */
+		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
+
 		if (downloadTask.hasException())
 		{
 			Log.e(TAG, downloadTask.getException().toString());
@@ -196,7 +201,7 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(this, feedQueueCounter + 1, feedList.size());
+		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
 
 		/* 
 		 * there can only be one task at any time and it can only be used once

@@ -11,7 +11,7 @@ public class RSSFeed implements Serializable {
 	private List<RSSItem> _itemlist;
 
 	RSSFeed() {
-		_itemlist = new Vector<RSSItem>(0);
+		_itemlist = new Vector<RSSItem>();
 	}
 
 	void addItem(RSSItem item) {
@@ -19,11 +19,16 @@ public class RSSFeed implements Serializable {
 		_itemcount++;
 	}
 
-	public RSSItem getItem(int location) {
-		return _itemlist.get(location);
+	public RSSItem getItem(int location) throws Exception {
+		RSSItem tmp = _itemlist.get(location);
+		if (tmp == null)
+			throw new Exception("Out of bounds");
+		
+		return tmp;
 	}
 
 	public int getItemCount() {
+		// or you could return _itemlist.size() // mm
 		return _itemcount;
 	}
 
