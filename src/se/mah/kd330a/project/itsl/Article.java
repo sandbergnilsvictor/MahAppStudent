@@ -28,7 +28,7 @@ public class Article implements Comparable<Article>, Serializable
 	private String articleDate;
 	private Date articlePubDate;
 	private String articleText;
-
+	
 	public Article(RSSItem item)
 	{
 		super();
