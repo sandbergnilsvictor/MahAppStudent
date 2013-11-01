@@ -32,10 +32,13 @@ import android.widget.Toast;
  * 
  * HISTORY:
  * 
+<<<<<<< HEAD
  * 0.8.1
  *  o added recent changes (notification, background updates, some rewrites, resources)
  *    from now on we will work in this project and not in our own
  *
+=======
+>>>>>>> origin/Find
  * 0.8.0
  *  o transfered files and resources to the framwork project, adapted code for
  *    fragment
@@ -55,9 +58,16 @@ import android.widget.Toast;
  * 	o removed unused code
  * 
  * TODO:
+<<<<<<< HEAD
  *  o fix a better looking progressbar, until then use old progressdialog
  *  o seem to be a glitch when expanding, sometimes the child gets a black background 
  *    
+=======
+ * 
+ *  o fix a better looking progressbar, until then use old progressdialog
+ *  o seem to be a glitch when expanding, sometimes the child 
+ *    gets a black background
+>>>>>>> origin/Find
  *    
  */
 public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 

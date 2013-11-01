@@ -36,6 +36,7 @@
             android:layout_marginLeft="16dp"
             android:rotationX="180"
             android:background="@drawable/ic_pointer_down" />
+
     </LinearLayout>
 
 </LinearLayout>

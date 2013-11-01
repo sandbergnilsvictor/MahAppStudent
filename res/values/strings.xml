@@ -37,8 +37,6 @@
     <string name="my_courses_heading">My Courses</string>
     <string name="my_profile_heading">My Profile</string>
     
-    
-
     <!-- The label for use as a searchable item -->
     <string name="search_label">Dictionary</string>
 
@@ -63,9 +61,6 @@
     <!-- Search failure message. -->
     <string name="no_results">No results found for \"%s\"</string>
     <string name="title_activity_ad_ladok_test">AdLadokTest</string>
-    
-    
-     
     
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>

@@ -26,6 +26,7 @@ public class AdLadokTest extends Activity implements Observer{
 	}
 	
 	public void update(View v){
+
 		//clear all
 		Me.setDispayName("");
 		Me.setEmail("");
@@ -73,6 +74,7 @@ public class AdLadokTest extends Activity implements Observer{
 	    		    "UserID: "+ Me.getUserID()+"\n"+
 	    		    "***Courses for Me***\n"+
 	    		    courses);
+
 	    Intent intent = new Intent(this, SettingsActivity.class);
 	    startActivity(intent);
 	    finish();
