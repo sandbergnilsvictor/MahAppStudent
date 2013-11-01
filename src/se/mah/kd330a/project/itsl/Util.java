@@ -23,7 +23,7 @@ public class Util
 		/**
 		 * TODO: remove the next line
 		 */
-		date.setDate(20);
+		date.setMonth(10);
 
 		Log.i(TAG, "Latest update was: " + date.toString());
 		return date;
