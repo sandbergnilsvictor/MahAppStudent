@@ -53,7 +53,7 @@ public class Util
 		{
 			mCur = context.getContentResolver().query(Browser.BOOKMARKS_URI, proj, sel, null, null);
 
-			if (mCur.moveToFirst() && mCur.getCount() > 0)
+			if (mCur != null && mCur.moveToFirst() && mCur.getCount() > 0)
 			{
 				String title;
 				String url;
@@ -85,7 +85,7 @@ public class Util
 		}
 		catch (Exception e)
 		{
-			Log.e(TAG, e.toString());
+			Log.e(TAG, "getBrowserBookmarks: " + e.toString());
 		}
 
 		return urls;
