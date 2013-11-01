@@ -3,14 +3,14 @@
 
     <item
         android:id="@+id/find_menu_google"
-        android:icon="@drawable/ic_location_place"
+        android:icon="@drawable/find_action_google_map"
         android:orderInCategory="10"
         android:showAsAction="ifRoom"
         android:title="@string/find_menu_google">
     </item>
     <item
         android:id="@+id/find_menu_floormap"
-        android:icon="@drawable/icarrowhere"
+        android:icon="@drawable/find_action_floor_map"
         android:orderInCategory="9"
         android:showAsAction="ifRoom"
         android:title="@string/find_menu_floormap">
