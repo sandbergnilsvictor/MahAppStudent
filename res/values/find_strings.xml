@@ -19,7 +19,24 @@
         <item>kl</item>
         <item>hs</item>
     </string-array>
-
+	<string-array name="find_floorA_E_array">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+    <string-array name="find_floor1_5_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="find_floorEmpy_array">
+        <item></item>
+    </string-array>
+    
     <string name="btn_find_search">Search</string>
     <string name="find_result_page">Result for search</string>
     <string name="find_navigationTitle">Direction to room </string>

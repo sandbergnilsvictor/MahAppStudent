@@ -56,7 +56,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:hint="@string/find_editTextHint_room"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:maxLength="7" />
 
         <View
             android:layout_width="match_parent"

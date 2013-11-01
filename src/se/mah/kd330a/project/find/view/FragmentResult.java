@@ -111,7 +111,7 @@ public class FragmentResult extends Fragment {
 				radioB.setFocusable(false);
 				radioB.setChecked(false); 
 				
-				radioB.setPadding(convertDpToPixel(100), 0, convertDpToPixel(100), 0);
+				radioB.setPadding(convertDpToPixel(10), 0, convertDpToPixel(10), 0);
 				
 				radioB.setOnClickListener(rb_OnClick);
 				radioG.addView(radioB);

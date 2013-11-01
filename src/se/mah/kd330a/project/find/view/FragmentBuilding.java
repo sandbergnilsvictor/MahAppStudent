@@ -3,7 +3,9 @@ package se.mah.kd330a.project.find.view;
 import java.util.Arrays;
 
 import se.mah.kd330a.project.R;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -51,9 +53,9 @@ public class FragmentBuilding extends Fragment {
 			@Override
 			public void onClick(View view) {
 				Fragment fragment = new FragmentFloorMap();
-				Bundle args = new Bundle();
-				args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
-				fragment.setArguments(args);
+				//Bundle args = new Bundle();
+				//args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
+				//fragment.setArguments(args);
 
 				FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -63,6 +65,24 @@ public class FragmentBuilding extends Fragment {
 				fragmentTrans.commit();
 			}
 		});
+	
+		llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_google);
+		llFloor.setClickable(true);
+		llFloor.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				//get location from previous fragment (position)
+				int position = 1;
+				String location = "Kranen";
+				//getting the google map
+				Intent i = new 
+						Intent(android.content.Intent.ACTION_VIEW,
+							//	Uri.parse("geo:37.827500,-122.481670"));
+								Uri.parse("geo:0,0?q="+location+"+Malmš+Sweden"));
+
+				startActivity(i);
+			}});
 	}
 	
 	private Drawable loadImage(String pic) {
