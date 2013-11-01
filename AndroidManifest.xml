@@ -93,7 +93,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="TimeAlarm" />
+        <service android:name="se.mah.kd330a.project.itsl.TimeAlarm" />
     </application>
 
 </manifest>

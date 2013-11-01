@@ -25,10 +25,10 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 	@Override
 	protected void onHandleIntent(Intent intent)
 	{
+		Log.i(TAG, "Called...");
+		
 		if (getApplicationContext() != null)
 		{
-			Log.i(TAG, "Updating content...");
-			
 			latestUpdate = Util.getLatestUpdate(getApplicationContext());
 			FeedManager feedManager = new FeedManager(this, getApplicationContext());
 			feedManager.processFeeds();
