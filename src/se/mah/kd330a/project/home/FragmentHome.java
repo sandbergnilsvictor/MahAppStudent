@@ -100,8 +100,8 @@ public class FragmentHome extends Fragment {
 	}
 
 	private void setNextClassWidget(ViewGroup rootView) {
-		if (profileRegistered) {
 		LinearLayout nextClassWidget = (LinearLayout) rootView.findViewById(R.id.next_class_widget);
+		if (profileRegistered) {
 		TextView textNextClassName = (TextView) nextClassWidget.findViewById(R.id.text_next_class_name);
 		textNextClassName.setText(nextClass.getCourseName());
 		TextView textNextClassDate = (TextView) nextClassWidget.findViewById(R.id.text_next_class_date);
@@ -113,7 +113,8 @@ public class FragmentHome extends Fragment {
 		TextView textNextClassLocation = (TextView) nextClassWidget.findViewById(R.id.text_next_class_location);
 		textNextClassLocation.setText(nextClass.getLocation());
 		} else {
-			Toast.makeText(getActivity(), "No profile! Please login!", Toast.LENGTH_LONG).show();
+			TextView textNextClassDate = (TextView) nextClassWidget.findViewById(R.id.text_next_class_date);
+			textNextClassDate.setText("No classes");
 		}
 		
 	}

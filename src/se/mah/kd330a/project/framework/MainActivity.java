@@ -3,6 +3,10 @@ package se.mah.kd330a.project.framework;
 
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import net.fortuna.ical4j.data.ParserException;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
@@ -10,6 +14,8 @@ import se.mah.kd330a.project.help.FragmentHelp;
 import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
+import se.mah.kd330a.project.schedule.data.KronoxCalendar;
+import se.mah.kd330a.project.schedule.data.KronoxReader;
 import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
 import se.mah.kd330a.project.settings.view.SettingsActivity;
 
@@ -53,6 +59,20 @@ public class MainActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+			KronoxCalendar.createCalendar(KronoxReader
+					.getFile(getApplicationContext()));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         setContentView(R.layout.activity_main);
             
         

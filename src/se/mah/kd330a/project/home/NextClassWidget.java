@@ -1,13 +1,17 @@
 package se.mah.kd330a.project.home;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 
 import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.schedule.data.KronoxCalendar;
+import se.mah.kd330a.project.schedule.model.ScheduleItem;
 
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
@@ -39,9 +43,11 @@ public class NextClassWidget {
 	
 	public boolean getTodaysClasses() {
 		if(!Me.getFirstName().isEmpty()){
-			listToday();
-			setData();
-			return true;
+			listEvents();
+			if (setData()){
+				return true;
+			} 
+				return false;
 		} else {
 			return false;
 		}
@@ -51,10 +57,9 @@ public class NextClassWidget {
 	
 
 
-	private void listToday() {
+	private void listEvents() {
 		items = new ArrayList<ScheduleItem>();
-		Collection<?> kronox_events = KronoxCalendar.todaysEvents();
-		//adapter.setNotifyOnChange(false);
+		Collection<?> kronox_events = KronoxCalendar.nextEvents();
 		items.clear();
 		for(Iterator<?> i = kronox_events.iterator(); i.hasNext();) {
 			Component c = (Component)i.next();
@@ -62,21 +67,23 @@ public class NextClassWidget {
 				items.add(new ScheduleItem((VEvent)c));
 			}
 		}
-		//adapter.notifyDataSetChanged();
+		
 	}
 	
-	private void setData() {
+	private boolean setData() {
 		if (!items.isEmpty())
 		{
 			setCourseName(items.get(0).getCourseName());
 			setLocation(items.get(0).getRoomCode());
 			setStartTime(items.get(0).getStartTime());
 			setEndTime(items.get(0).getEndTime());
-			setDate("Today");
+			setDate(items.get(0).getDateAndTime2());
+			return true;
 		}
 		else
 		{
 			Log.e(getClass().toString(), "item list is empty");
+			return false;
 		}
 	}
 

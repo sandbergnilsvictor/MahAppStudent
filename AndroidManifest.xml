@@ -83,7 +83,7 @@
             android:value=".SearchableDictionary" />
 
         <activity
-            android:name="se.mah.kd330a.project.adladok.test.AdLadokTest"
+            android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"
             android:label="@string/title_activity_ad_ladok_test" >
         </activity>
     </application>
