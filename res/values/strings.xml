@@ -17,7 +17,16 @@
         <item>@drawable/ic_menu_itsl2</item>
         <item>@drawable/ic_menu_find</item>
         <item>@drawable/ic_menu_faq</item>
-        <item>@drawable/ic_action_help</item>
+        <item>@drawable/ic_menu_help</item>
+    </string-array>
+    
+    <string-array name="menu_colors">
+        <item>@drawable/menuitem_1</item>
+        <item>@drawable/menuitem_2</item>
+        <item>@drawable/menuitem_3</item>
+        <item>@drawable/menuitem_4</item>
+        <item>@drawable/menuitem_5</item>
+        <item>@drawable/menuitem_6</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
@@ -31,7 +40,8 @@
     <string name="itsl_widget_heading">It´s Learning</string>
     <string name="news_widget_heading">News from MAH</string>
     <string name="fultext">Imorgon träffas vi i B130 istället för det vanliga klassrummet. Glöm inte att ta med era skisser...</string>
-    <string name="fultitle">Från: Project Management</string>
+    <string name="fultitle">Project Management lessi..</string>
+    <string name="fuldate">Tue Oct 15 04:05:00 CEST 2013</string>
     <string name="home_block_description">Image of Malmö Högskola</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="my_courses_heading">My Courses</string>

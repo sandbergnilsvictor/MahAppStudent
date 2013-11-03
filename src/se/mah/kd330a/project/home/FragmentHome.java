@@ -2,10 +2,12 @@
 package se.mah.kd330a.project.home;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import se.mah.kd330a.project.framework.MainActivity;
 //import com.handmark.pulltorefresh.library.PullToRefreshBase;
 //import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 //import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import se.mah.kd330a.project.home.data.RSSFeed;
+import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
 import se.mah.kd330a.project.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -145,5 +147,6 @@ public class FragmentHome extends Fragment {
 			super.onPostExecute(result);
 		}
 	}
-
+	
+	
 }

@@ -9,7 +9,7 @@
     
        <FrameLayout
         android:id="@+id/Father_frame"
-        android:layout_width="480dip"
+        android:layout_width="match_parent"
         android:layout_height="120dip"
         android:background="@color/white" >
 

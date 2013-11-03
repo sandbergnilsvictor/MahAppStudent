@@ -44,6 +44,7 @@ public class MainActivity extends FragmentActivity{
     private CharSequence mTitle;
     private String[] mMenuTitles;
     private TypedArray mMenuIcons;
+    private TypedArray mMenuColors;
     public RSSFeed newsFeed;
     
     private final int HOME = 0;
@@ -80,6 +81,7 @@ public class MainActivity extends FragmentActivity{
         mTitle = mDrawerTitle = getTitle();
         mMenuTitles = getResources().getStringArray(R.array.menu_texts);
         mMenuIcons = getResources().obtainTypedArray(R.array.menu_icons);
+        mMenuColors = getResources().obtainTypedArray(R.array.menu_colors);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -89,7 +91,7 @@ public class MainActivity extends FragmentActivity{
         mDrawerList.setSelector(R.drawable.menu_selector);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new MenuAdapter(this,
-                R.layout.drawer_list_item, mMenuTitles, mMenuIcons));
+                R.layout.drawer_list_item, mMenuTitles, mMenuIcons, mMenuColors));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -165,7 +167,7 @@ public class MainActivity extends FragmentActivity{
         }
     }
 
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         // update the main content by replacing fragments
     	android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
     	Fragment fragment;
@@ -223,6 +225,20 @@ public class MainActivity extends FragmentActivity{
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
+    
+    public void toSchedule(View view) {
+		selectItem(this.SCHEDULE);
+	}
+    
+    public void toITSL(View view) {
+		selectItem(this.ITSL);
+	}
+    
+    public void toFind(View view) {
+		selectItem(this.FIND);
+	}
+
+
     
     
 

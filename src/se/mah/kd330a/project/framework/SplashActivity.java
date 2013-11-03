@@ -69,10 +69,10 @@ public class SplashActivity extends Activity implements Observer {
 
 	@Override
 	public void update(Observable observable, Object data) {
-		TextView loadingTextView = (TextView) findViewById(R.id.loading_text);
-		String eol = System.getProperty("line.separator");
-		String loadingText = new String("Hi " + Me.getFirstName() + "!" + eol +"Your personal data is being loaded...");
-		loadingTextView.setText(loadingText);
+		//TextView loadingTextView = (TextView) findViewById(R.id.loading_text);
+		//String eol = System.getProperty("line.separator");
+		//String loadingText = new String("Hi " + Me.getFirstName() + "!" + eol +"Your personal data is being loaded...");
+		//loadingTextView.setText(loadingText);
 		Log.i("LadokCourses", Integer.toString((Me.getCourses().size())));
 		courses = new ArrayList<KronoxCourse>();
 		List<Course> ladokCourses = Me.getCourses();
