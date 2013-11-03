@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TestGetImageActivity extends Activity {
-	private long startTime; 
+	private long startTime;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,11 +75,13 @@ public class TestGetImageActivity extends Activity {
 	     protected void onPostExecute(Void v) {
 	    	 long difference = System.currentTimeMillis() - startTime;
 	    	 TextView tv = (TextView)findViewById(R.id.infotextView);
-	    	 tv.setText("All images downloaded to local storage it took: " + difference + "millisec");
-	    	 //Show one Image
-	    	 Bitmap bitmap = GetImage.getImageFromLocalStorage("k2e2.jpg", TestGetImageActivity.this);
-	    	 ImageView iv = (ImageView)findViewById(R.id.imageView1);
-	    	 iv.setImageBitmap(bitmap);
+	    	 tv.setText("Accessing all images took: " + difference + "millisec");
+	    	 //Show one Image if exixts
+	    	 if ( GetImage.doesFileExists("k2e2.jpg",TestGetImageActivity.this)){
+		    	 Bitmap bitmap = GetImage.getImageFromLocalStorage("k2e2.jpg", TestGetImageActivity.this);
+		    	 ImageView iv = (ImageView)findViewById(R.id.imageView1);
+		    	 iv.setImageBitmap(bitmap);
+	    	 }
 	     }
 	 }
 
