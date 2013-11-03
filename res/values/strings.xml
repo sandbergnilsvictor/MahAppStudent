@@ -61,7 +61,6 @@
     <!-- Search failure message. -->
     <string name="no_results">No results found for \"%s\"</string>
     <string name="title_activity_ad_ladok_test">AdLadokTest</string>
-    
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="datenumber">14 Oct</string>
@@ -93,5 +92,6 @@
     <string name="title_activity_second_main">Malmö Högskola</string>
     <string name="now">Now</string>
     <string name="coma">,</string>
+    <string name="title_activity_test_get_image">TestGetImageActivity</string>
 
 </resources>

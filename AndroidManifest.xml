@@ -31,6 +31,7 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:icon="@drawable/image_mah_logo"
@@ -55,7 +56,6 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -92,12 +92,20 @@
             android:label="@string/title_activity_ad_ladok_test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <service android:name="se.mah.kd330a.project.itsl.TimeAlarm" />
+
+        <activity
+            android:name="se.mah.kd330a.project.find.data.TestGetImageActivity"
+            android:label="@string/title_activity_test_get_image" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
