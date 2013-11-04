@@ -12,6 +12,7 @@ import se.mah.kd330a.project.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,10 +49,12 @@ public class FragmentHome extends Fragment {
                 .inflate(R.layout.fragment_screen_home, container, false);
 		setNextClassWidget(rootView);
 		setNewsFeedMah(rootView);
-		setCalenderFeedMah(rootView);
+		setLastItslPost(rootView);
 		return rootView;
 		
 	}
+
+
 
 	private void setNewsFeedMah(ViewGroup rootView) {
 	   try {
@@ -67,7 +70,7 @@ public class FragmentHome extends Fragment {
 	   
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		LinearLayout newsFeedMahWidget = (LinearLayout) rootView.findViewById(R.id.news_feed_mah);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 1; i++) {
 			TextView pubDate = new TextView(getActivity());
 			pubDate.setLayoutParams(params);
 			pubDate.setText(newsFeed.getItem(i).getDate());
@@ -81,6 +84,7 @@ public class FragmentHome extends Fragment {
 			TextView link = new TextView(getActivity());
 			link.setLayoutParams(params);
 			link.setText(newsFeed.getItem(i).getLink());
+			link.setMovementMethod(LinkMovementMethod.getInstance());
 			TextView creator = new TextView(getActivity());
 			creator.setLayoutParams(params);
 			creator.setText(newsFeed.getItem(i).getCreator());
@@ -121,8 +125,9 @@ public class FragmentHome extends Fragment {
 		
 	}
 	
-	private void setCalenderFeedMah(ViewGroup rootView) {
-		// TODO Auto-generated method stub	
+	private void setLastItslPost(ViewGroup rootView) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private class UpdateDataTask extends AsyncTask<Void, Void, String[]> {

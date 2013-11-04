@@ -35,13 +35,12 @@
                 android:id="@+id/next_class_widget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@color/grey_light"
-                android:orientation="vertical" 
                 android:onClick="toSchedule"
-                >
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -49,18 +48,17 @@
                     android:orientation="horizontal" >
 
                     <View
-                        android:layout_width="12dp"
+                        android:layout_width="8dp"
                         android:layout_height="match_parent"
-                        android:background="@color/blue" 
-                        />
+                        android:background="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="72dp"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_vertical"
                         android:orientation="vertical" >
 
@@ -85,17 +83,14 @@
                     <View
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:background="@color/blue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_margin="8dp"
                         android:gravity="center_vertical"
                         android:orientation="vertical" >
 
@@ -138,12 +133,12 @@
                 android:id="@+id/itslearning_widget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@color/grey_light"
-                android:orientation="vertical" 
-                android:onClick="toITSL">
+                android:onClick="toITSL"
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -151,16 +146,16 @@
                     android:orientation="horizontal" >
 
                     <View
-                        android:layout_width="12dp"
+                        android:layout_width="8dp"
                         android:layout_height="match_parent"
                         android:background="@color/green" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginTop="4dp"
                         android:orientation="vertical" >
 
@@ -168,10 +163,12 @@
                             android:id="@+id/text_itsl_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="6dp"
                             android:text="@string/fultitle"
-                            android:textColor="@color/grey_dark"
-                            android:textSize="22sp" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textStyle="bold"
+                            android:textColor="@color/grey_dark" />
 
                         <View
                             android:layout_width="match_parent"
@@ -182,7 +179,7 @@
                             android:id="@+id/text_itsl_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
+                            android:layout_marginTop="8dp"
                             android:text="@string/fuldate"
                             android:textColor="@color/grey"
                             android:textSize="14sp" />
@@ -191,11 +188,11 @@
                             android:id="@+id/text_itsl_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="6dp"
                             android:text="@string/fultext"
-                            android:textColor="@color/grey_dark"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:lineSpacingExtra="4dp"
+                            android:textColor="@color/grey_dark" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -205,13 +202,101 @@
                     android:background="@drawable/drop_shadow" >
                 </View>
             </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/news_feed_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/grey_light"
+                android:onClick="toSchedule"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mah_logotyp_vit"
+                            android:contentDescription="@string/logo_description" >
+                        </ImageView>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/red_mah" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/text_latest_news_heading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+						
+						<TextView
+                            android:id="@+id/text_latest_news_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
+                        
+                        <TextView
+                            android:id="@+id/text_latest_news_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="4dp"
+                    android:background="@drawable/drop_shadow" >
+                </View>
+            </LinearLayout>
+            
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@color/grey_light"
                 android:orientation="vertical" >
 
@@ -221,7 +306,7 @@
                     android:orientation="horizontal" >
 
                     <View
-                        android:layout_width="12dp"
+                        android:layout_width="8dp"
                         android:layout_height="match_parent"
                         android:background="@color/red_mah" />
 
@@ -229,9 +314,9 @@
                         android:id="@+id/news_feed_mah"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:layout_marginTop="4dp"
                         android:orientation="vertical" >
 

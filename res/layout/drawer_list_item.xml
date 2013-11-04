@@ -6,24 +6,28 @@
     <LinearLayout
         android:id="@+id/menu_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"      
+        android:layout_height="match_parent"
         android:orientation="horizontal" >
-
         
-        <View
-        
+        <View        
             android:id="@+id/menu_item_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:gravity="center_vertical"
-          
             >
         </View>
+        
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical" >
 
         <TextView
             android:id="@+id/menu_item_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="12dp"
@@ -31,6 +35,8 @@
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             android:textColor="@color/grey_dark"
             android:textStyle="bold" />
+        
+        </FrameLayout>
     </LinearLayout>
     
     <View 

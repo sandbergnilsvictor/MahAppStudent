@@ -43,7 +43,8 @@
         
         <activity
             android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"
-            android:label="@string/title_activity_ad_ladok_test" >
+            android:label="@string/title_activity_ad_ladok_test" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
         </activity>
     </application>
 
