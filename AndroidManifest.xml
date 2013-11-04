@@ -66,8 +66,8 @@
 
             <!-- Points to searchable meta data. -->
 		  <meta-data
-                android:name="android.app.searchable"/>
-                <!--  android:resource="@xml/searchable" -->
+                android:name="android.app.searchable"
+               android:resource="@xml/searchable" />
         	</activity>
         <!-- Provides search suggestions for words and their definitions. -->
         <provider
