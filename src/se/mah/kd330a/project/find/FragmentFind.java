@@ -32,8 +32,8 @@ public class FragmentFind extends Fragment {
 
 	private static final String FIND_SPINNER_STATE = "spinChoice";
 
-	String selposFind = null;
-	int spin_selected = -1;
+	private String selposFind = null;
+	private int spin_selected = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -154,7 +154,8 @@ public class FragmentFind extends Fragment {
 
 		Fragment fragment = new FragmentResult();
 		Bundle args = new Bundle();
-		args.putString(FragmentResult.FIND_EXTRA_ROOMNR, roomNr);
+		args.putString(FragmentResult. ARG_ROOMNR, roomNr);
+		args.putInt(FragmentResult.ARG_BUILDINGPOS, spin_selected);
 		fragment.setArguments(args);
 
 		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
@@ -164,13 +165,6 @@ public class FragmentFind extends Fragment {
 		fragmentTrans.addToBackStack(null);
 		fragmentTrans.commit();
 	}
-
-	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {

@@ -14,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class FragmentFloorMap extends Fragment{
-
+	public static final String ARG_FLOORMAP = "floormap";
+	public static final String ARG_BUILDING = "building";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,12 +1,10 @@
 package se.mah.kd330a.project.find.view;
 
 import se.mah.kd330a.project.R;
-import se.mah.kd330a.project.find.data.GetImage;
-import se.mah.kd330a.project.find.data.LoadImgFromNet;
-import se.mah.kd330a.project.find.data.LoadImgFromNet.OnImageLoadedListener;
-import android.graphics.Bitmap;
+import se.mah.kd330a.project.find.data.ImageLoader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 //import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FragmentStep extends Fragment implements OnImageLoadedListener {
+
+public class FragmentStep extends Fragment {
 	public static final String ARG_PICNAME = "pic";
 	public static final String ARG_TEXTTITLE = "title";
 	public static final String ARG_TEXTCONTENT = "content";
@@ -51,22 +50,12 @@ public class FragmentStep extends Fragment implements OnImageLoadedListener {
 			strDown = -1;
 			e.printStackTrace();
 		}
-		
-		//((ImageView) rootView.findViewById(R.id.img_find_navigation))
-			//	.setImageDrawable(loadImage(args.getString(ARG_PICNAME)));
+		new ImageLoader(getActivity(), (ImageView) rootView.findViewById(R.id.img_find_navigation)).execute(mImgName);
 
 		((ImageView) rootView.findViewById(R.id.img_find_arrows))
 				.setImageDrawable(loadImage(mArrowName));
 
 		return rootView;
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-		
-		LoadImgFromNet imgsLoader = new LoadImgFromNet(getActivity(), getTargetFragment());
-		//imgsLoader.loadImagesFromNet(mImgName, getActivity());
 	}
 
 	private Drawable loadImage(String pic) {
@@ -81,9 +70,4 @@ public class FragmentStep extends Fragment implements OnImageLoadedListener {
 		return buffer;
 	}
 
-	@Override
-	public void onImageRecieved(String imageName) {
-		Bitmap bitmap = GetImage.getImageFromLocalStorage(imageName, getActivity());
-		((ImageView) getView().findViewById(R.id.img_find_navigation)).setImageBitmap(bitmap);
-	}
 }
