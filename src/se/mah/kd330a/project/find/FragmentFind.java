@@ -12,16 +12,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 //import android.widget.Toast;
+import android.widget.TextView.OnEditorActionListener;
 
 
 public class FragmentFind extends Fragment {
@@ -88,6 +92,19 @@ public class FragmentFind extends Fragment {
 			public void onClick(View view) {
 				find_button_navigation(view);
 			}
+		});
+		
+		EditText etRoomNr = (EditText) getView().findViewById(R.id.editText_find_room);
+		etRoomNr.setOnEditorActionListener(new OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if(actionId == EditorInfo.IME_ACTION_GO){
+					find_button_navigation(v);
+				}
+				return false;
+			}
+			
 		});
 	}
 

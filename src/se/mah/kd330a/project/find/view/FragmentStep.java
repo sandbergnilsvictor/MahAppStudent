@@ -1,6 +1,10 @@
 package se.mah.kd330a.project.find.view;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
+import se.mah.kd330a.project.find.data.LoadImgFromNet;
+import se.mah.kd330a.project.find.data.LoadImgFromNet.OnImageLoadedListener;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +15,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FragmentStep extends Fragment {
+public class FragmentStep extends Fragment implements OnImageLoadedListener {
 	public static final String ARG_PICNAME = "pic";
 	public static final String ARG_TEXTTITLE = "title";
 	public static final String ARG_TEXTCONTENT = "content";
 	public static final String ARG_ARROW = "arrow";
 
+	private String mImgName;
+	private String mArrowName;
+	private String mRoomNumber;
+	private String mContentId;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -24,33 +33,40 @@ public class FragmentStep extends Fragment {
 		Bundle args = getArguments();
 		View rootView = inflater.inflate(R.layout.fragment_screen_find_step, container, false);
 
+		mImgName = args.getString(ARG_PICNAME);
+		mArrowName = args.getString(ARG_ARROW);
+		mRoomNumber = args.getString(ARG_TEXTTITLE);
+		mContentId = args.getString(ARG_TEXTCONTENT);
+		
+		String txt = getString(R.string.find_navigationTitle) + " " + mRoomNumber;
+		((TextView) rootView.findViewById(R.id.text_find_navigationTitle))
+				.setText(txt);
+		
 		int strDown;
 		try {
-			String txt = getString(R.string.find_navigationTitle) + " " + args.getString(ARG_TEXTTITLE);
-			((TextView) rootView.findViewById(R.id.text_find_navigationTitle))
-					.setText(txt);
-			
-			strDown = getResources().getIdentifier(args.getString(ARG_TEXTCONTENT), 
-					"string", getActivity().getPackageName());
-			((TextView) rootView.findViewById(R.id.text_find_navigationContent))
-					.setText(getString(strDown));
-
-			//Log.i("project", "content " + getString(strDown));
-			//Log.i("project", "title " + txt);
-
+			strDown = getResources().getIdentifier(mContentId, "string", getActivity().getPackageName());
+			((TextView) rootView.findViewById(R.id.text_find_navigationContent)).setText(getString(strDown));
 		}
 		catch (Exception e) {
 			strDown = -1;
 			e.printStackTrace();
 		}
 		
-		((ImageView) rootView.findViewById(R.id.img_find_navigation))
-				.setImageDrawable(loadImage(args.getString(ARG_PICNAME)));
+		//((ImageView) rootView.findViewById(R.id.img_find_navigation))
+			//	.setImageDrawable(loadImage(args.getString(ARG_PICNAME)));
 
 		((ImageView) rootView.findViewById(R.id.img_find_arrows))
-				.setImageDrawable(loadImage(args.getString(ARG_ARROW)));
+				.setImageDrawable(loadImage(mArrowName));
 
 		return rootView;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		
+		LoadImgFromNet imgsLoader = new LoadImgFromNet(getActivity(), getTargetFragment());
+		//imgsLoader.loadImagesFromNet(mImgName, getActivity());
 	}
 
 	private Drawable loadImage(String pic) {
@@ -60,9 +76,14 @@ public class FragmentStep extends Fragment {
 					.getIdentifier(pic, "drawable", getActivity().getPackageName()));
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return buffer;
+	}
+
+	@Override
+	public void onImageRecieved(String imageName) {
+		Bitmap bitmap = GetImage.getImageFromLocalStorage(imageName, getActivity());
+		((ImageView) getView().findViewById(R.id.img_find_navigation)).setImageBitmap(bitmap);
 	}
 }

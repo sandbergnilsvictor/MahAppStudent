@@ -127,7 +127,6 @@ public class FragmentResult extends Fragment {
 			radioB = (RadioButton) getView().findViewById(radioG.getCheckedRadioButtonId());
 			mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));
 		}
-
 	}
 
 	
