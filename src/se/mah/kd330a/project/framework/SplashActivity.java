@@ -135,10 +135,14 @@ public class SplashActivity extends Activity implements Observer {
 		protected KronoxCourse doInBackground(KronoxCourse... courses) {
 			try {
 				return KronoxJSON.getCourse(courses[0].getFullCode());
-			} catch (IOException e) {
+			}
+			 catch (IOException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JSONException e) {
+				e1.printStackTrace();
+			} catch (JSONException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
