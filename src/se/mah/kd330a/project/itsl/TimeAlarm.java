@@ -1,6 +1,8 @@
 package se.mah.kd330a.project.itsl;
 
 import se.mah.kd330a.project.R;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import android.app.IntentService;
@@ -11,6 +13,7 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
+
 
 
 public class TimeAlarm extends IntentService implements FeedManager.FeedManagerDoneListener
@@ -38,20 +41,16 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 		}
 	}
 
-	public void onFeedManagerProgress(FeedManager fm, int progress, int max)
-	{
-		/*
-		 * we don't care about progress here
-		 */
-	}
-
+	/* we don't care about progress here */
+	public void onFeedManagerProgress(FeedManager fm, int progress, int max) {}
+	
 	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
 		latestUpdate = Util.getLatestUpdate(getApplicationContext());
 
 		if (articles.isEmpty())
 		{
-			Log.e(TAG, fm.getClass().toString() + " returned 0 articles, are we online?");
+			Log.e(TAG, "Got no articles from onFeedManagerDone, are we online?");
 		}
 		else
 		{
@@ -67,30 +66,29 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	private void createNotification(ArrayList<Article> articles)
 	{
-		Intent resultIntent = new Intent(this, se.mah.kd330a.project.framework.MainActivity.class);
-
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 		stackBuilder.addParentStack(se.mah.kd330a.project.framework.MainActivity.class);
-		stackBuilder.addNextIntent(resultIntent);
+
+		stackBuilder.addNextIntent(new Intent(this, se.mah.kd330a.project.framework.MainActivity.class));
 		
 		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+		inboxStyle.setBigContentTitle("Itslearning updates");
+		inboxStyle.setSummaryText("Number of updates");
 		
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 		mBuilder.setSmallIcon(R.drawable.ic_menu_itsl);
-		mBuilder.setContentTitle("ITs title");
-		mBuilder.setTicker("ITs ticker");
 		mBuilder.setAutoCancel(true);
-		mBuilder.setContentInfo("Content info");
+		mBuilder.setContentInfo(Integer.toString(articles.size()));
 		mBuilder.setWhen(System.currentTimeMillis());
 		mBuilder.setContentIntent(stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT));
 		mBuilder.setStyle(inboxStyle);
-
-		inboxStyle.setBigContentTitle("News from Itslearning");
-		inboxStyle.setSummaryText("ITs summary");
-
+		
 		for (Article a : articles)
-			inboxStyle.addLine(a.getArticleHeader());
-
+		{
+			inboxStyle.addLine(String.format("%5.5s %s" , 
+					new SimpleDateFormat("dd/MM").format(a.getArticlePubDate()), 
+					a.getArticleHeader()));
+		}
 
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(0, mBuilder.build());

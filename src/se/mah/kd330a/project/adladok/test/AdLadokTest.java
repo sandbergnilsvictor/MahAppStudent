@@ -26,13 +26,13 @@ public class AdLadokTest extends Activity implements Observer{
 		Me.observable.addObserver(this);
 		Me.restoreMe(this);
 	}
-	
 	@Override
 	protected void onPause() {
 		super.onPause();
 		Me.saveMe(this);
 	}
 	public void updateButtonPressed(View v){
+
 
 		//clear all
 		Me.setDispayName("");
@@ -94,6 +94,4 @@ public class AdLadokTest extends Activity implements Observer{
 	    		    "***Courses for Me***\n"+
 	    		    courses);
 	}
-
-
 }

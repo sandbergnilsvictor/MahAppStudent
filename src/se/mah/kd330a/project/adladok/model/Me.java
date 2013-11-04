@@ -81,7 +81,6 @@ public class Me implements Serializable{
 		} catch (Exception e) {
 			
 		}
-
 	}
 	
 	public static void updateMe(){
