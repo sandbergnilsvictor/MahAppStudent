@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Copyright 2013 The Android Open Source Project
 
-  Licensed under the Apache License, Version 2.0 (the "License");
+ <!-- Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
 
@@ -55,8 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- The default activity of the app; displays search results. -->
+        
         <activity
             android:name="se.mah.kd330a.project.settings.view.SearchableDictionary"
             android:launchMode="singleTop" >
@@ -68,11 +65,10 @@
             </intent-filter>
 
             <!-- Points to searchable meta data. -->
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-        </activity>
-
+		  <meta-data
+                android:name="android.app.searchable"/>
+                <!--  android:resource="@xml/searchable" -->
+        	</activity>
         <!-- Provides search suggestions for words and their definitions. -->
         <provider
             android:name="se.mah.kd330a.project.settings.data.DictionaryProvider"
@@ -102,6 +98,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+		<activity
+            android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"
+            android:label="@string/title_activity_ad_ladok_test" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
+        </activity>
     </application>
+
 </manifest>

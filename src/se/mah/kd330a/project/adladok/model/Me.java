@@ -42,6 +42,8 @@ public class Me implements Serializable{
 	public static void setPassword(String password) {
 		Me.password = password;
 	}
+	
+	
 	public static String getUserID() {
 		return userID;
 	}

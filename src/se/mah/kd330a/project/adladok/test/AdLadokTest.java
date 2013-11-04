@@ -49,8 +49,8 @@ public class AdLadokTest extends Activity implements Observer{
 		EditText password_et =(EditText)findViewById(R.id.passWordET);
 		Me.setUserID(userID_et.getText().toString());
 		Me.setPassword(password_et.getText().toString());
-		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
-		tv.setText("");
+//		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
+//		tv.setText("");
 		//Then call to update
 	     Me.updateMe();	     
 	     
@@ -69,8 +69,8 @@ public class AdLadokTest extends Activity implements Observer{
 	}
 	
 	private void printMe(){
-		TextView tv = (TextView)findViewById(R.id.tvadladoktest);
-		tv.setMovementMethod(new ScrollingMovementMethod());
+		//TextView tv = (TextView)findViewById(R.id.);
+		//tv.setMovementMethod(new ScrollingMovementMethod());
 		String courses = "";
 		//Log.i("UserInfo","Length: "+Me.getCourses().size());
 		for (Course c : Me.getCourses()) {
@@ -85,13 +85,13 @@ public class AdLadokTest extends Activity implements Observer{
 						"Color: "+c.getColor()+"\n";
 		}
 		
-	     tv.setText("Me\n"+
-	    		 	"FirstName: "+ Me.getFirstName()+"\n"+
-	    		    "GivenName: "+ Me.getLastName()+"\n"+
-	    		    "Displayname: "+ Me.getDispayName()+"\n"+
-	    		    "Email: "+ Me.getEmail()+"\n"+
-	    		    "UserID: "+ Me.getUserID()+"\n"+
-	    		    "***Courses for Me***\n"+
-	    		    courses);
+//	     tv.setText("Me\n"+
+//	    		 	"FirstName: "+ Me.getFirstName()+"\n"+
+//	    		    "GivenName: "+ Me.getLastName()+"\n"+
+//	    		    "Displayname: "+ Me.getDispayName()+"\n"+
+//	    		    "Email: "+ Me.getEmail()+"\n"+
+//	    		    "UserID: "+ Me.getUserID()+"\n"+
+//	    		    "***Courses for Me***\n"+
+//	    		    courses);
 	}
 }
