@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="CustomTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="android:activatedBackgroundIndicator">@drawable/menuitem_background</item>
+        <item name="android:background">@drawable/menu_selector</item>
     </style>
     
      <style name="mah_button_red">

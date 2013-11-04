@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -39,7 +40,7 @@ public class MainActivity extends FragmentActivity{
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
+    private String urlNewsFeed = "http://www.mah.se/english/News/";
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuTitles;
@@ -237,6 +238,13 @@ public class MainActivity extends FragmentActivity{
     public void toFind(View view) {
 		selectItem(this.FIND);
 	}
+    
+    public void toNewsFeedOnWeb(View view) {
+    	Uri uri = Uri.parse(urlNewsFeed);
+    	Intent launchBrowser = new Intent(Intent.ACTION_VIEW,
+    	uri);
+    	startActivity(launchBrowser);
+    }
 
 
     

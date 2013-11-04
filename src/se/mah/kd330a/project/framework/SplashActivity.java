@@ -31,7 +31,7 @@ import android.content.Intent;
 
 public class SplashActivity extends Activity implements Observer {
 
-	private String RSSNEWSFEEDURL = "http://www.mah.se/Nyheter/RSS/Nyheter-fran-Malmo-hogskola/";
+	private String RSSNEWSFEEDURL = "http://www.mah.se/Nyheter/RSS/News/";
 	private RSSFeed feed;
 	private FileOutputStream fout = null;
 	private ObjectOutputStream out = null;
