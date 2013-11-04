@@ -58,7 +58,8 @@
             android:hint="@string/find_editTextHint_room"
             android:textSize="14sp"
             android:maxLines="1"
-            android:maxLength="7" />
+            android:maxLength="7"
+            />
 
         <View
             android:layout_width="match_parent"
