@@ -259,7 +259,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/grey_dark"
-                            android:textSize="18sp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold" />
 						
 						<TextView
@@ -276,8 +276,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/grey_dark"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:lineSpacingExtra="4dp" />
 
                         
                     </LinearLayout>
@@ -290,59 +290,6 @@
                 </View>
             </LinearLayout>
             
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@color/grey_light"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/red_mah" />
-
-                    <LinearLayout
-                        android:id="@+id/news_feed_mah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="4dp"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/news_widget_heading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="@string/news_widget_heading"
-                            android:textColor="@color/grey_dark"
-                            android:textSize="22sp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginBottom="4dp"
-                            android:background="@color/red_mah" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="4dp"
-                    android:background="@drawable/drop_shadow" >
-                </View>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
