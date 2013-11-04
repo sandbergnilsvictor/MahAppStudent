@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/passWordET"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/mah_logotyp_vit" />
+        />
+    <!--LH commented out android:src="@drawable/mah_logotyp_vit" -->
 
     <EditText
         android:id="@+id/userIDet"
@@ -25,14 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView1"
         android:layout_centerVertical="true"
-        android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="Mah login"
         android:padding="8dp" >
-
         <requestFocus />
     </EditText>
-
+<!-- LH commented out  android:background="@drawable/edit_text_background"-->
     <EditText
         android:id="@+id/passWordET"
         android:layout_width="match_parent"
@@ -40,12 +39,12 @@
         android:layout_alignLeft="@+id/imageView1"
         android:layout_below="@+id/userIDet"
         android:layout_marginTop="12dp"
-        android:background="@drawable/edit_text_background"
+        
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="8dp" />
-
+<!-- LH commented out  android:background="@drawable/edit_text_background"-->
     <Button
         android:id="@+id/reloadButton"
         android:layout_width="wrap_content"

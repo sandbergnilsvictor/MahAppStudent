@@ -234,10 +234,11 @@
                             android:id="@+id/imageView1"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/mah_logotyp_vit"
                             android:contentDescription="@string/logo_description" >
                         </ImageView>
+                        <!-- LH commented out android:src="@drawable/mah_logotyp_vit"-->
                     </LinearLayout>
+                    
 
                     <View
                         android:layout_width="2dp"
