@@ -2,6 +2,9 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="CustomTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:activatedBackgroundIndicator">@drawable/menuitem_background</item>
+        <item name="android:actionBarItemBackground">@drawable/action_button_background</item>
+        <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
+        
     </style>
 
 
@@ -18,5 +21,6 @@
         <item name="android:textSize">18sp</item>
         <item name="android:layout_height">48dp</item>
         </style>
-
+  
+    
 </resources>

@@ -48,6 +48,16 @@
             android:prompt="@string/find_spinerHint_building"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_building_search_tip"
+            android:textSize="12sp" 
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
         <EditText
             android:id="@+id/editText_find_room"
             android:layout_width="match_parent"

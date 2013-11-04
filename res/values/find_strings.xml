@@ -19,7 +19,7 @@
         <item>kl</item>
         <item>hs</item>
     </string-array>
-	<string-array name="find_floorA_E_array">
+    <string-array name="find_floorA_E_array">
         <item>A</item>
         <item>B</item>
         <item>C</item>
@@ -36,7 +36,7 @@
     <string-array name="find_floorEmpy_array">
         <item></item>
     </string-array>
-    
+
     <string name="btn_find_search">Search</string>
     <string name="find_result_page">Result for search</string>
     <string name="find_navigationTitle">Direction to room </string>
@@ -53,5 +53,6 @@
     <string name="find_button_floor">See the Floor Map</string>
     <string name="find_menu_google">Google</string>
     <string name="find_menu_floormap">Floor map</string>
+    <string name="find_building_search_tip">You can search for the building itself by leaving the room name empty.</string>
 
 </resources>
