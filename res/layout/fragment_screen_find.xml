@@ -70,7 +70,8 @@
             android:inputType="text"
             android:maxLength="7"
             android:maxLines="1"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
 
         <View
             android:layout_width="match_parent"
