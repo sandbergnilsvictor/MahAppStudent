@@ -14,7 +14,7 @@
             android:id="@+id/img_find_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/k2e1" >
+            android:src="@drawable/image_mah_logo" >
         </ImageView>
 
         <View

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/g8" />
+        android:src="@drawable/image_mah_logo" />
 
     <Button
         android:id="@+id/button1"
