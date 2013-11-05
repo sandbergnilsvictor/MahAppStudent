@@ -79,7 +79,7 @@ public class FragmentBuilding extends Fragment {
 				Intent i = new 
 						Intent(android.content.Intent.ACTION_VIEW,
 							//	Uri.parse("geo:37.827500,-122.481670"));
-								Uri.parse("geo:0,0?q="+location+"+Malmš+Sweden"));
+								Uri.parse("geo:0,0?q="+location+"+Malmö+Sweden"));
 
 				startActivity(i);
 			}});
