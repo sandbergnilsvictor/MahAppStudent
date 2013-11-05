@@ -4,16 +4,22 @@ import java.util.ArrayList;
 
 import android.widget.ExpandableListView;
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.RoomDbHandler;
+import se.mah.kd330a.project.find.view.FragmentResult;
 import se.mah.kd330a.project.schedule.model.ScheduleItem;
 import se.mah.kd330a.project.schedule.model.ScheduleWeek;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class FragmentScheduleWeek extends Fragment {
@@ -161,6 +167,34 @@ public class FragmentScheduleWeek extends Fragment {
 	             TextView courseDescription = (TextView) convertView
 	                     .findViewById(R.id.list_course_child_description);
 	             courseDescription.setText(childTexts.get(1));
+	             
+	             /* connection with Find */
+	             
+	             Button findBtn = (Button) convertView.findViewById(R.id.findButton);
+	             findBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						String roomNr = "k2c110"; /*here you should write location/ room nr. */
+						RoomDbHandler dbHandler = new RoomDbHandler(getActivity());;
+						if (dbHandler.isRoomExists(roomNr)) {
+
+							Fragment fragment = new FragmentResult();
+							Bundle args = new Bundle();
+							args.putString(FragmentResult. ARG_ROOMNR, roomNr);
+							fragment.setArguments(args);
+
+							FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+							FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+							fragmentTrans.replace(R.id.content_frame, fragment);
+							fragmentTrans.addToBackStack(null);
+							fragmentTrans.commit();
+						}
+					}
+				});
+	             
+	             /************************/
 	             return convertView;
 	        }
 	 
