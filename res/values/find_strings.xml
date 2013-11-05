@@ -8,7 +8,7 @@
         <item>Kranen (K2)</item>
         <item>Ubåtshallen (K8)</item>
         <item>Klerken (Kl)</item>
-        <item>University Hospital (Hs)</item>
+        <item>University Hospital (As)</item>
     </string-array>
     <string-array name="find_building_code_array">
         <item></item>
@@ -17,16 +17,49 @@
         <item>k2</item>
         <item>k8</item>
         <item>kl</item>
-        <item>hs</item>
+        <item>as</item>
     </string-array>
-    <string-array name="find_floorA_E_array">
+    <string-array name="find_floorK2_array">
+        <item>Select a floor</item>
         <item>A</item>
         <item>B</item>
         <item>C</item>
         <item>D</item>
-        <item>E</item>
     </string-array>
-    <string-array name="find_floor1_5_array">
+    <string-array name="find_floorG8_array">
+        <item>Select a floor</item>
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="find_floorAs_array">
+        <item>Select a floor</item>
+        <item>0</item>
+        <item>00</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="find_floorKl_array">
+        <item>Select a floor</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="find_floorK8_array">
+        <item>Select a floor</item>
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="find_floorOr_array">
+        <item>Select a floor</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
