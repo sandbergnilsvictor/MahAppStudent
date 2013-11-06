@@ -413,7 +413,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 
 	}
 
-	public boolean isRoomExistsNavigation(String roomNr) {
+	public boolean isRoomExists(String roomNr) {
 
 		String selectQuery = "SELECT  * FROM " + TABLE_ROOMS + " WHERE "
 				+ ROW_ROOMNR + " = '" + roomNr.toUpperCase(Locale.getDefault()) + "'";
@@ -443,7 +443,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		return false;
 	}
 
-	public boolean isRoomExists(String roomNr) {
+	public boolean isRoomExistsAll(String roomNr) {
 
 		String selectQuery = "SELECT  * FROM " + TABLE_ROOMS + " WHERE "
 				+ ROW_ROOMNR + " = '" + roomNr.toUpperCase(Locale.getDefault()) + "'";
