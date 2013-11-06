@@ -7,6 +7,9 @@
         <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
         <item name="android:textSelectHandle">@drawable/text_handle_center</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/text_handle_right</item>
+        <item name="android:textColorHighlight">@color/red_mah_transparent</item>
     </style>
 
     <style name="mah_button_red">
