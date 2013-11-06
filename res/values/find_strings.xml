@@ -32,13 +32,10 @@
         <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorAs_array">
-        <item>Floor 0</item>
-        <item>Floor 00</item>
         <item>Floor 1</item>
         <item>Floor 2</item>
         <item>Floor 3</item>
         <item>Floor 4</item>
-        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorKl_array">
         <item>Floor 1</item>
