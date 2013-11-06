@@ -20,54 +20,48 @@
         <item>as</item>
     </string-array>
     <string-array name="find_floorK2_array">
-        <item>Select a floor</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+        <item>Floor A</item>
+        <item>Floor B</item>
+        <item>Floor C</item>
+        <item>Floor D</item>
     </string-array>
     <string-array name="find_floorG8_array">
-        <item>Select a floor</item>
-        <item>1</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Floor 1</item>
+        <item>Floor 3</item>
+        <item>Floor 4</item>
+        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorAs_array">
-        <item>Select a floor</item>
-        <item>0</item>
-        <item>00</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Floor 0</item>
+        <item>Floor 00</item>
+        <item>Floor 1</item>
+        <item>Floor 2</item>
+        <item>Floor 3</item>
+        <item>Floor 4</item>
+        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorKl_array">
-        <item>Select a floor</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Floor 1</item>
+        <item>Floor 2</item>
+        <item>Floor 3</item>
+        <item>Floor 4</item>
+        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorK8_array">
-        <item>Select a floor</item>
-        <item>1</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Floor 1</item>
+        <item>Floor 3</item>
+        <item>Floor 4</item>
+        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorOr_array">
-        <item>Select a floor</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Floor 1</item>
+        <item>Floor 2</item>
+        <item>Floor 3</item>
+        <item>Floor 4</item>
+        <item>Floor 5</item>
     </string-array>
     <string-array name="find_floorEmpy_array">
-        <item></item>
+        <item>Then select floor</item>
     </string-array>
 
     <string name="btn_find_search">Search</string>
@@ -87,6 +81,5 @@
     <string name="find_menu_google">Google</string>
     <string name="find_menu_floormap">Floor map</string>
     <string name="find_building_search_tip">You can search for the building itself by leaving the room name empty.</string>
-    <string name="find_db_error">Room does not exist in the database!</string>
 
 </resources>

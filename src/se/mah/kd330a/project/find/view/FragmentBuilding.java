@@ -52,9 +52,9 @@ public class FragmentBuilding extends Fragment {
 			@Override
 			public void onClick(View view) {
 				Fragment fragment = new FragmentFloorMap();
-				//Bundle args = new Bundle();
-				//args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
-				//fragment.setArguments(args);
+				Bundle args = new Bundle();
+				args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
+				fragment.setArguments(args);
 
 				FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -75,13 +75,13 @@ public class FragmentBuilding extends Fragment {
 				String location = buildingNames[pos];
 
 				if(location.equals("Klerken (Kl)"))
-					location = "Jan Waldenströms gata 25";
+					location = "Jan Waldenstroms gata 25";
 				else if(location.equals("University Hospital (Hs)"))
-					location = "Carl Gustafs väg 34";
+					location = "Carl Gustafs vag 34";
 
 				//getting the google map
 				Intent i = new Intent(android.content.Intent.ACTION_VIEW,
-						Uri.parse("geo:0,0?q="+location+"+Malmö+Sweden"));
+						Uri.parse("geo:0,0?q="+location+"+Malmo+Sweden"));
 
 				startActivity(i);
 			}});

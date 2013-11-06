@@ -27,7 +27,6 @@ public class FragmentFloorMap extends Fragment{
 	int spPositionBuilding = -1;
 	int spPositionFloor = -1;
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +55,7 @@ public class FragmentFloorMap extends Fragment{
 			floorMapCode = args.getString(ARG_FLOORMAP);
 			String[] strCode = floorMapCode.split("_");
 			buildingCode = strCode[0];
-			floorCode = strCode[1];
+			floorCode = strCode[1].toUpperCase();
 		}	
 		
 		//creating spinners
@@ -86,7 +85,8 @@ public class FragmentFloorMap extends Fragment{
 		//creating first floor spinner selection
 		if(!floorCode.isEmpty()){
 			String[] floors = getResources().getStringArray(floorArrey);
-			spPositionFloor = Arrays.asList(floors).indexOf(floorCode);
+			String floorName = "Floor "+ floorCode;
+			spPositionFloor = Arrays.asList(floors).indexOf(floorName);
 			spinnerFloor.setSelection(spPositionFloor, true);
 			showFloorMap(floorMapCode);
 		}
@@ -117,7 +117,9 @@ public class FragmentFloorMap extends Fragment{
 		spinnerFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				floorCode = parent.getItemAtPosition(position).toString();
+				String floorName = parent.getItemAtPosition(position).toString();
+				String[] strCode = floorName.split(" ");
+				floorCode = strCode[1];
 				String[] buildings = getResources().getStringArray(R.array.find_building_code_array);
 				buildingCode = buildings[spPositionBuilding];
 				floorMapCode = buildingCode + "_" + floorCode;
