@@ -24,11 +24,7 @@ import android.util.Log;
  * FeedCompleteListener when done.
  * 
  * Usage:
-<<<<<<< HEAD
- * FeedManager fm = new FeedManager(this, this);
-=======
  * FeedManager fm = new FeedManager(listener, context);
->>>>>>> origin/ITSL
  * fm.addFeedURL(url); // for all urls you want to process, then
  * fm.processFeeds();
  * 
@@ -44,12 +40,6 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	private int feedQueueCounter;
 	private ArrayList<String> feedList;
 		
-<<<<<<< HEAD
-	/*
-	 * the listener must implement these methods
-	 */
-=======
->>>>>>> origin/ITSL
 	public interface FeedManagerDoneListener
 	{
 		public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles);
@@ -132,12 +122,6 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 
 		if (feedQueueCounter < feedList.size())
 		{
-<<<<<<< HEAD
-			/*
-			 *  process next feed in queue
-			 */
-=======
->>>>>>> origin/ITSL
 			processFeeds();
 		}
 		else
@@ -167,11 +151,7 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 *  return the complete list of articles to the listener
 			 *  when all items in the feed queue are processed
 			 */
-<<<<<<< HEAD
-			Log.e(TAG, "feedmanager done: " + this.articleList.size());
-=======
 			Log.i(TAG, "downloading complete, # articles: " + this.articleList.size());
->>>>>>> origin/ITSL
 
 			callbackHandler.onFeedManagerDone(this, getArticles());
 		}
@@ -229,25 +209,12 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	}
 
 	@SuppressWarnings("unchecked")
-<<<<<<< HEAD
-	public void loadCache()
-	{
-		/*
-		 *  check for cache file
-		 */
-		if (appContext.getFileStreamPath(CACHE_FILENAME).exists())
-		{
-			/*
-			 * load data
-			 */
-=======
 	public boolean loadCache()
 	{		
 		boolean returnValue = false; 
 
 		if (appContext.getFileStreamPath(CACHE_FILENAME).exists())
 		{
->>>>>>> origin/ITSL
 			try
 			{
 				FileInputStream fis = appContext.openFileInput(CACHE_FILENAME);
@@ -255,28 +222,19 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 				articleList.clear();
 				articleList.addAll((List<Article>) ois.readObject());
 				fis.close();
-<<<<<<< HEAD
-=======
 				returnValue = true;
->>>>>>> origin/ITSL
 			}
 			catch (Exception e)
 			{
 				Log.e(TAG, e.toString());
 
 				/*
-<<<<<<< HEAD
-				 *  something is probably wrong with the cache file so let's delete it
-=======
 				 *  something is probably wrong with the cache file so 
 				 *  let's delete it
->>>>>>> origin/ITSL
 				 */
 				deleteCache();
 			}
 		}
-<<<<<<< HEAD
-=======
 		
 		/*
 		 *  return the complete list of articles to the listener
@@ -287,16 +245,11 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		callbackHandler.onFeedManagerDone(this, getArticles());
 		
 		return returnValue;
->>>>>>> origin/ITSL
 	}
 
 	public void deleteCache()
 	{
-<<<<<<< HEAD
-		Log.i(TAG, "Deleting file: " + appContext.getFileStreamPath(CACHE_FILENAME).toString());
-=======
 		Log.e(TAG, "Deleting file: " + appContext.getFileStreamPath(CACHE_FILENAME).toString());
->>>>>>> origin/ITSL
 		appContext.getFileStreamPath(CACHE_FILENAME).delete();
 	}
 }

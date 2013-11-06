@@ -24,55 +24,6 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
 import android.app.FragmentTransaction;
 
-<<<<<<< HEAD
-/*
- * @author asampe, marcusmansson
- * 
- * 
- * HISTORY:
- * 
- * 0.8.1
- *  o added recent changes (notification, background updates, some rewrites, resources)
- *    from now on we will work in this project and not in our own
- *
- * 0.8.0
- *  o transfered files and resources to the framwork project, adapted code for
- *    fragment
- *   
- * 0.7.4
- *  o moved all file handling to FeedManager
- *  o code and comments cleaned up
- *   
- * 0.7.3
- *  o merged two branches (unknown version) with 0.7.2 
- *  o course colors in the UI 
- *  o fixed text overflow in the UI
- *  
- * 0.7.2 
- * 	o added saving/loading of articles to/from cache
- *  o load saved articles and initialize list on app start 
- * 	o removed unused code
- * 
- * TODO:
- *    
- */
-public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDoneListener, 
-	OnScrollListener, OnChildClickListener, OnClickListener
-{
-	static final String TAG = "ITSL_fragment";
-	static final long UPDATE_INTERVAL = 30000; //every other minute
-	// 1800000 = 30 minutes
-
-	ExpandableListAdapter listAdapter;
-	ExpandableListView expListView;
-	FeedManager feedManager;
-	ProgressDialog dialog;
-	ProgressBar progBar;
-	TextView txProgress;
-	View headerView;
-	PendingIntent backgroundUpdateIntent;
-
-=======
 public class FragmentITSL extends Fragment implements 
 	FeedManager.FeedManagerDoneListener, 
 	OnClickListener,
@@ -87,7 +38,6 @@ public class FragmentITSL extends Fragment implements
 	private ViewPager mViewPager;
 	private ListPagerAdapter listPagerAdapter;
 	private ViewGroup rootView;
->>>>>>> origin/ITSL
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -119,18 +69,10 @@ public class FragmentITSL extends Fragment implements
 		 *  In case there is nothing in the cache, or it doesn't exist
 		 *  we have to refresh
 		 */
-<<<<<<< HEAD
-		Date date = new Date(System.currentTimeMillis());
-		date.setMonth(9); // zero based index!!!!!!!!!!!!!!!!!!!!!!11111 e.g. 0-11
-		date.setDate(20);
-
-		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
-=======
 		if (!feedManager.loadCache())
 			refresh();
 
 		return rootView;
->>>>>>> origin/ITSL
 	}
 
 	public void onResume()
