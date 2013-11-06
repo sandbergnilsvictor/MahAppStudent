@@ -58,7 +58,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/editText_find_room"
             android:layout_width="match_parent"
             android:layout_height="48dp"

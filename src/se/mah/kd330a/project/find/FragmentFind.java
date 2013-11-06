@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
+//import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,15 +22,17 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 //import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
+import android.database.Cursor;
 
-
-public class FragmentFind extends Fragment {
+public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 
 	private static final String FIND_SPINNER_STATE = "spinChoice";
 
@@ -38,6 +42,7 @@ public class FragmentFind extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getLoaderManager().initLoader(1, null, this);
 	}
 
 	@Override
@@ -51,8 +56,6 @@ public class FragmentFind extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		
-		Log.i("project", "onStart");
 		
 		Spinner spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
@@ -94,7 +97,7 @@ public class FragmentFind extends Fragment {
 			}
 		});
 		
-		EditText etRoomNr = (EditText) getView().findViewById(R.id.editText_find_room);
+		AutoCompleteTextView etRoomNr = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
 		etRoomNr.setOnEditorActionListener(new OnEditorActionListener() {
 
 			@Override
@@ -103,15 +106,24 @@ public class FragmentFind extends Fragment {
 					find_button_navigation(v);
 				}
 				return false;
-			}
-			
+			}		
 		});
+	
+		RoomDbHandler db = new RoomDbHandler(getActivity());
+		Cursor cursor = db.getMatchingRooms(getActivity(), "");
+		getActivity().startManagingCursor(cursor);
+		
+		SimpleCursorAdapter SuggestionAdapter = new SimpleCursorAdapter(getActivity(), 
+				android.R.layout.simple_list_item_1, 
+				cursor, 
+				new String[] { "roomNr" }, new int[] { android.R.id.text1 } , 0);
+		etRoomNr.setAdapter(SuggestionAdapter);
 	}
 
 	public void find_button_navigation(View v) {
 
 		// ---get the EditText view---
-		EditText txt_room_code = (EditText) getView().findViewById(R.id.editText_find_room);
+		AutoCompleteTextView txt_room_code = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
 		// ---set the data to pass---
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
@@ -124,10 +136,10 @@ public class FragmentFind extends Fragment {
 			dbHandler = new RoomDbHandler(getActivity());
 
 			if (dbHandler.isRoomExists(roomNr)) {
-
 				startNavigation(roomNr);
-
 			}
+			else
+				Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
 		}
 		//Hiding the keyboard
 
@@ -172,6 +184,8 @@ public class FragmentFind extends Fragment {
 		outState.putInt(FIND_SPINNER_STATE, spin_selected);
 	}
 
+	
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		//Log.i("project", "onActivityCreated");
@@ -182,6 +196,24 @@ public class FragmentFind extends Fragment {
 			spin_selected = savedInstanceState.getInt(FIND_SPINNER_STATE);
 		}
 
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

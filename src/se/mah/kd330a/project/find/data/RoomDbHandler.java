@@ -6,9 +6,11 @@ import java.util.Locale;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 //import android.util.Log;
+import android.provider.BaseColumns;
 
 /*
  *	Database handler class for searching for rooms 
@@ -37,7 +39,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 	private static final String ROW_Y = "y";
 	private static final String ROW_MAP = "map";
 
-	static final String TABLE_CREATE = "CREATE TABLE rooms (roomNr TEXT, path TEXT, texts TEXT, arrows TEXT," + 
+	static final String TABLE_CREATE = "CREATE TABLE rooms (" + BaseColumns._ID + " int primary key, roomNr TEXT, path TEXT, texts TEXT, arrows TEXT," + 
 			" x INTEGER, y INTEGER, map TEXT);";
 
 	private PathToRoom room;
@@ -268,7 +270,66 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 	public int getCoordY() {
 		if (room != null)
 			return room.mCoord_y;
-		else
+		else 
 			return -1;
+	}
+
+	public Cursor getMatchingRooms(Context context, String constraint) {
+		String queryString =
+                "SELECT * FROM rooms";
+		SQLiteDatabase db = this.getReadableDatabase();
+		String params[] = null;
+		
+		try {
+            Cursor cursor = db.rawQuery(queryString, params);
+            if (cursor != null) {
+            	
+            	//context.startManagingCursor(cursor);
+                cursor.moveToFirst();
+                return cursor;
+            }
+        }
+        catch (SQLException e) {
+            //Log.e("AutoCompleteDbAdapter", e.toString());
+            e.printStackTrace();
+            //throw e;
+            return null;
+        }
+
+	/*	String queryString =
+                "SELECT _id, state, capital FROM " + TABLE_NAME;
+
+        if (constraint != null) {
+            // Query for any rows where the state name begins with the
+            // string specified in constraint.
+            //
+            // NOTE:
+            // If wildcards are to be used in a rawQuery, they must appear
+            // in the query parameters, and not in the query string proper.
+            // See http://code.google.com/p/android/issues/detail?id=3153
+            constraint = constraint.trim() + "%";
+            queryString += " WHERE state LIKE ?";
+        }
+        String params[] = { constraint };
+
+        if (constraint == null) {
+            // If no parameters are used in the query,
+            // the params arg must be null.
+            params = null;
+        }
+        try {
+            Cursor cursor = mDb.rawQuery(queryString, params);
+            if (cursor != null) {
+            	((Object) context).startManagingCursor(cursor);
+                cursor.moveToFirst();
+                return cursor;
+            }
+        }
+        catch (SQLException e) {
+            Log.e("AutoCompleteDbAdapter", e.toString());
+            //throw e;
+        }*/
+
+        return null;
 	}
 }
