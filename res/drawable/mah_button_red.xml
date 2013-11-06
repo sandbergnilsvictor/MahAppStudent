@@ -1,39 +1,7 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    
-    <item android:state_pressed="true"
-        android:color="@color/white" > 
-        
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
-    <solid android:color="@color/red_mah"/>
-    
-    <stroke android:width="2dp"
-        android:color="@color/red_mah"/>
-    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp"/>
-
-</shape>
-        </item>
-
-    <item android:color="@color/red_mah">
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
-    <solid android:color="@color/white"/>
-    <stroke android:width="2dp"
-        android:color="@color/red_mah"/>
-    <padding android:left="8dp" android:top="8dp" android:right="8dp" android:bottom="8dp"/>
-
-</shape>
-        
-    </item>
-    
-</selector>
-=======
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_pressed="true" android:color="@color/grey_light"><shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <item android:state_pressed="true" android:color="@color/white"><shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
             <solid android:color="@color/red_mah" />
 
             <stroke android:width="2dp" android:color="@color/red_mah" />
@@ -49,4 +17,3 @@
         </shape></item>
 
 </selector>
->>>>>>> origin/Login_Schedule

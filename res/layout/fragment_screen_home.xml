@@ -235,10 +235,7 @@
                             android:id="@+id/imageView1"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-<<<<<<< HEAD
-=======
                             android:src="@drawable/mah_logotyp"
->>>>>>> origin/Login_Schedule
                             android:contentDescription="@string/logo_description" >
                         </ImageView>
                         <!-- LH commented out android:src="@drawable/mah_logotyp_vit"-->

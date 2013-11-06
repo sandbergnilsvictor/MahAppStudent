@@ -19,26 +19,14 @@
         <item>@drawable/ic_menu_faq</item>
         <item>@drawable/ic_menu_help</item>
     </string-array>
-<<<<<<< HEAD
-   <!--  LH commented out 
-  <string-array name="menu_colors">
-=======
     <string-array name="menu_colors">
->>>>>>> origin/Login_Schedule
         <item>@drawable/menuitem_1</item>
         <item>@drawable/menuitem_2</item>
         <item>@drawable/menuitem_3</item>
         <item>@drawable/menuitem_4</item>
         <item>@drawable/menuitem_5</item>
         <item>@drawable/menuitem_6</item>
-<<<<<<< HEAD
-    </string-array> -->
-    <string name="logo_description">Logo of Malmö Högskola</string>
-   <string name="drawer_open">Open navigation drawer</string>
-=======
     </string-array>
-
-    <string name="hello_world">Hello world!</string>
 
     <string-array name="faqOptions">
         <item>"IT Support"</item>
@@ -112,7 +100,6 @@
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>
->>>>>>> origin/Login_Schedule
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_help">Help</string>
     <string name="lorem_ipsum"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et magna ut erat elementum cursus in quis ipsum. Nam faucibus ultrices eros, vel tempor leo semper sit amet. Duis magna quam, congue vitae interdum nec, condimentum ut lectus. Sed commodo venenatis eros a dignissim. Nunc adipiscing turpis nec magna venenatis at ultricies ipsum bibendum. Sed volutpat urna quis nisi vulputate egestas. Etiam eu dui a enim lacinia dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.]]></string>
@@ -178,7 +165,6 @@
     <string name="course">Course:</string>
     <string name="signtitle">Teachers:</string>
     <string name="sign">K3LARA</string>
-<<<<<<< HEAD
     <string name="momenttitle">Moment:</string>
     <string name="moment">Fredrik Ramsten, Senior Designer at Mobile Communcation will talk about his ence working within the mobile industry and he will also give feedback.</string>
     <string name="roomtitle">Room:</string>
@@ -187,9 +173,6 @@
     <string name="now">Now</string>
     <string name="coma">,</string>
     <string name="title_activity_test_get_image">TestGetImageActivity</string>
-=======
     <string name="logo_description">Logo of Malmö Högskola</string>
->>>>>>> origin/Login_Schedule
 
 </resources>
- 
