@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="16dp"
+    android:background="@color/white"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".TestActivity" >
 
@@ -19,7 +20,8 @@
         android:maxLines="20"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical"
-        android:text="Empty" />
+        android:text="Empty"
+        android:layout_marginTop="16dp" />
 
     <EditText
         android:id="@+id/passWordET"
@@ -29,9 +31,11 @@
         android:layout_below="@+id/userIDet"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp" />
 
     <Button
+        style="@style/mah_button_red"
         android:id="@+id/reloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +55,7 @@
         android:hint="mahID" />
 
     <Button
+        style="@style/mah_button_red"
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
