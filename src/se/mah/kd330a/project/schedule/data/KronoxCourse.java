@@ -1,6 +1,8 @@
 package se.mah.kd330a.project.schedule.data;
 
 
+
+
 public class KronoxCourse {
 	private final String code;
 	private final String name;

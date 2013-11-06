@@ -1,29 +1,48 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="?android:attr/activatedBackgroundIndicator">
-    
-    <ImageView 
-         android:id="@+id/menu_item_icon"
-         android:layout_width="wrap_content"
-    	android:layout_height="match_parent"
-    	android:gravity="center_vertical"
-    	android:paddingLeft="12dp"
-    	
-        />
+    android:layout_height="wrap_content" 
+    android:orientation="vertical">
 
-	<TextView
-	    android:id="@+id/menu_item_text"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:textAppearance="?android:attr/textAppearanceListItemSmall"
-	    android:gravity="center_vertical"
-	    android:paddingLeft="12dp"
-	    android:paddingRight="12dp"
-	    android:textColor="@color/grey_dark"
-	    android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+    <LinearLayout
+        android:id="@+id/menu_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+        
+        <View        
+            android:id="@+id/menu_item_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            >
+        </View>
+        
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/menu_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:paddingLeft="12dp"
+            android:paddingRight="6dp"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/grey_dark"
+            android:textStyle="bold" />
+        
+        </FrameLayout>
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        />
 
 </LinearLayout>

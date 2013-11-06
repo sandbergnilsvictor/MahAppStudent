@@ -17,10 +17,19 @@
         <item>@drawable/ic_menu_itsl2</item>
         <item>@drawable/ic_menu_find</item>
         <item>@drawable/ic_menu_faq</item>
-        <item>@drawable/ic_action_help</item>
+        <item>@drawable/ic_menu_help</item>
     </string-array>
-
-    <string name="drawer_open">Open navigation drawer</string>
+   <!--  LH commented out 
+  <string-array name="menu_colors">
+        <item>@drawable/menuitem_1</item>
+        <item>@drawable/menuitem_2</item>
+        <item>@drawable/menuitem_3</item>
+        <item>@drawable/menuitem_4</item>
+        <item>@drawable/menuitem_5</item>
+        <item>@drawable/menuitem_6</item>
+    </string-array> -->
+    <string name="logo_description">Logo of Malmö Högskola</string>
+   <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_help">Help</string>
     <string name="lorem_ipsum"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et magna ut erat elementum cursus in quis ipsum. Nam faucibus ultrices eros, vel tempor leo semper sit amet. Duis magna quam, congue vitae interdum nec, condimentum ut lectus. Sed commodo venenatis eros a dignissim. Nunc adipiscing turpis nec magna venenatis at ultricies ipsum bibendum. Sed volutpat urna quis nisi vulputate egestas. Etiam eu dui a enim lacinia dapibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.]]></string>
@@ -32,6 +41,7 @@
     <string name="news_widget_heading">News from MAH</string>
     <string name="fultext">Imorgon träffas vi i B130 istället för det vanliga klassrummet. Glöm inte att ta med era skisser...</string>
     <string name="fultitle">Från: Project Management</string>
+    <string name="fuldate">Placeholder</string>
     <string name="home_block_description">Image of Malmö Högskola</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="my_courses_heading">My Courses</string>
@@ -61,7 +71,6 @@
     <!-- Search failure message. -->
     <string name="no_results">No results found for \"%s\"</string>
     <string name="title_activity_ad_ladok_test">AdLadokTest</string>
-    
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="datenumber">14 Oct</string>
@@ -93,5 +102,7 @@
     <string name="title_activity_second_main">Malmö Högskola</string>
     <string name="now">Now</string>
     <string name="coma">,</string>
+    <string name="title_activity_test_get_image">TestGetImageActivity</string>
 
 </resources>
+ 

@@ -1,5 +1,8 @@
 package se.mah.kd330a.project.adladok.model;
 
+import java.io.File;
+import java.io.Serializable;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -8,14 +11,20 @@ import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import org.xmlpull.v1.XmlSerializer;
 
+import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.adladok.xmlparser.Parser;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.util.Xml;
 
-public class Me {
+
+public class Me implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//Static variables there is only one Me
 	private static List<Course> myCourses = new ArrayList<Course>();
 	private static String firstName;
@@ -27,11 +36,14 @@ public class Me {
     private static String TAG ="UserInfo";
 	private static String userID;
 	private static String password;
+	private static final String SAVE_FILE_NAME = "savefilename";
 	public static MyObservable observable = new MyObservable(); 
 
 	public static void setPassword(String password) {
 		Me.password = password;
 	}
+	
+	
 	public static String getUserID() {
 		return userID;
 	}
@@ -43,15 +55,34 @@ public class Me {
 		//prevents anyone from doing instances
 	}
 	
+	/**Restores Me and my courses from local storage*/
 	public static void restoreMe(Context c){
 		//Read local storage
+		File file = new File(c.getFilesDir(), SAVE_FILE_NAME);
+		if (file.exists()){
+			myCourses.clear(); //perhaps not this easy if I saved stuff here...
+			String xml = Parser.getXmlFromFile(file);
+			Log.i("UserInfo","Restored" + xml);
+			 try {
+				Parser.updateMeFromADandLADOK(xml);
+				observable.setChanged();  //Tell that we made changes....
+		        observable.notifyObservers();  //Notify all listeners...
+			} catch (Exception e) {}
+		}
 	}
 	
+	/**Stores Me and my courses on local storage
+	 * Call this also when changes are made to Me or courses*/
 	public static void saveMe(Context c){
-		//Save to local storage
-
-		Log.i("test","hopp");
-
+		String xml = Parser.writeXml();
+		Log.i("UserInfo","Saved: " + xml);
+		try {
+			java.io.FileOutputStream fos = c.openFileOutput(SAVE_FILE_NAME, Context.MODE_PRIVATE);
+			fos.write(xml.getBytes());
+			fos.close();
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	public static void updateMe(){
@@ -67,9 +98,31 @@ public class Me {
 		return myCourses;
 	}
 	
+	@SuppressLint("ResourceAsColor")
 	public static void addCourse(Course course) {
 		//Here check if it exist already then update it............
+		//Set Colors on courses first
+		switch (Me.myCourses.size()) {
+		case 0:
+			course.setColor(R.color.blue);
+			break;
+		case 1:
+			course.setColor(R.color.orange);
+			break;
+		case 2:
+			course.setColor(R.color.blue);
+			break;
+		case 3:
+			course.setColor(R.color.green);
+			break;
+		case 4:
+			course.setColor(R.color.yellow);
+			break;
+		default:
+			break;
+		}
 		Me.myCourses.add(course);
+		
 	}
 	
 	public static String getFirstName() {
@@ -175,5 +228,4 @@ public class Me {
 			super.setChanged();
 		}
 	 }
-	 
 }
