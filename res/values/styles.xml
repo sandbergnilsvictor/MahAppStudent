@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <style name="CustomTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarTabStyle">@style/itsl_tabs.style</item>
         <item name="android:activatedBackgroundIndicator">@drawable/menuitem_background</item>
     </style>
-
-
-    <style name="mah_button_red">
+    
+     <style name="mah_button_red">
         <item name="android:background">@drawable/mah_button_red</item>
         <item name="android:textColor">@drawable/mah_button_red</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_height">48dp</item>
-        </style>
+    </style>
+      <style name="itsl_tabs.style"
+       parent="@android:style/Widget.Holo.Light.ActionBar"> 
+        <item name="android:background">@drawable/itsl_tabs</item>
+   </style>	
+
+     
         
-    <style name="mah_button_grey">
-        <item name="android:background">@drawable/mah_button_grey</item>
-        <item name="android:textColor">@drawable/mah_button_grey</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:layout_height">48dp</item>
-        </style>
 
 </resources>

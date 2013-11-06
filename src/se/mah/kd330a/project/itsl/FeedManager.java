@@ -24,7 +24,7 @@ import android.util.Log;
  * FeedCompleteListener when done.
  * 
  * Usage:
- * FeedManager fm = new FeedManager(this, this);
+ * FeedManager fm = new FeedManager(listener, context);
  * fm.addFeedURL(url); // for all urls you want to process, then
  * fm.processFeeds();
  * 
@@ -40,9 +40,6 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	private int feedQueueCounter;
 	private ArrayList<String> feedList;
 		
-	/*
-	 * the listener must implement these methods
-	 */
 	public interface FeedManagerDoneListener
 	{
 		public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles);
@@ -125,9 +122,6 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 
 		if (feedQueueCounter < feedList.size())
 		{
-			/*
-			 *  process next feed in queue
-			 */
 			processFeeds();
 		}
 		else
@@ -157,7 +151,7 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 *  return the complete list of articles to the listener
 			 *  when all items in the feed queue are processed
 			 */
-			Log.e(TAG, "feedmanager done: " + this.articleList.size());
+			Log.i(TAG, "downloading complete, # articles: " + this.articleList.size());
 
 			callbackHandler.onFeedManagerDone(this, getArticles());
 		}
@@ -215,16 +209,12 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	}
 
 	@SuppressWarnings("unchecked")
-	public void loadCache()
-	{
-		/*
-		 *  check for cache file
-		 */
+	public boolean loadCache()
+	{		
+		boolean returnValue = false; 
+
 		if (appContext.getFileStreamPath(CACHE_FILENAME).exists())
 		{
-			/*
-			 * load data
-			 */
 			try
 			{
 				FileInputStream fis = appContext.openFileInput(CACHE_FILENAME);
@@ -232,22 +222,34 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 				articleList.clear();
 				articleList.addAll((List<Article>) ois.readObject());
 				fis.close();
+				returnValue = true;
 			}
 			catch (Exception e)
 			{
 				Log.e(TAG, e.toString());
 
 				/*
-				 *  something is probably wrong with the cache file so let's delete it
+				 *  something is probably wrong with the cache file so 
+				 *  let's delete it
 				 */
 				deleteCache();
 			}
 		}
+		
+		/*
+		 *  return the complete list of articles to the listener
+		 *  when all items in the feed queue are processed
+		 */
+		Log.i(TAG, "load from cache done: " + this.articleList.size());
+
+		callbackHandler.onFeedManagerDone(this, getArticles());
+		
+		return returnValue;
 	}
 
 	public void deleteCache()
 	{
-		Log.i(TAG, "Deleting file: " + appContext.getFileStreamPath(CACHE_FILENAME).toString());
+		Log.e(TAG, "Deleting file: " + appContext.getFileStreamPath(CACHE_FILENAME).toString());
 		appContext.getFileStreamPath(CACHE_FILENAME).delete();
 	}
 }
