@@ -53,33 +53,10 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name="se.mah.kd330a.project.settings.view.SearchableDictionary"
-            android:launchMode="singleTop" >
-
-            <!-- Receives the search request. -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <!-- No category needed, because the Intent will specify this class component -->
-            </intent-filter>
-
-            <!-- Points to searchable meta data. -->
-		  <meta-data
-                android:name="android.app.searchable"
-               android:resource="@xml/searchable" />
-        	</activity>
-        <!-- Provides search suggestions for words and their definitions. -->
-        <provider
-            android:name="se.mah.kd330a.project.settings.data.DictionaryProvider"
-            android:authorities="se.mah.kd330a.project.settings.data.DictionaryProvider" />
-
-        <!-- Points to searchable activity so the whole app can invoke search. -->
-        <meta-data
-            android:name="android.app.default_searchable"
-            android:value=".SearchableDictionary" />
+        
 
         <activity
-            android:name="se.mah.kd330a.project.adladok.test.AdLadokTest"
+            android:name="se.mah.kd330a.project.adladok.test.AddLadokTest"
             android:label="@string/title_activity_ad_ladok_test" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

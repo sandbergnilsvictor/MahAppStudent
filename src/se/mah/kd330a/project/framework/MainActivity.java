@@ -71,7 +71,7 @@ public class MainActivity extends FragmentActivity{
         mTitle = mDrawerTitle = getTitle();
         mMenuTitles = getResources().getStringArray(R.array.menu_texts);
         mMenuIcons = getResources().obtainTypedArray(R.array.menu_icons);
-        //LH commented out for merge mMenuColors = getResources().obtainTypedArray(R.array.menu_colors);
+        mMenuColors = getResources().obtainTypedArray(R.array.menu_colors);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
