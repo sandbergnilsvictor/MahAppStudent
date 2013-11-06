@@ -2,13 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_light"
-    android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="238dp" >
+        android:layout_height="240dp" >
 
         <ImageView
             android:id="@+id/img_find_navigation"
@@ -18,16 +16,24 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/image_mah_logo" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey" >
+        </View>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/text_find_startTitle"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="0dp"
                 android:background="@color/white"
                 android:gravity="center"
                 android:text="@string/find_startTitle"
@@ -38,7 +44,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/grey" >
-
             </View>
         </LinearLayout>
     </RelativeLayout>
@@ -47,6 +52,8 @@
         android:id="@+id/ll_find_google"
         android:layout_width="match_parent"
         android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
         android:orientation="horizontal" >
@@ -56,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3" >
 
-            <ImageView               
+            <ImageView
                 android:id="@+id/img_find_building_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,7 +86,7 @@
                 android:layout_margin="4dp"
                 android:text="@string/find_button_g_map"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/text_find_mapContent"
@@ -95,16 +102,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
-             >
+            android:layout_weight="3" >
 
             <ImageView
                 android:id="@+id/img_find_arrows_google"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/button_arrow_right">
-
+                android:src="@drawable/button_arrow_right" >
             </ImageView>
         </RelativeLayout>
     </LinearLayout>
@@ -112,12 +117,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:background="@color/grey" />
 
     <LinearLayout
         android:id="@+id/ll_find_floormap"
         android:layout_width="match_parent"
         android:layout_height="96dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/white"
         android:orientation="horizontal" >
@@ -174,7 +183,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:src="@drawable/button_arrow_right" >
-
             </ImageView>
         </RelativeLayout>
     </LinearLayout>
@@ -183,6 +191,8 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:background="@color/grey" />
 
 </LinearLayout>
