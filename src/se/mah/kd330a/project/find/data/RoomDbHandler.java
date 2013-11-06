@@ -168,7 +168,31 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		addRow(db, "K2D205", "k2_k2e1centerright_k2e1dstairs2", "k2_k2e1dright_k2e1dstairs2upleft", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
 		addRow(db, "K2D213", "k2_k2e1centerright_k2e1dstairs1", "k2_k2e1dright_k2e1dstairs1up", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
 		addRow(db, "K2D214", "k2_k2e1centerright_k2e1dstairs1", "k2_k2e1dright_k2e1dstairs1up", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
-	}
+
+
+		addRow(db, "ORD131", null, null, null, null, null, "or_1");
+		addRow(db, "ORD138", null, null, null, null, null, "or_1");
+
+		addRow(db, "ORC236", null, null, null, null, null, "or_2");
+		addRow(db, "ORD222", null, null, null, null, null, "or_2");
+		addRow(db, "ORE222", null, null, null, null, null, "or_2");
+		addRow(db, "ORE223", null, null, null, null, null, "or_2");
+		addRow(db, "ORE235", null, null, null, null, null, "or_2");
+		addRow(db, "ORE239", null, null, null, null, null, "or_2");
+		addRow(db, "ORE240", null, null, null, null, null, "or_2");
+		addRow(db, "ORE477", null, null, null, null, null, "or_2");
+		addRow(db, "ORF206", null, null, null, null, null, "or_2");
+		addRow(db, "ORF208", null, null, null, null, null, "or_2");
+		addRow(db, "ORF209", null, null, null, null, null, "or_2");
+		addRow(db, "ORF211", null, null, null, null, null, "or_2");
+		addRow(db, "ORF215", null, null, null, null, null, "or_2");
+		addRow(db, "ORF219", null, null, null, null, null, "or_2");
+		addRow(db, "ORF220", null, null, null, null, null, "or_2");
+
+
+	} 
+
+
 
 	private void addRow(SQLiteDatabase db, String roomNr, String path, String texts, String arrows, String x, String y, String map) {
 
@@ -191,7 +215,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 
 	}
 
-	public boolean isRoomExists(String roomNr) {
+	public boolean isRoomExistsNavigation(String roomNr) {
 
 		String selectQuery = "SELECT  * FROM " + TABLE_ROOMS + " WHERE "
 				+ ROW_ROOMNR + " = '" + roomNr.toUpperCase(Locale.getDefault()) + "'";
@@ -207,6 +231,33 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 				room.setPath(c.getString(c.getColumnIndex(ROW_PATH)));
 				room.setTextList(c.getString(c.getColumnIndex(ROW_TEXTS)));
 				room.setArrowList(c.getString(c.getColumnIndex(ROW_ARROWS)));
+				room.mMapPic = c.getString(c.getColumnIndex(ROW_MAP));
+				room.mCoord_x = c.getInt(c.getColumnIndex(ROW_X));
+				room.mCoord_y = c.getInt(c.getColumnIndex(ROW_Y));
+				db.close();
+				return true;
+			}
+		}
+		catch (Exception e) {
+			db.close();
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean isRoomExists(String roomNr) {
+
+		String selectQuery = "SELECT  * FROM " + TABLE_ROOMS + " WHERE "
+				+ ROW_ROOMNR + " = '" + roomNr.toUpperCase(Locale.getDefault()) + "'";
+
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		try {
+			Cursor c = db.rawQuery(selectQuery, null);
+
+			if (c != null) {
+				c.moveToFirst();
+				room = new PathToRoom(roomNr);
 				room.mMapPic = c.getString(c.getColumnIndex(ROW_MAP));
 				room.mCoord_x = c.getInt(c.getColumnIndex(ROW_X));
 				room.mCoord_y = c.getInt(c.getColumnIndex(ROW_Y));
@@ -238,14 +289,14 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		else
 			return null;
 	}
-	
+
 	public List<String> getArrows() {
 		if (room != null)
 			return room.getArrows();
 		else
 			return null;
 	}
-	
+
 	public String getMapName() {
 		if (room != null)
 			return room.mMapPic;

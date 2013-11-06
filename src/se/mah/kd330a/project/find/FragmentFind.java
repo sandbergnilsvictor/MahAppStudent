@@ -4,6 +4,7 @@ package se.mah.kd330a.project.find;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.data.RoomDbHandler;
 import se.mah.kd330a.project.find.view.FragmentBuilding;
+import se.mah.kd330a.project.find.view.FragmentFloorMap;
 import se.mah.kd330a.project.find.view.FragmentResult;
 import android.content.Context;
 import android.content.res.Resources;
@@ -116,6 +117,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		// ---set the data to pass---
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
+		String floorMapCode = selposFind + "_" + txt_room_code.getText().toString();
 
 		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
 			showBuilding(selposFind);
@@ -124,8 +126,13 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		if (roomNr.length() > 2) {
 			dbHandler = new RoomDbHandler(getActivity());
 
-			if (dbHandler.isRoomExists(roomNr)) {
+			if (dbHandler.isRoomExistsNavigation(roomNr)) {
 				startNavigation(roomNr);
+			}
+			else if (dbHandler.isRoomExists(roomNr)) {
+				//go to floor maps
+				showFloorMap(floorMapCode);
+				Toast.makeText(getActivity(), "go to floor maps; roomNr: "+roomNr, Toast.LENGTH_LONG).show();
 			}
 			else
 				Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
@@ -134,6 +141,20 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 
 		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+	}
+
+	private void showFloorMap(String floorMapCode) {
+		Fragment fragment = new FragmentFloorMap();
+		Bundle args = new Bundle();
+		args.putString(FragmentFloorMap.ARG_FLOORMAP, floorMapCode);
+		fragment.setArguments(args);
+
+		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+		fragmentTrans.replace(R.id.content_frame, fragment);
+		fragmentTrans.addToBackStack(null);
+		fragmentTrans.commit();		
 	}
 
 	private void showBuilding(String buildingCode) {
