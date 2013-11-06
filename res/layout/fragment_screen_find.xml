@@ -77,7 +77,6 @@
 
     <Button
         android:id="@+id/button_find_tour"
-        style="@style/mah_button_grey"
         android:layout_width="fill_parent"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"

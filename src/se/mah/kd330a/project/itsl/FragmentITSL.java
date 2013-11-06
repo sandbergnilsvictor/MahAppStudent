@@ -5,27 +5,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.app.FragmentTransaction;
 
+<<<<<<< HEAD
 /*
  * @author asampe, marcusmansson
  * 
@@ -73,137 +72,115 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 	View headerView;
 	PendingIntent backgroundUpdateIntent;
 
+=======
+public class FragmentITSL extends Fragment implements 
+	FeedManager.FeedManagerDoneListener, 
+	OnClickListener,
+	ActionBar.TabListener
+{
+	private static final String TAG = "FragmentITSL";
+	private static final long UPDATE_INTERVAL = 30000; //every other minute
+	private ActionBar actionBar;
+	private FeedManager feedManager;
+	private ProgressDialog dialog;
+	private PendingIntent backgroundUpdateIntent;
+	private ViewPager mViewPager;
+	private ListPagerAdapter listPagerAdapter;
+	private ViewGroup rootView;
+>>>>>>> origin/ITSL
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+
 		/*
-		 * set up the repeating task of updating data in the background 
-		 * (but stop it while the app is running)
+		 * Set up the repeating task of updating data in the background 
 		 */
-		Context appContext = getActivity().getApplicationContext(); 
-		backgroundUpdateIntent = PendingIntent.getService(
-				appContext, 0, 
-				new Intent(appContext, TimeAlarm.class), 0);
-		
+		Context appContext = getActivity().getApplicationContext();
+		backgroundUpdateIntent = PendingIntent.getService(appContext, 0, new Intent(appContext, TimeAlarm.class), 0);
+
 		feedManager = new FeedManager(this, appContext);
-	}
-
-	public void onPause()
-	{
-		super.onPause();
-		
-		Log.i(TAG, "Paused: Setting up background updates");
-
-		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-		alarm.setRepeating(AlarmManager.RTC_WAKEUP, 
-				System.currentTimeMillis() + UPDATE_INTERVAL, 
-				UPDATE_INTERVAL, backgroundUpdateIntent);
-		
-		/*
-		 * Remember when we last had this view opened 
-		 */
-		Date date = new Date(System.currentTimeMillis());
-		date.setMonth(9); // zero based index!!!!!!!!!!!!!!!!!!!!!!11111 e.g. 0-11
-		date.setDate(20);
-
-		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
-	}
-	
-	public void onResume()
-	{
-		super.onResume();
-		
-		Log.i(TAG, "Resumed: Stopping background updates");
-
-		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-		alarm.cancel(backgroundUpdateIntent);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
-
-		/*
-		 * custom ActionBar
-		 */
-		/*
-		ColorDrawable colorDrawable = new ColorDrawable();
-		colorDrawable.setColor(0xffeeeeee);
-		ActionBar actionBar = getActivity().getActionBar();
-		actionBar.setBackgroundDrawable(colorDrawable);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		actionBar.setCustomView(R.layout.itsl_abs_layout);
-		*/
-		
-		/*
-		 *  set up progressbar
-		 */
-		progBar = (ProgressBar) rootView.findViewById(R.id.progress);
-		txProgress = (TextView) rootView.findViewById(R.id.txProgess);
-		progBar.setVisibility(ProgressBar.GONE);
-		txProgress.setVisibility(TextView.GONE);
-		
-		/*
-		 *  create settings view and hide it
-		 */
-		headerView = inflater.inflate(R.layout.itsl_list_header, null);
-		headerView.findViewById(R.id.button1).setOnClickListener(this);
-		headerView.findViewById(R.id.button2).setOnClickListener(this);
-		hideSettingsView();
-
-		/*
-		 *  set up the listview
-		 */
-		listAdapter = new ExpandableListAdapter(getActivity(), feedManager.getArticles());
-		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
-		expListView.addHeaderView(headerView);
-		expListView.setAdapter(listAdapter);
-		expListView.setOnScrollListener(this);
-		expListView.setOnChildClickListener(this);
-
-		feedManager.loadCache();
-
+		rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
+		actionBar = getActivity().getActionBar();
+				
 		for (String url : Util.getBrowserBookmarks(getActivity().getApplicationContext()))
 		{
 			Log.i(TAG, "Got URL from bookmarks: " + url);
 			feedManager.addFeedURL(url);
 		}
-		
+
 		/*
-		 *  in case there is nothing in the cache, or it doesn't exist
+		 *  In case there is nothing in the cache, or it doesn't exist
 		 *  we have to refresh
 		 */
-		if (feedManager.getArticles().isEmpty())
+<<<<<<< HEAD
+		Date date = new Date(System.currentTimeMillis());
+		date.setMonth(9); // zero based index!!!!!!!!!!!!!!!!!!!!!!11111 e.g. 0-11
+		date.setDate(20);
+
+		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
+=======
+		if (!feedManager.loadCache())
 			refresh();
-		
-		
-		for (String title : getFeedObjects().keySet())
-		{
-			Log.i(TAG, "Filter list has key: " + title);
-		}
 
 		return rootView;
+>>>>>>> origin/ITSL
 	}
 
-	public class FeedObject {
+	public void onResume()
+	{
+		super.onResume();
+		Log.i(TAG, "Resumed: Stopping background updates");
+		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+		alarm.cancel(backgroundUpdateIntent);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	}
+	
+	public void onPause()
+	{
+		super.onPause();
+		Log.i(TAG, "Paused: Setting up background updates");
+		AlarmManager alarm = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+		alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + UPDATE_INTERVAL, UPDATE_INTERVAL, backgroundUpdateIntent);
+		
+		/*
+		 * Removes tabs and everything associated with it.
+		 */
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+
+		/*
+		 * Remember when we last had this view opened 
+		 */
+		Date date = new Date(System.currentTimeMillis());
+		date.setMonth(9); // zero based index (e.g. 0-11)
+		date.setDate(20);
+		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
+	}
+
+	public class FeedObject
+	{
 		public ArrayList<Article> articles;
+
 		public FeedObject()
 		{
 			articles = new ArrayList<Article>();
 		}
 	}
 
-	public HashMap<String, FeedObject> getFeedObjects() {
+	public HashMap<String, FeedObject> getFeedObjects()
+	{
 		HashMap<String, FeedObject> foList = new HashMap<String, FeedObject>();
-		
+
 		for (Article a : feedManager.getArticles())
 		{
 			FeedObject fo;
-			
+
 			if (foList.containsKey(a.getArticleCourseCode()))
 			{
 				fo = foList.get(a.getArticleCourseCode());
@@ -213,13 +190,55 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 				fo = new FeedObject();
 				foList.put(a.getArticleCourseCode(), fo);
 			}
-			
+
 			fo.articles.add(a);
 		}
-		
+
 		return foList;
 	}
 
+	/**
+	 * Creates tabs in the actionbar and the fragments associated with them.
+	 * 
+	 * @return ArrayList of fragments
+	 */
+	private ArrayList<TabFragment> createFragments()
+	{
+		ArrayList<TabFragment> fragments = new ArrayList<TabFragment>();
+		
+		actionBar.removeAllTabs();
+		
+		/*
+		 * The first tab contains everything unfiltered
+		actionBar.addTab(
+				actionBar.newTab()
+				.setText("All")
+				.setTabListener(this));
+		
+		fragments.add(new TabFragment(feedManager.getArticles()));
+		 */
+
+		/*
+		 * For all feeds we have downloaded, create a new tab and add the 
+		 * corresponding data to a new TabFragment
+		 */
+		HashMap<String, FeedObject> foList = getFeedObjects();
+
+		for (String title : foList.keySet())
+		{
+			actionBar.addTab(
+					actionBar.newTab()
+					.setText(title)
+					.setTabListener(this));
+			
+			fragments.add(new TabFragment(foList.get(title).articles));
+			
+			Log.i(TAG, "Filtered map key => tab title is: " + title);
+		}
+
+		return fragments;
+	}
+	
 	public void onFeedManagerProgress(FeedManager fm, int progress, int max)
 	{
 		/*
@@ -235,78 +254,42 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 
 		dialog.setProgress(progress);
 		dialog.setMax(max);
-
-		/*
-		progBar.setVisibility(ProgressBar.VISIBLE);
-		txProgress.setVisibility(TextView.VISIBLE);
-		progBar.setProgress(progress);
-		progBar.setMax(max);
-		*/
 	}
 
 	@Override
 	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
 	{
+		if (dialog != null)
+		{
+			dialog.dismiss();
+			dialog = null;
+		}
+		
 		/*
-		 * display the data in our listview
+		 * Set up tabs in the actionbar
 		 */
-		listAdapter.notifyDataSetInvalidated();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		mViewPager = (ViewPager) rootView.findViewById(R.id.pager);
+		mViewPager.setOnPageChangeListener(
+	            new ViewPager.SimpleOnPageChangeListener() {
+	                @Override
+	                public void onPageSelected(int position) {
+	                    actionBar.setSelectedNavigationItem(position);
+	                }
+	            });
 
-		/*
-		progBar.setVisibility(ProgressBar.GONE);
-		txProgress.setVisibility(TextView.GONE);
-		*/
-		dialog.dismiss();
-		dialog = null;
 
-		Toast.makeText(getActivity(), "" + articles.size() + " articles", Toast.LENGTH_LONG).show();
+		listPagerAdapter = new ListPagerAdapter(getActivity().getSupportFragmentManager(), createFragments());
+		mViewPager.setAdapter(listPagerAdapter);
+		
+		//Toast.makeText(getActivity(), "" + articles.size() + " articles", Toast.LENGTH_LONG).show();
 	}
 
 	private void refresh()
 	{
-		/*
-		 * close all expanded childviews, otherwise they will incorrectly 
-		 * linger in the UI even after we invalidate the dataset
-		 */
-		int count = listAdapter.getGroupCount();
-		for (int i = 0; i < count; i++)
-			expListView.collapseGroup(i);
-
 		feedManager.reset();
 		feedManager.processFeeds();
-	}
-
-	private void hideSettingsView()
-	{
-		headerView.findViewById(R.id.headerLayout).setVisibility(View.GONE);
-	}
-
-	private void showSettingsView()
-	{
-		headerView.findViewById(R.id.headerLayout).setVisibility(View.VISIBLE);
-	}
-
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
-	{
-	}
-
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState)
-	{
-		if (expListView.getFirstVisiblePosition() == 0 && scrollState == OnScrollListener.SCROLL_STATE_IDLE)
-			/*
-			 * you could refresh content here directly instead of showing the header
-			 */
-			showSettingsView();
-		else
-			hideSettingsView();
-	}
-
-	@Override
-	public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id)
-	{
-		return parent.collapseGroup(groupPosition);
 	}
 
 	@Override
@@ -315,13 +298,33 @@ public class FragmentITSL extends Fragment implements FeedManager.FeedManagerDon
 		switch (v.getId()) {
 		case R.id.button1:
 			refresh();
-			hideSettingsView();
 			break;
 		case R.id.button2:
 			feedManager.reset();
 			feedManager.deleteCache();
-			listAdapter.notifyDataSetInvalidated();
+			//listAdapter.notifyDataSetInvalidated();
 			break;
 		}
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft)
+	{
+		/*
+		 *  here we retrieve the tabfragment object that should already have 
+		 *  been initialized and added to the adapter
+		 */
+		if (mViewPager != null)
+			mViewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft)
+	{
+	}
+
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft)
+	{
 	}
 }
