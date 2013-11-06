@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="212dp" >
+        android:layout_height="238dp" >
 
         <ImageView
             android:id="@+id/img_find_navigation"
