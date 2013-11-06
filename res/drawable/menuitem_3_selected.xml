@@ -5,7 +5,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_menu_itsl2" />
+            android:src="@drawable/ic_menu_itsl" />
     </item>
 
 </layer-list>

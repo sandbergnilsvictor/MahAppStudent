@@ -6,6 +6,8 @@ import android.widget.ExpandableListView;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.schedule.model.ScheduleItem;
 import se.mah.kd330a.project.schedule.model.ScheduleWeek;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -106,6 +108,11 @@ public class FragmentScheduleWeek extends Fragment {
 					.getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
 			ScheduleItem currentSI = (ScheduleItem) getGroup(groupPosition);
 			String currentDate = currentSI.getDateAndTime2();
+			SharedPreferences sharedPref = getActivity().getSharedPreferences("courseName",
+					Context.MODE_PRIVATE);
+			
+			String courseName = sharedPref.getString(currentSI.getCourseName(), currentSI.getCourseName());
+			
 			if (lastDate == null || !currentDate.equals(lastDate)
 					|| convertView == null) {
 				convertView = infalInflater.inflate(
@@ -113,9 +120,9 @@ public class FragmentScheduleWeek extends Fragment {
 				TextView sepertorText = (TextView) convertView
 						.findViewById(R.id.list_item_section_text);
 				sepertorText.setText(currentDate);
-				TextView courseName = (TextView) convertView
+				TextView courseNameText = (TextView) convertView
 						.findViewById(R.id.list_course_name);
-				courseName.setText(currentSI.getCourseName());
+				courseNameText.setText(courseName);
 				TextView startTime = (TextView) convertView
 						.findViewById(R.id.list_course_start_time);
 				startTime.setText(currentSI.getStartTime());
@@ -131,9 +138,9 @@ public class FragmentScheduleWeek extends Fragment {
 
 				convertView = infalInflater.inflate(
 						R.layout.schedule_list_group, null);
-				TextView courseName = (TextView) convertView
+				TextView courseNameText = (TextView) convertView
 						.findViewById(R.id.list_course_name);
-				courseName.setText(currentSI.getCourseName());
+				courseNameText.setText(courseName);
 				TextView startTime = (TextView) convertView
 						.findViewById(R.id.list_course_start_time);
 				startTime.setText(currentSI.getStartTime());

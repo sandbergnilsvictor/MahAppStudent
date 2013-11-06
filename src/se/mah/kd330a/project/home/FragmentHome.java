@@ -9,6 +9,8 @@ import se.mah.kd330a.project.framework.MainActivity;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
 import se.mah.kd330a.project.R;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -88,10 +90,13 @@ public class FragmentHome extends Fragment {
 	private void setNextClassWidget(ViewGroup rootView) {
 		LinearLayout nextClassWidget = (LinearLayout) rootView
 				.findViewById(R.id.next_class_widget);
+		SharedPreferences sharedPref = this.getActivity().getSharedPreferences("courseName",
+				Context.MODE_PRIVATE);
+		String courseName = sharedPref.getString(nextClass.getCourseName(), nextClass.getCourseName());
 		if (profileRegistered) {
 			TextView textNextClassName = (TextView) nextClassWidget
 					.findViewById(R.id.text_next_class_name);
-			textNextClassName.setText(nextClass.getCourseName());
+			textNextClassName.setText(courseName);
 			TextView textNextClassDate = (TextView) nextClassWidget
 					.findViewById(R.id.text_next_class_date);
 			textNextClassDate.setText(nextClass.getDate());
@@ -110,6 +115,12 @@ public class FragmentHome extends Fragment {
 			textNextClassDate.setText("No classes");
 		}
 
+	}
+
+	private SharedPreferences getSharedPreferences(String string,
+			int modePrivate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private void setLastItslPost(ViewGroup rootView) {

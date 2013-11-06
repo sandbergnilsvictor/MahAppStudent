@@ -66,25 +66,22 @@ public class SplashActivity extends Activity implements Observer {
 			Me.updateMe();
 		}
 	}
+	
 
 	@Override
 	public void update(Observable observable, Object data) {
-		//TextView loadingTextView = (TextView) findViewById(R.id.loading_text);
-		//String eol = System.getProperty("line.separator");
-		//String loadingText = new String("Hi " + Me.getFirstName() + "!" + eol +"Your personal data is being loaded...");
-		//loadingTextView.setText(loadingText);
-		Log.i("LadokCourses", Integer.toString((Me.getCourses().size())));
+		
 		courses = new ArrayList<KronoxCourse>();
 		List<Course> ladokCourses = Me.getCourses();
 		for (Course c : ladokCourses) {
 			String courseId = c.getKronoxCalendarCode();
 			courseId = courseId.substring(2);
-			Log.i("LadokCourseIdNew", courseId);
 			courses.add(new KronoxCourse(courseId));
 		}
 
 		KronoxCourse[] courses_array = new KronoxCourse[courses.size()];
 		courses.toArray(courses_array);
+		
 		new FetchCourseName().execute(courses_array);
 
 		new GetNewsFeed().execute();
@@ -149,8 +146,15 @@ public class SplashActivity extends Activity implements Observer {
 		protected void onPostExecute(KronoxCourse course) {
 
 			if (course != null) {
+				SharedPreferences sharedPref = getSharedPreferences("courseName",
+						Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = sharedPref.edit();
+				editor.putString(course.getFullCode(), course.getName());
+				editor.commit();
+				Log.i("courseCode", course.getFullCode());
 				Log.i("FetchCourseName", String.format("course:%s,%s",
 						course.getFullCode(), course.getName()));
+				
 			}
 		}
 	}
@@ -191,5 +195,12 @@ public class SplashActivity extends Activity implements Observer {
 			}
 		}
 
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		Log.i("Splash", "finish called");
+	
 	}
 }

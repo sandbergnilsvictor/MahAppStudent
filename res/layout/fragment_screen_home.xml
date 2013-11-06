@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@string/home_block_description"
-        android:src="@drawable/image_home_building" >
+        android:src="@drawable/image_intro" >
     </ImageView>
     <!--
 		<com.handmark.pulltorefresh.library.PullToRefreshScrollView
@@ -235,7 +235,7 @@
                             android:id="@+id/imageView1"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/mah_logotyp_original"
+                            android:src="@drawable/mah_logotyp"
                             android:contentDescription="@string/logo_description" >
                         </ImageView>
                     </LinearLayout>

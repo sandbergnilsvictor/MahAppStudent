@@ -11,6 +11,7 @@ import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
 import se.mah.kd330a.project.help.FragmentHelp;
+import se.mah.kd330a.project.help.FragmentHelpTabs;
 import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
@@ -61,19 +62,7 @@ public class MainActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-			KronoxCalendar.createCalendar(KronoxReader
-					.getFile(getApplicationContext()));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+      
         
         setContentView(R.layout.activity_main);
             
@@ -189,7 +178,7 @@ public class MainActivity extends FragmentActivity{
 			fragment = new FragmentFaq();
 			break;
 		case HELP:
-			fragment = new FragmentHelp();
+			fragment = new FragmentHelpTabs();
 			break;
 		default:	
 			fragment = new FragmentHome();
