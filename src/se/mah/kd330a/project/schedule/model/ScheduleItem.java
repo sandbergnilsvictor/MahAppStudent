@@ -53,21 +53,22 @@ public class ScheduleItem implements Serializable {
 		startTime = time_format.format(v.getStartDate().getDate());
 		weekDay = week_day_format.format(v.getStartDate().getDate());
 		dateAndTime2 = date_format2.format(v.getStartDate().getDate());
-
+		
+		
 		endTime = time_format.format(v.getEndDate().getDate());
 		location = v.getLocation().getValue();
 		courseName = "PlaceHolder";
 		String summary = v.getSummary().getValue();
 		
 		if (summary.indexOf("Coursegrp: ") != -1) {
-			courseName = summary.substring(summary.indexOf("Coursegrp: ") + 12,
-					summary.indexOf("Coursegrp: ") + 17);
+			courseName = summary.substring(summary.indexOf("Coursegrp: ") + 11,
+					summary.indexOf("Coursegrp: ") + 29);
 		}
 		if (summary.indexOf("Sign: ") != -1) {
 			teacherID = summary.substring(summary.indexOf("Sign: ") + 6,
 					summary.indexOf("Sign: ") + 12);
 		}
-		//Log.i("ScheduleSummary",v.getSummary().getValue());
+		Log.i("ScheduleSummary",v.getSummary().getValue());
 	}
 
 	public boolean isDividerElement() {

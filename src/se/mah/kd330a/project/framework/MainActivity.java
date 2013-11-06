@@ -11,6 +11,7 @@ import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
 import se.mah.kd330a.project.help.FragmentHelp;
+import se.mah.kd330a.project.help.FragmentHelpTabs;
 import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
@@ -24,6 +25,7 @@ import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -39,7 +41,7 @@ public class MainActivity extends FragmentActivity{
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
+    private String urlNewsFeed = "http://www.mah.se/english/News/";
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuTitles;
@@ -60,19 +62,7 @@ public class MainActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-			KronoxCalendar.createCalendar(KronoxReader
-					.getFile(getApplicationContext()));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+      
         
         setContentView(R.layout.activity_main);
             
@@ -188,7 +178,7 @@ public class MainActivity extends FragmentActivity{
 			fragment = new FragmentFaq();
 			break;
 		case HELP:
-			fragment = new FragmentHelp();
+			fragment = new FragmentHelpTabs();
 			break;
 		default:	
 			fragment = new FragmentHome();
@@ -237,6 +227,13 @@ public class MainActivity extends FragmentActivity{
     public void toFind(View view) {
 		selectItem(this.FIND);
 	}
+    
+    public void toNewsFeedOnWeb(View view) {
+    	Uri uri = Uri.parse(urlNewsFeed);
+    	Intent launchBrowser = new Intent(Intent.ACTION_VIEW,
+    	uri);
+    	startActivity(launchBrowser);
+    }
 
 
     

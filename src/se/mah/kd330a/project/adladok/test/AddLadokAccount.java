@@ -28,6 +28,10 @@ public class AddLadokAccount extends Activity implements Observer {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ad_ladok_test);
+		EditText userID_et = (EditText) findViewById(R.id.userIDet);
+		SharedPreferences sharedPref = this.getSharedPreferences("userFile",
+				Context.MODE_PRIVATE);
+		userID_et.setText(sharedPref.getString("user_id", ""));
 		Me.observable.addObserver(this);
 	}
 
@@ -42,6 +46,7 @@ public class AddLadokAccount extends Activity implements Observer {
 		Me.setPassword("");
 		Me.setUserID("");
 		Me.clearCourses();
+		
 		// First we have to set username and password those should are probably
 		// be saved in Sharedprefs
 		EditText userID_et = (EditText) findViewById(R.id.userIDet);
@@ -49,6 +54,8 @@ public class AddLadokAccount extends Activity implements Observer {
 		Me.setUserID(userID_et.getText().toString());
 		Me.setPassword(password_et.getText().toString());
 		Me.updateMe();
+		
+		
 		SharedPreferences sharedPref = this.getSharedPreferences("userFile",
 				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPref.edit();
@@ -56,9 +63,6 @@ public class AddLadokAccount extends Activity implements Observer {
 		editor.putString("user_password", password_et.getText().toString());
 		
 		editor.commit();
-		// TextView tv = (TextView)findViewById(R.id.tvadladoktest);
-		// tv.setText("");
-		// Then call to update
 		
 		
 
@@ -66,8 +70,7 @@ public class AddLadokAccount extends Activity implements Observer {
 
 	@Override
 	public void update(Observable observable, Object data) {
-		// TextView tv = (TextView)findViewById(R.id.tvadladoktest);
-		// tv.setMovementMethod(new ScrollingMovementMethod());
+		
 		String courses = "";
 		Log.i("UserInfo", "Length: " + Me.getCourses().size());
 		for (Course c : Me.getCourses()) {
@@ -80,21 +83,12 @@ public class AddLadokAccount extends Activity implements Observer {
 					+ c.getKronoxCalendarCode() + "\n";
 		}
 
-		// tv.setText("Me\n"+
-		// "FirstName: "+ Me.getFirstName()+"\n"+
-		// "GivenName: "+ Me.getLastName()+"\n"+
-		// "Displayname: "+ Me.getDispayName()+"\n"+
-		// "Email: "+ Me.getEmail()+"\n"+
-		// "UserID: "+ Me.getUserID()+"\n"+
-		// "***Courses for Me***\n"+
-		// courses);
+		
 		Log.i("Ladok", "c.getKronoxCalendarCode()");
 		if (Me.getFirstName().isEmpty()) {
 			Toast.makeText(this, "Please enter a valid Username or Password",
 					Toast.LENGTH_LONG).show();
 		} else {
-			//Intent intent = new Intent(this, SplashActivity.class);
-			//startActivity(intent);
 			
 			finish();
 		}

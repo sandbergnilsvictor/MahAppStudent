@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@string/home_block_description"
-        android:src="@drawable/home_block" >
+        android:src="@drawable/image_intro" >
     </ImageView>
     <!--
 		<com.handmark.pulltorefresh.library.PullToRefreshScrollView
@@ -38,7 +38,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:background="@color/grey_light"
+                android:background="@color/white"
                 android:onClick="toSchedule"
                 android:orientation="vertical" >
 
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/grey_dark"
-                            android:textSize="18sp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold" />
 
                         <TextView
@@ -136,7 +136,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:background="@color/grey_light"
+                android:background="@color/white"
                 android:onClick="toITSL"
                 android:orientation="vertical" >
 
@@ -204,17 +204,18 @@
             </LinearLayout>
             
             <LinearLayout
-                android:id="@+id/news_feed_widget"
+                
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:background="@color/grey_light"
-                android:onClick="toSchedule"
+                android:background="@color/white"
+                android:onClick="toNewsFeedOnWeb"
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
@@ -234,6 +235,10 @@
                             android:id="@+id/imageView1"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+<<<<<<< HEAD
+=======
+                            android:src="@drawable/mah_logotyp"
+>>>>>>> origin/Login_Schedule
                             android:contentDescription="@string/logo_description" >
                         </ImageView>
                         <!-- LH commented out android:src="@drawable/mah_logotyp_vit"-->
@@ -248,6 +253,7 @@
                         android:background="@color/red_mah" />
 
                     <LinearLayout
+                        android:id="@+id/news_feed_widget"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -260,16 +266,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/grey_dark"
-                            android:textSize="18sp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textStyle="bold" />
 						
-						<TextView
-                            android:id="@+id/text_latest_news_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/grey"
-                            android:textSize="14sp" />
                         
                         <TextView
                             android:id="@+id/text_latest_news_description"
@@ -277,8 +276,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:textColor="@color/grey_dark"
-                            android:textSize="22sp"
-                            android:textStyle="bold" />
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:lineSpacingExtra="4dp" />
 
                         
                     </LinearLayout>
@@ -291,59 +290,6 @@
                 </View>
             </LinearLayout>
             
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@color/grey_light"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/red_mah" />
-
-                    <LinearLayout
-                        android:id="@+id/news_feed_mah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginTop="4dp"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/news_widget_heading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:text="@string/news_widget_heading"
-                            android:textColor="@color/grey_dark"
-                            android:textSize="22sp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginBottom="4dp"
-                            android:background="@color/red_mah" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="4dp"
-                    android:background="@drawable/drop_shadow" >
-                </View>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
