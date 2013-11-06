@@ -32,6 +32,10 @@ public class AddLadokAccount extends Activity implements Observer {
 		SharedPreferences sharedPref = this.getSharedPreferences("userFile",
 				Context.MODE_PRIVATE);
 		userID_et.setText(sharedPref.getString("user_id", ""));
+		Log.i("UserInfo","Antal observers :"+ Me.observable.countObservers());
+		if (Me.observable.countObservers()>0){
+			Me.observable.deleteObservers();
+		}
 		Me.observable.addObserver(this);
 	}
 
@@ -89,7 +93,7 @@ public class AddLadokAccount extends Activity implements Observer {
 			Toast.makeText(this, "Please enter a valid Username or Password",
 					Toast.LENGTH_LONG).show();
 		} else {
-			
+			Me.observable.deleteObserver(this);
 			finish();
 		}
 	}
