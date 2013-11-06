@@ -24,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -108,7 +107,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 				return false;
 			}		
 		});
-	
+	/*
 		RoomDbHandler db = new RoomDbHandler(getActivity());
 		Cursor cursor = db.getMatchingRooms(getActivity(), "");
 		getActivity().startManagingCursor(cursor);
@@ -117,7 +116,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 				android.R.layout.simple_list_item_1, 
 				cursor, 
 				new String[] { "roomNr" }, new int[] { android.R.id.text1 } , 0);
-		etRoomNr.setAdapter(SuggestionAdapter);
+		etRoomNr.setAdapter(SuggestionAdapter);*/
 	}
 
 	public void find_button_navigation(View v) {

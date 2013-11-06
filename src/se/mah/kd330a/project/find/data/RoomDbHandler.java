@@ -6,7 +6,6 @@ import java.util.Locale;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 //import android.util.Log;
@@ -211,6 +210,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 				room.mMapPic = c.getString(c.getColumnIndex(ROW_MAP));
 				room.mCoord_x = c.getInt(c.getColumnIndex(ROW_X));
 				room.mCoord_y = c.getInt(c.getColumnIndex(ROW_Y));
+				db.close();
 				return true;
 			}
 		}
@@ -273,7 +273,8 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		else 
 			return -1;
 	}
-
+	
+/*
 	public Cursor getMatchingRooms(Context context, String constraint) {
 		String queryString =
                 "SELECT * FROM rooms";
@@ -296,7 +297,7 @@ public class RoomDbHandler extends SQLiteOpenHelper {
             return null;
         }
 
-	/*	String queryString =
+		String queryString =
                 "SELECT _id, state, capital FROM " + TABLE_NAME;
 
         if (constraint != null) {
@@ -328,8 +329,8 @@ public class RoomDbHandler extends SQLiteOpenHelper {
         catch (SQLException e) {
             Log.e("AutoCompleteDbAdapter", e.toString());
             //throw e;
-        }*/
+        }
 
         return null;
-	}
+	}*/
 }
