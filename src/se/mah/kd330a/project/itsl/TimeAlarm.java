@@ -15,7 +15,6 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 
-
 public class TimeAlarm extends IntentService implements FeedManager.FeedManagerDoneListener
 {
 	private static final String TAG = "TimeAlarm";
@@ -33,7 +32,6 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 		{
 			FeedManager feedManager = new FeedManager(this, getApplicationContext());
 			feedManager.processFeeds();
-			Log.e(TAG, "processing feeds");
 		}
 		else
 		{
@@ -66,15 +64,8 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 	private void createNotification(ArrayList<Article> articles)
 	{
-<<<<<<< HEAD
-<<<<<<< HEAD
-		Intent resultIntent = new Intent(this, se.mah.kd330a.project.framework.MainActivity.class);
-
-=======
->>>>>>> 71470e607132110e87e6bc8fff277c3eb03bb23c
 		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 		stackBuilder.addParentStack(se.mah.kd330a.project.framework.MainActivity.class);
-
 		stackBuilder.addNextIntent(new Intent(this, se.mah.kd330a.project.framework.MainActivity.class));
 		
 		NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
@@ -95,10 +86,6 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 					new SimpleDateFormat("dd/MM").format(a.getArticlePubDate()), 
 					a.getArticleHeader()));
 		}
-<<<<<<< HEAD
->>>>>>> origin/ITSL
-=======
->>>>>>> 71470e607132110e87e6bc8fff277c3eb03bb23c
 
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(0, mBuilder.build());
