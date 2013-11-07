@@ -45,6 +45,8 @@ public class StartActivity extends Activity implements Observer
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
 
+		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
+		
 		Me.observable.addObserver(this);
 
 		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
@@ -140,6 +142,8 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected Void doInBackground(Void... arg0)
 		{
+			((View) findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
+			
 			try
 			{
 				/*
@@ -214,6 +218,7 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected void onPostExecute(Void v)
 		{
+			((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 			appContext.tasksCompleted();
 		}
 
