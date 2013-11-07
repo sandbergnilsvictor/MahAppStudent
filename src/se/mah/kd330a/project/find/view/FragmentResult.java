@@ -57,15 +57,15 @@ public class FragmentResult extends Fragment {
 	};
 
 	@Override
-
 	public void onCreate(Bundle savedInstanceState) {
+		Log.i("project", "onCreate " + mSelectedTab);
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+		Log.i("project", "onCreateView " + mSelectedTab);
 		ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_find_result, container, false);
 		Bundle args = getArguments();
@@ -84,7 +84,7 @@ public class FragmentResult extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-
+		Log.i("project", "onStart " + mSelectedTab);
 		mResultPagerAdapter = new ResultPagerAdapter(getChildFragmentManager(), 
 				mDbHandler.getRoomDetails());
 		mViewPager = (ViewPager) getView().findViewById(R.id.vp_Find_Pager);
@@ -133,13 +133,15 @@ public class FragmentResult extends Fragment {
 					+ " 1/" + radioG.getChildCount();
 			((TextView) getView().findViewById(R.id.text_find_indicator_steps)).setText(txt);
 		}
-		else {
+		if (mSelectedTab > -1)  {
 			radioB = (RadioButton) getView().findViewWithTag(mSelectedTab); 
 			radioB.setChecked(true);
 			mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));
+			String txt = (String) getResources().getText(R.string.text_find_indicator_steps) 
+					+ " " + (mSelectedTab + 1) + "/" + radioG.getChildCount();
+			((TextView) getView().findViewById(R.id.text_find_indicator_steps)).setText(txt);
 		}
 	}
-
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -196,18 +198,18 @@ public class FragmentResult extends Fragment {
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
+		Log.i("project", "onSaveInstanceState " + mSelectedTab);
 		super.onSaveInstanceState(outState);
 		outState.putInt(SAVE_CURRENT, mSelectedTab);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
-		//Log.i("project", "onActivityCreated");
+		Log.i("project", "onActivityCreated " + mSelectedTab);
 		super.onActivityCreated(savedInstanceState);
 		
 		if (savedInstanceState != null) {
 			mSelectedTab = savedInstanceState.getInt(SAVE_CURRENT);
 		}
-
 	}
 }

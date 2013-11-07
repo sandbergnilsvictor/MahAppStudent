@@ -28,6 +28,9 @@ public class FragmentStep extends Fragment implements OnImageLoaderListener {
 	private String mRoomNumber;
 	private String mContentId;
 	
+	private ImageView imgNav;
+	private ProgressBar prgBar;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -40,10 +43,10 @@ public class FragmentStep extends Fragment implements OnImageLoaderListener {
 		mRoomNumber = args.getString(ARG_TEXTTITLE);
 		mContentId = args.getString(ARG_TEXTCONTENT);
 		
-	/*	ImageView imgNav = (ImageView) rootView.findViewById(R.id.img_find_navigation);
+		imgNav = (ImageView) rootView.findViewById(R.id.img_find_navigation);
 		imgNav.setVisibility(View.INVISIBLE);
-		ProgressBar prgBar = (ProgressBar) rootView.findViewById(R.id.pb_find_loading);
-		prgBar.setVisibility(View.VISIBLE);*/
+		prgBar = (ProgressBar) rootView.findViewById(R.id.pb_find_loading);
+		prgBar.setVisibility(View.VISIBLE);
 		
 		String txt = getString(R.string.find_navigationTitle) + " " + mRoomNumber;
 		((TextView) rootView.findViewById(R.id.text_find_navigationTitle))
@@ -80,11 +83,9 @@ public class FragmentStep extends Fragment implements OnImageLoaderListener {
 
 	@Override
 	public void onImageReceived(String fileName) {
-		//ProgressBar prgBar = (ProgressBar) getView().findViewById(R.id.pb_find_loading);
-		//prgBar.setVisibility(View.INVISIBLE);
-		ImageView imgNav = (ImageView) getView().findViewById(R.id.img_find_navigation);
+		prgBar.setVisibility(View.INVISIBLE);
 		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));
-		//imgNav.setVisibility(View.VISIBLE);
+		imgNav.setVisibility(View.VISIBLE);
 	}
 
 }

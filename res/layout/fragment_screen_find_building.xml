@@ -1,198 +1,211 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey_light"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp" >
+        android:layout_height="match_parent"
+        android:background="@color/grey_light"
+        android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/img_find_navigation"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/image_mah_logo" />
+            android:layout_height="240dp" >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/grey" >
-        </View>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/text_find_startTitle"
+            <ImageView
+                android:id="@+id/img_find_navigation"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:text="@string/find_startTitle"
-                android:textColor="@color/grey_dark"
-                android:textSize="18sp" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/image_mah_logo"
+                android:visibility="invisible" />
+
+            <ProgressBar
+                android:id="@+id/pb_find_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
                 android:background="@color/grey" >
             </View>
-        </LinearLayout>
-    </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_find_google"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3" >
-
-            <ImageView
-                android:id="@+id/img_find_building_icon"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/google_map_pressed" >
-            </ImageView>
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_find_startTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="@string/find_startTitle"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/grey" >
+                </View>
+            </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/ll_find_google"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:layout_height="96dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/text_find_mapTitle"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/find_button_g_map"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="3" >
 
-            <TextView
-                android:id="@+id/text_find_mapContent"
+                <ImageView
+                    android:id="@+id/img_find_building_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/google_map_pressed" >
+                </ImageView>
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/find_button_g_map"
-                android:textColor="@color/grey_dark"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_find_mapTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/find_button_g_map"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/text_find_mapContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/find_button_g_map"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3" >
+
+                <ImageView
+                    android:id="@+id/img_find_arrows_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/button_arrow_right" >
+                </ImageView>
+            </RelativeLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3" >
-
-            <ImageView
-                android:id="@+id/img_find_arrows_google"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/button_arrow_right" >
-            </ImageView>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/grey" />
-
-    <LinearLayout
-        android:id="@+id/ll_find_floormap"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:orientation="horizontal" >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3" >
-
-            <ImageView
-                android:id="@+id/img_find_building_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/floor_map_unpressed" >
-            </ImageView>
-        </RelativeLayout>
+            android:layout_height="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/grey" />
 
         <LinearLayout
+            android:id="@+id/ll_find_floormap"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:layout_height="96dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
 
-            <TextView
-                android:id="@+id/text_find_floorTitle"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/find_button_floor"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="3" >
 
-            <TextView
-                android:id="@+id/text_find_floorContent"
+                <ImageView
+                    android:id="@+id/img_find_building_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/floor_map_unpressed" >
+                </ImageView>
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="@string/find_button_floor"
-                android:textColor="@color/grey_dark"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_find_floorTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/find_button_floor"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/text_find_floorContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/find_button_floor"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3" >
+
+                <ImageView
+                    android:id="@+id/img_find_arrows_floormap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/button_arrow_right" >
+                </ImageView>
+            </RelativeLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3" >
-
-            <ImageView
-                android:id="@+id/img_find_arrows_floormap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/button_arrow_right" >
-            </ImageView>
-        </RelativeLayout>
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/grey" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@color/grey" />
-
-</LinearLayout>
+</ScrollView>

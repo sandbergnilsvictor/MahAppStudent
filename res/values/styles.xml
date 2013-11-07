@@ -5,12 +5,12 @@
         <item name="android:actionBarTabStyle">@style/itsl_tabs.style</item>
         <item name="android:activatedBackgroundIndicator">@drawable/menuitem_background</item>
         <item name="android:actionBarItemBackground">@drawable/action_button_background</item>
+        <item name="android:actionBarStyle">@style/mahActionBar</item>
+        <item name="android:editTextStyle">@style/mahEditTextStyle</item>
         <item name="android:editTextBackground">@drawable/edit_text_holo_light</item>
-        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
-        <item name="android:textSelectHandle">@drawable/text_handle_center</item>
-        <item name="android:textSelectHandleLeft">@drawable/text_handle_left</item>
-        <item name="android:textSelectHandleRight">@drawable/text_handle_right</item>
-        <item name="android:textColorHighlight">@color/red_mah_transparent</item>
+        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:spinnerStyle">@style/mahSpinnerStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
     </style>
 
     <style name="mah_button_red">
@@ -30,6 +30,37 @@
         <item name="android:textColor">@drawable/mah_button_grey</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="mahActionBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/grey_light</item>
+        <item name="android:displayOptions">useLogo|showHome|showTitle</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:height">?android:attr/actionBarSize</item>
+    </style>
+    
+    <style name="ActionButtonStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
+    <item name="android:minWidth">0dp</item>
+    <item name="android:paddingLeft">2dp</item>
+    <item name="android:paddingRight">2dp</item>
+</style>
+
+    <style name="mahSpinnerStyle" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/mah_spinner_background</item>
+    </style>
+    <style name="spinnerItemStyle">
+        <item name="android:background">@drawable/mah_spinner_item_background</item>
+    </style>
+    
+    <style name="mahEditTextStyle" parent="@android:style/Widget.Holo.Light.EditText">
+        
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="android:textSelectHandle">@drawable/text_handle_center</item>
+        <item name="android:textSelectHandleLeft">@drawable/text_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/text_handle_right</item>
+        <item name="android:textColorHighlight">@color/red_mah_transparent</item>
+        
     </style>
 
 </resources>

@@ -72,7 +72,7 @@ public class GetImage {
 			fos.close();
 			doesFileExists(filename,c);
 			success = true;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		return success;

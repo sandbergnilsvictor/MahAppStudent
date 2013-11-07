@@ -17,17 +17,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class FragmentBuilding extends Fragment implements OnImageLoaderListener {
 	public static final String ARG_BUILDING = "building";
 	private String buildingCode;
 	
+	private ImageView imgNav;
+	private ProgressBar prgBar;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		ViewGroup rootView = (ViewGroup) inflater
 				.inflate(R.layout.fragment_screen_find_building, container, false);
+		imgNav = (ImageView) rootView.findViewById(R.id.img_find_navigation);
+		imgNav.setVisibility(View.INVISIBLE);
+		prgBar = (ProgressBar) rootView.findViewById(R.id.pb_find_loading);
+		prgBar.setVisibility(View.VISIBLE);
+		
 		return rootView;
 	}
 
@@ -44,8 +53,8 @@ public class FragmentBuilding extends Fragment implements OnImageLoaderListener 
 		((TextView) getView().findViewById(R.id.text_find_startTitle)).setText(buildings[pos]);
 		
 		Log.i("project", "FragmentBuilding " + buildingCode);
-	
-		new ImageLoader(getActivity(), this).execute(buildingCode + ".jpg");
+		
+		new ImageLoader(getActivity(), this).execute("b" + buildingCode + ".jpg");
 		
 		LinearLayout llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_floormap);
 		llFloor.setClickable(true);
@@ -90,7 +99,8 @@ public class FragmentBuilding extends Fragment implements OnImageLoaderListener 
 
 	@Override
 	public void onImageReceived(String fileName) {
-		ImageView imgNav = (ImageView) getView().findViewById(R.id.img_find_navigation);
-		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));	
+		prgBar.setVisibility(View.INVISIBLE);
+		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));
+		imgNav.setVisibility(View.VISIBLE);	
 	}
 }
