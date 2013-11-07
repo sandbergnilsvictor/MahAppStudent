@@ -46,7 +46,7 @@ public class StartActivity extends Activity implements Observer
 		setContentView(R.layout.activity_start);
 
 		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
-		
+
 		Me.observable.addObserver(this);
 
 		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
@@ -113,7 +113,7 @@ public class StartActivity extends Activity implements Observer
 			return;
 		}
 		Log.i(TAG, "update(): Got callback from Me");
-		
+
 		//Me.observable.deleteObserver(this);
 
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
@@ -125,6 +125,8 @@ public class StartActivity extends Activity implements Observer
 	 */
 	public void tasksCompleted()
 	{
+		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
+
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		finish();
@@ -142,8 +144,6 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected Void doInBackground(Void... arg0)
 		{
-			((View) appContext.findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
-			
 			try
 			{
 				/*
@@ -185,7 +185,7 @@ public class StartActivity extends Activity implements Observer
 						editor.putString(course.getFullCode(), course.getName());
 						editor.commit();
 						Log.i(TAG, String.format("Course: %s, %s", course.getFullCode(), course.getName()));
-						
+
 						try
 						{
 							Log.i(TAG, "Kronox: Creating calendar");
@@ -218,7 +218,6 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected void onPostExecute(Void v)
 		{
-			((View) appContext.findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 			appContext.tasksCompleted();
 		}
 
