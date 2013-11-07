@@ -142,7 +142,7 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected Void doInBackground(Void... arg0)
 		{
-			((View) findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
+			((View) appContext.findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
 			
 			try
 			{
@@ -218,7 +218,7 @@ public class StartActivity extends Activity implements Observer
 		@Override
 		protected void onPostExecute(Void v)
 		{
-			((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
+			((View) appContext.findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 			appContext.tasksCompleted();
 		}
 
