@@ -28,14 +28,6 @@ public class SplashActivity extends Activity
 	private final String TAG = "SplashActivity";
 	private String RSSNEWSFEEDURL = "http://www.mah.se/Nyheter/RSS/News/";
 	private RSSFeed feed;
-<<<<<<< HEAD
-=======
-	private FileOutputStream fout = null;
-	private ObjectOutputStream out = null;
-	private ArrayList<KronoxCourse> courses;
-	private boolean goToMainActivity = false;
-	private KronoxCourse[] courses_array;
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 
 	/*
 	 * the solution here is (not optimal) but we know that N number of tasks
@@ -46,17 +38,6 @@ public class SplashActivity extends Activity
 	private int downloadTaskCounter;
 	
 	@Override
-<<<<<<< HEAD
-	public void onCreate(Bundle savedInstanceState)
-	{
-		setContentView(R.layout.activity_splash);
-		super.onCreate(savedInstanceState);
-
-		/*
-		 *  Check if there is a user stored
-		 */
-		SharedPreferences sharedPref = getSharedPreferences("userFile", Context.MODE_PRIVATE);
-=======
 	public void onCreate(Bundle savedInstanceState)  {
 		setContentView(R.layout.activity_splash);
 		super.onCreate(savedInstanceState);
@@ -64,7 +45,6 @@ public class SplashActivity extends Activity
 		// Check if there is a user stored
 		SharedPreferences sharedPref = getSharedPreferences("userFile",
 				Context.MODE_PRIVATE);
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 		String userId = sharedPref.getString("user_id", "No user");
 		String userPassword = sharedPref.getString("user_password", "No password");
 		
@@ -115,7 +95,6 @@ public class SplashActivity extends Activity
 	protected void onResume()
 	{
 		super.onResume();
-<<<<<<< HEAD
 
 		downloadTaskCounter = 0;
 		
@@ -161,29 +140,9 @@ public class SplashActivity extends Activity
 		else
 		{
 			downloadTaskCounter += 2;
-=======
-		Log.i("SplashActivity","Ok back in Splash");
-		if (Me.getCourses().isEmpty()){
-			courses = new ArrayList<KronoxCourse>();
-			List<Course> ladokCourses = Me.getCourses();
-			for (Course c : ladokCourses) {
-				String courseId = c.getKronoxCalendarCode();
-				courseId = courseId.substring(2);
-				courses.add(new KronoxCourse(courseId));
-			}
-	
-			courses_array = new KronoxCourse[courses.size()];
-			courses.toArray(courses_array);
-			
-			new FetchCourseName().execute(courses_array);
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 		}
-	
-			//new GetNewsFeed().execute();
-
 	}
 
-<<<<<<< HEAD
 	private class DownloadSchedule extends AsyncTask<KronoxCourse, Void, Void>
 	{
 		private SplashActivity appContext;
@@ -198,35 +157,6 @@ public class SplashActivity extends Activity
 		{
 			try
 			{
-=======
-	private void endThis(){
-		if (courses_array.length != 0) {
-			try {
-				KronoxCalendar.createCalendar(KronoxReader
-						.getFile(getApplicationContext()));
-				Log.i("SplashActivity", "Creating Calender");
-				goToMainActivity = true;  //if there are no courses we stop here
-
-			} catch (Exception e) {
-				new DownloadSchedule().execute(courses_array);
-				Log.i("SplashActivity", "Downloading schedule");
-			}
-
-		} else {
-			Log.i("Get schedule", "No classes");
-			Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-			startActivity(intent);
-			finish();
-		}
-		
-	}
-
-	private class DownloadSchedule extends AsyncTask<KronoxCourse, Void, Void> {
-		@Override
-		protected Void doInBackground(KronoxCourse... courses) {
-			try {
-				Log.i("SplashActivity", "Kronoxdownload started");
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 				KronoxReader.update(getApplicationContext(), courses);
 			}
 			catch (Exception e)
@@ -237,7 +167,6 @@ public class SplashActivity extends Activity
 		}
 
 		@Override
-<<<<<<< HEAD
 		protected void onPostExecute(Void v)
 		{
 			Log.i("DownloadSchedule", "Schedule downloaded");
@@ -256,14 +185,6 @@ public class SplashActivity extends Activity
 			}
 			
 			appContext.taskComplete(this);
-=======
-		protected void onPostExecute(Void _void) {
-			Log.i("SplashActivity", "KronoxSchedule downloaded");
-			Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-			startActivity(intent);
-			finish();
-
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 		}
 	}
 
@@ -277,16 +198,8 @@ public class SplashActivity extends Activity
 		}
 
 		@Override
-<<<<<<< HEAD
-		protected KronoxCourse doInBackground(KronoxCourse... courses)
-		{
-			try
-			{
-=======
 		protected KronoxCourse doInBackground(KronoxCourse... courses) {
 			try {
-				Log.i("SplashActivity", "FetchCourseName started");
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 				return KronoxJSON.getCourse(courses[0].getFullCode());
 			}
 			catch (Exception e)
@@ -297,7 +210,6 @@ public class SplashActivity extends Activity
 		}
 
 		@Override
-<<<<<<< HEAD
 		protected void onPostExecute(KronoxCourse course)
 		{
 			if (course != null)
@@ -310,22 +222,6 @@ public class SplashActivity extends Activity
 			}
 
 			appContext.taskComplete(this);
-=======
-		protected void onPostExecute(KronoxCourse course) {
-			Log.i("SplashActivity", "FetchCourseName stopped");	
-			if (course != null) {
-				SharedPreferences sharedPref = getSharedPreferences("courseName",
-						Context.MODE_PRIVATE);
-				SharedPreferences.Editor editor = sharedPref.edit();
-				editor.putString(course.getFullCode(), course.getName());
-				editor.commit();
-				Log.i("SplashActivity", course.getFullCode());
-				Log.i("SplashActivity", String.format("course:%s,%s",
-						course.getFullCode(), course.getName()));
-				
-			}
-			new GetNewsFeed().execute(); //LH
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 		}
 	}
 
@@ -339,17 +235,10 @@ public class SplashActivity extends Activity
 		}
 
 		@Override
-<<<<<<< HEAD
 		protected Void doInBackground(Void... params)
 		{
 			try
 			{
-=======
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			Log.i("SplashActivity", "GetNewsFeed started");
-			try {
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 				DOMParser myParser = new DOMParser();
 				feed = myParser.parseXml(RSSNEWSFEEDURL);
 			}
@@ -369,21 +258,6 @@ public class SplashActivity extends Activity
 				out.writeObject(feed);
 				out.close();
 				fout.close();
-<<<<<<< HEAD
-=======
-
-			} catch (IOException ioe) {
-
-			} finally {
-				Log.i("SplashActivity", "GetNewsFeed in postexecute and goToMainActivity: "+goToMainActivity);
-				endThis();
-//				if (goToMainActivity == true) {
-//					goToMainActivity = false;
-//					Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//					startActivity(intent);
-//					finish();
-//				}
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 			}
 			catch (Exception e)
 			{
@@ -393,14 +267,11 @@ public class SplashActivity extends Activity
 			appContext.taskComplete(this);
 		}
 	}
-<<<<<<< HEAD
-=======
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		Log.i("SplashActivity", "finish called");
-	
+
 	}
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 }

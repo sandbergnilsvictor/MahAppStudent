@@ -62,7 +62,6 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp" />
 
-<<<<<<< HEAD
     <Button
         android:id="@+id/forgetButton"
         android:layout_width="wrap_content"
@@ -75,7 +74,5 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text="Forget" />
-=======
->>>>>>> c5b89319c20e040eaf8f1ac56b486e22fc4976f3
 
 </RelativeLayout>
