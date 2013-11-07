@@ -30,7 +30,7 @@ public class FragmentITSL extends Fragment implements
 	ActionBar.TabListener
 {
 	private static final String TAG = "FragmentITSL";
-	private static final long UPDATE_INTERVAL = 30000; //every other minute
+	private static final long UPDATE_INTERVAL = 600000; // every ten minute
 	private ActionBar actionBar;
 	private FeedManager feedManager;
 	private ProgressDialog dialog;

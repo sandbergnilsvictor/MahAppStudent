@@ -62,4 +62,17 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp" />
 
+    <Button
+        android:id="@+id/forgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/reloadButton"
+        android:layout_alignBottom="@+id/reloadButton"
+        android:layout_alignLeft="@+id/passWordET"
+        android:background="@color/grey"
+        android:onClick="forgetButtonClicked"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Forget" />
+
 </RelativeLayout>
