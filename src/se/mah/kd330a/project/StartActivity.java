@@ -44,9 +44,16 @@ public class StartActivity extends Activity implements Observer
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
+
+		/*
+		 * a fix for lars' broken code ;(
+		 */
+		if (Me.observable.countObservers() > 0)
+			Me.observable.deleteObservers();
 
 		Me.observable.addObserver(this);
-
+		
 		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
 		username = sharedPref.getString("user_id", "");
 		password = sharedPref.getString("user_password", "");
@@ -68,6 +75,8 @@ public class StartActivity extends Activity implements Observer
 
 	public void loginButtonClicked(View v)
 	{
+		((View) findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
+
 		username = editTextUsername.getText().toString();
 		password = editTextPassword.getText().toString();
 
@@ -90,7 +99,7 @@ public class StartActivity extends Activity implements Observer
 		Me.setPassword(password);
 		Me.updateMe();
 	}
-
+/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -98,7 +107,8 @@ public class StartActivity extends Activity implements Observer
 		getMenuInflater().inflate(R.menu.start, menu);
 		return true;
 	}
-
+*/
+	
 	/*
 	 * Called by "Me" after login button is clicked 
 	 */
@@ -111,7 +121,7 @@ public class StartActivity extends Activity implements Observer
 			return;
 		}
 		Log.i(TAG, "update(): Got callback from Me");
-		
+
 		//Me.observable.deleteObserver(this);
 
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
@@ -142,9 +152,7 @@ public class StartActivity extends Activity implements Observer
 		{
 			try
 			{
-				/*
-				 * Save a rss feed for god knows what reason
-				 */
+				Log.i(TAG, "RSS: Save a rss feed for god knows what reason");
 				DOMParser myParser = new DOMParser();
 				RSSFeed feed = myParser.parseXml(RSSNEWSFEEDURL);
 				FileOutputStream fout = openFileOutput("filename", Context.MODE_PRIVATE);
@@ -160,6 +168,7 @@ public class StartActivity extends Activity implements Observer
 
 			if (!Me.getCourses().isEmpty())
 			{
+				Log.i(TAG, "Kronox: setting up courses");
 				ArrayList<KronoxCourse> courses = new ArrayList<KronoxCourse>();
 
 				for (Course c : Me.getCourses())
@@ -173,6 +182,7 @@ public class StartActivity extends Activity implements Observer
 
 				try
 				{
+					Log.i(TAG, "Kronox: something");
 					KronoxCourse course = KronoxJSON.getCourse(courses_array[0].getFullCode());
 					if (course != null)
 					{
@@ -181,7 +191,7 @@ public class StartActivity extends Activity implements Observer
 						editor.putString(course.getFullCode(), course.getName());
 						editor.commit();
 						Log.i(TAG, String.format("Course: %s, %s", course.getFullCode(), course.getName()));
-						
+
 						try
 						{
 							Log.i(TAG, "Kronox: Creating calendar");
