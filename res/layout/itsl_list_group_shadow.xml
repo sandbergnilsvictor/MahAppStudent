@@ -5,6 +5,12 @@
     android:background="@color/grey_light"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/grey" />
 
     
     <LinearLayout

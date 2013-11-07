@@ -73,7 +73,7 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 		inboxStyle.setSummaryText("Number of updates");
 		
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
-		mBuilder.setSmallIcon(R.drawable.ic_menu_itsl);
+		mBuilder.setSmallIcon(R.drawable.ic_notification_mah);
 		mBuilder.setAutoCancel(true);
 		mBuilder.setContentInfo(Integer.toString(articles.size()));
 		mBuilder.setWhen(System.currentTimeMillis());

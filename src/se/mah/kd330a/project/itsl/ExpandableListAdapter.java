@@ -115,10 +115,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 	{
 		if (!_listDataHeader.isEmpty())
 		{
-			if (convertView == null)
+			if (groupPosition == 0)
 			{
 				LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				convertView = infalInflater.inflate(R.layout.itsl_list_group, null);
+			}
+			
+			else {
+				LayoutInflater infalInflater = (LayoutInflater) this._context
+						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				convertView = infalInflater.inflate(R.layout.itsl_list_group_shadow, null);
 			}
 
 			Article headerTitle = (Article) getGroup(groupPosition);
