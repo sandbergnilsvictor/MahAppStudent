@@ -110,12 +110,14 @@ public class StartActivity extends Activity implements Observer
 			Toast.makeText(this, "Can't log you in", Toast.LENGTH_LONG).show();
 			return;
 		}
+		Log.i(TAG, "update(): Got callback from Me");
+		
 		//Me.observable.deleteObserver(this);
 
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
 		downloads.execute();
 	}
-	
+
 	/**
 	 * When all tasks have completed we can go on to the next activity
 	 */
@@ -129,8 +131,8 @@ public class StartActivity extends Activity implements Observer
 	private class BackgroundDownloadTask extends AsyncTask<Void, Void, Void>
 	{
 		private StartActivity appContext;
-		
-		public BackgroundDownloadTask (StartActivity activity)
+
+		public BackgroundDownloadTask(StartActivity activity)
 		{
 			appContext = activity;
 		}
@@ -140,6 +142,9 @@ public class StartActivity extends Activity implements Observer
 		{
 			try
 			{
+				/*
+				 * Save a rss feed for god knows what reason
+				 */
 				DOMParser myParser = new DOMParser();
 				RSSFeed feed = myParser.parseXml(RSSNEWSFEEDURL);
 				FileOutputStream fout = openFileOutput("filename", Context.MODE_PRIVATE);
@@ -166,23 +171,23 @@ public class StartActivity extends Activity implements Observer
 				KronoxCourse[] courses_array = new KronoxCourse[courses.size()];
 				courses.toArray(courses_array);
 
-				try {
-				KronoxCourse course = KronoxJSON.getCourse(courses_array[0].getFullCode());
-				if (course != null)
+				try
 				{
-					SharedPreferences sp = getSharedPreferences("courseName", Context.MODE_PRIVATE);
-					SharedPreferences.Editor editor = sp.edit();
-					editor.putString(course.getFullCode(), course.getName());
-					editor.commit();
-
-					Log.i(TAG, String.format("Course: %s, %s", course.getFullCode(), course.getName()));
-				}
+					KronoxCourse course = KronoxJSON.getCourse(courses_array[0].getFullCode());
+					if (course != null)
+					{
+						SharedPreferences sp = getSharedPreferences("courseName", Context.MODE_PRIVATE);
+						SharedPreferences.Editor editor = sp.edit();
+						editor.putString(course.getFullCode(), course.getName());
+						editor.commit();
+						Log.i(TAG, String.format("Course: %s, %s", course.getFullCode(), course.getName()));
+					}
 				}
 				catch (Exception e)
 				{
 					Log.e(TAG, e.toString());
 				}
-				
+
 				if (courses_array.length > 0) // 3
 				{
 					try
@@ -205,15 +210,16 @@ public class StartActivity extends Activity implements Observer
 					}
 				}
 			}
-			
+
 			return null;
 		}
+
 		@Override
 		protected void onPostExecute(Void v)
 		{
 			appContext.tasksCompleted();
 		}
-		
+
 	}
 
 	@Override

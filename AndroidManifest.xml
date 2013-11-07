@@ -38,6 +38,15 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="se.mah.kd330a.project.StartActivity"
+            android:label="@string/title_activity_start" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="se.mah.kd330a.project.settings.view.SettingsActivity"
             android:label="@string/title_activity_settings" >
 
@@ -81,15 +90,6 @@
             android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"
             android:label="@string/title_activity_ad_ladok_test"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-        </activity>
-        <activity
-            android:name="se.mah.kd330a.project.StartActivity"
-            android:label="@string/title_activity_start" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
