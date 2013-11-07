@@ -11,30 +11,6 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".TestActivity" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/mah_logotyp_vit" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_centerVertical="true"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="Mah login"
-        android:inputType="textPersonName"
-        android:lines="1"
-        android:padding="8dp" >
-
-        <requestFocus />
-    </EditText>
-
     <EditText
         android:id="@+id/editText2"
         android:layout_width="match_parent"
@@ -84,5 +60,26 @@
         android:layout_below="@+id/linearLayout1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/mah_logotyp_vit" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/imageView1"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="Mah login"
+        android:inputType="textPersonName"
+        android:lines="1"
+        android:padding="8dp" />
 
 </RelativeLayout>

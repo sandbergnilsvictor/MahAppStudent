@@ -47,8 +47,14 @@ public class StartActivity extends Activity implements Observer
 
 		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 
-		Me.observable.addObserver(this);
+		/*
+		 * a fix for lars' broken code ;(
+		 */
+		if (Me.observable.countObservers() > 0)
+			Me.observable.deleteObservers();
 
+		Me.observable.addObserver(this);
+		
 		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
 		username = sharedPref.getString("user_id", "");
 		password = sharedPref.getString("user_password", "");
