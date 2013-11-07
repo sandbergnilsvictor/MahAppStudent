@@ -119,6 +119,8 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
 
+		//if ()
+		
 		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
 			showBuilding(selposFind);
 			//Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();
@@ -196,8 +198,6 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		super.onSaveInstanceState(outState);
 		outState.putInt(FIND_SPINNER_STATE, spin_selected);
 	}
-
-	
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
