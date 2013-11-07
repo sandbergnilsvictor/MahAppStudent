@@ -54,7 +54,7 @@ public class FragmentBuilding extends Fragment implements OnImageLoaderListener 
 		
 		Log.i("project", "FragmentBuilding " + buildingCode);
 		
-		new ImageLoader(getActivity(), this).execute(buildingCode + ".jpg");
+		new ImageLoader(getActivity(), this).execute("b" + buildingCode + ".jpg");
 		
 		LinearLayout llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_floormap);
 		llFloor.setClickable(true);
