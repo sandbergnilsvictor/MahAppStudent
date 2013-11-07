@@ -44,11 +44,6 @@ public class SplashActivity extends Activity{
 	public void onCreate(Bundle savedInstanceState)  {
 		setContentView(R.layout.activity_splash);
 		super.onCreate(savedInstanceState);
-//		Log.i("UserInfo","Antal observers :"+ Me.observable.countObservers());
-//		if (Me.observable.countObservers()>0){
-//			Me.observable.deleteObservers();
-//		}
-//		Me.observable.addObserver(this);
 
 		// Check if there is a user stored
 		SharedPreferences sharedPref = getSharedPreferences("userFile",
@@ -94,23 +89,6 @@ public class SplashActivity extends Activity{
 		}
 	
 			//new GetNewsFeed().execute();
-	
-//			if (courses_array.length != 0) {
-//				try {
-//					KronoxCalendar.createCalendar(KronoxReader
-//							.getFile(getApplicationContext()));
-//					Log.i("SplashActivity", "Creating Calender");
-//					goToMainActivity = true;  //if there are no courses we stop here
-//	
-//				} catch (Exception e) {
-//					new DownloadSchedule().execute(courses_array);
-//					Log.i("SplashActivity", "Downloading schedule");
-//				}
-//	
-//			} else {
-//				Log.i("Get schedule", "No classes");
-//			}
-//		}
 
 	}
 
@@ -135,41 +113,6 @@ public class SplashActivity extends Activity{
 		}
 		
 	}
-//	@Override
-//	public void update(Observable observable, Object data) {
-//		
-//		courses = new ArrayList<KronoxCourse>();
-//		List<Course> ladokCourses = Me.getCourses();
-//		for (Course c : ladokCourses) {
-//			String courseId = c.getKronoxCalendarCode();
-//			courseId = courseId.substring(2);
-//			courses.add(new KronoxCourse(courseId));
-//		}
-//
-//		KronoxCourse[] courses_array = new KronoxCourse[courses.size()];
-//		courses.toArray(courses_array);
-//		
-//		new FetchCourseName().execute(courses_array);
-//
-//		new GetNewsFeed().execute();
-//
-//		if (courses_array.length != 0) {
-//			try {
-//				KronoxCalendar.createCalendar(KronoxReader
-//						.getFile(getApplicationContext()));
-//				Log.i("SplashActivity", "Creating Calender");
-//				goToMainActivity = true;
-//
-//			} catch (Exception e) {
-//				new DownloadSchedule().execute(courses_array);
-//				Log.i("SplashActivity", "Downloading schedule");
-//			}
-//
-//		} else {
-//			Log.i("Get schedule", "No classes");
-//		}
-//
-//	}
 
 	private class DownloadSchedule extends AsyncTask<KronoxCourse, Void, Void> {
 		@Override
