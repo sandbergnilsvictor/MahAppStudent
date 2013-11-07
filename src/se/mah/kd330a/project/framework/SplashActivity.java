@@ -37,10 +37,11 @@ public class SplashActivity extends Activity{
 	private ObjectOutputStream out = null;
 	private ArrayList<KronoxCourse> courses;
 	private boolean goToMainActivity = false;
+	private KronoxCourse[] courses_array;
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState)  {
 		setContentView(R.layout.activity_splash);
 		super.onCreate(savedInstanceState);
 //		Log.i("UserInfo","Antal observers :"+ Me.observable.countObservers());
@@ -76,6 +77,7 @@ public class SplashActivity extends Activity{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		Log.i("SplashActivity","Ok back in Splash");
 		if (Me.getCourses().isEmpty()){
 			courses = new ArrayList<KronoxCourse>();
 			List<Course> ladokCourses = Me.getCourses();
@@ -85,32 +87,54 @@ public class SplashActivity extends Activity{
 				courses.add(new KronoxCourse(courseId));
 			}
 	
-			KronoxCourse[] courses_array = new KronoxCourse[courses.size()];
+			courses_array = new KronoxCourse[courses.size()];
 			courses.toArray(courses_array);
 			
 			new FetchCourseName().execute(courses_array);
-	
-			new GetNewsFeed().execute();
-	
-			if (courses_array.length != 0) {
-				try {
-					KronoxCalendar.createCalendar(KronoxReader
-							.getFile(getApplicationContext()));
-					Log.i("SplashActivity", "Creating Calender");
-					goToMainActivity = true;
-	
-				} catch (Exception e) {
-					new DownloadSchedule().execute(courses_array);
-					Log.i("SplashActivity", "Downloading schedule");
-				}
-	
-			} else {
-				Log.i("Get schedule", "No classes");
-			}
 		}
+	
+			//new GetNewsFeed().execute();
+	
+//			if (courses_array.length != 0) {
+//				try {
+//					KronoxCalendar.createCalendar(KronoxReader
+//							.getFile(getApplicationContext()));
+//					Log.i("SplashActivity", "Creating Calender");
+//					goToMainActivity = true;  //if there are no courses we stop here
+//	
+//				} catch (Exception e) {
+//					new DownloadSchedule().execute(courses_array);
+//					Log.i("SplashActivity", "Downloading schedule");
+//				}
+//	
+//			} else {
+//				Log.i("Get schedule", "No classes");
+//			}
+//		}
 
 	}
 
+	private void endThis(){
+		if (courses_array.length != 0) {
+			try {
+				KronoxCalendar.createCalendar(KronoxReader
+						.getFile(getApplicationContext()));
+				Log.i("SplashActivity", "Creating Calender");
+				goToMainActivity = true;  //if there are no courses we stop here
+
+			} catch (Exception e) {
+				new DownloadSchedule().execute(courses_array);
+				Log.i("SplashActivity", "Downloading schedule");
+			}
+
+		} else {
+			Log.i("Get schedule", "No classes");
+			Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+			startActivity(intent);
+			finish();
+		}
+		
+	}
 //	@Override
 //	public void update(Observable observable, Object data) {
 //		
@@ -151,6 +175,7 @@ public class SplashActivity extends Activity{
 		@Override
 		protected Void doInBackground(KronoxCourse... courses) {
 			try {
+				Log.i("SplashActivity", "Kronoxdownload started");
 				KronoxReader.update(getApplicationContext(), courses);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -160,7 +185,7 @@ public class SplashActivity extends Activity{
 
 		@Override
 		protected void onPostExecute(Void _void) {
-			Log.i("DownloadSchedule", "Schedule downloaded");
+			Log.i("SplashActivity", "KronoxSchedule downloaded");
 			Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 			startActivity(intent);
 			finish();
@@ -174,6 +199,7 @@ public class SplashActivity extends Activity{
 		@Override
 		protected KronoxCourse doInBackground(KronoxCourse... courses) {
 			try {
+				Log.i("SplashActivity", "FetchCourseName started");
 				return KronoxJSON.getCourse(courses[0].getFullCode());
 			}
 			 catch (IOException e1) {
@@ -191,18 +217,19 @@ public class SplashActivity extends Activity{
 
 		@Override
 		protected void onPostExecute(KronoxCourse course) {
-
+			Log.i("SplashActivity", "FetchCourseName stopped");	
 			if (course != null) {
 				SharedPreferences sharedPref = getSharedPreferences("courseName",
 						Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putString(course.getFullCode(), course.getName());
 				editor.commit();
-				Log.i("courseCode", course.getFullCode());
-				Log.i("FetchCourseName", String.format("course:%s,%s",
+				Log.i("SplashActivity", course.getFullCode());
+				Log.i("SplashActivity", String.format("course:%s,%s",
 						course.getFullCode(), course.getName()));
 				
 			}
+			new GetNewsFeed().execute(); //LH
 		}
 	}
 
@@ -211,6 +238,7 @@ public class SplashActivity extends Activity{
 		@Override
 		protected String[] doInBackground(Void... params) {
 			// Simulates a background job.
+			Log.i("SplashActivity", "GetNewsFeed started");
 			try {
 				DOMParser myParser = new DOMParser();
 				feed = myParser.parseXml(RSSNEWSFEEDURL);
@@ -233,12 +261,14 @@ public class SplashActivity extends Activity{
 			} catch (IOException ioe) {
 
 			} finally {
-				if (goToMainActivity == true) {
-					goToMainActivity = false;
-					Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-					startActivity(intent);
-					finish();
-				}
+				Log.i("SplashActivity", "GetNewsFeed in postexecute and goToMainActivity: "+goToMainActivity);
+				endThis();
+//				if (goToMainActivity == true) {
+//					goToMainActivity = false;
+//					Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//					startActivity(intent);
+//					finish();
+//				}
 			}
 		}
 	}
@@ -246,7 +276,7 @@ public class SplashActivity extends Activity{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.i("Splash", "finish called");
+		Log.i("SplashActivity", "finish called");
 	
 	}
 }
