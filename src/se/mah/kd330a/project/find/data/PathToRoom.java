@@ -25,7 +25,7 @@ public class PathToRoom {
 		String[] strPath = pathString.split("_");
 
 		for(String str: strPath)
-			mPath.add(str);
+			mPath.add(str + ".jpg");
 	}
 
 	public List<String> getPath() {

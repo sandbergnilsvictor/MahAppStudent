@@ -4,17 +4,23 @@ import java.util.ArrayList;
 
 import android.widget.ExpandableListView;
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.RoomDbHandler;
+import se.mah.kd330a.project.find.view.FragmentResult;
 import se.mah.kd330a.project.schedule.model.ScheduleItem;
 import se.mah.kd330a.project.schedule.model.ScheduleWeek;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class FragmentScheduleWeek extends Fragment {
@@ -59,6 +65,7 @@ public class FragmentScheduleWeek extends Fragment {
 
 		return rootView;
 	}
+
 
 	public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
