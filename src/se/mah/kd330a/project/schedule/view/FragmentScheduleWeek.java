@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.widget.ExpandableListView;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.data.RoomDbHandler;
+import se.mah.kd330a.project.find.view.FragmentFloorMap;
 import se.mah.kd330a.project.find.view.FragmentResult;
 import se.mah.kd330a.project.schedule.model.ScheduleItem;
 import se.mah.kd330a.project.schedule.model.ScheduleWeek;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FragmentScheduleWeek extends Fragment {
 
@@ -70,7 +72,8 @@ public class FragmentScheduleWeek extends Fragment {
 	public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
 		String lastDate = null;
-
+		String location;
+		
 		@Override
 		public int getGroupCount() {
 			return _scheduleWeek.getScheduleItems().size();
@@ -175,15 +178,73 @@ public class FragmentScheduleWeek extends Fragment {
 				convertView = infalInflater.inflate(
 						R.layout.schedule_list_item, null);
 			}
-
+			
+			ScheduleItem currentSI = (ScheduleItem) getGroup(groupPosition);
+			location = currentSI.getRoomCode();
+			
 			TextView lector = (TextView) convertView
 					.findViewById(R.id.list_course_child_lector);
-
+			Button btnFind = (Button) convertView.findViewById(R.id.findButton);
+			btnFind.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					try {
+						String[] locs = location.split(" ");
+						Log.i("UserInfo", "Button Find click" + locs[0]);
+						RoomDbHandler dbHandler = new RoomDbHandler(getActivity());
+						if (dbHandler.isRoomExists(locs[0])) {
+							startNavigation(locs[0]);
+						}
+						else if (dbHandler.isRoomExistsAll(locs[0])) {
+							//go to floor maps
+							showFloorMap(dbHandler.getMapName());
+							//Toast.makeText(getActivity(), "floorMapCode: "+dbHandler.getMapName(), Toast.LENGTH_LONG).show();
+						}
+						else
+							Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
+					}
+					catch (Exception e) {
+						
+					}
+				}
+			});
 			lector.setText(childTexts.get(0));
 
 			return convertView;
 		}
+		
+		private void startNavigation(String roomNr) {
 
+			Fragment fragment = new FragmentResult();
+			Bundle args = new Bundle();
+			args.putString(FragmentResult. ARG_ROOMNR, roomNr);
+			//args.putInt(FragmentResult.ARG_BUILDINGPOS, spin_selected);
+			fragment.setArguments(args);
+
+			FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+			FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+			fragmentTrans.replace(R.id.content_frame, fragment);
+			fragmentTrans.addToBackStack(null);
+			fragmentTrans.commit();
+		}
+		
+		private void showFloorMap(String floorMapCode) {
+			Fragment fragment = new FragmentFloorMap();
+			Bundle args = new Bundle();
+			args.putString(FragmentFloorMap.ARG_FLOORMAP, floorMapCode);
+			fragment.setArguments(args);
+
+			FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+			FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+			fragmentTrans.replace(R.id.content_frame, fragment);
+			fragmentTrans.addToBackStack(null);
+			fragmentTrans.commit();		
+		}
+		
 		@Override
 		public boolean isChildSelectable(int i, int i1) {
 			return true;
