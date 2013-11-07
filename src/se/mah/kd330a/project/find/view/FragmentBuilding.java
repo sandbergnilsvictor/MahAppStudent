@@ -2,7 +2,9 @@ package se.mah.kd330a.project.find.view;
 
 import java.util.Arrays;
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
 import se.mah.kd330a.project.find.data.ImageLoader;
+import se.mah.kd330a.project.find.data.ImageLoader.OnImageLoaderListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class FragmentBuilding extends Fragment {
+public class FragmentBuilding extends Fragment implements OnImageLoaderListener {
 	public static final String ARG_BUILDING = "building";
 	private String buildingCode;
 	
@@ -43,8 +45,7 @@ public class FragmentBuilding extends Fragment {
 		
 		Log.i("project", "FragmentBuilding " + buildingCode);
 	
-		ImageView imgBuilding = (ImageView) getView().findViewById(R.id.img_find_navigation);
-		new ImageLoader(getActivity(), imgBuilding).execute(buildingCode + ".jpg");
+		new ImageLoader(getActivity(), this).execute(buildingCode + ".jpg");
 		
 		LinearLayout llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_floormap);
 		llFloor.setClickable(true);
@@ -85,5 +86,11 @@ public class FragmentBuilding extends Fragment {
 
 				startActivity(i);
 			}});
+	}
+
+	@Override
+	public void onImageReceived(String fileName) {
+		ImageView imgNav = (ImageView) getView().findViewById(R.id.img_find_navigation);
+		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));	
 	}
 }

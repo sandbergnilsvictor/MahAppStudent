@@ -1,7 +1,9 @@
 package se.mah.kd330a.project.find.view;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
 import se.mah.kd330a.project.find.data.ImageLoader;
+import se.mah.kd330a.project.find.data.ImageLoader.OnImageLoaderListener;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -11,10 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-public class FragmentStep extends Fragment {
+public class FragmentStep extends Fragment implements OnImageLoaderListener {
 	public static final String ARG_PICNAME = "pic";
 	public static final String ARG_TEXTTITLE = "title";
 	public static final String ARG_TEXTCONTENT = "content";
@@ -37,6 +40,11 @@ public class FragmentStep extends Fragment {
 		mRoomNumber = args.getString(ARG_TEXTTITLE);
 		mContentId = args.getString(ARG_TEXTCONTENT);
 		
+	/*	ImageView imgNav = (ImageView) rootView.findViewById(R.id.img_find_navigation);
+		imgNav.setVisibility(View.INVISIBLE);
+		ProgressBar prgBar = (ProgressBar) rootView.findViewById(R.id.pb_find_loading);
+		prgBar.setVisibility(View.VISIBLE);*/
+		
 		String txt = getString(R.string.find_navigationTitle) + " " + mRoomNumber;
 		((TextView) rootView.findViewById(R.id.text_find_navigationTitle))
 				.setText(txt);
@@ -50,7 +58,7 @@ public class FragmentStep extends Fragment {
 			strDown = -1;
 			e.printStackTrace();
 		}
-		new ImageLoader(getActivity(), (ImageView) rootView.findViewById(R.id.img_find_navigation)).execute(mImgName);
+		new ImageLoader(getActivity(), this).execute(mImgName);
 
 		((ImageView) rootView.findViewById(R.id.img_find_arrows))
 				.setImageDrawable(loadImage(mArrowName));
@@ -68,6 +76,15 @@ public class FragmentStep extends Fragment {
 			e.printStackTrace();
 		}
 		return buffer;
+	}
+
+	@Override
+	public void onImageReceived(String fileName) {
+		//ProgressBar prgBar = (ProgressBar) getView().findViewById(R.id.pb_find_loading);
+		//prgBar.setVisibility(View.INVISIBLE);
+		ImageView imgNav = (ImageView) getView().findViewById(R.id.img_find_navigation);
+		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));
+		//imgNav.setVisibility(View.VISIBLE);
 	}
 
 }
