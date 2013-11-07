@@ -12,6 +12,8 @@
         <item name="android:textSelectHandleRight">@drawable/text_handle_right</item>
         <item name="android:textColorHighlight">@color/red_mah_transparent</item>
         <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:spinnerStyle">@style/mahSpinnerStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerItemStyle</item>
     </style>
 
     <style name="mah_button_red">
@@ -41,5 +43,12 @@
     <item name="android:paddingLeft">2dp</item>
     <item name="android:paddingRight">2dp</item>
 </style>
+
+    <style name="mahSpinnerStyle" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/mah_spinner_background</item>
+    </style>
+    <style name="spinnerItemStyle">
+        <item name="android:background">@drawable/mah_spinner_item_background</item>
+    </style>
 
 </resources>
