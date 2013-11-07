@@ -39,7 +39,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 
 	private String selposFind = null;
 	private int spin_selected = -1;
-
+	private Spinner spinnerFind;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 	public void onStart() {
 		super.onStart();
 		
-		Spinner spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
+		spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
 				.createFromResource(getActivity(), R.array.find_building_array,
 						android.R.layout.simple_spinner_item);
@@ -119,8 +119,10 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
 
-		//if ()
-		
+		if (spinnerFind.getSelectedItemPosition() < 1) {
+			Toast.makeText(getActivity(), getString(R.string.find_no_building_selected), Toast.LENGTH_LONG).show();
+			return;
+		}
 		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
 			showBuilding(selposFind);
 			//Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();

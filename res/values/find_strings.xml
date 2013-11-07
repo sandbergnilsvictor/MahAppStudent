@@ -79,5 +79,6 @@
     <string name="find_menu_floormap">Floor map</string>
     <string name="find_building_search_tip">You can search for the building itself by leaving the room name empty.</string>
     <string name="find_db_error">Room does not exist in the database!</string>
-
+	<string name="find_no_building_selected">No building is selected!</string>
+	
 </resources>
