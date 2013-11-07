@@ -74,7 +74,11 @@ public class ParseData {
 		ArrayList<ScheduleItem> thisWeekList = new ArrayList<ScheduleItem>();
 		Collection<?> kronox_events = KronoxCalendar
 				.getWeeksEventsFromThisWeek(weekFromThisWeek);
-		Log.i("Schedule", "How many did we find?: " + kronox_events.size());
+		if (kronox_events!=null){
+			Log.i("Schedule", "How many did we find?: " + kronox_events.size());
+		}else{
+			Log.i("Schedule", "No events i calendar");
+		}
 		// Here we only take seven days from today this should be calculated
 		// from the monday this should be done in
 		// KronoxCalendar.sevenDaysEvents()

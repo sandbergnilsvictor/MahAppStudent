@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@color/white"
-        android:orientation="vertical" >
-
+        android:orientation="vertical">
+   <!-- test Linda -->
         <TextView
             android:id="@+id/text_find_startTitle"
             android:layout_width="match_parent"
@@ -48,7 +48,17 @@
             android:prompt="@string/find_spinerHint_building"
             android:textSize="14sp" />
 
-        <EditText
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_building_search_tip"
+            android:textSize="12sp" 
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+
+        <AutoCompleteTextView
             android:id="@+id/editText_find_room"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -56,9 +66,11 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:hint="@string/find_editTextHint_room"
-            android:textSize="14sp"
-            android:maxLines="1"
+            android:imeOptions="actionGo"
+            android:inputType="text"
             android:maxLength="7"
+            android:maxLines="1"
+            android:textSize="14sp"
             />
 
         <View

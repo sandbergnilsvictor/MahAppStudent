@@ -118,7 +118,11 @@ public class KronoxCalendar {
 		Period period = new Period(new DateTime(thisMonday.getTime()), seven_days);
 		rules[0] = new PeriodRule(period);
 		Filter filter = new Filter(rules, Filter.MATCH_ANY);
-		return filter.filter(calendar.getComponents(Component.VEVENT));
+		if (calendar!=null){
+			return filter.filter(calendar.getComponents(Component.VEVENT));
+		}else{
+			return null;
+		}
 	}
 }
 // MATCH_ALL - all rules must be matched

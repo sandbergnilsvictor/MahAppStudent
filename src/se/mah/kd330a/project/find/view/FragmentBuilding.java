@@ -1,10 +1,11 @@
 package se.mah.kd330a.project.find.view;
 
 import java.util.Arrays;
-
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
+import se.mah.kd330a.project.find.data.ImageLoader;
+import se.mah.kd330a.project.find.data.ImageLoader.OnImageLoaderListener;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class FragmentBuilding extends Fragment {
+public class FragmentBuilding extends Fragment implements OnImageLoaderListener {
 	public static final String ARG_BUILDING = "building";
 	private String buildingCode;
 	
@@ -37,15 +38,14 @@ public class FragmentBuilding extends Fragment {
 		
 		buildingCode = args.getString(ARG_BUILDING);
 		String[] buildings = getResources().getStringArray(R.array.find_building_code_array);
-		int pos = Arrays.asList(buildings).indexOf(buildingCode);
+		final int pos = Arrays.asList(buildings).indexOf(buildingCode);
 		
 		buildings = getResources().getStringArray(R.array.find_building_array);
 		((TextView) getView().findViewById(R.id.text_find_startTitle)).setText(buildings[pos]);
 		
 		Log.i("project", "FragmentBuilding " + buildingCode);
 	
-		ImageView imgBuilding = (ImageView) getView().findViewById(R.id.img_find_navigation);
-		imgBuilding.setImageDrawable(loadImage(buildingCode));
+		new ImageLoader(getActivity(), this).execute(buildingCode + ".jpg");
 		
 		LinearLayout llFloor = (LinearLayout) getView().findViewById(R.id.ll_find_floormap);
 		llFloor.setClickable(true);
@@ -53,9 +53,9 @@ public class FragmentBuilding extends Fragment {
 			@Override
 			public void onClick(View view) {
 				Fragment fragment = new FragmentFloorMap();
-				//Bundle args = new Bundle();
-				//args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
-				//fragment.setArguments(args);
+				Bundle args = new Bundle();
+				args.putString(FragmentBuilding.ARG_BUILDING, buildingCode);
+				fragment.setArguments(args);
 
 				FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
 
@@ -72,29 +72,25 @@ public class FragmentBuilding extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				//get location from previous fragment (position)
-				int position = 1;
-				String location = "Kranen";
+				String[] buildingNames = getResources().getStringArray(R.array.find_building_array);
+				String location = buildingNames[pos];
+
+				if(location.equals("Klerken (Kl)"))
+					location = "Jan Waldenstroms gata 25";
+				else if(location.equals("University Hospital (Hs)"))
+					location = "Carl Gustafs vag 34";
+
 				//getting the google map
-				Intent i = new 
-						Intent(android.content.Intent.ACTION_VIEW,
-							//	Uri.parse("geo:37.827500,-122.481670"));
-								Uri.parse("geo:0,0?q="+location+"+Malmš+Sweden"));
+				Intent i = new Intent(android.content.Intent.ACTION_VIEW,
+						Uri.parse("geo:0,0?q="+location+"+Malmo+Sweden"));
 
 				startActivity(i);
 			}});
 	}
-	
-	private Drawable loadImage(String pic) {
-		Drawable buffer = null;
-		try {
-			buffer = getResources().getDrawable(getResources()
-					.getIdentifier(pic, "drawable", getActivity().getPackageName()));
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return buffer;
+
+	@Override
+	public void onImageReceived(String fileName) {
+		ImageView imgNav = (ImageView) getView().findViewById(R.id.img_find_navigation);
+		imgNav.setImageBitmap(GetImage.getImageFromLocalStorage(fileName, getActivity()));	
 	}
 }

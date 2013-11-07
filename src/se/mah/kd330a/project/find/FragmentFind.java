@@ -4,6 +4,7 @@ package se.mah.kd330a.project.find;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.data.RoomDbHandler;
 import se.mah.kd330a.project.find.view.FragmentBuilding;
+import se.mah.kd330a.project.find.view.FragmentFloorMap;
 import se.mah.kd330a.project.find.view.FragmentResult;
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,29 +12,38 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
 import android.util.Log;
+//import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 //import android.widget.Toast;
+import android.widget.TextView.OnEditorActionListener;
+import android.database.Cursor;
 
-
-public class FragmentFind extends Fragment {
+public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 
 	private static final String FIND_SPINNER_STATE = "spinChoice";
 
-	String selposFind = null;
-	int spin_selected = -1;
+	private String selposFind = null;
+	private int spin_selected = -1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getLoaderManager().initLoader(1, null, this);
 	}
 
 	@Override
@@ -47,8 +57,6 @@ public class FragmentFind extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		
-		Log.i("project", "onStart");
 		
 		Spinner spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
@@ -89,12 +97,24 @@ public class FragmentFind extends Fragment {
 				find_button_navigation(view);
 			}
 		});
+		
+		AutoCompleteTextView etRoomNr = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
+		etRoomNr.setOnEditorActionListener(new OnEditorActionListener() {
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if(actionId == EditorInfo.IME_ACTION_GO){
+					find_button_navigation(v);
+				}
+				return false;
+			}		
+		});
 	}
 
 	public void find_button_navigation(View v) {
 
 		// ---get the EditText view---
-		EditText txt_room_code = (EditText) getView().findViewById(R.id.editText_find_room);
+		AutoCompleteTextView txt_room_code = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
 		// ---set the data to pass---
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
@@ -107,15 +127,37 @@ public class FragmentFind extends Fragment {
 			dbHandler = new RoomDbHandler(getActivity());
 
 			if (dbHandler.isRoomExists(roomNr)) {
-
 				startNavigation(roomNr);
+				Log.i("test11", "roomNr: "+dbHandler.getRoomNr());
+				Log.i("test11", "path: "+dbHandler.getPathImg().toString());
+				Log.i("test11", "map: "+dbHandler.getMapName());
 
 			}
+			else if (dbHandler.isRoomExistsAll(roomNr)) {
+				//go to floor maps
+				showFloorMap(dbHandler.getMapName());
+				//Toast.makeText(getActivity(), "floorMapCode: "+dbHandler.getMapName(), Toast.LENGTH_LONG).show();
+			}
+			else
+				Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
 		}
 		//Hiding the keyboard
-
 		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+	}
+
+	private void showFloorMap(String floorMapCode) {
+		Fragment fragment = new FragmentFloorMap();
+		Bundle args = new Bundle();
+		args.putString(FragmentFloorMap.ARG_FLOORMAP, floorMapCode);
+		fragment.setArguments(args);
+
+		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
+
+		FragmentTransaction fragmentTrans = fragmentManager.beginTransaction();	
+		fragmentTrans.replace(R.id.content_frame, fragment);
+		fragmentTrans.addToBackStack(null);
+		fragmentTrans.commit();		
 	}
 
 	private void showBuilding(String buildingCode) {
@@ -137,7 +179,8 @@ public class FragmentFind extends Fragment {
 
 		Fragment fragment = new FragmentResult();
 		Bundle args = new Bundle();
-		args.putString(FragmentResult.FIND_EXTRA_ROOMNR, roomNr);
+		args.putString(FragmentResult. ARG_ROOMNR, roomNr);
+		args.putInt(FragmentResult.ARG_BUILDINGPOS, spin_selected);
 		fragment.setArguments(args);
 
 		FragmentManager	 fragmentManager = getActivity().getSupportFragmentManager();
@@ -149,18 +192,13 @@ public class FragmentFind extends Fragment {
 	}
 
 	@Override
-	public void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-
-	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(FIND_SPINNER_STATE, spin_selected);
 	}
 
+	
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		//Log.i("project", "onActivityCreated");
@@ -171,6 +209,24 @@ public class FragmentFind extends Fragment {
 			spin_selected = savedInstanceState.getInt(FIND_SPINNER_STATE);
 		}
 
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
