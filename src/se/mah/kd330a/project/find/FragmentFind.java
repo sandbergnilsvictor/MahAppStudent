@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
+import android.util.Log;
 //import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -117,7 +118,6 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		// ---set the data to pass---
 		RoomDbHandler dbHandler;
 		String roomNr = selposFind + txt_room_code.getText().toString();
-		String floorMapCode = selposFind + "_" + txt_room_code.getText().toString();
 
 		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
 			showBuilding(selposFind);
@@ -126,19 +126,22 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		if (roomNr.length() > 2) {
 			dbHandler = new RoomDbHandler(getActivity());
 
-			if (dbHandler.isRoomExistsNavigation(roomNr)) {
+			if (dbHandler.isRoomExists(roomNr)) {
 				startNavigation(roomNr);
+				Log.i("test11", "roomNr: "+dbHandler.getRoomNr());
+				Log.i("test11", "path: "+dbHandler.getPathImg().toString());
+				Log.i("test11", "map: "+dbHandler.getMapName());
+
 			}
-			else if (dbHandler.isRoomExists(roomNr)) {
+			else if (dbHandler.isRoomExistsAll(roomNr)) {
 				//go to floor maps
-				showFloorMap(floorMapCode);
-				Toast.makeText(getActivity(), "go to floor maps; roomNr: "+roomNr, Toast.LENGTH_LONG).show();
+				showFloorMap(dbHandler.getMapName());
+				//Toast.makeText(getActivity(), "floorMapCode: "+dbHandler.getMapName(), Toast.LENGTH_LONG).show();
 			}
 			else
 				Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
 		}
 		//Hiding the keyboard
-
 		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 	}

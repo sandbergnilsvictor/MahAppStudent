@@ -4,17 +4,26 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.ImageView;
 
 public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
 	Context mContext;
 	String mLoadingFile;
-	ImageView mImagePlace;
+	OnImageLoaderListener mListener;
 	
-	public ImageLoader(Context context, ImageView imagePlace) {
+	public interface OnImageLoaderListener {
+		public void onImageReceived(String fileName);
+	}
+	
+	public ImageLoader(Context context, Fragment frag) {
 		mContext = context;
-		mImagePlace = imagePlace;
+		try {
+			mListener = (OnImageLoaderListener) frag;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(frag.toString()
+					+ " must implement OnImageLoaderListener");
+		}
 	}
 	
 	@Override
@@ -30,34 +39,10 @@ public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
 	@Override
 	protected void onPostExecute(Bitmap result) {
 		if (result != null)
-			mImagePlace.setImageBitmap(result);
+			mListener.onImageReceived(mLoadingFile);
    	 
 		super.onPostExecute(result);
 	}
-	
-	
-	
-	
-	
-	/*Context mContext;
-	String mLoadingFile;
-	
-	public ImageLoader(Context context) {
-		super(context);
-		
-		mContext = getContext();
-		//mLoadingFile = imgFile;
-	}
-
-	@Override
-	public Bitmap loadInBackground() {
-		if (!GetImage.doesFileExists(mLoadingFile, mContext)){
-			Log.i("project", "DownloadFilesTask " + mLoadingFile);
-			GetImage.getImageFromNet(mLoadingFile, true, mContext);		
-		}
-		return GetImage.getImageFromLocalStorage(mLoadingFile, mContext);
-		
-	}	*/
 
 }
 

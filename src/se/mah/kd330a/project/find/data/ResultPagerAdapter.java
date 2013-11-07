@@ -33,8 +33,11 @@ public class ResultPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		if (mRoomDetails != null)
+		Log.i("test", "mRoomDetails: "+mRoomDetails);
+		if (mRoomDetails != null){
+			Log.i("test22", "mRoomDetails:"+mRoomDetails.mPath.toString());
 			return mRoomDetails.getPath().size();
+		}
 		else
 			return 0;
 	}
