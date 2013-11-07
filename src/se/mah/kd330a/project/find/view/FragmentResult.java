@@ -57,7 +57,6 @@ public class FragmentResult extends Fragment {
 	};
 
 	@Override
-
 	public void onCreate(Bundle savedInstanceState) {
 		Log.i("project", "onCreate " + mSelectedTab);
 		super.onCreate(savedInstanceState);
@@ -138,6 +137,9 @@ public class FragmentResult extends Fragment {
 			radioB = (RadioButton) getView().findViewWithTag(mSelectedTab); 
 			radioB.setChecked(true);
 			mViewPager.setCurrentItem(Integer.parseInt(radioB.getTag().toString()));
+			String txt = (String) getResources().getText(R.string.text_find_indicator_steps) 
+					+ " " + (mSelectedTab + 1) + "/" + radioG.getChildCount();
+			((TextView) getView().findViewById(R.id.text_find_indicator_steps)).setText(txt);
 		}
 	}
 
