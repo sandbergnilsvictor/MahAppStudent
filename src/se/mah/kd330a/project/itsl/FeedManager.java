@@ -101,7 +101,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
 
 		if (downloadTask.hasException())
 		{
@@ -153,7 +154,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 */
 			Log.i(TAG, "downloading complete, # articles: " + this.articleList.size());
 
-			callbackHandler.onFeedManagerDone(this, getArticles());
+			if (callbackHandler != null)
+				callbackHandler.onFeedManagerDone(this, getArticles());
 		}
 	}
 
@@ -173,7 +175,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
 
 		/* 
 		 * there can only be one task at any time and it can only be used once
@@ -240,7 +243,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		 */
 		Log.i(TAG, "load from cache done: " + this.articleList.size());
 
-		callbackHandler.onFeedManagerDone(this, getArticles());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerDone(this, getArticles());
 		
 		return returnValue;
 	}

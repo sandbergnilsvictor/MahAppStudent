@@ -19,7 +19,6 @@
         <item>@drawable/ic_menu_faq</item>
         <item>@drawable/ic_menu_help</item>
     </string-array>
-    
     <string-array name="menu_colors">
         <item>@drawable/menuitem_1</item>
         <item>@drawable/menuitem_2</item>
@@ -28,7 +27,6 @@
         <item>@drawable/menuitem_5</item>
         <item>@drawable/menuitem_6</item>
     </string-array>
-
     <string-array name="faqOptions">
         <item>"IT Support"</item>
         <item>"Housing in Malmo"</item>
@@ -175,5 +173,6 @@
     <string name="coma">,</string>
     <string name="title_activity_test_get_image">TestGetImageActivity</string>
     <string name="logo_description">Logo of Malmö Högskola</string>
+    <string name="title_activity_start">Login</string>
 
 </resources>
