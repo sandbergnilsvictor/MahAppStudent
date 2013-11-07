@@ -1,4 +1,6 @@
 package se.mah.kd330a.project.schedule.data;
+
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,10 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import android.content.Context;
+import android.util.Log;
 public class KronoxReader {
 	private final static String LOCAL_FILENAME = "courses.ical";
-	private final static String LENGTH_UNIT = "v"; // d=days, v=weeks, m=months
-	private final static int LENGTH = 2;
+	private final static String LENGTH_UNIT = "m"; // d=days, v=weeks, m=months
+	private final static int LENGTH = 6;
 	// We will need to be consistent here, since the _tags_ in the summary field
 	// are language dependent!
 	private final static String LANGUAGE = "EN";
@@ -28,8 +31,9 @@ public class KronoxReader {
 			kurser += String.format("k.%s-%%2C", course.getFullCode());
 		}
 		String url = "http://schema.mah.se/setup/jsp/SchemaICAL.ics";
-		url += String.format("?startDatum=idag&intervallTyp=%s&intervallAntal=%d",
-		                     LENGTH_UNIT, LENGTH);
+		//url += String.format("?startDatum=idag&intervallTyp=%s&intervallAntal=%d",LENGTH_UNIT, LENGTH);
+		//ToDo hardcoded startdate 
+		url += String.format("?startDatum=2013-08-01&intervallTyp=%s&intervallAntal=%d",LENGTH_UNIT, LENGTH);
 		url += "&sprak=" + LANGUAGE;
 		url += "&sokMedAND=false";
 		url += "&resurser=" + kurser;
@@ -47,10 +51,10 @@ public class KronoxReader {
 	 */
 	public static void update(Context ctx, KronoxCourse[] courses) throws IOException {
 		URL url = new URL(KronoxReader.generateURL(courses));
+		Log.i("Schedule", KronoxReader.generateURL(courses));
 		InputStream is = url.openStream();
 		DataInputStream dis = new DataInputStream(is);
-		FileOutputStream fos = ctx.openFileOutput(KronoxReader.LOCAL_FILENAME,
-		                                          Context.MODE_PRIVATE);
+		FileOutputStream fos = ctx.openFileOutput(KronoxReader.LOCAL_FILENAME,Context.MODE_PRIVATE);
 		byte[] buffer = new byte[4096];
 		int length;
 		while((length = dis.read(buffer)) > 0) {
