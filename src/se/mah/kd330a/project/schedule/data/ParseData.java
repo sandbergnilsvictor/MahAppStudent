@@ -78,7 +78,6 @@ public class ParseData {
 		displayedWeek=calendarForWeek.get(Calendar.WEEK_OF_YEAR)+weekFromThisWeek-1;
 		scheduleWeek.setWeekNumber(displayedWeek % 52 +1);
 
-		scheduleWeek.setWeekNumber(54+weekFromThisWeek);
 		ArrayList<ScheduleItem> thisWeekList = new ArrayList<ScheduleItem>();
 		Collection<?> kronox_events = KronoxCalendar
 				.getWeeksEventsFromThisWeek(weekFromThisWeek);
