@@ -4,6 +4,8 @@ package se.mah.kd330a.project.schedule.data;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
+
+import android.util.Log;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.filter.Filter;
@@ -32,16 +34,26 @@ public class KronoxCalendar {
 	}
 	
 	public static Collection<?> todaysEvents() {
+		Collection<?> retval = null;
+		try {
+
 		java.util.Calendar today = java.util.Calendar.getInstance();
 		today.set(java.util.Calendar.HOUR_OF_DAY, 0);
 		today.clear(java.util.Calendar.MINUTE);
 		today.clear(java.util.Calendar.SECOND);
-		Dur one_day = new Dur(1, 0, 0, 0);
+		Dur one_day = new Dur(7, 0, 0, 0);
 		Rule[] rules = new Rule[1];
 		Period period = new Period(new DateTime(today.getTime()), one_day);
 		rules[0] = new PeriodRule(period);
 		Filter filter = new Filter(rules, Filter.MATCH_ANY);
-		return filter.filter(calendar.getComponents(Component.VEVENT));
+		retval = filter.filter(calendar.getComponents(Component.VEVENT));
+		} catch (Exception e) {
+		Log.e("KronoxCalender", e.toString());
+		
+		}
+		return retval;					
+
+		//return filter.filter(calendar.getComponents(Component.VEVENT));
 	}
 	
 	public static Collection<?> nextEvents() {
@@ -108,7 +120,13 @@ public class KronoxCalendar {
 		Period period = new Period(new DateTime(thisMonday.getTime()), seven_days);
 		rules[0] = new PeriodRule(period);
 		Filter filter = new Filter(rules, Filter.MATCH_ANY);
-		return filter.filter(calendar.getComponents(Component.VEVENT));
+		if (calendar!=null){
+					return filter.filter(calendar.getComponents(Component.VEVENT));
+				}else{
+					return null;
+				}
+
+		//return filter.filter(calendar.getComponents(Component.VEVENT));
 	}
 }
 // MATCH_ALL - all rules must be matched

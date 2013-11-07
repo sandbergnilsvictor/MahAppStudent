@@ -1,6 +1,4 @@
 package se.mah.kd330a.project.schedule.data;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -97,7 +95,7 @@ public class KronoxJSON {
 	}
 	/**
 	 * The data you get from KronoX' AJAX service basically looks like this:
-	 * "KD330A-20132-62311-, Mobile Application Development, 15 hp Fristående kurs, 100% dagtid"
+	 * "KD330A-20132-62311-, Mobile Application Development, 15 hp Fristï¿½ende kurs, 100% dagtid"
 	 * + a lot of HTML tags
 	 * 
 	 * This function will strip all HTML tags and get the 2nd part (course name)
