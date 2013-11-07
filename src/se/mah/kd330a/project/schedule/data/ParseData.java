@@ -1,10 +1,7 @@
 package se.mah.kd330a.project.schedule.data;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Iterator;
 
 import net.fortuna.ical4j.model.Component;
@@ -16,7 +13,7 @@ import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.schedule.model.*;
 
 public class ParseData {
-	
+
 	ArrayList<ScheduleWeek> scheduleWeeks;
 
 	public ParseData() {
@@ -72,14 +69,8 @@ public class ParseData {
 	}
 
 	private ScheduleWeek getScheduleWeek(int weekFromThisWeek) {
-		int displayedWeek=0; 
-
-		Calendar calendarForWeek=Calendar.getInstance();
-		
 		ScheduleWeek scheduleWeek = new ScheduleWeek();
-
-		displayedWeek=calendarForWeek.get(Calendar.WEEK_OF_YEAR)+weekFromThisWeek-1;
-		scheduleWeek.setWeekNumber(displayedWeek % 52 +1);
+		scheduleWeek.setWeekNumber(54+weekFromThisWeek);
 		ArrayList<ScheduleItem> thisWeekList = new ArrayList<ScheduleItem>();
 		Collection<?> kronox_events = KronoxCalendar
 				.getWeeksEventsFromThisWeek(weekFromThisWeek);

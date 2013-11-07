@@ -1,4 +1,6 @@
 package se.mah.kd330a.project.schedule.data;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
