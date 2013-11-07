@@ -57,7 +57,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 	@Override
 	public void onStart() {
 		super.onStart();
-		
+
 		spinnerFind = (Spinner) getView().findViewById(R.id.spinner_find_building);
 		ArrayAdapter<CharSequence> spinFindadapter = ArrayAdapter
 				.createFromResource(getActivity(), R.array.find_building_array,
@@ -89,7 +89,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 
 		if (spin_selected > -1) 
 			spinnerFind.setSelection(spin_selected, true);
-		
+
 		Button btn_Search = (Button) getView().findViewById(R.id.button_find_navigation);
 		btn_Search.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -97,7 +97,7 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 				find_button_navigation(view);
 			}
 		});
-		
+
 		AutoCompleteTextView etRoomNr = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
 		etRoomNr.setOnEditorActionListener(new OnEditorActionListener() {
 
@@ -117,37 +117,58 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		AutoCompleteTextView txt_room_code = (AutoCompleteTextView) getView().findViewById(R.id.editText_find_room);
 		// ---set the data to pass---
 		RoomDbHandler dbHandler;
-		String roomNr = selposFind + txt_room_code.getText().toString();
+		String textInput = txt_room_code.getText().toString().toLowerCase();
+		String roomNr = selposFind + textInput;
+		dbHandler = new RoomDbHandler(getActivity());
 
-		if (spinnerFind.getSelectedItemPosition() < 1) {
-			Toast.makeText(getActivity(), getString(R.string.find_no_building_selected), Toast.LENGTH_LONG).show();
-			return;
+		if (spinnerFind.getSelectedItemPosition() < 1){
+			if(roomNr.isEmpty()) {
+				Toast.makeText(getActivity(), getString(R.string.find_no_building_selected), Toast.LENGTH_LONG).show();
+				return;
+			}
+			else{
+				runNavigation(dbHandler, roomNr, R.string.find_no_building_selected);
+			}
 		}
-		if (txt_room_code.length() == 0 && selposFind.length() > 0) {
-			showBuilding(selposFind);
-			//Toast.makeText(getActivity(), "to the building", Toast.LENGTH_SHORT).show();
-		}
-		if (roomNr.length() > 2) {
-			dbHandler = new RoomDbHandler(getActivity());
+		else{
+			if(textInput.isEmpty()){
+				Log.i("test", "selposFind: "+selposFind);
+				showBuilding(selposFind);
+			}
+			else if(textInput.matches("(or|g8|k2|k8|kl|as).*")){
 
-			if (dbHandler.isRoomExists(roomNr)) {
-				startNavigation(roomNr);
-				Log.i("test11", "roomNr: "+dbHandler.getRoomNr());
-				Log.i("test11", "path: "+dbHandler.getPathImg().toString());
-				Log.i("test11", "map: "+dbHandler.getMapName());
+				if(selposFind.equals(textInput.substring(0, 2))){
+					Log.i("testString", "substring: " + textInput.substring(0, 2));
+					runNavigation(dbHandler, textInput, R.string.find_db_error);
+				}
+				else
+					Toast.makeText(getActivity(), getString(R.string.find_building_dont_match), Toast.LENGTH_LONG).show();
 
 			}
-			else if (dbHandler.isRoomExistsAll(roomNr)) {
-				//go to floor maps
-				showFloorMap(dbHandler.getMapName());
-				//Toast.makeText(getActivity(), "floorMapCode: "+dbHandler.getMapName(), Toast.LENGTH_LONG).show();
+			else{
+				runNavigation(dbHandler, roomNr, R.string.find_db_error);
 			}
-			else
-				Toast.makeText(getActivity(), getString(R.string.find_db_error), Toast.LENGTH_LONG).show();
 		}
+
+
 		//Hiding the keyboard
 		InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+	}
+
+	private void runNavigation(RoomDbHandler dbHandler, String roomNr, int errorString) {
+		if (dbHandler.isRoomExists(roomNr)) {
+			startNavigation(roomNr);
+		}
+		else if (dbHandler.isRoomExistsAll(roomNr)) {
+			//go to floor maps
+			showFloorMap(dbHandler.getMapName());
+			//Toast.makeText(getActivity(), "floorMapCode: "+dbHandler.getMapName(), Toast.LENGTH_LONG).show();
+		}
+		else
+			Toast.makeText(getActivity(), getString(errorString), Toast.LENGTH_LONG).show();
+
+
 	}
 
 	private void showFloorMap(String floorMapCode) {
@@ -200,12 +221,12 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 		super.onSaveInstanceState(outState);
 		outState.putInt(FIND_SPINNER_STATE, spin_selected);
 	}
-	
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		//Log.i("project", "onActivityCreated");
 		super.onActivityCreated(savedInstanceState);
-		
+
 		if (savedInstanceState != null) {
 			//Log.i("project", "onActivityCreated save1 " + savedInstanceState.getInt(FIND_SPINNER_STATE));
 			spin_selected = savedInstanceState.getInt(FIND_SPINNER_STATE);
@@ -222,13 +243,13 @@ public class FragmentFind extends Fragment implements LoaderCallbacks<Cursor> {
 	@Override
 	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 

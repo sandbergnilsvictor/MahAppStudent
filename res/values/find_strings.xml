@@ -80,5 +80,8 @@
     <string name="find_building_search_tip">You can search for the building itself by leaving the room name empty.</string>
     <string name="find_db_error">Room does not exist in the database!</string>
 	<string name="find_no_building_selected">No building is selected!</string>
+	<string name="find_building_dont_match">Building and room number are not matching!</string>
+	
+		
 	
 </resources>
