@@ -181,33 +181,30 @@ public class StartActivity extends Activity implements Observer
 						editor.putString(course.getFullCode(), course.getName());
 						editor.commit();
 						Log.i(TAG, String.format("Course: %s, %s", course.getFullCode(), course.getName()));
+						
+						try
+						{
+							Log.i(TAG, "Kronox: Creating calendar");
+							KronoxCalendar.createCalendar(KronoxReader.getFile(getApplicationContext()));
+						}
+						catch (Exception e)
+						{
+							Log.i(TAG, "Kronox: Downloading schedule, then creating calendar");
+							try
+							{
+								KronoxReader.update(getApplicationContext(), courses_array);
+								KronoxCalendar.createCalendar(KronoxReader.getFile(getApplicationContext()));
+							}
+							catch (Exception f)
+							{
+								Log.e(TAG, f.toString());
+							}
+						}
 					}
 				}
 				catch (Exception e)
 				{
 					Log.e(TAG, e.toString());
-				}
-
-				if (courses_array.length > 0) // 3
-				{
-					try
-					{
-						Log.i(TAG, "Kronox: Creating calendar");
-						KronoxCalendar.createCalendar(KronoxReader.getFile(getApplicationContext()));
-					}
-					catch (Exception e)
-					{
-						Log.i(TAG, "Kronox: Downloading schedule, then creating calendar");
-						try
-						{
-							KronoxReader.update(getApplicationContext(), courses_array);
-							KronoxCalendar.createCalendar(KronoxReader.getFile(getApplicationContext()));
-						}
-						catch (Exception f)
-						{
-							Log.e(TAG, f.toString());
-						}
-					}
 				}
 			}
 
