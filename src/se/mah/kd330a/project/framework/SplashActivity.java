@@ -19,9 +19,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.View;
 
 public class SplashActivity extends Activity
 {
@@ -34,7 +32,7 @@ public class SplashActivity extends Activity
 	 * must be completed, so for each task that completes we increment the
 	 * counter. when the counter equals N, all tasks have completed. 
 	 */
-	private final int totalTaskCounter = 3;
+	private final int totalTaskCounter = 4;
 	private int downloadTaskCounter;
 	
 	@Override

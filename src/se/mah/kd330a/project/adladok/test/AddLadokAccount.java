@@ -75,7 +75,6 @@ public class AddLadokAccount extends Activity implements Observer
 	@Override
 	public void update(Observable observable, Object data)
 	{
-
 		String courses = "";
 		Log.i("UserInfo", "Length: " + Me.getCourses().size());
 		for (Course c : Me.getCourses())
