@@ -93,7 +93,8 @@ public class Parser {
 				try{
 					course.setColor(Integer.parseInt(parser.getValue(e2, "color")));
 				}catch(Exception e7){}
-				Me.addCourse(course);
+				Me.addCourse(course);	
+				
 			}
 		}
     }

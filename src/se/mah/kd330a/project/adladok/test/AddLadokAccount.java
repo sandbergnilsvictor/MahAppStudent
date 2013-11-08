@@ -31,6 +31,7 @@ public class AddLadokAccount extends Activity implements Observer {
 			Me.observable.deleteObservers();
 		}
 		Me.observable.addObserver(this);
+		
 	}
 
 	public void forgetButtonClicked(View v) {
@@ -61,8 +62,7 @@ public class AddLadokAccount extends Activity implements Observer {
 		Me.setPassword(password_et.getText().toString());
 		Me.updateMe();
 		
-		int i=0;
-		
+		int i=0;		
 		for (Course c : Me.getCourses()) {
 			
 			switch (i) {
@@ -88,12 +88,6 @@ public class AddLadokAccount extends Activity implements Observer {
 		}
 
 		
-
-		
-		
-		
-		
-
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString("user_id", userID_et.getText().toString());
 		editor.putString("user_password", password_et.getText().toString());
