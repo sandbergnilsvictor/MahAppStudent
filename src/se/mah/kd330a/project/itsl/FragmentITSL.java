@@ -165,8 +165,13 @@ public class FragmentITSL extends Fragment implements
 			TabFragment fragment;
 			for (String title : foList.keySet())
 			{
+				String titleDisp = "course name";
+				try{
 				String[] parts = title.split("-");
-				String titleDisp=parts[2].substring(1, parts[2].length()-1);
+				titleDisp=parts[2].substring(1, parts[2].length()-1);}
+				catch(Exception e){
+					titleDisp=title;
+				}
 				actionBar.addTab(
 						actionBar.newTab()
 						.setText(titleDisp)
