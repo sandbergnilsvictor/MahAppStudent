@@ -199,9 +199,11 @@
     
     <!--  It's Learning -->
     
-    <string name="tx_textMain">The It\'s Learning platform is a very powerful and complex tool for communication between students and teachers. Unfortunately accessing to it, is very limited. Therefore we created this screen to guide you get the Dashboard Items for your selected courses to use in this app.</string>
-    <string name="tx_textTwo">Launch the browser in your mobile phone (preferably Chrome) and log in to It\'s Learning </string>
-    <string name="tx_textThree">The Icon shown below indicates the information that can be displayed by this app, the Dashboard and Latest Changes in your courses uses this icon.</string>
+    
+    
+    <string name="tx_textMain">You can get the latest news for your courses from It\'s learning right here in the app if you follow these steps.</string>
+    <string name="tx_textTwo">Launch the browser in your mobile phone and log in to It\'s Learning </string>
+    <string name="tx_textThree">The Icon shown below indicates the information that can be displayed by this app. For example, the Dashboard and Latest Changes in your courses uses this icon.</string>
     <string name="tx_textFour">Click the afore mentioned icon for the courses you </string>
         <!-- Credits strings -->
     <string name="app_name2">scroll</string>
