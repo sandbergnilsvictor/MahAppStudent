@@ -23,7 +23,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 	private Date lastUpdate;
 	
 	// Temporary for testing - create arraylist of courses
-	ArrayList<Course> theCourses = new ArrayList<Course>();
+	ArrayList<OldCourse> theCourses = new ArrayList<OldCourse>();
 
 	public ExpandableListAdapter(Context context, List<Article> listDataHeader)
 	{
@@ -32,11 +32,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 		this.lastUpdate = Util.getLatestUpdate(_context);
 		
 		// Trying to get the colors from our xml file
-		theCourses.add(new Course("1", context.getResources().getColor(R.color.blue)));
-		theCourses.add(new Course("2", context.getResources().getColor(R.color.yellow)));
-		theCourses.add(new Course("3", context.getResources().getColor(R.color.red)));
-		theCourses.add(new Course("4", context.getResources().getColor(R.color.green)));
-		theCourses.add(new Course("5", context.getResources().getColor(R.color.orange)));
+		theCourses.add(new OldCourse("1", context.getResources().getColor(R.color.blue)));
+		theCourses.add(new OldCourse("2", context.getResources().getColor(R.color.yellow)));
+		theCourses.add(new OldCourse("3", context.getResources().getColor(R.color.red)));
+		theCourses.add(new OldCourse("4", context.getResources().getColor(R.color.green)));
+		theCourses.add(new OldCourse("5", context.getResources().getColor(R.color.orange)));
 	}
 
 	public List<Article> getList()
@@ -80,7 +80,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			/*
 			 * Choose the right color
 			 */
-			for (Course c : theCourses)
+			for (OldCourse c : theCourses)
 			{
 				if (this._listDataHeader.get(groupPosition).getArticleCourseCode().equals(c.getCourseCode()))
 				{
@@ -178,7 +178,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			 * Choose the right color
 			 */
 
-			for (Course c : theCourses)
+			for (OldCourse c : theCourses)
 			{
 				if (headerTitle.getArticleCourseCode().equals(c.getCourseCode()))
 				{
