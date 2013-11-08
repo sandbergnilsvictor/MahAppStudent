@@ -192,7 +192,8 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 	{
 		try
 		{
-			View widget = (View)rootView.findViewById(R.id.itslearning_widget);
+			//View widget = (View)rootView.findViewById(R.id.itslearning_widget);
+			View widget = rootView;
 			Article a = articles.get(0);
 			((TextView)widget.findViewById(R.id.text_itsl_title)).setText(a.getArticleHeader());
 			((TextView)widget.findViewById(R.id.text_itsl_date)).setText(a.getArticleDate());
@@ -202,8 +203,6 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 		{
 			Log.i("FragmentHome", "onFeedManagerDone(): " + e.toString());
 		}
-		
-		Toast.makeText(getActivity(), "" + articles.size() + " articles", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
