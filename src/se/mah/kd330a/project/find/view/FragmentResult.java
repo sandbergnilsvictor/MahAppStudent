@@ -1,5 +1,6 @@
 package se.mah.kd330a.project.find.view;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.data.ResultPagerAdapter;
 import se.mah.kd330a.project.find.data.RoomDbHandler;
@@ -70,7 +71,16 @@ public class FragmentResult extends Fragment {
 				.inflate(R.layout.fragment_screen_find_result, container, false);
 		Bundle args = getArguments();
 		String roomNr = args.getString(ARG_ROOMNR);
-		buildingPos = args.getInt(ARG_BUILDINGPOS);
+		if (args.containsKey(ARG_BUILDINGPOS))
+			buildingPos = args.getInt(ARG_BUILDINGPOS);
+		else {
+			String buildingCode = roomNr.substring(0, 2);
+			Log.i("project", "buildingCode: " + buildingCode);
+			Log.i("project", "roomNr: " + roomNr);
+			String [] arrBuildingCodes = getResources().getStringArray(R.array.find_building_code_array);
+			buildingPos = Arrays.asList(arrBuildingCodes).indexOf(buildingCode.toLowerCase());
+			Log.i("project", "buildingPos: " + buildingPos);
+		}
 		if (roomNr != null) {
 
 			mDbHandler = new RoomDbHandler(getActivity());
