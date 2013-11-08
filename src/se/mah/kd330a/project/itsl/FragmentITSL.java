@@ -57,13 +57,7 @@ public class FragmentITSL extends Fragment implements
 	{
 		rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
 		actionBar = getActivity().getActionBar();
-				
-		for (String url : Util.getBrowserBookmarks(getActivity().getApplicationContext()))
-		{
-			Log.i(TAG, "Got URL from bookmarks: " + url);
-			feedManager.addFeedURL(url);
-		}
-
+		
 		/*
 		 *  In case there is nothing in the cache, or it doesn't exist
 		 *  we have to refresh

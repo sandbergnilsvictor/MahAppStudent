@@ -2,18 +2,25 @@ package se.mah.kd330a.project.home;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
 import se.mah.kd330a.project.framework.MainActivity;
 //import com.handmark.pulltorefresh.library.PullToRefreshBase;
 //import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 //import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import se.mah.kd330a.project.home.data.RSSFeed;
+import se.mah.kd330a.project.itsl.Article;
+import se.mah.kd330a.project.itsl.FeedManager;
+import se.mah.kd330a.project.itsl.ListPagerAdapter;
 import se.mah.kd330a.project.schedule.view.FragmentScheduleWeekPager;
 import se.mah.kd330a.project.R;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +32,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FragmentHome extends Fragment
+public class FragmentHome extends Fragment implements FeedManager.FeedManagerDoneListener
 {
 
 	private NextClassWidget nextClass;
@@ -34,6 +41,7 @@ public class FragmentHome extends Fragment
 	private ObjectInputStream in = null;
 	private FileInputStream fis = null;
 	private boolean profileRegistered = false;
+	private FeedManager ITSLfeedManager;
 
 	public FragmentHome()
 	{
@@ -44,6 +52,13 @@ public class FragmentHome extends Fragment
 	{
 		super.onCreate(savedInstanceState);
 
+		ITSLfeedManager = new FeedManager(this, getActivity().getApplicationContext());
+		if (!ITSLfeedManager.loadCache())
+		{
+			ITSLfeedManager.reset();
+			ITSLfeedManager.processFeeds();
+		}
+		
 		try
 		{
 			nextClass = new NextClassWidget();
@@ -53,6 +68,7 @@ public class FragmentHome extends Fragment
 		{
 			Log.e("FragmentHome", e.toString());
 		}
+
 	}
 
 	@Override
@@ -169,6 +185,32 @@ public class FragmentHome extends Fragment
 			// mPullRefreshScrollView.onRefreshComplete();
 			super.onPostExecute(result);
 		}
+	}
+
+	@Override
+	public void onFeedManagerDone(FeedManager fm, ArrayList<Article> articles)
+	{
+		try
+		{
+			View widget = (View)rootView.findViewById(R.id.itslearning_widget);
+			Article a = articles.get(0);
+			((TextView)widget.findViewById(R.id.text_itsl_title)).setText(a.getArticleHeader());
+			((TextView)widget.findViewById(R.id.text_itsl_date)).setText(a.getArticleDate());
+			((TextView)widget.findViewById(R.id.text_itsl_content)).setText(a.getArticleText());
+		}
+		catch(Exception e)
+		{
+			Log.i("FragmentHome", "onFeedManagerDone(): " + e.toString());
+		}
+		
+		Toast.makeText(getActivity(), "" + articles.size() + " articles", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onFeedManagerProgress(FeedManager fm, int progress, int max)
+	{
+		// TODO Auto-generated method stub
+
 	}
 
 }
