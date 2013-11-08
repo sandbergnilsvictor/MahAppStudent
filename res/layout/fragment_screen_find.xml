@@ -19,7 +19,7 @@
             android:background="@color/white"
             android:orientation="vertical" >
 
-            <!-- test Linda -->
+        
 
             <TextView
                 android:id="@+id/text_find_startTitle"
@@ -86,22 +86,29 @@
                 android:background="@color/grey" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_find_navigation"
-            style="@style/mah_button_red"
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/find_button_navigation" />
+ 
 
-        <Button
-            android:id="@+id/button_find_tour"
-            style="@style/mah_button_grey"
-            android:layout_width="fill_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/find_button_tour" />
-    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_find_navigation"
+        style="@style/mah_button_red"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/find_button_navigation" />
+
+    <Button
+        android:id="@+id/button_find_tour"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/find_button_tour" />
+
+</LinearLayout>
+
 </ScrollView>
+

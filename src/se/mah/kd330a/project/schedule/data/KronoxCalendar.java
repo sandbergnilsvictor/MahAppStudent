@@ -36,6 +36,7 @@ public class KronoxCalendar {
 	public static Collection<?> todaysEvents() {
 		Collection<?> retval = null;
 		try {
+
 		java.util.Calendar today = java.util.Calendar.getInstance();
 		today.set(java.util.Calendar.HOUR_OF_DAY, 0);
 		today.clear(java.util.Calendar.MINUTE);
@@ -47,15 +48,16 @@ public class KronoxCalendar {
 		Filter filter = new Filter(rules, Filter.MATCH_ANY);
 		retval = filter.filter(calendar.getComponents(Component.VEVENT));
 		} catch (Exception e) {
-			Log.e("KronoxCalender", e.toString());
-			
+		Log.e("KronoxCalender", e.toString());
+		
 		}
-		return retval;
-				
+		return retval;					
+
+		//return filter.filter(calendar.getComponents(Component.VEVENT));
 	}
 	
 	public static Collection<?> nextEvents() {
-		
+		//Find date of this monday.....
 		java.util.Calendar today = java.util.Calendar.getInstance();
 		final int currentDayOfWeek = (today.get(java.util.Calendar.DAY_OF_WEEK) + 7 - today.getFirstDayOfWeek()) % 7;
 		today.add(java.util.Calendar.DAY_OF_YEAR, -currentDayOfWeek);
@@ -119,12 +121,13 @@ public class KronoxCalendar {
 		rules[0] = new PeriodRule(period);
 		Filter filter = new Filter(rules, Filter.MATCH_ANY);
 		if (calendar!=null){
-			return filter.filter(calendar.getComponents(Component.VEVENT));
-		}else{
-			return null;
-		}
+					return filter.filter(calendar.getComponents(Component.VEVENT));
+				}else{
+					return null;
+				}
+
+		//return filter.filter(calendar.getComponents(Component.VEVENT));
 	}
 }
 // MATCH_ALL - all rules must be matched
 // MATCH_ANY - any rule may be matched
-

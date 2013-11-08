@@ -45,6 +45,10 @@ public class ScheduleItem implements Serializable {
 	private String courseName;
 	private String teacherID;
 	private boolean isDivider = false;
+	
+	
+	//Needed for color coordinating
+		private String courseID = "";
 
 	// text += "Summary:" + v.getSummary().getValue() + "\n";
 	// text += "Last modified:" +
@@ -53,8 +57,7 @@ public class ScheduleItem implements Serializable {
 		startTime = time_format.format(v.getStartDate().getDate());
 		weekDay = week_day_format.format(v.getStartDate().getDate());
 		dateAndTime2 = date_format2.format(v.getStartDate().getDate());
-		
-		
+
 		endTime = time_format.format(v.getEndDate().getDate());
 		location = v.getLocation().getValue();
 		courseName = "PlaceHolder";
@@ -62,13 +65,18 @@ public class ScheduleItem implements Serializable {
 		
 		if (summary.indexOf("Coursegrp: ") != -1) {
 			courseName = summary.substring(summary.indexOf("Coursegrp: ") + 11,
-					summary.indexOf("Coursegrp: ") + 29);
+					summary.indexOf("Coursegrp: ") + 17);
+			
+			
+			courseID = summary.substring(summary.indexOf("Coursegrp: ") + 11,
+					summary.indexOf("Coursegrp: ") + 17); 
+			
 		}
 		if (summary.indexOf("Sign: ") != -1) {
 			teacherID = summary.substring(summary.indexOf("Sign: ") + 6,
 					summary.indexOf("Sign: ") + 12);
 		}
-		Log.i("ScheduleSummary",v.getSummary().getValue());
+		//Log.i("ScheduleSummary",v.getSummary().getValue());
 	}
 
 	public boolean isDividerElement() {
@@ -105,6 +113,14 @@ public class ScheduleItem implements Serializable {
 
 	public String getDateAndTime2() {
 		return dateAndTime2;
+	}
+	
+	public String getCourseID() {
+		return courseID;
+	}
+
+	public void setCourseID(String courseID) {
+		this.courseID = courseID;
 	}
 
 	
