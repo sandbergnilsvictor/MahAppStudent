@@ -172,9 +172,9 @@ public class FragmentResult extends Fragment {
 			String location = buildingNames[buildingPos];
 
 			if(location.equals("Klerken (Kl)"))
-				location = "Jan Waldenstroms gata 25";
-			else if(location.equals("University Hospital (As)"))
 				location = "Carl Gustafs vag 34";
+			else if(location.equals("University Hospital (As)"))
+				location = "Jan Waldenstroms gata 25";
 
 			//getting the google map
 			Intent i = new Intent(android.content.Intent.ACTION_VIEW,
