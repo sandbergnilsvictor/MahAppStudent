@@ -72,6 +72,7 @@
         android:id="@+id/button_find_navigation"
         style="@style/mah_button_red"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/find_button_navigation" />
@@ -79,6 +80,7 @@
     <Button
         android:id="@+id/button_find_tour"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
