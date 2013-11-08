@@ -55,7 +55,7 @@ public class StartActivity extends Activity implements Observer
 		}
 		else
 		{
-			((View) findViewById(R.id.loading_view)).setVisibility(View.VISIBLE);
+			hideLoginView();
 			Me.updateMe();
 		}
 
@@ -63,6 +63,11 @@ public class StartActivity extends Activity implements Observer
 
 	public void showLoginView()
 	{
+		/*
+		 * Hide the other view
+		 */
+		((View) findViewById(R.id.loading_view)).setVisibility(View.GONE);
+		
 		/*
 		username = sharedPref.getString("user_id", "");
 		password = sharedPref.getString("user_password", "");
@@ -77,6 +82,7 @@ public class StartActivity extends Activity implements Observer
 	public void hideLoginView()
 	{
 		((View) findViewById(R.id.login_view)).setVisibility(View.GONE);
+		((View) findViewById(R.id.loading_view)).setVisibility(View.VISIBLE);
 	}
 
 	public void forgetButtonClicked(View v)
