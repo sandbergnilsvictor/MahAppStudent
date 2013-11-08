@@ -175,8 +175,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		if (feedList.isEmpty())
 		{
 			Log.i(TAG, "Feed list is empty, adding some feeds:");
-			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
-			addFeedURL("http://www.mah.se/rss/nyheter");
+			//addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
+			//addFeedURL("http://www.mah.se/rss/nyheter");
 		}
 
 		/*
@@ -196,6 +196,10 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		 * why we use a counter to keep track of where in the queue we are 
 		 */
 		downloadTask.execute(feedList.get(feedQueueCounter++));
+	}
+
+	public ArrayList<String> getFeedList() {
+		return feedList;
 	}
 
 	private void saveCache() throws Exception

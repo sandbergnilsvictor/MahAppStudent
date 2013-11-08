@@ -142,7 +142,8 @@ public class FragmentITSL extends Fragment implements
 	private ArrayList<TabFragment> createFragments()
 	{
 		ArrayList<TabFragment> fragments = new ArrayList<TabFragment>();
-		
+		Bundle b = new Bundle();
+		HashMap<String, FeedObject> foList = getFeedObjects();
 		actionBar.removeAllTabs();
 		
 		/*
@@ -159,20 +160,33 @@ public class FragmentITSL extends Fragment implements
 		 * For all feeds we have downloaded, create a new tab and add the 
 		 * corresponding data to a new TabFragment
 		 */
-		HashMap<String, FeedObject> foList = getFeedObjects();
-		TabFragment fragment;
-		for (String title : foList.keySet())
-		{
-			actionBar.addTab(
-					actionBar.newTab()
-					.setText(title)
-					.setTabListener(this));
+		if (foList.isEmpty()){
 			
-			fragment = new TabFragment();
-			fragment.setArticles(foList.get(title).articles);
+			TabFragment fragment;
+			for (String title : foList.keySet())
+			{
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText(title)
+						.setTabListener(this));
+				
+				fragment = new TabFragment();
+				fragment.setArticles(foList.get(title).articles);
+				
+				b.putBoolean("isEmpty", false);
+				fragment.setArguments(b);
+				fragments.add(fragment);
+				
+				Log.i(TAG, "Filtered map key => tab title is: " + title);
+			}
+		}
+		else{
+			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+			TabFragment fragment = new TabFragment();
+			fragment.setArticles(null);
+			b.putBoolean("isEmpty", true);
+			fragment.setArguments(b);
 			fragments.add(fragment);
-			
-			Log.i(TAG, "Filtered map key => tab title is: " + title);
 		}
 
 		return fragments;

@@ -32,8 +32,11 @@
                 android:id="@+id/tx_textMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tx_titleMain"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="16dp"
-
+                android:layout_marginRight="16dp"
+                android:text="@string/tx_textMain"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/grey_dark" />
 
@@ -42,7 +45,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_below="@id/tx_textMain"
-                android:background="@color/grey" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/grey_light" />
+
+            <TextView
+                android:id="@+id/tx_titleTwo"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_below="@id/divider_light"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="1. Go to It&apos;s Learning"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tx_textTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tx_titleTwo"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/tx_textTwo"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey_dark" />
+            
+                        <ImageView
+                android:id="@+id/divider_light2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/tx_textTwo"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/grey_light" />
+            
         </RelativeLayout>
     </LinearLayout>
 
