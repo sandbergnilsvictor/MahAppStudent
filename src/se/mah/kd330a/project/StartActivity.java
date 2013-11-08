@@ -8,7 +8,6 @@ import java.util.Observer;
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.framework.MainActivity;
-import se.mah.kd330a.project.framework.SplashActivity;
 import se.mah.kd330a.project.home.data.DOMParser;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.schedule.data.KronoxCalendar;
@@ -22,7 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -31,12 +29,7 @@ import android.widget.EditText;
 public class StartActivity extends Activity implements Observer
 {
 	private final String TAG = "StartActivity";
-	private final String USER_FILE = "shared.preferences";
 	private final String RSSNEWSFEEDURL = "http://www.mah.se/Nyheter/RSS/News/";
-
-	private SharedPreferences sharedPref;
-	private String username;
-	private String password;
 	private EditText editTextUsername;
 	private EditText editTextPassword;
 
@@ -48,8 +41,6 @@ public class StartActivity extends Activity implements Observer
 		((LinearLayout) findViewById(R.id.login_view)).setVisibility(LinearLayout.GONE);
 		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
 
-		//sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
-	
 		Me.observable.addObserver(this);
 
 		if (Me.getFirstName().isEmpty())
@@ -71,10 +62,6 @@ public class StartActivity extends Activity implements Observer
 		 */
 		((View) findViewById(R.id.loading_view)).setVisibility(View.GONE);
 		
-		/*
-		username = sharedPref.getString("user_id", "");
-		password = sharedPref.getString("user_password", "");
-		*/
 		((View) findViewById(R.id.login_view)).setVisibility(View.VISIBLE);
 		editTextUsername = (EditText) findViewById(R.id.editText1);
 		editTextPassword = (EditText) findViewById(R.id.editText2);
@@ -90,12 +77,6 @@ public class StartActivity extends Activity implements Observer
 
 	public void forgetButtonClicked(View v)
 	{
-		/*
-		SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putString("user_id", "");
-		editor.putString("user_password", "");
-		editor.commit();
-		*/
 		Me.setUserID("");
 		Me.setPassword("");
 
@@ -105,15 +86,8 @@ public class StartActivity extends Activity implements Observer
 
 	public void loginButtonClicked(View v)
 	{
-		username = editTextUsername.getText().toString();
-		password = editTextPassword.getText().toString();
-
-		/*
-		SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putString("user_id", username);
-		editor.putString("user_password", password);
-		editor.commit();
-		*/
+		String username = editTextUsername.getText().toString();
+		String password = editTextPassword.getText().toString();
 
 		/* 
 		 * Reset the Me "object"
