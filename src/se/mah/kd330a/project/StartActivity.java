@@ -16,12 +16,14 @@ import se.mah.kd330a.project.schedule.data.KronoxJSON;
 import se.mah.kd330a.project.schedule.data.KronoxReader;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -71,7 +73,12 @@ public class StartActivity extends Activity implements Observer
 	}
 
 	public void hideLoginView()
+	
 	{
+		InputMethodManager imm = (InputMethodManager)getSystemService(
+			      Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow((IBinder) findViewById(R.id.login_view).getWindowToken(), 0);
+		
 		((View) findViewById(R.id.login_view)).setVisibility(View.GONE);
 		((View) findViewById(R.id.loading_view)).setVisibility(View.VISIBLE);
 	}
@@ -89,6 +96,10 @@ public class StartActivity extends Activity implements Observer
 	{
 		hideLoginView();
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> acc033b0b69ce413bb9c1b21f542c6f834d535c8
 		String username = editTextUsername.getText().toString();
 		String password = editTextPassword.getText().toString();
 
@@ -118,7 +129,7 @@ public class StartActivity extends Activity implements Observer
 		if (Me.getFirstName().isEmpty())
 		{
 			showLoginView();
-			Toast.makeText(this, "Can't log you in", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Unable to log you in", Toast.LENGTH_LONG).show();
 			return;
 		}
 
