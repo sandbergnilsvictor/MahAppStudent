@@ -17,7 +17,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="se.mah.kd330a.project"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.9" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -30,7 +30,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:icon="@drawable/image_mah_logo"
+        android:icon="@drawable/launchericon"
         android:label="@string/app_name"
         android:theme="@style/CustomTheme" >
         <activity
@@ -59,20 +59,10 @@
             android:name="se.mah.kd330a.project.framework.SplashActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="se.mah.kd330a.project.adladok.test.AddLadokTest"
             android:label="@string/title_activity_ad_ladok_test" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name="se.mah.kd330a.project.itsl.TimeAlarm" />
@@ -80,11 +70,6 @@
         <activity
             android:name="se.mah.kd330a.project.find.data.TestGetImageActivity"
             android:label="@string/title_activity_test_get_image" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"

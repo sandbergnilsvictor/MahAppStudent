@@ -96,12 +96,18 @@ public class SplashActivity extends Activity
 
 		downloadTaskCounter = 0;
 		
+		
+		
+		
 		Log.i(TAG, String.format("onResume(): %d of %d tasks completed", downloadTaskCounter, totalTaskCounter));
 
 		new GetNewsFeed(this).execute(); // 1
 		
 		if (!Me.getCourses().isEmpty())
+			
 		{
+			Log.i("onResume", "Me.getCourses is Empty" );
+			
 			ArrayList<KronoxCourse> courses = new ArrayList<KronoxCourse>();
 			
 			for (Course c : Me.getCourses())
