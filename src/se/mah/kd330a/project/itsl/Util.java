@@ -39,6 +39,7 @@ public class Util
 	 */
 	public static List<String> getBrowserBookmarks(Context context)
 	{
+		Log.i("getBookmarks", " inne");
 		ArrayList<String> urls = new ArrayList<String>();
 		String[] proj = new String[] { Browser.BookmarkColumns.TITLE, Browser.BookmarkColumns.URL };
 		String sel = Browser.BookmarkColumns.BOOKMARK + " = 1"; // 0 = history, 1 = bookmark
@@ -69,7 +70,7 @@ public class Util
 						 */
 						if (url.contains("Rss"))
 						{
-							Log.i(TAG, "Bookmark found: " + url);
+							Log.i(TAG, "Bookmark found:" + url);
 							urls.add(url);
 						}
 					}
