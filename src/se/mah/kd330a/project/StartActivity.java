@@ -44,44 +44,67 @@ public class StartActivity extends Activity implements Observer
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
-		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 
-		/*
-		if (Me.observable.countObservers() > 0)
-			Me.observable.deleteObservers();
-		*/
+		//sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
+	
 		Me.observable.addObserver(this);
-		
-		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
+
+		if (Me.getFirstName().isEmpty())
+		{
+			showLoginView();
+		}
+		else
+		{
+			((View) findViewById(R.id.loading_view)).setVisibility(View.VISIBLE);
+			Me.updateMe();
+		}
+
+	}
+
+	public void showLoginView()
+	{
+		/*
 		username = sharedPref.getString("user_id", "");
 		password = sharedPref.getString("user_password", "");
+		*/
+		((View) findViewById(R.id.login_view)).setVisibility(View.VISIBLE);
 		editTextUsername = (EditText) findViewById(R.id.editText1);
 		editTextPassword = (EditText) findViewById(R.id.editText2);
-		editTextUsername.setText(username);
-		editTextPassword.setText(password);
+		editTextUsername.setText(Me.getUserID());
+		editTextPassword.setText("");
+	}
+
+	public void hideLoginView()
+	{
+		((View) findViewById(R.id.login_view)).setVisibility(View.GONE);
 	}
 
 	public void forgetButtonClicked(View v)
 	{
+		/*
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString("user_id", "");
 		editor.putString("user_password", "");
 		editor.commit();
+		*/
+		Me.setUserID("");
+		Me.setPassword("");
+
 		Toast.makeText(this, "You've been forgotten.", Toast.LENGTH_SHORT).show();
 		finish();
 	}
 
 	public void loginButtonClicked(View v)
 	{
-		((View) findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
-
 		username = editTextUsername.getText().toString();
 		password = editTextPassword.getText().toString();
 
+		/*
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString("user_id", username);
 		editor.putString("user_password", password);
 		editor.commit();
+		*/
 
 		/* 
 		 * Reset the Me "object"
@@ -97,21 +120,21 @@ public class StartActivity extends Activity implements Observer
 		Me.setPassword(password);
 		Me.updateMe();
 	}
-	
+
 	/*
 	 * Called by "Me" after login button is clicked 
 	 */
 	@Override
 	public void update(Observable observable, Object data)
 	{
+		Log.i(TAG, "update(): Got callback from Me");
+
 		if (Me.getFirstName().isEmpty())
 		{
+			showLoginView();
 			Toast.makeText(this, "Can't log you in", Toast.LENGTH_LONG).show();
 			return;
 		}
-		Log.i(TAG, "update(): Got callback from Me");
-
-		//Me.observable.deleteObserver(this);
 
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
 		downloads.execute();
@@ -222,7 +245,14 @@ public class StartActivity extends Activity implements Observer
 	public void onDestroy()
 	{
 		super.onDestroy();
+
+		/*
+		 *  Make sure we're not registered observers anymore, otherwise
+		 *  more and more instances will be created each time we start 
+		 *  the app
+		 */
 		Me.observable.deleteObserver(this);
+
 		Log.i(TAG, "finish(): destroying now");
 
 	}
