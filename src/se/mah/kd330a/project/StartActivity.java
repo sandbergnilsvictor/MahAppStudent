@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.EditText;
 
@@ -44,6 +45,8 @@ public class StartActivity extends Activity implements Observer
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		((LinearLayout) findViewById(R.id.login_view)).setVisibility(LinearLayout.GONE);
+		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
 
 		//sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
 	
