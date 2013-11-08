@@ -39,7 +39,7 @@
         </activity>
         <activity
             android:name="se.mah.kd330a.project.StartActivity"
-            android:label="@string/title_activity_start" >
+            android:label="@string/title_activity_start" 
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
