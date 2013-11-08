@@ -1,21 +1,28 @@
 package se.mah.kd330a.project.find.view;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 public class FragmentFloorMap extends Fragment{
 	public static final String ARG_BUILDING = "building";
@@ -26,11 +33,12 @@ public class FragmentFloorMap extends Fragment{
 	private String floorCode = "";
 	int spPositionBuilding = -1;
 	int spPositionFloor = -1;
-
+	private WebView webview;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -42,6 +50,7 @@ public class FragmentFloorMap extends Fragment{
 		return rootView;
 	}
 
+	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -57,6 +66,21 @@ public class FragmentFloorMap extends Fragment{
 			buildingCode = strCode[0];
 			floorCode = strCode[1].toUpperCase();
 		}	
+		//webview settings
+		webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
+		webview.getSettings().setJavaScriptEnabled(true);
+		webview.getSettings().setSupportZoom(true); 
+		webview.getSettings().setBuiltInZoomControls(true);
+		webview.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
+		
+		webview.setWebViewClient(new WebViewClient() {
+		    @Override
+		    public void onPageFinished(WebView view, String url)
+		    {
+		        /* This call inject JavaScript into the page which just finished loading. */
+		    	webview.loadUrl("javascript:window.HTMLOUT.processHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+		    }
+		});
 		
 		//creating spinners
 		final Spinner spinnerBuilding = (Spinner) getView().findViewById(R.id.spinner_bilding);
@@ -96,7 +120,7 @@ public class FragmentFloorMap extends Fragment{
 
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				//String buildingName = parent.getItemAtPosition(position).toString();
-				Toast.makeText(getActivity(), "position: "+position, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(getActivity(), "position: "+position, Toast.LENGTH_SHORT).show();
 				//resetFloor(buildingName);
 				spPositionBuilding = position;
 				int floorArrey = resetFloor(position);	
@@ -134,17 +158,48 @@ public class FragmentFloorMap extends Fragment{
 		});
 	}
 
-	protected void showFloorMap(String floorMapCode) {
-		Toast.makeText(getActivity(), "floorMapCode: "+floorMapCode, Toast.LENGTH_SHORT).show();
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.find_floormap, menu);
+	}
 
-		WebView webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.find_menu_google:
+			String[] buildingNames = getResources().getStringArray(R.array.find_building_array);
+			String location = buildingNames[spPositionBuilding];
+
+			if(location.equals("Klerken (Kl)"))	
+				location = "Carl Gustafs vag 34";
+			else if(location.equals("University Hospital (As)"))
+				location = "Jan Waldenstroms gata 25";
+
+			//getting the google map
+			Intent i = new Intent(android.content.Intent.ACTION_VIEW,
+					Uri.parse("geo:0,0?q="+location+"+Malmo+Sweden"));
+
+			startActivity(i);
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	protected void showFloorMap(String floorMapCode) {
+		//Toast.makeText(getActivity(), "floorMapCode: "+floorMapCode, Toast.LENGTH_SHORT).show();
+
+		webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
 		//webview.getSettings().setJavaScriptEnabled(true); 
 		//String pdf = "https://dl.dropboxusercontent.com/u/11605027/or1.pdf";
-		webview.getSettings().setSupportZoom(true); 
-		webview.getSettings().setBuiltInZoomControls(true);
+		
 		//webview.loadUrl("https://dl.dropboxusercontent.com/u/11605027/" + floorMapCode + ".jpg");
 			//getResolution(c); ---missing
-		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename="+ floorMapCode +".jpg&resolution="+"xxhdpi");
+		String resolution = GetImage.getResolution(getActivity());
+		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename="+ floorMapCode +".jpg&resolution="+resolution);
 	}
 
 	protected int resetFloor(int position) {
@@ -172,33 +227,23 @@ public class FragmentFloorMap extends Fragment{
 			floorArrey = R.array.find_floorAs_array;
 			break;
 		default:
-			Toast.makeText(getActivity(), "Read error log", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getActivity(), "Read error log", Toast.LENGTH_SHORT).show();
 			Log.d("DEBUG", "a different spinner was selected");
 			break;
 		}
 
-		/*
-			if(buildingName.equals("Orkanen (Or)")) {
-				floorArrey = R.array.find_floorOr_array;
-			}
-			else if(buildingName.equals("Gäddan (G8)")) {
-				floorArrey = R.array.find_floorG8_array;
-			}
-			else if(buildingName.equals("Kranen (K2)")) {
-				floorArrey = R.array.find_floorK2_array;
-			}
-			else if(buildingName.equals("Ubåtshallen (K8)")) {
-				floorArrey = R.array.find_floorK8_array;
-			}
-			else if(buildingName.equals("Klerken (Kl)")) {
-				floorArrey = R.array.find_floorKl_array;
-			}
-			else if(buildingName.equals("University Hospital (As)")) {
-				floorArrey = R.array.find_floorAs_array;
-			}*/
-
 		return floorArrey;
 
+	}
+
+	class MyJavaScriptInterface {
+	    @SuppressWarnings("unused")
+	    public void processHTML(String html) {
+	        // process the html as needed by the app
+	    	Log.i("project", html);
+	    	//if (html.indexOf("<img") == -1)
+	    		//webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename=underconstraction.png&resolution=mdpi");
+	    }
 	}
 
 }

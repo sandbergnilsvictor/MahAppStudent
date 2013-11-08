@@ -1,250 +1,90 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@color/grey_light"
-    >
-			
-	
-	<LinearLayout
-	    android:id="@+id/content_help"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:orientation="vertical" 
-	    
-	    > 
-	    
-	    <LinearLayout
-	    android:id="@+id/help_general_info"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:orientation="vertical" 
-	    android:layout_marginLeft="12dp" 
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="12dp"
-	    android:background="#ffffff"
-	    >
-	    
-	    
-		    <TextView android:id="@+id/help_general_info_title"
-		            android:textSize="18sp"
-		            android:textStyle="bold"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content" 
-		            android:layout_marginTop="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:layout_marginBottom="5dp"
-		            android:text="Title"/>
-		    
-		    <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-			    	android:background="@color/grey_middle" >
-			</View> 
-		    
-		    
-		    <TextView android:id="@+id/help_general_info_content"
-		            android:textSize="14sp"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content" 
-		            android:layout_marginBottom="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:layout_marginTop="5dp"
-		            android:text="@string/lorem_ipsum"	 />  
-			<View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:background="@color/grey_dark" >
-			</View> 
-	    
-	   	</LinearLayout>
-	   	
+    android:background="#EEEEEE" >
 
-	    <LinearLayout
-	    android:id="@+id/help_home_info"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:orientation="vertical" 
-	    android:layout_marginLeft="12dp" 
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="12dp"
-	    android:background="#ffffff">
-	    
-	    
-		    <ImageView
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:adjustViewBounds="true"
-		        android:contentDescription="@string/home_block_description"
-		        android:src="@drawable/home_block" >
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"
+        android:orientation="vertical" >
 
-	    	</ImageView>
-	    	
-		    <TextView android:id="@+id/help_home_info_title"
-		            android:textSize="18sp"
-		            android:textStyle="bold"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content" 
-		            android:layout_marginTop="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:layout_marginBottom="5dp"
-		            android:text="Home Title"/>
-		    
-		    <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-			    	android:background="@color/grey_middle" >
-			</View> 
-		    
-		    <TextView android:id="@+id/help_home_info_content"
-		            android:textSize="14sp"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginTop="5dp"
-		            android:layout_marginBottom="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:text="@string/lorem_ipsum"	/>   
-		     <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:background="@color/grey_dark" >
-	    	</View> 
-	    
-	   	</LinearLayout>
-	    
-	    
-	    <LinearLayout
-	    android:id="@+id/help_schedule_info"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:orientation="vertical" 
-	    android:layout_marginLeft="12dp" 
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="12dp"
-	   android:background="#ffffff">
-	    
-	    
-		    <ImageView
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:adjustViewBounds="true"
-	        android:contentDescription="@string/home_block_description"
-	        android:src="@drawable/home_block" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical" >
 
-	    	</ImageView>
-	    	
-		    <TextView android:id="@+id/help_schedule_info_title"
-		            android:textSize="18sp"
-		            android:textStyle="bold"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content" 
-		            android:layout_marginTop="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:layout_marginBottom="5dp"
-		            android:text="Schedule Title"/>
-		    
-		    <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-			    	android:background="@color/grey_middle" >
-			</View> 
-		    
-		    <TextView android:id="@+id/help_schedule_info_content"
-		            android:textSize="14sp"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginTop="5dp" 
-		            android:layout_marginBottom="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:text="@string/lorem_ipsum"	/> 
-		      <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:background="@color/grey_dark" >
-	    	</View>    
-	    
-	   	</LinearLayout>
-	   	
-	    <LinearLayout
-	    android:id="@+id/help_itsl_info"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:orientation="vertical" 
-	    android:layout_marginLeft="12dp" 
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="12dp"
-	    android:background="#ffffff">
-	    
-	    
-		    <ImageView
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:adjustViewBounds="true"
-	        android:contentDescription="@string/home_block_description"
-	        android:src="@drawable/home_block" >
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/credits"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-	    	</ImageView>
-	    	
-		    <TextView android:id="@+id/help_itsl_info_title"
-		            android:textSize="18sp"
-		            android:textStyle="bold"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content" 
-		            android:layout_marginTop="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:layout_marginBottom="5dp"
-		            android:text="It´s Learning Title"/>
-		    
-		    <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-			    	android:background="@color/grey_middle" >
-			</View> 
-		    
-		    <TextView android:id="@+id/help_itsl_info_content"
-		            android:textSize="14sp"
-		            android:textColor="@color/grey_dark"
-		            android:layout_width="match_parent"
-		            android:layout_height="wrap_content"
-		            android:layout_marginTop="5dp"
-		            android:layout_marginBottom="12dp"
-		            android:layout_marginLeft="12dp" 
-		            android:layout_marginRight="12dp"
-		            android:text="@string/lorem_ipsum"	/>   
-		            
-		     <View
-			        android:layout_width="match_parent"
-			    	android:layout_height="2dp"
-			    	android:background="@color/grey_dark" >
-	    	</View> 
-	    
-	   	</LinearLayout>
-    
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/whenMade"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lightgray"
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="#ffffff" >
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#eeeeee" />
+        </LinearLayout>
+	    "
+
+        <LinearLayout
+            android:id="@+id/scroll_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:gravity="bottom"
+                android:text="@string/hello" />
+        </LinearLayout>
+        
     </LinearLayout>
 
-   
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/darker_gray" />
 
-
-   </ScrollView>
+</RelativeLayout>

@@ -8,7 +8,6 @@ import java.util.Observer;
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.framework.MainActivity;
-import se.mah.kd330a.project.framework.SplashActivity;
 import se.mah.kd330a.project.home.data.DOMParser;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.schedule.data.KronoxCalendar;
@@ -17,25 +16,22 @@ import se.mah.kd330a.project.schedule.data.KronoxJSON;
 import se.mah.kd330a.project.schedule.data.KronoxReader;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.EditText;
 
 public class StartActivity extends Activity implements Observer
 {
 	private final String TAG = "StartActivity";
-	private final String USER_FILE = "shared.preferences";
 	private final String RSSNEWSFEEDURL = "http://www.mah.se/Nyheter/RSS/News/";
-
-	private SharedPreferences sharedPref;
-	private String username;
-	private String password;
 	private EditText editTextUsername;
 	private EditText editTextPassword;
 
@@ -44,46 +40,67 @@ public class StartActivity extends Activity implements Observer
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
-		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
-
-		/*
-		 * a fix for lars' broken code ;(
-		 */
-		if (Me.observable.countObservers() > 0)
-			Me.observable.deleteObservers();
-
-		Me.observable.addObserver(this);
 		
-		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
-		username = sharedPref.getString("user_id", "");
-		password = sharedPref.getString("user_password", "");
+		((LinearLayout) findViewById(R.id.login_view)).setVisibility(LinearLayout.GONE);
+		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
+
+		
+		Me.observable.deleteObservers();
+		Me.observable.addObserver(this);
+		Me.restoreMe(getApplicationContext());
+
+		if (Me.getFirstName().isEmpty())
+		{
+			showLoginView();
+		}
+		else
+		{
+			hideLoginView();
+			Me.updateMe();
+		}
+
+	}
+
+	public void showLoginView()
+	{
+		/*
+		 * Hide the other view
+		 */
+		((View) findViewById(R.id.loading_view)).setVisibility(View.GONE);
+		
+		((View) findViewById(R.id.login_view)).setVisibility(View.VISIBLE);
 		editTextUsername = (EditText) findViewById(R.id.editText1);
 		editTextPassword = (EditText) findViewById(R.id.editText2);
-		editTextUsername.setText(username);
-		editTextPassword.setText(password);
+		editTextUsername.setText(Me.getUserID());
+		editTextPassword.setText("");
+	}
+
+	public void hideLoginView()
+	
+	{
+		InputMethodManager imm = (InputMethodManager)getSystemService(
+			      Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow((IBinder) findViewById(R.id.login_view).getWindowToken(), 0);
+		
+		((View) findViewById(R.id.login_view)).setVisibility(View.GONE);
+		((View) findViewById(R.id.loading_view)).setVisibility(View.VISIBLE);
 	}
 
 	public void forgetButtonClicked(View v)
 	{
-		SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putString("user_id", "");
-		editor.putString("user_password", "");
-		editor.commit();
+		Me.setUserID("");
+		Me.setPassword("");
+
 		Toast.makeText(this, "You've been forgotten.", Toast.LENGTH_SHORT).show();
 		finish();
 	}
 
 	public void loginButtonClicked(View v)
 	{
-		((View) findViewById(R.id.progressBar1)).setVisibility(View.VISIBLE);
-
-		username = editTextUsername.getText().toString();
-		password = editTextPassword.getText().toString();
-
-		SharedPreferences.Editor editor = sharedPref.edit();
-		editor.putString("user_id", username);
-		editor.putString("user_password", password);
-		editor.commit();
+		hideLoginView();
+		
+		String username = editTextUsername.getText().toString();
+		String password = editTextPassword.getText().toString();
 
 		/* 
 		 * Reset the Me "object"
@@ -99,22 +116,23 @@ public class StartActivity extends Activity implements Observer
 		Me.setPassword(password);
 		Me.updateMe();
 	}
-	
+
 	/*
 	 * Called by "Me" after login button is clicked 
 	 */
 	@Override
 	public void update(Observable observable, Object data)
 	{
-		if (Me.getFirstName().isEmpty())
-		{
-			Toast.makeText(this, "Can't log you in", Toast.LENGTH_LONG).show();
-			return;
-		}
 		Log.i(TAG, "update(): Got callback from Me");
 
-		//Me.observable.deleteObserver(this);
+		if (Me.getFirstName().isEmpty())
+		{
+			showLoginView();
+			Toast.makeText(this, "Unable to log you in", Toast.LENGTH_LONG).show();
+			return;
+		}
 
+		Me.saveMe(getApplicationContext());
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
 		downloads.execute();
 	}
@@ -224,6 +242,14 @@ public class StartActivity extends Activity implements Observer
 	public void onDestroy()
 	{
 		super.onDestroy();
+
+		/*
+		 *  Make sure we're not registered observers anymore, otherwise
+		 *  more and more instances will be created each time we start 
+		 *  the app
+		 */
+		Me.observable.deleteObserver(this);
+
 		Log.i(TAG, "finish(): destroying now");
 
 	}

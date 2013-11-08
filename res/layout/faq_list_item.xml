@@ -15,9 +15,21 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
+      
        	android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+    <ImageView
+        android:id="@+id/icPointer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:adjustViewBounds="true"
+            android:paddingBottom="8dp"
+            android:paddingRight="16dp"
+            android:rotationX="180"
+            />
+        
         
   
 

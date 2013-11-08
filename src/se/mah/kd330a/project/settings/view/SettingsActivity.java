@@ -3,6 +3,7 @@ package se.mah.kd330a.project.settings.view;
 import java.util.ArrayList;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.StartActivity;
 import se.mah.kd330a.project.adladok.test.AddLadokAccount;
 import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.adladok.model.Course;
@@ -71,7 +72,10 @@ public class SettingsActivity extends Activity {
 	}
 
 	public void toLadokInlogg(View view) {
-		Intent intent = new Intent(this, AddLadokAccount.class);
+		// starting the old activity, Should redirect to StartActivity and clear the the ME.java
+		
+		Me.clear();
+		Intent intent = new Intent(this, StartActivity.class);
 		startActivity(intent);
 		finish();
 

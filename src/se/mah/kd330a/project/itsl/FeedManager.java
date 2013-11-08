@@ -62,6 +62,13 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			throw new ClassCastException(callbackHandler.toString()
 					+ " must implement FeedManagerDoneListener");
 		}
+		
+		for (String url : Util.getBrowserBookmarks(appContext))
+		{
+			Log.i(TAG, "Got URL from bookmarks: " + url);
+			this.addFeedURL(url);
+		}
+
 	}
 
 	public void addFeedURL(String url) // throws MalformedURLException

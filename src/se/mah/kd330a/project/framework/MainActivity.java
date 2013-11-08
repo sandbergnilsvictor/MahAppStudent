@@ -10,8 +10,8 @@ import net.fortuna.ical4j.data.ParserException;
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
-import se.mah.kd330a.project.help.FragmentHelp;
-import se.mah.kd330a.project.help.FragmentHelpTabs;
+import se.mah.kd330a.project.help.FragmentCredits;
+import se.mah.kd330a.project.help.FragmentCredits;
 import se.mah.kd330a.project.home.FragmentHome;
 import se.mah.kd330a.project.home.data.RSSFeed;
 import se.mah.kd330a.project.itsl.FragmentITSL;
@@ -178,7 +178,7 @@ public class MainActivity extends FragmentActivity{
 			fragment = new FragmentFaq();
 			break;
 		case HELP:
-			fragment = new FragmentHelpTabs();
+			fragment = new FragmentCredits();
 			break;
 		default:	
 			fragment = new FragmentHome();

@@ -26,7 +26,6 @@ import android.app.FragmentTransaction;
 
 public class FragmentITSL extends Fragment implements 
 	FeedManager.FeedManagerDoneListener, 
-	OnClickListener,
 	ActionBar.TabListener
 {
 	private static final String TAG = "FragmentITSL";
@@ -58,13 +57,7 @@ public class FragmentITSL extends Fragment implements
 	{
 		rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_itsl, container, false);
 		actionBar = getActivity().getActionBar();
-				
-		for (String url : Util.getBrowserBookmarks(getActivity().getApplicationContext()))
-		{
-			Log.i(TAG, "Got URL from bookmarks: " + url);
-			feedManager.addFeedURL(url);
-		}
-
+		
 		/*
 		 *  In case there is nothing in the cache, or it doesn't exist
 		 *  we have to refresh
@@ -100,8 +93,10 @@ public class FragmentITSL extends Fragment implements
 		 * Remember when we last had this view opened 
 		 */
 		Date date = new Date(System.currentTimeMillis());
+		/*
 		date.setMonth(9); // zero based index (e.g. 0-11)
 		date.setDate(20);
+		*/
 		Util.setLatestUpdate(getActivity().getApplicationContext(), date);
 	}
 
@@ -165,7 +160,7 @@ public class FragmentITSL extends Fragment implements
 		 * corresponding data to a new TabFragment
 		 */
 		HashMap<String, FeedObject> foList = getFeedObjects();
-
+		TabFragment fragment;
 		for (String title : foList.keySet())
 		{
 			actionBar.addTab(
@@ -173,7 +168,9 @@ public class FragmentITSL extends Fragment implements
 					.setText(title)
 					.setTabListener(this));
 			
-			fragments.add(new TabFragment(foList.get(title).articles));
+			fragment = new TabFragment();
+			fragment.setArticles(foList.get(title).articles);
+			fragments.add(fragment);
 			
 			Log.i(TAG, "Filtered map key => tab title is: " + title);
 		}
@@ -232,21 +229,6 @@ public class FragmentITSL extends Fragment implements
 	{
 		feedManager.reset();
 		feedManager.processFeeds();
-	}
-
-	@Override
-	public void onClick(View v)
-	{
-		switch (v.getId()) {
-		case R.id.button1:
-			refresh();
-			break;
-		case R.id.button2:
-			feedManager.reset();
-			feedManager.deleteCache();
-			//listAdapter.notifyDataSetInvalidated();
-			break;
-		}
 	}
 
 	@Override

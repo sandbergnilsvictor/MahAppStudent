@@ -49,7 +49,7 @@ public class GetImage {
 		return bitmap;
 	}
 
-	private static String getResolution(Context c) {
+	public static String getResolution(Context c) {
 		switch (c.getResources().getDisplayMetrics().densityDpi) {
 		case DisplayMetrics.DENSITY_MEDIUM:
 			return "mdpi";

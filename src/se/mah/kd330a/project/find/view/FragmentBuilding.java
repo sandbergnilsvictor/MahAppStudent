@@ -85,9 +85,9 @@ public class FragmentBuilding extends Fragment implements OnImageLoaderListener 
 				String location = buildingNames[pos];
 
 				if(location.equals("Klerken (Kl)"))
-					location = "Jan Waldenstroms gata 25";
-				else if(location.equals("University Hospital (Hs)"))
 					location = "Carl Gustafs vag 34";
+				else if(location.equals("University Hospital (As)"))
+					location = "Jan Waldenstroms gata 25";
 
 				//getting the google map
 				Intent i = new Intent(android.content.Intent.ACTION_VIEW,
