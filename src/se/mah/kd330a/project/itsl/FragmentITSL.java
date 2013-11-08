@@ -160,14 +160,16 @@ public class FragmentITSL extends Fragment implements
 		 * For all feeds we have downloaded, create a new tab and add the 
 		 * corresponding data to a new TabFragment
 		 */
-		if (foList.isEmpty()){
+		if (!foList.isEmpty()){
 			
 			TabFragment fragment;
 			for (String title : foList.keySet())
 			{
+				String[] parts = title.split("-");
+				String titleDisp=parts[2].substring(1, parts[2].length()-1);
 				actionBar.addTab(
 						actionBar.newTab()
-						.setText(title)
+						.setText(titleDisp)
 						.setTabListener(this));
 				
 				fragment = new TabFragment();
@@ -183,7 +185,7 @@ public class FragmentITSL extends Fragment implements
 		else{
 			actionBar.addTab(
 					actionBar.newTab()
-					.setText("Set up Its's Learning")
+					.setText("Set up It's Learning")
 					.setTabListener(this));
 			TabFragment fragment = new TabFragment();
 			fragment.setArticles(null);
