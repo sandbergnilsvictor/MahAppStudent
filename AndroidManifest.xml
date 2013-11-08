@@ -11,7 +11,7 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
         <activity
             android:name="se.mah.kd330a.project.StartActivity"
             android:label="@string/title_activity_start" >
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,22 +60,10 @@
             android:name="se.mah.kd330a.project.framework.SplashActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-<<<<<<< HEAD
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-=======
->>>>>>> e93dc781fe3317df2884e1d832f86884dbfc40e2
         </activity>
         <activity
             android:name="se.mah.kd330a.project.adladok.test.AddLadokTest"
             android:label="@string/title_activity_ad_ladok_test" >
-<<<<<<< HEAD
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-=======
->>>>>>> e93dc781fe3317df2884e1d832f86884dbfc40e2
         </activity>
 
         <service android:name="se.mah.kd330a.project.itsl.TimeAlarm" />
@@ -83,12 +71,6 @@
         <activity
             android:name="se.mah.kd330a.project.find.data.TestGetImageActivity"
             android:label="@string/title_activity_test_get_image" >
-<<<<<<< HEAD
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-=======
->>>>>>> e93dc781fe3317df2884e1d832f86884dbfc40e2
         </activity>
         <activity
             android:name="se.mah.kd330a.project.adladok.test.AddLadokAccount"
