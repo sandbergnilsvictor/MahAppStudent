@@ -35,9 +35,11 @@
     <string name="k2e1dright">Go the right side of the cafe</string>
     <string name="k2e1dstairs2straight">Go straight and go up the second stairs</string>
     <string name="k2e1dstairs2bridge">Continue forward over the bridge, through the doors</string>
-    <string name="k2e1dstairs2upright">Go straight and go up the second stairs then to the right</string>
-    <string name="k2e1dstairs2upleft">Go straight and go up the second stairs then to the left</string>
+    <string name="k2e1dstairs2upright">Go straight and go up the second stairs</string>
+    <string name="k2e1dstairs2upleft">Go straight and go up the second stairs</string>
     <string name="k2e1dstairs1up">Go straight and go up the first stairs</string>
     <string name="k2e1dstairs1bridge">Go straight and go up the first stairs and go over the bridge</string>
+    <string name="k2e1dstairs2uprightboat">Then turn right</string>
+    <string name="k2e1dstairs2upleftboat">Then turn left</string>
 
 </resources>

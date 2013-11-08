@@ -241,8 +241,8 @@ public class FragmentFloorMap extends Fragment{
 	    public void processHTML(String html) {
 	        // process the html as needed by the app
 	    	Log.i("project", html);
-	    	if (html.indexOf("<img") == -1)
-	    		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename=underconstraction.png&resolution=mdpi");
+	    	//if (html.indexOf("<img") == -1)
+	    		//webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename=underconstraction.png&resolution=mdpi");
 	    }
 	}
 
