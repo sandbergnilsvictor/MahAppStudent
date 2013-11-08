@@ -47,11 +47,9 @@ public class StartActivity extends Activity implements Observer
 		((View) findViewById(R.id.progressBar1)).setVisibility(View.GONE);
 
 		/*
-		 * a fix for lars' broken code ;(
-		 */
 		if (Me.observable.countObservers() > 0)
 			Me.observable.deleteObservers();
-
+		*/
 		Me.observable.addObserver(this);
 		
 		sharedPref = getSharedPreferences(USER_FILE, Context.MODE_PRIVATE);
@@ -224,6 +222,7 @@ public class StartActivity extends Activity implements Observer
 	public void onDestroy()
 	{
 		super.onDestroy();
+		Me.observable.deleteObserver(this);
 		Log.i(TAG, "finish(): destroying now");
 
 	}
