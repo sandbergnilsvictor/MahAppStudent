@@ -181,7 +181,10 @@ public class FragmentITSL extends Fragment implements
 			}
 		}
 		else{
-			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+			actionBar.addTab(
+					actionBar.newTab()
+					.setText("Set up Its's Learning")
+					.setTabListener(this));
 			TabFragment fragment = new TabFragment();
 			fragment.setArticles(null);
 			b.putBoolean("isEmpty", true);
