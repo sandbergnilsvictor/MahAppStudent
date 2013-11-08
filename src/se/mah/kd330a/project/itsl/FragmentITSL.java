@@ -143,7 +143,7 @@ public class FragmentITSL extends Fragment implements
 	{
 		ArrayList<TabFragment> fragments = new ArrayList<TabFragment>();
 		Bundle b = new Bundle();
-		
+		HashMap<String, FeedObject> foList = getFeedObjects();
 		actionBar.removeAllTabs();
 		
 		/*
@@ -160,8 +160,8 @@ public class FragmentITSL extends Fragment implements
 		 * For all feeds we have downloaded, create a new tab and add the 
 		 * corresponding data to a new TabFragment
 		 */
-		if (feedManager.getFeedList().isEmpty()){
-			HashMap<String, FeedObject> foList = getFeedObjects();
+		if (foList.isEmpty()){
+			
 			TabFragment fragment;
 			for (String title : foList.keySet())
 			{
