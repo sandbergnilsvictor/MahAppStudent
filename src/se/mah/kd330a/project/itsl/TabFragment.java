@@ -32,14 +32,26 @@ public class TabFragment extends Fragment implements OnChildClickListener
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View rootView = inflater.inflate(R.layout.itsl_fragment_main, container, false);
-		listAdapter = new ExpandableListAdapter(getActivity(), articleList);
-		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
-		expListView.setAdapter(listAdapter);
-		listAdapter.notifyDataSetChanged();
-		expListView.setOnChildClickListener(this);
-		
-		return rootView;
+		if(!getArguments().getBoolean("isEmpty")){
+			View rootView = inflater.inflate(R.layout.itsl_fragment_main, container, false);
+			listAdapter = new ExpandableListAdapter(getActivity(), articleList);
+			expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
+			expListView.setAdapter(listAdapter);
+			listAdapter.notifyDataSetChanged();
+			expListView.setOnChildClickListener(this);
+			
+			return rootView;
+		}
+		else{
+			View rootView = inflater.inflate(R.layout.itsl_help, container, false);
+//			listAdapter = new ExpandableListAdapter(getActivity(), articleList);
+//			expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
+//			expListView.setAdapter(listAdapter);
+//			listAdapter.notifyDataSetChanged();
+//			expListView.setOnChildClickListener(this);
+			
+			return rootView;
+		}
 	}
 
 	public void refresh()
