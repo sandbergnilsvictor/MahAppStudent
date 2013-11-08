@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/calendarColorFrame1"
-            android:layout_width="16dp"
+            android:layout_width="8dp"
             android:layout_height="match_parent"
             android:background="@color/green" />
 

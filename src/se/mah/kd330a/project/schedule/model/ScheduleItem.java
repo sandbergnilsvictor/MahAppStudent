@@ -65,7 +65,7 @@ public class ScheduleItem implements Serializable {
 		
 		if (summary.indexOf("Coursegrp: ") != -1) {
 			courseName = summary.substring(summary.indexOf("Coursegrp: ") + 11,
-					summary.indexOf("Coursegrp: ") + 17);
+					summary.indexOf("Coursegrp: ") + 29);
 			
 			
 			courseID = summary.substring(summary.indexOf("Coursegrp: ") + 11,
