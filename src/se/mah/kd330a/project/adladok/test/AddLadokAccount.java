@@ -84,10 +84,10 @@ public class AddLadokAccount extends Activity implements Observer {
 			default:
 				break;			
 			}
-			
+			i++;
 		}
 
-		i++;
+		
 
 		
 		
@@ -135,7 +135,7 @@ public class AddLadokAccount extends Activity implements Observer {
 				break;			
 			}
 			
-			
+			i++;
 			
 		}
 
