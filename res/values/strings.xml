@@ -27,43 +27,64 @@
         <item>@drawable/menuitem_5</item>
         <item>@drawable/menuitem_6</item>
     </string-array>
-    <string-array name="faqOptions">
-        <item>"IT Support"</item>
-        <item>"Housing in Malmo"</item>
-        <item>"Student Service"</item>
-        <item>"Career Service"</item>
-        <item>"New Student"</item>
+    
+    
+    
+    
+    <string-array name ="faqOptions">
+       <item>"IT Support"</item> 
+       <item>"Housing in Malmo"</item>
+       <item>"Student Service"</item>
+       <item>"Career Service"</item>
+       <item>"New Student"</item>
+       
     </string-array>
-    <string-array name="faqSubOptions">
-        <item>"it support help text"</item>
-        <item>"Housing help text"</item>
-        <item>"Student Service help text"</item>
-        <item>"Carrer Service help text"</item>
-        <item>"New student help text"</item>
+    
+    <string-array name = "faqSubOptions">
+        <item>"Useful links to IT services"</item>
+        <item>"First step to living in Malmö"</item>
+        <item>"Find out stuff about yourself"</item>
+        <item>"Supporting your job search"</item>
+        <item>"Starting out as a student"</item>
     </string-array>
-    <string-array name="itSupportOptions">
-        <item>"ID-Service"</item>
-        <item>"Printing And Copying"</item>
-        <item>"WiFi"</item>
+    
+    <string-array name = "itSupportOptions">
+    	<item>"- ID-Service"</item> 
+    	<item>"- Printing And Copying"</item> 
+    	<item>"- WiFi"</item>
+        
+        
     </string-array>
-    <string-array name="housingOptions">
-        <item>"Student Housing"</item>
-        <item>"Rental Housing"</item>
+    <string-array name = "housingOptions">
+    	<item>"- Student Housing"</item> 
+    	<item>"- Rental Housing"</item> 
+    	
+        
+        
     </string-array>
-    <string-array name="studentOptions">
-        <item>"Student Service"</item>
+    <string-array name = "studentOptions">
+    	<item>"- Student Service"</item> 
+    	
+        
+        
     </string-array>
-    <string-array name="careerOptions">
-        <item>"Career Workshop"</item>
-        <item>"Job Coaching"</item>
-        <item>"Avalible Jobs"</item>
+    
+     <string-array name = "careerOptions">
+    	<item>"- Career Workshop"</item> 
+    	<item>"- Job Coaching"</item> 
+    	<item>"- Avalible Jobs"</item>
+        
+        
     </string-array>
-    <string-array name="newStudentOptions">
-        <item>"Faculty of Health and Society"</item>
-        <item>"Faculty of Culture and Society"</item>
-        <item>"Faculty of Education and Society"</item>
-        <item>"Faculty of Odontology"</item>
-        <item>"Faculty of Technology and Society"</item>
+    
+     <string-array name = "newStudentOptions">
+    	<item>"- Faculty of Health and Society"</item> 
+    	<item>"- Faculty of Culture and Society"</item> 
+    	<item>"- Faculty of Education and Society"</item>
+    	<item>"- Faculty of Odontology"</item>
+    	<item>"- Faculty of Technology and Society"</item>
+        
+        
     </string-array>
     <string-array name="html_links_it">
         <item>"https://idservice.mah.se/default.aspx"</item>
@@ -173,6 +194,51 @@
     <string name="coma">,</string>
     <string name="title_activity_test_get_image">TestGetImageActivity</string>
     <string name="logo_description">Logo of Malmö Högskola</string>
-    <string name="title_activity_start">Login</string>
+    <string name="title_activity_start">Student App</string>
+    
+        <!-- Credits strings -->
+    <string name="app_name2">scroll</string>
+    <string name="action_settings2">Settings</string>
+    <string name="hello_world2">Hello world!</string>
+    <string name="hello">scrollup</string>
+    <string name="credits">Credits</string>
+    <string name="it">Interaction design</string>
+    <string name="whenMade">The app was released on 8th November 2013</string>
+
+ <string-array name="Idteam"> 
+      	<item>INTERACTION DESIGN</item>
+     	<item>Anil Akyol</item>
+        <item>Daniel Bagge</item>
+        <item>Marcus Johansson</item>
+        <item>Ondrej Mynarik</item>
+        <item>Miklas Njor Nielsen</item>
+        <item>Åsa Petersson</item>
+        <item>Erik Saar</item>
+        <item>Linda Weinmer</item>
+    </string-array>
+    
+    <string-array name="gdteam">
+        <item>GRAPHICS DESIGN</item>  
+        <item>Sabaa Alkatib</item>
+        <item>Sebastian Danso</item>
+        <item>Clara Forslag</item>
+        <item>Rodrigo Jimenez Reges</item>
+        <item>Jaffar Salih</item>
+        <item>Michaela Schmied Henning</item>
+        <item>Pablo Suzarte Gallardo</item>
+        <item>Alok Utsav</item>
+    </string-array>
+    
+    <string-array name="techteam">
+         <item>PROGRAMMING</item>  
+        <item>Sanel Hadzic</item>
+        <item>Marcus Johansson</item>
+        <item>Marcus Månsson</item>
+        <item>Klara Kutas</item>
+        <item>Aleksander Lopez</item>
+        <item>Mojca Lorber</item>
+        <item>Victor Sandberg</item>
+        <item>Alexander Taavitsainen</item>
+    </string-array>
 
 </resources>

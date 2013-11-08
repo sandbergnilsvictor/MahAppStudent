@@ -24,15 +24,16 @@ public class ExpandableListFaqAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
 	private List<Integer> _groupImages;
-
 	
  
-    public ExpandableListFaqAdapter(Context context,List<Integer> groupImages, List<String> listDataHeader, List<String> listDataHeader2,
+    public ExpandableListFaqAdapter(Context context,List<Integer> groupImages, List<String> listDataHeader, List<String> listDataHeader2, 
             HashMap<String, List<String>> listChildData) {
+    	
         this._context = context;
         this._groupImages = groupImages;
         this._listDataHeader = listDataHeader;
         this._listDataHeader2 = listDataHeader2;
+      
         this._listDataChild = listChildData;
     }
 
@@ -89,16 +90,29 @@ public class ExpandableListFaqAdapter extends BaseExpandableListAdapter {
 	@Override
 	 public View getGroupView(int groupPosition, boolean isExpanded,
 	            View convertView, ViewGroup parent) {
+		
+		if (groupPosition==0) {
+			LayoutInflater infalInflater = (LayoutInflater) this._context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = infalInflater.inflate(R.layout.faq_list_group2, null);
+		}
+		else {
+			LayoutInflater infalInflater = (LayoutInflater) this._context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = infalInflater.inflate(R.layout.faq_list_group, null);
+		}
 			
 	        String headerTitle = (String) getGroup(groupPosition);
 	        String headerTitleSub = _listDataHeader2.get(groupPosition);
 	        int imageId = _groupImages.get(groupPosition);
+	      
 	        if (convertView == null) {
 	            LayoutInflater infalInflater = (LayoutInflater) this._context
 	                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            convertView = infalInflater.inflate(R.layout.faq_list_group, null);
 	        }
-	 
+	        ImageView imgPointer = (ImageView) convertView.findViewById(R.id.icPointer);
+	        ImageView imgPointer2 = (ImageView) convertView.findViewById(R.id.icPointer2);
 	        TextView lblListHeader = (TextView) convertView
 	                .findViewById(R.id.lblListHeader);
 	        lblListHeader.setTypeface(null, Typeface.BOLD);
@@ -111,8 +125,25 @@ public class ExpandableListFaqAdapter extends BaseExpandableListAdapter {
 	        
 	        ImageView imageHeader = (ImageView) convertView.
 	        		findViewById(R.id.imageHeader);
-            
             imageHeader.setImageResource(imageId);
+            
+            
+            if(isExpanded){
+            	imgPointer.setVisibility(View.GONE);
+            	imgPointer2.setVisibility(View.VISIBLE);
+            	
+            }
+            else if(!isExpanded){
+            	imgPointer.setVisibility(View.VISIBLE);
+            	imgPointer2.setVisibility(View.GONE);
+            	
+            }
+            
+            
+           
+        
+            
+            
 	        
 	       
 	 

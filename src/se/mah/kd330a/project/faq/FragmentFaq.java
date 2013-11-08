@@ -11,23 +11,33 @@ import java.util.List;
 import se.mah.kd330a.project.faq.ExpandableListFaqAdapter;
 import se.mah.kd330a.project.R;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ImageView;
+
 
 public class FragmentFaq extends Fragment {
 	
-	ExpandableListFaqAdapter listAdapter;
 	
+	
+	ExpandableListFaqAdapter listAdapter;
 	ExpandableListView expListFaqView;
 	List<String> listDataHeader;
 	List<String> listDataHeader2;
 	List<Integer> imageHeader;
+	
+
+	
+	
 	HashMap<String, List<String>> listDataChild;
 
 	
@@ -35,8 +45,11 @@ public class FragmentFaq extends Fragment {
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {	
-	
+	public void onCreate(Bundle savedInstanceState) {
+		
+        
+        
+		
 		super.onCreate(savedInstanceState);
 		
 	}
@@ -46,24 +59,45 @@ public class FragmentFaq extends Fragment {
 		ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.faq_activity_main, container, false);
 		
-
+		
+		
+		
+		
 		// get the listview
 		expListFaqView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
 		
+		
+		 
 		// preparing list data
 		prepareListData();
 
 		listAdapter = new ExpandableListFaqAdapter(getActivity(), imageHeader, listDataHeader, listDataHeader2,
 				listDataChild);
 
-		// setting list adapter
 		
-		       expListFaqView.setIndicatorBounds(0, 300);
-		  
+        
+     
+	
+	     
+        //this code for adjusting the group indicator into right side of the view
+        
+	
 
+		// setting list adapter
 		expListFaqView.setAdapter(listAdapter);
 		
-		
+expListFaqView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener(){
+			
+			@Override
+			public void onGroupExpand(int groupPosition){
+				Log.d("EXPAND", "EXPANDED");
+				
+				
+				
+			}
+			
+			
+		});
 		
 		expListFaqView.setOnChildClickListener(new OnChildClickListener() {
 			String[] htmlListIt = getResources().getStringArray(
@@ -190,13 +224,19 @@ public class FragmentFaq extends Fragment {
 		return rootView;
 		
 	}
+	
+	
+	
 	private void prepareListData() {
+		
 		listDataHeader = new ArrayList<String>(); 
 		listDataHeader2 = new ArrayList<String>();
 		imageHeader = new ArrayList<Integer>();
 		listDataChild = new HashMap<String, List<String>>();
 		String[] faqHeaders = getResources().getStringArray(R.array.faqOptions);
 		String [] faqSubs = getResources().getStringArray(R.array.faqSubOptions);
+	
+		
 		imageHeader.add(R.drawable.itsupport_lager);
 		imageHeader.add(R.drawable.housing);
 		imageHeader.add(R.drawable.studentservice);
