@@ -129,9 +129,9 @@
     <string name="next_class_widget_heading">My next lesson</string>
     <string name="itsl_widget_heading">It´s Learning</string>
     <string name="news_widget_heading">News from MAH</string>
-    <string name="fultext">Imorgon träffas vi i B130 istället för det vanliga klassrummet. Glöm inte att ta med era skisser...</string>
-    <string name="fultitle">Från: Project Management</string>
-    <string name="fuldate">Placeholder</string>
+    <string name="fultext">Loading...</string>
+    <string name="fultitle">From It\'s Learning</string>
+    
     <string name="home_block_description">Image of Malmö Högskola</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="my_courses_heading">My Courses</string>
