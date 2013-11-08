@@ -52,13 +52,7 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 	{
 		super.onCreate(savedInstanceState);
 
-		ITSLfeedManager = new FeedManager(this, getActivity().getApplicationContext());
-		if (!ITSLfeedManager.loadCache())
-		{
-			ITSLfeedManager.reset();
-			ITSLfeedManager.processFeeds();
-		}
-		
+
 		try
 		{
 			nextClass = new NextClassWidget();
@@ -74,10 +68,18 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
+	
+		
 		rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_home, container, false);
 		setNextClassWidget(rootView);
 		setNewsFeedMah(rootView);
 		setLastItslPost(rootView);
+		ITSLfeedManager = new FeedManager(this, getActivity().getApplicationContext());
+		if (!ITSLfeedManager.loadCache())
+		{
+			ITSLfeedManager.reset();
+			ITSLfeedManager.processFeeds();
+		}
 		return rootView;
 
 	}
@@ -122,7 +124,9 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 
 	private void setNextClassWidget(ViewGroup rootView)
 	{
+		
 		LinearLayout nextClassWidget = (LinearLayout) rootView.findViewById(R.id.next_class_widget);
+		nextClassWidget.setVisibility(LinearLayout.VISIBLE);
 		SharedPreferences sharedPref = this.getActivity().getSharedPreferences("courseName", Context.MODE_PRIVATE);
 		String courseName = sharedPref.getString(nextClass.getCourseName(), nextClass.getCourseName());
 		if (profileRegistered)
@@ -140,6 +144,7 @@ public class FragmentHome extends Fragment implements FeedManager.FeedManagerDon
 		}
 		else
 		{
+			nextClassWidget.setVisibility(LinearLayout.GONE);
 			TextView textNextClassDate = (TextView) nextClassWidget.findViewById(R.id.text_next_class_date);
 			textNextClassDate.setText("No classes");
 		}

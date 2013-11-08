@@ -89,5 +89,6 @@ public class TimeAlarm extends IntentService implements FeedManager.FeedManagerD
 
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(0, mBuilder.build());
+		Util.setLatestUpdate(this, new Date());
 	}
 }

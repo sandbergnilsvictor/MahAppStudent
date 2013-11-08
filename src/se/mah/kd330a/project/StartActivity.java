@@ -44,6 +44,8 @@ public class StartActivity extends Activity implements Observer
 		((LinearLayout) findViewById(R.id.login_view)).setVisibility(LinearLayout.GONE);
 		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
 
+		
+		Me.observable.deleteObservers();
 		Me.observable.addObserver(this);
 		Me.restoreMe(getApplicationContext());
 

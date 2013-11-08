@@ -55,6 +55,11 @@ public class Me implements Serializable{
 		//prevents anyone from doing instances
 	}
 	
+	public static void clear() {
+		// Lars fixa detta. Metoden ska ta bort alla spår av användaren
+		
+	}
+	
 	/**Restores Me and my courses from local storage*/
 	public static void restoreMe(Context c){
 		//Read local storage
