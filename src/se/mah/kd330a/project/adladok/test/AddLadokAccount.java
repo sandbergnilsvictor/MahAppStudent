@@ -14,30 +14,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddLadokAccount extends Activity implements Observer
-{
+public class AddLadokAccount extends Activity implements Observer {
 	private final String userFile = "userFile";
 	private SharedPreferences sharedPref;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ad_ladok_test);
 		EditText userID_et = (EditText) findViewById(R.id.userIDet);
 		sharedPref = getSharedPreferences(userFile, Context.MODE_PRIVATE);
 		userID_et.setText(sharedPref.getString("user_id", ""));
-		
+
 		Log.i("UserInfo", "Antal observers :" + Me.observable.countObservers());
-		if (Me.observable.countObservers() > 0)
-		{
+		if (Me.observable.countObservers() > 0) {
 			Me.observable.deleteObservers();
 		}
 		Me.observable.addObserver(this);
 	}
 
-	public void forgetButtonClicked(View v)
-	{
+	public void forgetButtonClicked(View v) {
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString("user_id", "");
 		editor.putString("user_password", "");
@@ -45,8 +41,7 @@ public class AddLadokAccount extends Activity implements Observer
 		finish();
 	}
 
-	public void update(View v)
-	{
+	public void update(View v) {
 		// clear all
 		Me.setDispayName("");
 		Me.setEmail("");
@@ -65,6 +60,39 @@ public class AddLadokAccount extends Activity implements Observer
 		Me.setUserID(userID_et.getText().toString());
 		Me.setPassword(password_et.getText().toString());
 		Me.updateMe();
+		
+		int i=0;
+		
+		for (Course c : Me.getCourses()) {
+			
+			switch (i) {
+			case 0:
+				c.setColor(this.getResources().getColor(R.color.blue));
+				break;
+			case 1:
+				c.setColor(this.getResources().getColor(R.color.orange));								
+				break;
+			case 2:
+				c.setColor(this.getResources().getColor(R.color.grey));
+				break;
+			case 3:
+				c.setColor(this.getResources().getColor(R.color.green));
+				break;
+			case 4:
+				c.setColor(this.getResources().getColor(R.color.yellow));
+				break;
+			default:
+				break;			
+			}
+			
+		}
+
+		i++;
+
+		
+		
+		
+		
 
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putString("user_id", userID_et.getText().toString());
@@ -73,22 +101,49 @@ public class AddLadokAccount extends Activity implements Observer
 	}
 
 	@Override
-	public void update(Observable observable, Object data)
-	{
+	public void update(Observable observable, Object data) {
 		String courses = "";
 		Log.i("UserInfo", "Length: " + Me.getCourses().size());
-		for (Course c : Me.getCourses())
-		{
-			courses = courses + "course: \n" + "NameSV: " + c.getDisplaynameSv() + "\n" + "NameEN: " + c.getDisplaynameEn() + "\n" + "CourseID: " + c.getCourseID() + "\n" + "Program: " + c.getProgram() + "\n" + "Term: " + c.getTerm() + "\n" + "regCode: " + c.getRegCode() + "\n" + "KronoxCodeString: " + c.getKronoxCalendarCode() + "\n";
+		
+		int i=0;
+		for (Course c : Me.getCourses()) {
+			courses = courses + "course: \n" + "NameSV: "
+					+ c.getDisplaynameSv() + "\n" + "NameEN: "
+					+ c.getDisplaynameEn() + "\n" + "CourseID: "
+					+ c.getCourseID() + "\n" + "Program: " + c.getProgram()
+					+ "\n" + "Term: " + c.getTerm() + "\n" + "regCode: "
+					+ c.getRegCode() + "\n" + "KronoxCodeString: "
+					+ c.getKronoxCalendarCode() + "\n";
+		
+			switch (i) {
+			case 0:
+				c.setColor(this.getResources().getColor(R.color.blue));
+				break;
+			case 1:
+				c.setColor(this.getResources().getColor(R.color.orange));								
+				break;
+			case 2:
+				c.setColor(this.getResources().getColor(R.color.grey));
+				break;
+			case 3:
+				c.setColor(this.getResources().getColor(R.color.green));
+				break;
+			case 4:
+				c.setColor(this.getResources().getColor(R.color.yellow));
+				break;
+			default:
+				break;			
+			}
+			
+			
+			
 		}
 
 		Log.i("Ladok", "c.getKronoxCalendarCode()");
-		if (Me.getFirstName().isEmpty())
-		{
-			Toast.makeText(this, "Please enter a valid Username or Password", Toast.LENGTH_LONG).show();
-		}
-		else
-		{
+		if (Me.getFirstName().isEmpty()) {
+			Toast.makeText(this, "Please enter a valid Username or Password",
+					Toast.LENGTH_LONG).show();
+		} else {
 			Me.observable.deleteObserver(this);
 			finish();
 		}
