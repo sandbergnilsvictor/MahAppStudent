@@ -203,8 +203,10 @@
     
     <string name="tx_textMain">You can get the latest news for your courses from It\'s learning right here in the app if you follow these steps.</string>
     <string name="tx_textTwo">Launch the browser in your mobile phone and log in to It\'s Learning </string>
-    <string name="tx_textThree">The Icon shown below indicates the information that can be displayed by this app. For example, the Dashboard and Latest Changes in your courses uses this icon.</string>
-    <string name="tx_textFour">Click the afore mentioned icon for the courses you </string>
+    <string name="tx_textThree">The Icon shown below indicates the information that can be displayed by this app. For example, the Dashboard and Latest Changes in your courses uses this icon:</string>
+    <string name="tx_textFour">Click the orange rss-icon for a feed you want to access in the app. Once you click that link a new window will open and will look something like this: </string>
+    <string name="tx_textFive">Bookmark the page in your browser. </string>
+     <string name="tx_textSix">Click the rss-icon and bookmark the feed for all the feeds you want to have in the app, then restart the app. You can add more feeds later if you want to. f you want to remove a feed from the app - just remove the bookmark for that feed from your browser. </string>
         <!-- Credits strings -->
     <string name="app_name2">scroll</string>
     <string name="action_settings2">Settings</string>

@@ -3,26 +3,27 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-<LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/grey_light"
-    android:orientation="vertical" >
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:animateLayoutChanges="true"
-        android:background="@color/white"
-        android:orientation="horizontal" >
+        android:background="@color/grey_light"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical" >
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:animateLayoutChanges="true"
+            android:background="@color/white"
+            android:orientation="horizontal" >
 
-            <!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <!--
                  <TextView
                 android:id="@+id/tx_titleMain"
                 android:layout_width="match_parent"
@@ -31,154 +32,204 @@
                 android:text="Set up It&apos;s Learning"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black" />
-            -->
+                -->
 
-            <TextView
-                android:id="@+id/tx_textMain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:text="@string/tx_textMain"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/grey_dark" />
+                <TextView
+                    android:id="@+id/tx_textMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/tx_textMain"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/grey_dark" />
 
-            <ImageView
-                android:id="@+id/divider_light"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_below="@id/tx_textMain"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/grey_light" />
+                <ImageView
+                    android:id="@+id/divider_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/tx_textMain"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tx_titleTwo"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_below="@id/divider_light"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                android:text="1. Go to It&apos;s Learning"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tx_titleTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_below="@id/divider_light"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:text="1. Go to It&apos;s Learning"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tx_textTwo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tx_titleTwo"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/tx_textTwo"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/grey_dark" />
+                <TextView
+                    android:id="@+id/tx_textTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_titleTwo"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/tx_textTwo"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/grey_dark" />
 
-            <ImageView
-                android:id="@+id/divider_light2"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_below="@id/tx_textTwo"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/grey_light" />
+                <ImageView
+                    android:id="@+id/divider_light2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/tx_textTwo"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tx_titleThree"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_below="@id/divider_light2"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                android:text="2. Meet the RSS icon"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tx_titleThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_below="@id/divider_light2"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:text="2. Meet the RSS icon"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tx_textThree"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tx_titleThree"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/tx_textThree"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/grey_dark" />
+                <TextView
+                    android:id="@+id/tx_textThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_titleThree"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/tx_textThree"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/grey_dark" />
 
-            <ImageView
-                android:id="@+id/im_rssIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tx_textThree"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/im_help_itsl_1" />
+                <ImageView
+                    android:id="@+id/im_rssIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_textThree"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/im_help_itsl_1" />
+                
+                
 
-            <ImageView
-                android:id="@+id/divider_light3"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_below="@id/im_rssIcon"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/grey_light" />
+                <ImageView
+                    android:id="@+id/divider_light3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/im_rssIcon"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tx_titleFour"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_below="@id/divider_light3"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                android:text="3. Identify your feeds"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tx_titleFour"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_below="@id/divider_light3"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:text="3. Identify your feeds"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/tx_textFour"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tx_titleFour"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/tx_textFour"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/grey_dark" />
+                <TextView
+                    android:id="@+id/tx_textFour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_titleFour"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/tx_textFour"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/grey_dark" />
 
-            <ImageView
-                android:id="@+id/divider_light4"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_below="@id/tx_textFour"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@color/grey_light" />
+                <ImageView
+                    android:id="@+id/im_help2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_textFour"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/im_itsl_help_2" />
 
-            <TextView
-                android:id="@+id/tx_titleFive"
-                android:layout_width="match_parent"
-                android:layout_height="46dp"
-                android:layout_below="@id/divider_light4"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                android:text="4. Bookmark your feeds"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
+                <ImageView
+                    android:id="@+id/divider_light4"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/im_help2"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/grey_light" />
 
-            <TextView
-                android:id="@+id/tx_textFive"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tx_titleFive"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/tx_textTwo"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/grey_dark" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tx_titleFive"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_below="@id/divider_light4"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:text="4. Bookmark your feeds"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tx_textFive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_titleFive"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/tx_textFive"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/grey_dark" />
+
+                <ImageView
+                    android:id="@+id/divider_light5"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/tx_textFive"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/grey_light" />
+
+                <TextView
+                    android:id="@+id/tx_titleSix"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_below="@id/divider_light5"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:text="5. Restart the App"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tx_textSix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tx_titleSix"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/tx_textSix"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/grey_dark" />
+
+                <ImageView
+                    android:id="@+id/divider_dark"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@id/tx_textSix"
+                    android:background="@color/grey" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
 </ScrollView>
