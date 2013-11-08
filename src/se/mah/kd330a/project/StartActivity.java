@@ -96,10 +96,6 @@ public class StartActivity extends Activity implements Observer
 	{
 		hideLoginView();
 		
-<<<<<<< HEAD
-=======
-
->>>>>>> acc033b0b69ce413bb9c1b21f542c6f834d535c8
 		String username = editTextUsername.getText().toString();
 		String password = editTextPassword.getText().toString();
 
