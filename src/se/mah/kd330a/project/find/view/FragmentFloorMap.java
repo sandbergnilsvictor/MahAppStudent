@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.find.data.GetImage;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -144,7 +145,8 @@ public class FragmentFloorMap extends Fragment{
 		webview.getSettings().setBuiltInZoomControls(true);
 		//webview.loadUrl("https://dl.dropboxusercontent.com/u/11605027/" + floorMapCode + ".jpg");
 			//getResolution(c); ---missing
-		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename="+ floorMapCode +".jpg&resolution="+"xxhdpi");
+		String resolution = GetImage.getResolution(getActivity());
+		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename="+ floorMapCode +".jpg&resolution="+resolution);
 	}
 
 	protected int resetFloor(int position) {
