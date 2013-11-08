@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import net.fortuna.ical4j.data.ParserException;
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.adladok.model.Course;
+import se.mah.kd330a.project.adladok.model.Me;
 import se.mah.kd330a.project.faq.FragmentFaq;
 import se.mah.kd330a.project.find.FragmentFind;
 import se.mah.kd330a.project.help.FragmentCredits;
@@ -112,6 +114,9 @@ public class MainActivity extends FragmentActivity{
         if (savedInstanceState == null) {
             selectItem(0);
         }
+        //Assigns colors for the courses - maximum 5 courses
+        updateColors();
+        
     }
     
     public RSSFeed getRssNewsFeed() {
@@ -235,6 +240,33 @@ public class MainActivity extends FragmentActivity{
     	startActivity(launchBrowser);
     }
 
+	public void updateColors() {
+	int i=0;		
+	for (Course c : Me.getCourses()) {
+		
+		switch (i) {
+		case 0:
+			c.setColor(this.getResources().getColor(R.color.blue));
+			break;
+		case 1:
+			c.setColor(this.getResources().getColor(R.color.orange));								
+			break;
+		case 2:
+			c.setColor(this.getResources().getColor(R.color.green));
+			break;
+		case 3:
+			c.setColor(this.getResources().getColor(R.color.yellow));
+			break;
+		case 4:
+			c.setColor(this.getResources().getColor(R.color.grey));
+			break;
+		default:
+			break;			
+		}
+		i++;
+	}
+
+	}
 
     
     

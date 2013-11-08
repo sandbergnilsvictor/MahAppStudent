@@ -11,14 +11,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xmlpull.v1.XmlSerializer;
 
+import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.adladok.model.Course;
 import se.mah.kd330a.project.adladok.model.Me;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.util.Xml;
 
-public class Parser {
+public class Parser{
 
     //"givenname""lastname""displayname""mahmail""mahisstaff""mahisstudent"
 	//"courses""displaynamesv""course""courseid""displaynameen""regcode""program""term"
@@ -93,8 +95,7 @@ public class Parser {
 				try{
 					course.setColor(Integer.parseInt(parser.getValue(e2, "color")));
 				}catch(Exception e7){}
-				Me.addCourse(course);	
-				
+				Me.addCourse(course);
 			}
 		}
     }
@@ -178,5 +179,5 @@ public class Parser {
 	        return"<user></user>";
 	    } 
 	}
-
+	
 }

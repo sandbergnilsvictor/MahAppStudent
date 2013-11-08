@@ -253,4 +253,6 @@ public class StartActivity extends Activity implements Observer
 		Log.i(TAG, "finish(): destroying now");
 
 	}
+	
+	
 }

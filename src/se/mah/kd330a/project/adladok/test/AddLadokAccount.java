@@ -31,6 +31,7 @@ public class AddLadokAccount extends Activity implements Observer {
 			Me.observable.deleteObservers();
 		}
 		Me.observable.addObserver(this);
+		updateColors();
 		
 	}
 
@@ -141,6 +142,34 @@ public class AddLadokAccount extends Activity implements Observer {
 			Me.observable.deleteObserver(this);
 			finish();
 		}
+	}
+	
+	public void updateColors() {int i=0;		
+	for (Course c : Me.getCourses()) {
+		
+		switch (i) {
+		case 0:
+			c.setColor(this.getResources().getColor(R.color.blue));
+			break;
+		case 1:
+			c.setColor(this.getResources().getColor(R.color.orange));								
+			break;
+		case 2:
+			c.setColor(this.getResources().getColor(R.color.grey));
+			break;
+		case 3:
+			c.setColor(this.getResources().getColor(R.color.green));
+			break;
+		case 4:
+			c.setColor(this.getResources().getColor(R.color.yellow));
+			break;
+		default:
+			break;			
+		}
+		i++;
+	}
+		
+	
 	}
 
 }
