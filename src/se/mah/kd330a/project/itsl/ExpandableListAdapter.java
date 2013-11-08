@@ -1,8 +1,12 @@
 package se.mah.kd330a.project.itsl;
 
 import se.mah.kd330a.project.R;
+import se.mah.kd330a.project.adladok.model.Course;
+import se.mah.kd330a.project.adladok.model.Me;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
 import android.util.Log;
@@ -22,6 +26,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 	private List<Article> _listDataHeader; // header titles
 	private Date lastUpdate;
 	
+	HashMap<String, Integer> colors = new HashMap<String, Integer>();
+	
 	// Temporary for testing - create arraylist of courses
 	ArrayList<OldCourse> theCourses = new ArrayList<OldCourse>();
 
@@ -31,12 +37,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 		this._listDataHeader = listDataHeader;
 		this.lastUpdate = Util.getLatestUpdate(_context);
 		
-		// Trying to get the colors from our xml file
-		theCourses.add(new OldCourse("1", context.getResources().getColor(R.color.blue)));
-		theCourses.add(new OldCourse("2", context.getResources().getColor(R.color.yellow)));
-		theCourses.add(new OldCourse("3", context.getResources().getColor(R.color.red)));
-		theCourses.add(new OldCourse("4", context.getResources().getColor(R.color.green)));
-		theCourses.add(new OldCourse("5", context.getResources().getColor(R.color.orange)));
+		
+		//Default color if the feed is not attached to a course
+				colors.put("", context.getResources().getColor(R.color.red_mah));
+									
+				
+		//Fill hashmap with colors from my courses
+		for (Course c : Me.getCourses())
+		{
+			Log.i("kurs", c.getRegCode());
+			colors.put(c.getRegCode(), c.getColor());			
+		}		
+
 	}
 
 	public List<Article> getList()
@@ -76,17 +88,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 			TextView txtListChild = (TextView) convertView.findViewById(R.id.lblListItem);
 			txtListChild.setText(this._listDataHeader.get(groupPosition).getArticleText());
 			ImageView imgClrCode = (ImageView) convertView.findViewById(R.id.clrCode);
-
-			/*
-			 * Choose the right color
-			 */
-			for (OldCourse c : theCourses)
+			String regCode = "";
+			
+			if (this._listDataHeader.get(groupPosition).getArticleCourseCode().contains("-"))
 			{
-				if (this._listDataHeader.get(groupPosition).getArticleCourseCode().equals(c.getCourseCode()))
-				{
-					imgClrCode.setBackgroundColor(c.getColor());
-				}
+				int start = this._listDataHeader.get(groupPosition).getArticleCourseCode().indexOf("-")+1;
+				
+				regCode = this._listDataHeader.get(groupPosition).getArticleCourseCode().substring(start, start+5);
 			}
+			
+			
+			if (colors.get(regCode)!=null)
+			{
+				imgClrCode.setBackgroundColor(colors.get(regCode));
+			}
+			else
+			{
+				imgClrCode.setBackgroundColor(colors.get(""));
+			}	
 		}
 
 		return convertView;
@@ -174,26 +193,31 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 				convertView.setClickable(false);
 			}
 
-			/*
-			 * Choose the right color
-			 */
-
-			for (OldCourse c : theCourses)
+String regCode = "";
+			
+			if (this._listDataHeader.get(groupPosition).getArticleCourseCode().contains("-"))
 			{
-				if (headerTitle.getArticleCourseCode().equals(c.getCourseCode()))
-				{
-					imgClrCode.setBackgroundColor(c.getColor());
-					txtClrLine.setBackgroundColor(c.getColor());
-				}
+				int start = this._listDataHeader.get(groupPosition).getArticleCourseCode().indexOf("-")+1;
+				
+				regCode = this._listDataHeader.get(groupPosition).getArticleCourseCode().substring(start, start+5);
 			}
-
-			/*
-			 * filter example
+			
+			Log.i("getView", regCode);
+			
+			/* 
+			 * Sets the color to a default color if the coursecode can't be found in
+			 * the list of courses
 			 */
-			if (headerTitle.getArticleCourseCode().equals("320B"))
+			
+			if (colors.get(regCode)!=null)
 			{
-				// convertView.setVisibility(View.GONE);
-
+				imgClrCode.setBackgroundColor(colors.get(regCode));
+				txtClrLine.setBackgroundColor(colors.get(regCode));
+			}
+			else
+			{
+				imgClrCode.setBackgroundColor(colors.get(""));
+				txtClrLine.setBackgroundColor(colors.get(""));
 			}
 		}
 		return convertView;
