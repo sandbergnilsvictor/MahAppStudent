@@ -71,8 +71,8 @@
                 android:text="@string/tx_textTwo"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/grey_dark" />
-            
-                        <ImageView
+
+            <ImageView
                 android:id="@+id/divider_light2"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -80,7 +80,29 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/grey_light" />
-            
+
+            <TextView
+                android:id="@+id/tx_titleThree"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_below="@id/divider_light2"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="2. Meet the RSS icon"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tx_textThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tx_titleThree"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/tx_textThree"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey_dark" />
         </RelativeLayout>
     </LinearLayout>
 
