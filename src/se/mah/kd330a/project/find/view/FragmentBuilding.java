@@ -86,7 +86,7 @@ public class FragmentBuilding extends Fragment implements OnImageLoaderListener 
 
 				if(location.equals("Klerken (Kl)"))
 					location = "Jan Waldenstroms gata 25";
-				else if(location.equals("University Hospital (Hs)"))
+				else if(location.equals("University Hospital (As)"))
 					location = "Carl Gustafs vag 34";
 
 				//getting the google map

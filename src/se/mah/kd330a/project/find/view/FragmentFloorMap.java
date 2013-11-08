@@ -1,11 +1,11 @@
 package se.mah.kd330a.project.find.view;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import se.mah.kd330a.project.R;
 import se.mah.kd330a.project.find.data.GetImage;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -27,7 +28,8 @@ public class FragmentFloorMap extends Fragment{
 	private String floorCode = "";
 	int spPositionBuilding = -1;
 	int spPositionFloor = -1;
-
+	private WebView webview;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,6 +45,7 @@ public class FragmentFloorMap extends Fragment{
 		return rootView;
 	}
 
+	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -58,6 +61,20 @@ public class FragmentFloorMap extends Fragment{
 			buildingCode = strCode[0];
 			floorCode = strCode[1].toUpperCase();
 		}	
+		//webview settings
+		webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
+		webview.getSettings().setJavaScriptEnabled(true);
+		
+		webview.addJavascriptInterface(new MyJavaScriptInterface(), "HTMLOUT");
+		
+		webview.setWebViewClient(new WebViewClient() {
+		    @Override
+		    public void onPageFinished(WebView view, String url)
+		    {
+		        /* This call inject JavaScript into the page which just finished loading. */
+		    	webview.loadUrl("javascript:window.HTMLOUT.processHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+		    }
+		});
 		
 		//creating spinners
 		final Spinner spinnerBuilding = (Spinner) getView().findViewById(R.id.spinner_bilding);
@@ -138,7 +155,7 @@ public class FragmentFloorMap extends Fragment{
 	protected void showFloorMap(String floorMapCode) {
 		Toast.makeText(getActivity(), "floorMapCode: "+floorMapCode, Toast.LENGTH_SHORT).show();
 
-		WebView webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
+		webview = (WebView) getView().findViewById(R.id.webView_find_floor_map);
 		//webview.getSettings().setJavaScriptEnabled(true); 
 		//String pdf = "https://dl.dropboxusercontent.com/u/11605027/or1.pdf";
 		webview.getSettings().setSupportZoom(true); 
@@ -201,6 +218,16 @@ public class FragmentFloorMap extends Fragment{
 
 		return floorArrey;
 
+	}
+
+	class MyJavaScriptInterface {
+	    @SuppressWarnings("unused")
+	    public void processHTML(String html) {
+	        // process the html as needed by the app
+	    	Log.i("project", html);
+	    	if (html.indexOf("<img") == -1)
+	    		webview.loadUrl("http://195.178.234.7/mahapp/pictlib.aspx?filename=underconstraction.jpg&resolution=mdpi");
+	    }
 	}
 
 }
