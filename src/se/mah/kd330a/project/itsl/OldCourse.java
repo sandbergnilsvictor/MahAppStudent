@@ -2,12 +2,12 @@ package se.mah.kd330a.project.itsl;
 
 import android.graphics.Color;
 
-public class Course {
+public class OldCourse {
 	
 	String courseCode;
 	int color;
 	
-	public Course(String courseCode, int color)
+	public OldCourse(String courseCode, int color)
 	{
 		this.courseCode = courseCode;
 		this.color = color;
