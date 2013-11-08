@@ -18,7 +18,13 @@ public class TabFragment extends Fragment implements OnChildClickListener
 	private ExpandableListView expListView;
 	private ArrayList<Article> articleList;
 
-	public TabFragment(ArrayList<Article> articles)
+	public TabFragment()
+	{
+		super();
+		articleList = new ArrayList<Article>();
+	}
+	
+	public void setArticles(ArrayList<Article> articles)
 	{
 		articleList = articles;
 	}
@@ -30,7 +36,9 @@ public class TabFragment extends Fragment implements OnChildClickListener
 		listAdapter = new ExpandableListAdapter(getActivity(), articleList);
 		expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
 		expListView.setAdapter(listAdapter);
+		listAdapter.notifyDataSetChanged();
 		expListView.setOnChildClickListener(this);
+		
 		return rootView;
 	}
 
