@@ -68,10 +68,16 @@ public class GetImage {
 		boolean success = false;
 		try {
 			FileOutputStream fos = c.openFileOutput(filename, Context.MODE_PRIVATE);
-			success = b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-			fos.close();
-			doesFileExists(filename,c);
-			success = true;
+			if (filename.endsWith(".jpg")){
+				success = b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+			}else if (filename.endsWith(".png")){
+				success = b.compress(Bitmap.CompressFormat.PNG, 100, fos);
+			}
+			if (success){
+				fos.close();
+				doesFileExists(filename,c);
+				success = true;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

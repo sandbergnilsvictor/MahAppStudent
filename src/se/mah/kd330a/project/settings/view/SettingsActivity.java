@@ -74,7 +74,7 @@ public class SettingsActivity extends Activity {
 	public void toLadokInlogg(View view) {
 		// starting the old activity, Should redirect to StartActivity and clear the the ME.java
 		
-		Me.clear();
+		Me.clear(this);
 		Intent intent = new Intent(this, StartActivity.class);
 		startActivity(intent);
 		finish();
