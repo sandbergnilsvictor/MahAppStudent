@@ -67,5 +67,5 @@ public class KronoxReader {
 	 */
 	public static FileInputStream getFile(Context ctx) throws FileNotFoundException {
 		return ctx.openFileInput(KronoxReader.LOCAL_FILENAME);
-	}
+}
 }

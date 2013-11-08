@@ -27,15 +27,15 @@ public class Me implements Serializable{
 	private static final long serialVersionUID = 1L;
 	//Static variables there is only one Me
 	private static List<Course> myCourses = new ArrayList<Course>();
-	private static String firstName;
-	private static String lastName;
-	private static String email;
-	private static String dispayName;
+	private static String firstName="";
+	private static String lastName="";
+	private static String email="";
+	private static String dispayName="";
 	private static boolean isStaff = false;
 	private static boolean isStudent = false;
     private static String TAG ="UserInfo";
-	private static String userID;
-	private static String password;
+	private static String userID="";
+	private static String password="";
 	private static final String SAVE_FILE_NAME = "savefilename";
 	public static MyObservable observable = new MyObservable(); 
 

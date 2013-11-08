@@ -49,17 +49,30 @@
         android:background="@drawable/edit_text_background"/>
 
     <Button
+        style="@style/mah_button_red"
         android:id="@+id/reloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/passWordET"
         android:layout_below="@+id/passWordET"
-
         android:layout_marginTop="12dp"
         android:onClick="update"
         android:text="Update"
         android:background="@color/grey"
         android:paddingLeft="8dp"
         android:paddingRight="8dp" />
+
+    <Button
+        android:id="@+id/forgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/reloadButton"
+        android:layout_alignBottom="@+id/reloadButton"
+        android:layout_alignLeft="@+id/passWordET"
+        android:background="@color/grey"
+        android:onClick="forgetButtonClicked"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="Forget" />
 
 </RelativeLayout>

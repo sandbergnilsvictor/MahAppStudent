@@ -42,15 +42,22 @@ public class FragmentHome extends Fragment
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		nextClass = new NextClassWidget();
-		profileRegistered = nextClass.getTodaysClasses();
 		super.onCreate(savedInstanceState);
+
+		try
+		{
+			nextClass = new NextClassWidget();
+			profileRegistered = nextClass.getTodaysClasses();
+		}
+		catch (Exception e)
+		{
+			Log.e("FragmentHome", e.toString());
+		}
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-
 		rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_home, container, false);
 		setNextClassWidget(rootView);
 		setNewsFeedMah(rootView);

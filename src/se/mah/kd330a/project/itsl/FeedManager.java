@@ -101,7 +101,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
 
 		if (downloadTask.hasException())
 		{
@@ -153,7 +154,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 			 */
 			Log.i(TAG, "downloading complete, # articles: " + this.articleList.size());
 
-			callbackHandler.onFeedManagerDone(this, getArticles());
+			if (callbackHandler != null)
+				callbackHandler.onFeedManagerDone(this, getArticles());
 		}
 	}
 
@@ -165,17 +167,16 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	{
 		if (feedList.isEmpty())
 		{
-			Log.e(TAG, "Feed list is empty, adding some feeds:");
-			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
+			Log.i(TAG, "Feed list is empty, adding some feeds:");
 			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
-			addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=18190&PersonId=94952&CustomerId=719&Guid=96721ee137e0c918227093aa54f16f80&Culture=en-GB");
-			addFeedURL("https://mah.itslearning.com/Dashboard/NotificationRss.aspx?LocationType=1&LocationID=18178&PersonId=25776&CustomerId=719&Guid=d50eaf8a1781e4c8c7cdc9086d1248b1&Culture=sv-SE");
+			addFeedURL("http://www.mah.se/rss/nyheter");
 		}
 
 		/*
 		 * notify the UI of update
 		 */
-		callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerProgress(this, feedQueueCounter, feedList.size());
 
 		/* 
 		 * there can only be one task at any time and it can only be used once
@@ -242,7 +243,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		 */
 		Log.i(TAG, "load from cache done: " + this.articleList.size());
 
-		callbackHandler.onFeedManagerDone(this, getArticles());
+		if (callbackHandler != null)
+			callbackHandler.onFeedManagerDone(this, getArticles());
 		
 		return returnValue;
 	}
