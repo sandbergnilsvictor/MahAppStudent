@@ -47,12 +47,9 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
+	private void dbCreate(SQLiteDatabase db) {
 		db.execSQL(TABLE_CREATE);
-
-		//addRow(db, "K2C107", "K2_E1_C_S1", "first_sec_third_last", null, null, null);
-
+		
 		addRow(db, "K2C107", "k2_k2e1centerleft_k2e1cdirectleft_k2e1cdirectleftlefthall", "k2_k2e1centerleft_k2e1cdirectleftleft_k2e1cdirectleftlefthall", "icarrowhere_icarrowleft_icarrowup_icarrowleft", null, null, "k2_c");
 		addRow(db, "K2C108", "k2_k2e1centerleft_k2e1cdirectleft_k2e1cdirectleftlefthall", "k2_k2e1centerleft_k2e1cdirectleftleft_k2e1cdirectleftlefthall", "icarrowhere_icarrowleft_icarrowup_icarrowleft", null, null, "k2_c");
 		addRow(db, "K2C109", "k2_k2e1centerleft_k2e1cdirectleft_k2e1cdirectleftlefthall", "k2_k2e1centerleft_k2e1cdirectleftleft_k2e1cdirectleftlefthall", "icarrowhere_icarrowleft_icarrowup_icarrowleft", null, null, "k2_c");
@@ -388,9 +385,13 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		addRow(db, "KL5540", null, null, null, null, null, "kl_5");
 		addRow(db, "KL5643", null, null, null, null, null, "kl_5");
 		addRow(db, "KL5690", null, null, null, null, null, "kl_5");
+	}
 	
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+	
+		dbCreate(db);
 	} 
-
 
 	private void addRow(SQLiteDatabase db, String roomNr, String path, String texts, String arrows, String x, String y, String map) {
 
@@ -409,8 +410,8 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROOMS);
+		dbCreate(db);
 	}
 
 	public boolean isRoomExists(String roomNr) {
