@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tx_textFour"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="8dp"
+                    android:layout_margin="8dp"
                     android:background="@drawable/im_itsl_help_2" />
 
                 <ImageView
