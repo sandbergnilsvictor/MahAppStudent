@@ -45,6 +45,7 @@ public class StartActivity extends Activity implements Observer
 		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
 
 		Me.observable.addObserver(this);
+		Me.restoreMe(getApplicationContext());
 
 		if (Me.getFirstName().isEmpty())
 		{
@@ -129,6 +130,7 @@ public class StartActivity extends Activity implements Observer
 			return;
 		}
 
+		Me.saveMe(getApplicationContext());
 		BackgroundDownloadTask downloads = new BackgroundDownloadTask(this);
 		downloads.execute();
 	}
