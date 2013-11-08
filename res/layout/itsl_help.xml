@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+<LinearLayout 
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/grey_light"
@@ -12,14 +16,14 @@
         android:layout_marginRight="8dp"
         android:animateLayoutChanges="true"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:scrollbarAlwaysDrawVerticalTrack="true" >
+        android:orientation="horizontal" >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TextView
+            <!--
+                 <TextView
                 android:id="@+id/tx_titleMain"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
@@ -27,15 +31,13 @@
                 android:text="Set up It&apos;s Learning"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black" />
+            -->
 
             <TextView
                 android:id="@+id/tx_textMain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tx_titleMain"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="16dp"
                 android:text="@string/tx_textMain"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/grey_dark" />
@@ -97,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tx_titleThree"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/tx_textThree"
@@ -109,8 +111,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tx_textThree"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/im_help_itsl_1" />
-            
+
             <ImageView
                 android:id="@+id/divider_light3"
                 android:layout_width="match_parent"
@@ -142,8 +145,40 @@
                 android:text="@string/tx_textFour"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/grey_dark" />
-            
+
+            <ImageView
+                android:id="@+id/divider_light4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@id/tx_textFour"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/grey_light" />
+
+            <TextView
+                android:id="@+id/tx_titleFive"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_below="@id/divider_light4"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
+                android:text="4. Bookmark your feeds"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tx_textFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tx_titleFive"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/tx_textTwo"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/grey_dark" />
         </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
