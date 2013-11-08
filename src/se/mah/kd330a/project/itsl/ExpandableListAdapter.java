@@ -28,8 +28,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter
 	
 	HashMap<String, Integer> colors = new HashMap<String, Integer>();
 	
-	// Temporary for testing - create arraylist of courses
-	ArrayList<OldCourse> theCourses = new ArrayList<OldCourse>();
 
 	public ExpandableListAdapter(Context context, List<Article> listDataHeader)
 	{

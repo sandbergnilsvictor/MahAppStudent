@@ -30,7 +30,7 @@
           android:drawable="@drawable/itsl_tab_sel_red" />
     <item android:state_focused="false" android:state_selected="true"
         android:state_pressed="true"
-        android:drawable="@color/red" />
+        android:drawable="@drawable/itsl_tab_sel_gray" />
 
     <!-- Focused states (such as when focused with a d-pad or mouse hover) -->
     <item android:state_focused="true" android:state_selected="false"
