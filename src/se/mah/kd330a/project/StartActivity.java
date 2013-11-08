@@ -40,6 +40,7 @@ public class StartActivity extends Activity implements Observer
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		
 		((LinearLayout) findViewById(R.id.login_view)).setVisibility(LinearLayout.GONE);
 		((LinearLayout) findViewById(R.id.loading_view)).setVisibility(LinearLayout.GONE);
 
@@ -95,7 +96,6 @@ public class StartActivity extends Activity implements Observer
 	{
 		hideLoginView();
 		
-
 		String username = editTextUsername.getText().toString();
 		String password = editTextPassword.getText().toString();
 

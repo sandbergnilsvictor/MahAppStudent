@@ -82,7 +82,7 @@ public class Util
 		}
 		catch (Exception e)
 		{
-			Log.e(TAG, "getBrowserBookmarks: " + e.toString());
+			Log.i(TAG, "getBrowserBookmarks(): handled " + e.toString());
 		}
 
 		return urls;
