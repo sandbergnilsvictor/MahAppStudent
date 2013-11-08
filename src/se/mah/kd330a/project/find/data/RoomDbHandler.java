@@ -163,9 +163,9 @@ public class RoomDbHandler extends SQLiteOpenHelper {
 		addRow(db, "K2D155", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2bridge", "k2_k2e1dright_k2e1dstairs2straight_k2e1dstairs2bridge", "icarrowhere_icarrowright_icarrowup_icarrowup", null, null, "k2_d");
 		addRow(db, "K2D156", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2bridge", "k2_k2e1dright_k2e1dstairs2straight_k2e1dstairs2bridge", "icarrowhere_icarrowright_icarrowup_icarrowup", null, null, "k2_d");
 		addRow(db, "K2D157", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2bridge", "k2_k2e1dright_k2e1dstairs2straight_k2e1dstairs2bridge", "icarrowhere_icarrowright_icarrowup_icarrowup", null, null, "k2_d");
-		addRow(db, "K2D202", "k2_k2e1centerright_k2e1dstairs2", "k2_k2e1dright_k2e1dstairs2upright", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
-		addRow(db, "K2D204", "k2_k2e1centerright_k2e1dstairs2", "k2_k2e1dright_k2e1dstairs2upleft", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
-		addRow(db, "K2D205", "k2_k2e1centerright_k2e1dstairs2", "k2_k2e1dright_k2e1dstairs2upleft", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
+		addRow(db, "K2D202", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2nobridge", "k2_k2e1dright_k2e1dstairs2upright_k2e1dstairs2uprightboat", "icarrowhere_icarrowright_icarrowup_icarrowright", null, null, "k2_d");
+		addRow(db, "K2D204", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2nobridge", "k2_k2e1dright_k2e1dstairs2upleft_k2e1dstairs2upleftboat", "icarrowhere_icarrowright_icarrowup_icarrowleft", null, null, "k2_d");
+		addRow(db, "K2D205", "k2_k2e1centerright_k2e1dstairs2_k2e1dstairs2nobridge", "k2_k2e1dright_k2e1dstairs2upleft_k2e1dstairs2upleftboat", "icarrowhere_icarrowright_icarrowup_icarrowleft", null, null, "k2_d");
 		addRow(db, "K2D213", "k2_k2e1centerright_k2e1dstairs1", "k2_k2e1dright_k2e1dstairs1up", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
 		addRow(db, "K2D214", "k2_k2e1centerright_k2e1dstairs1", "k2_k2e1dright_k2e1dstairs1up", "icarrowhere_icarrowright_icarrowup", null, null, "k2_d");
 
