@@ -172,13 +172,15 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 	 */
 	public void processFeeds()
 	{
-		if (feedList.isEmpty())
+		/*if (feedList.isEmpty())
 		{
 			Log.i(TAG, "Feed list is empty, adding some feeds:");
-			//addFeedURL("https://mah.itslearning.com/Bulletin/RssFeed.aspx?LocationType=1&LocationID=16066&PersonId=71004&CustomerId=719&Guid=52845be1dfae034819b676d6d2b18733&Culture=sv-SE");
-			//addFeedURL("http://www.mah.se/rss/nyheter");
-		}
+			addFeedURL("http://www.mah.se/rss/nyheter");
+		}*/
 
+		//ÅP: I think we should add this always - not only when the user has no bookmarks
+		addFeedURL("http://www.mah.se/rss/nyheter");
+		
 		/*
 		 * notify the UI of update
 		 */
@@ -188,6 +190,7 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		/* 
 		 * there can only be one task at any time and it can only be used once
 		 */
+	
 		downloadTask = new FeedDownloadTask(this);
 
 		/* 
@@ -195,7 +198,8 @@ public class FeedManager implements FeedDownloadTask.FeedCompleteListener
 		 * in case we want to get all feeds again later (i.e. to refresh), that's
 		 * why we use a counter to keep track of where in the queue we are 
 		 */
-		downloadTask.execute(feedList.get(feedQueueCounter++));
+	
+			downloadTask.execute(feedList.get(feedQueueCounter++));
 	}
 
 	public ArrayList<String> getFeedList() {

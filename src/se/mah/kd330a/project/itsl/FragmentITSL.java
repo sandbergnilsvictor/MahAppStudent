@@ -186,7 +186,7 @@ public class FragmentITSL extends Fragment implements
 				
 				Log.i(TAG, "Filtered map key => tab title is: " + title);
 			}
-		}
+		}		
 		else{
 			actionBar.addTab(
 					actionBar.newTab()
@@ -197,8 +197,9 @@ public class FragmentITSL extends Fragment implements
 			b.putBoolean("isEmpty", true);
 			fragment.setArguments(b);
 			fragments.add(fragment);
+			
 		}
-
+		
 		return fragments;
 	}
 	
